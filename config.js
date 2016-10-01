@@ -1,7 +1,7 @@
 var config = {};
 
 config.recalbox = {
-  ip: '192.168.0.18',
+  ip: '127.0.0.1',
   port: 1337
 };
 

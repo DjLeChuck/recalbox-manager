@@ -1,0 +1,151 @@
+<h1>Configuration</h1>
+
+<p class="important">Cette page permet de gérer différentes configurations de recalbox tel que les paramètres Wi-Fi, la timezone, la locale, etc.</p>
+
+<form method="post" action="/configuration" class="form-horizontal">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Options système</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="locale" class="col-md-4 control-label">Langue du système</label>
+        <div class="col-md-6">
+          <select name="locale" id="locale" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <% systemlocales.forEach(function (item) { %>
+            <option value="<%= item.key %>"<% if (curLocale.locale == item.key) { %> selected="selected"<% } %>>
+              <%= item.value %>
+            </option>
+          <% }); %>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="keyboardlayout" class="col-md-4 control-label">Layout du clavier</label>
+        <div class="col-md-6">
+          <select name="keyboardlayout" id="keyboardlayout" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <% keyboardlayouts.forEach(function (item) { %>
+            <option value="<%= item.key %>"<% if (curKeyboardlayout.keyboardlayout == item.key) { %> selected="selected"<% } %>>
+              <%= item.value %>
+            </option>
+          <% }); %>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="timezone" class="col-md-4 control-label">Timezone</label>
+        <div class="col-md-6">
+          <select name="timezone" id="timezone" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <% timezones.forEach(function (timezone) { %>
+            <option value="<%= timezone %>"<% if (curTimezone.timezone == timezone) { %> selected="selected"<% } %>>
+              <%= timezone %>
+            </option>
+          <% }); %>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Options réseau</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="hostname" class="col-md-4 control-label">Nom d'hôte</label>
+        <div class="col-md-6">
+          <input type="text" name="hostname" id="hostname" class="form-control" placeholder="Nom d'hôte" value="<%= curHostname.hostname %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="wifi-enabled" class="col-md-4 control-label">Activer le wifi</label>
+        <div class="col-md-6">
+          <input type="hidden" name="wifi[enabled]" value="0">
+          <input type="checkbox" name="wifi[enabled]" value="1" id="wifi-enabled" data-switch<% if (1 == wifi.enabled) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+
+      <div class="well">
+        <div class="alert alert-warning" role="alert">
+          Attention, si vous vous trompez dans vos informations
+          vous risquez de ne plus pouvoir accéder à votre
+          recalbox par le wifi.
+        </div>
+
+        <div class="form-group">
+          <label for="wifi-ssid" class="col-md-4 control-label">SSID</label>
+          <div class="col-md-6">
+            <input type="text" name="wifi[ssid]" class="form-control" id="wifi-ssid" placeholder="SSID" value="<%= wifi.ssid %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="wifi-key" class="col-md-4 control-label">Clé</label>
+          <div class="col-md-6">
+            <input type="text" name="wifi[key]" class="form-control" id="wifi-key" placeholder="Clé" value="<%= wifi.key %>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Options Kodi</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="kodi-enabled" class="col-md-4 control-label">Activer Kodi</label>
+        <div class="col-md-6">
+          <input type="hidden" name="kodi[enabled]" value="0">
+          <input type="checkbox" name="kodi[enabled]" value="1" id="kodi-enabled" data-switch<% if (1 == kodi.enabled) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="kodi-atstartup" class="col-md-4 control-label">Lancer Kodi au démarrage</label>
+        <div class="col-md-6">
+          <input type="hidden" name="kodi[atstartup]" value="0">
+          <input type="checkbox" name="kodi[atstartup]" value="1" id="kodi-atstartup" data-switch<% if (1 == kodi.atstartup) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="kodi-xbutton" class="col-md-4 control-label">Lancer Kodi via la touche <kbd>X</kbd></label>
+        <div class="col-md-6">
+          <input type="hidden" name="kodi[xbutton]" value="0">
+          <input type="checkbox" name="kodi[xbutton]" value="1" id="kodi-xbutton" data-switch<% if (1 == kodi.xbutton) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Mises à jour</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="updates-enabled" class="col-md-7 control-label">Vérifier les mises à jours au démarrage du système</label>
+        <div class="col-md-3">
+          <input type="hidden" name="updates[enabled]" value="0">
+          <input type="checkbox" name="updates[enabled]" value="1" id="updates-enabled" data-switch<% if (1 == updates.enabled) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <a href="/configuration" class="btn btn-danger">Annuler</a>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+  </p>
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Redémarrage et arrêt</h3>
+    </div>
+    <div class="panel-body">
+      <button type="submit" name="shutdown" value="reboot" class="btn btn-warning">Redémarer le système</button>
+
+      <button type="submit" name="shutdown" value="halt" class="btn btn-danger">Arrêter le système</button>
+    </div>
+  </div>
+</form>

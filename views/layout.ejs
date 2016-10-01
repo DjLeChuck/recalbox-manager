@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=typeof title == 'undefined' ? 'Recalbox - Manager' : title%></title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/css/dependencies/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/dependencies/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="/css/dependencies/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/dependencies/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!--STYLES END-->
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Recalbox Manager</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil</a></li>
+            <li><a href="/audio"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Audio</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Bios</a></li>
+            <li><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> Contrôleurs</a></li>
+            <li><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Systèmes</a></li>
+            <li><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Configuration</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil</a></li>
+            <li><a href="/audio"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Audio</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Bios</a></li>
+            <li><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> Contrôleurs</a></li>
+            <li><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Systèmes</a></li>
+            <li><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Configuration</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"><%- body %></div>
+      </div>
+    </div>
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/jquery.min.js"></script>
+    <script src="/js/dependencies/bootstrap.min.js"></script>
+    <script src="/js/dependencies/bootstrap-select.min.js"></script>
+    <script src="/js/dependencies/bootstrap-switch.min.js"></script>
+    <script src="/js/dependencies/bootstrap-slider.min.js"></script>
+    <script src="/js/app.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

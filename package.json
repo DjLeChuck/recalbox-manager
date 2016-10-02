@@ -6,6 +6,7 @@
   "main": "app.js",
   "dependencies": {
     "co-request": "^1.0.0",
+    "filesize": "^3.3.0",
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.2.0",
     "koa-ejs": "^3.0.0",
@@ -27,5 +28,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/DjLeChuck/recalbox-manager.git"
-  },
+  }
 }

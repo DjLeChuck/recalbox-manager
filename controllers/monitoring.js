@@ -1,7 +1,7 @@
 module.exports.index = function *() {
   var execSync = require('child_process').execSync;
   var osutils = require('../lib/osutils');
-  var filesize = require('../lib/filesize');
+  var filesize = require('filesize');
 
   // Temperature
   var currentTemp = execSync('cat /sys/class/thermal/thermal_zone0/temp').toString() / 1000;

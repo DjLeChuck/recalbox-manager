@@ -11,6 +11,8 @@ module.exports = {
 
     this.state.ps3drivers = config.recalbox.controllers.ps3drivers;
 
+    this.state.activePage = 'controllers';
+
     yield this.render('controllers');
   },
   save: function *() {

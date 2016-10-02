@@ -15,6 +15,8 @@ module.exports = {
     this.state.systemlocales = config.recalbox.configuration.systemlocales;
     this.state.timezones = config.recalbox.configuration.timezones;
 
+    this.state.activePage = 'configuration';
+
     yield this.render('configuration');
   },
   save: function *() {

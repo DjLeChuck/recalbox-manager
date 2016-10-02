@@ -6,7 +6,8 @@ var bodyParser = require('koa-bodyparser');
 var serve = require('koa-static');
 
 // Controllers
-var main = require('./controllers/main');
+var home = require('./controllers/home');
+var monitoring = require('./controllers/monitoring');
 var audio = require('./controllers/audio');
 var configuration = require('./controllers/configuration');
 var controllers = require('./controllers/controllers');
@@ -26,7 +27,8 @@ render(app, {
 });
 
 // Routes
-app.use(_.get('/', main.home));
+app.use(_.get('/', home.index));
+app.use(_.get('/monitoring', monitoring.index));
 app.use(_.get('/audio', audio.index));
 app.use(_.post('/audio', audio.save));
 app.use(_.get('/configuration', configuration.index));

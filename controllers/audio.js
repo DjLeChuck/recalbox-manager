@@ -6,6 +6,8 @@ module.exports = {
     this.state.audio = yield api.get('/audio');
     this.state.devices = config.recalbox.audio.devices;
 
+    this.state.activePage = 'audio';
+
     yield this.render('audio');
   },
   save: function *() {

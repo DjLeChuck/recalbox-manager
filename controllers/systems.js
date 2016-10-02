@@ -21,6 +21,8 @@ module.exports = {
     this.state.ratio = config.recalbox.systems.ratio;
     this.state.shaderset = config.recalbox.systems.shaderset;
 
+    this.state.activePage = 'systems';
+
     yield this.render('systems');
   },
   save: function *() {

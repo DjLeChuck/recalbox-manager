@@ -13,6 +13,7 @@ var configuration = require('./controllers/configuration');
 var controllers = require('./controllers/controllers');
 var systems = require('./controllers/systems');
 var logs = require('./controllers/logs');
+var recalboxConf = require('./controllers/recalbox-conf');
 
 var app = koa();
 
@@ -44,5 +45,7 @@ app.use(_.post('/controllers', controllers.save));
 app.use(_.get('/systems', systems.index));
 app.use(_.post('/systems', systems.save));
 app.use(_.get('/logs', logs.index));
+app.use(_.get('/recalbox-conf', recalboxConf.index));
+app.use(_.post('/recalbox-conf', recalboxConf.save));
 
 app.listen(3000);

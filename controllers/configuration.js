@@ -1,7 +1,7 @@
 module.exports = {
   index: function *() {
     var config = require('../config');
-    var api = require('../api');
+    var api = require('../lib/api');
 
     this.state.curKeyboardlayout = yield api.get('/keyboardlayout');
     this.state.curLocale = yield api.get('/locale');

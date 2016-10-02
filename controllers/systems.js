@@ -1,7 +1,7 @@
 module.exports = {
   index: function *() {
     var config = require('../config');
-    var api = require('../api');
+    var api = require('../lib/api');
 
     // En attente de pouvoir l'exécuter sur le Pi directement
     /*var exec = require('child_process').exec;

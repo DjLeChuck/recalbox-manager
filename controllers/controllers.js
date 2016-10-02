@@ -1,7 +1,7 @@
 module.exports = {
   index: function *() {
     var config = require('../config');
-    var api = require('../api');
+    var api = require('../lib/api');
 
     this.state.curDb9 = yield api.get('/controllers/db9');
     this.state.curGamecon = yield api.get('/controllers/gamecon');

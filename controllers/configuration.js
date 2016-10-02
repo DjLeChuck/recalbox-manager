@@ -1,6 +1,5 @@
 module.exports = {
   index: function *() {
-    var config = require('../config');
     var api = require('../lib/api');
 
     this.state.curKeyboardlayout = yield api.get('/keyboardlayout');
@@ -11,9 +10,9 @@ module.exports = {
     this.state.kodi = yield api.get('/kodi');
     this.state.updates = yield api.get('/updates/enabled');
 
-    this.state.keyboardlayouts = config.recalbox.configuration.keyboardlayouts;
-    this.state.systemlocales = config.recalbox.configuration.systemlocales;
-    this.state.timezones = config.recalbox.configuration.timezones;
+    this.state.keyboardlayouts = this.state.config.recalbox.configuration.keyboardlayouts;
+    this.state.systemlocales = this.state.config.recalbox.configuration.systemlocales;
+    this.state.timezones = this.state.config.recalbox.configuration.timezones;
 
     this.state.activePage = 'configuration';
 

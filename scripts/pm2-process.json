@@ -1,0 +1,14 @@
+{
+  "apps": [{
+    "name": "manager",
+    "exec_interpreter": "node",
+    "exec_mode": "cluster",
+    "instances": 1,
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "max_memory_restart": "100M",
+    "merge_logs": true,
+    "script": "./app.js",
+    "watch": true,
+    "ignore_watch" : ["node_modules"]
+  }]
+}

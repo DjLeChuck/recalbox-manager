@@ -12,11 +12,17 @@ var audio = require('./controllers/audio');
 var configuration = require('./controllers/configuration');
 var controllers = require('./controllers/controllers');
 var systems = require('./controllers/systems');
+var logs = require('./controllers/logs');
 
 var app = koa();
 
 app.use(bodyParser());
 app.use(serve(path.join(__dirname, '/assets')));
+app.use(function *(next) {
+  this.state.config = require('./lib/utils').getConfig();
+
+  yield next;
+});
 
 // Configure ejs
 render(app, {
@@ -37,5 +43,6 @@ app.use(_.get('/controllers', controllers.index));
 app.use(_.post('/controllers', controllers.save));
 app.use(_.get('/systems', systems.index));
 app.use(_.post('/systems', systems.save));
+app.use(_.get('/logs', logs.index));
 
 app.listen(3000);

@@ -1,10 +1,9 @@
 module.exports = {
   index: function *() {
-    var config = require('../config');
     var api = require('../lib/api');
 
     this.state.audio = yield api.get('/audio');
-    this.state.devices = config.recalbox.audio.devices;
+    this.state.devices = this.state.config.recalbox.audio.devices;
 
     this.state.activePage = 'audio';
 

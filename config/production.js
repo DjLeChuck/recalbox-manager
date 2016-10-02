@@ -2,7 +2,8 @@ var config = {};
 
 config.recalbox = {
   ip: '127.0.0.1',
-  port: 1337
+  port: 1337,
+  logsPath: '/recalbox/share/system/logs/recalbox.log'
 };
 
 // Audio

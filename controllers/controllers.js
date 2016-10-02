@@ -1,6 +1,5 @@
 module.exports = {
   index: function *() {
-    var config = require('../config');
     var api = require('../lib/api');
 
     this.state.curDb9 = yield api.get('/controllers/db9');
@@ -9,7 +8,7 @@ module.exports = {
     this.state.curPs3 = yield api.get('/controllers/ps3');
     this.state.curXboxdrv = yield api.get('/controllers/xboxdrv');
 
-    this.state.ps3drivers = config.recalbox.controllers.ps3drivers;
+    this.state.ps3drivers = this.state.config.recalbox.controllers.ps3drivers;
 
     this.state.activePage = 'controllers';
 

@@ -1,6 +1,5 @@
 module.exports = {
   index: function *() {
-    var config = require('../config');
     var api = require('../lib/api');
 
     // En attente de pouvoir l'exécuter sur le Pi directement
@@ -18,8 +17,8 @@ module.exports = {
 
     this.state.systems = yield api.get('/systems/default');
 
-    this.state.ratio = config.recalbox.systems.ratio;
-    this.state.shaderset = config.recalbox.systems.shaderset;
+    this.state.ratio = this.state.config.recalbox.systems.ratio;
+    this.state.shaderset = this.state.config.recalbox.systems.shaderset;
 
     this.state.activePage = 'systems';
 

@@ -4,6 +4,8 @@ var render = require('koa-ejs');
 var path = require('path');
 var bodyParser = require('koa-bodyparser');
 var serve = require('koa-static');
+var session = require('koa-session');
+var flash = require('koa-flash');
 
 // Controllers
 var home = require('./controllers/home');
@@ -17,10 +19,15 @@ var recalboxConf = require('./controllers/recalbox-conf');
 
 var app = koa();
 
+app.keys = ['The cake is a lie!'];
+
+app.use(session(app));
+app.use(flash());
 app.use(bodyParser());
 app.use(serve(path.join(__dirname, '/assets')));
 app.use(function *(next) {
   this.state.config = require('./lib/utils').getConfig();
+  this.state.api = require('./lib/api');
 
   yield next;
 });
@@ -31,6 +38,12 @@ render(app, {
   viewExt: 'ejs',
   cache: false,
   debug: true
+});
+
+app.use(function *(next) {
+  this.state.flash = this.state.flash || {};
+
+  yield next;
 });
 
 // Routes

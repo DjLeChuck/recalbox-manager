@@ -1,21 +1,20 @@
 module.exports = {
   index: function *() {
-    var api = require('../lib/api');
-
-    this.state.curDb9 = yield api.get('/controllers/db9');
-    this.state.curGamecon = yield api.get('/controllers/gamecon');
-    this.state.curGpio = yield api.get('/controllers/gpio');
-    this.state.curPs3 = yield api.get('/controllers/ps3');
-    this.state.curXboxdrv = yield api.get('/controllers/xboxdrv');
+    this.state.curDb9 = yield this.state.api.get('/controllers/db9');
+    this.state.curGamecon = yield this.state.api.get('/controllers/gamecon');
+    this.state.curGpio = yield this.state.api.get('/controllers/gpio');
+    this.state.curPs3 = yield this.state.api.get('/controllers/ps3');
+    this.state.curXboxdrv = yield this.state.api.get('/controllers/xboxdrv');
 
     this.state.ps3drivers = this.state.config.recalbox.controllers.ps3drivers;
 
     this.state.activePage = 'controllers';
 
+    this.state.flash = this.flash;
+
     yield this.render('controllers');
   },
   save: function *() {
-    var api = require('../api');
     var post = this.request.body;
     var requests = [];
 
@@ -39,8 +38,10 @@ module.exports = {
 
     // Execute requests
     for (var i = 0; i < requests.length; i++) {
-      yield api.put(requests[i]);
+      yield this.state.api.put(requests[i]);
     }
+
+    this.flash = { success: 'La configuration a bien été sauvegardée.' };
 
     this.redirect('back');
   }

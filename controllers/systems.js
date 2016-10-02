@@ -1,7 +1,5 @@
 module.exports = {
   index: function *() {
-    var api = require('../lib/api');
-
     // En attente de pouvoir l'exécuter sur le Pi directement
     /*var exec = require('child_process').exec;
 
@@ -15,17 +13,18 @@ module.exports = {
       }
     });*/
 
-    this.state.systems = yield api.get('/systems/default');
+    this.state.systems = yield this.state.api.get('/systems/default');
 
     this.state.ratio = this.state.config.recalbox.systems.ratio;
     this.state.shaderset = this.state.config.recalbox.systems.shaderset;
 
     this.state.activePage = 'systems';
 
+    this.state.flash = this.flash;
+
     yield this.render('systems');
   },
   save: function *() {
-    var api = require('../api');
     var post = this.request.body;
     var requests = [];
 
@@ -39,8 +38,10 @@ module.exports = {
 
     // Execute requests
     for (var i = 0; i < requests.length; i++) {
-      yield api.put(requests[i]);
+      yield this.state.api.put(requests[i]);
     }
+
+    this.flash = { success: 'La configuration a bien été sauvegardée.' };
 
     this.redirect('back');
   }

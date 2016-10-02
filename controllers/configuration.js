@@ -1,14 +1,12 @@
 module.exports = {
   index: function *() {
-    var api = require('../lib/api');
-
-    this.state.curKeyboardlayout = yield api.get('/keyboardlayout');
-    this.state.curLocale = yield api.get('/locale');
-    this.state.curHostname = yield api.get('/hostname');
-    this.state.curTimezone = yield api.get('/timezone');
-    this.state.wifi = yield api.get('/wifi');
-    this.state.kodi = yield api.get('/kodi');
-    this.state.updates = yield api.get('/updates/enabled');
+    this.state.curKeyboardlayout = yield this.state.api.get('/keyboardlayout');
+    this.state.curLocale = yield this.state.api.get('/locale');
+    this.state.curHostname = yield this.state.api.get('/hostname');
+    this.state.curTimezone = yield this.state.api.get('/timezone');
+    this.state.wifi = yield this.state.api.get('/wifi');
+    this.state.kodi = yield this.state.api.get('/kodi');
+    this.state.updates = yield this.state.api.get('/updates/enabled');
 
     this.state.keyboardlayouts = this.state.config.recalbox.configuration.keyboardlayouts;
     this.state.systemlocales = this.state.config.recalbox.configuration.systemlocales;
@@ -16,10 +14,11 @@ module.exports = {
 
     this.state.activePage = 'configuration';
 
+    this.state.flash = this.flash;
+
     yield this.render('configuration');
   },
   save: function *() {
-    var api = require('../api');
     var post = this.request.body;
     var requests = [];
 
@@ -28,11 +27,11 @@ module.exports = {
       switch (post.shutdown) {
         case 'reboot':
           // @todo Wait for reboot. The manager will be unreachable for a while.
-          yield api.post('/reboots');
+          yield this.state.api.post('/reboots');
           break;
         case 'halt':
           // @todo What to do? The manager will become unreachable.
-          yield api.post('/shutdowns');
+          yield this.state.api.post('/shutdowns');
           break;
         default:
           this.throw('Unknown shutdown action.');
@@ -59,8 +58,10 @@ module.exports = {
 
     // Execute requests
     for (var i = 0; i < requests.length; i++) {
-      yield api.put(requests[i]);
+      yield this.state.api.put(requests[i]);
     }
+
+    this.flash = { success: 'La configuration a bien été sauvegardée.' };
 
     this.redirect('back');
   }

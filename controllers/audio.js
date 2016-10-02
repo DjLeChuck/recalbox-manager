@@ -1,16 +1,15 @@
 module.exports = {
   index: function *() {
-    var api = require('../lib/api');
-
-    this.state.audio = yield api.get('/audio');
+    this.state.audio = yield this.state.api.get('/audio');
     this.state.devices = this.state.config.recalbox.audio.devices;
 
     this.state.activePage = 'audio';
 
+    this.state.flash = this.flash;
+
     yield this.render('audio');
   },
   save: function *() {
-    var api = require('../api');
     var post = this.request.body;
     var requests = [];
 
@@ -24,8 +23,10 @@ module.exports = {
 
     // Execute requests
     for (var i = 0; i < requests.length; i++) {
-      yield api.put(requests[i]);
+      yield this.state.api.put(requests[i]);
     }
+
+    this.flash = { success: 'La configuration a bien été sauvegardée.' };
 
     this.redirect('back');
   }

@@ -58,6 +58,7 @@ app.use(_.post('/controllers', controllers.save));
 app.use(_.get('/systems', systems.index));
 app.use(_.post('/systems', systems.save));
 app.use(_.get('/logs', logs.index));
+app.use(_.post('/logs', logs.index));
 app.use(_.get('/recalbox-conf', recalboxConf.index));
 app.use(_.post('/recalbox-conf', recalboxConf.save));
 

@@ -3,7 +3,12 @@ var config = {};
 config.recalbox = {
   ip: '127.0.0.1',
   port: 1337,
-  logsPath: '/recalbox/share/system/logs/recalbox.log',
+  logsPaths: [
+    '/var/log/dmesg',
+    '/var/log/messages',
+    '/recalbox/share/system/.emulationstation/es_log.txt',
+    '/recalbox/share/system/logs/recalbox.log',
+  ],
   confPath: '/recalbox/share/system/recalbox.conf'
 };
 

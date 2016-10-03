@@ -1,0 +1,36 @@
+<h1>Support</h1>
+
+<p>Pour toute demandes générales, techniques ou besoin d'aide, vous avez plusieurs choix :</p>
+
+<ul>
+  <li>Le forum : <a href="https://forum.recalbox.com/">https://forum.recalbox.com/</a></li>
+  <li>Le chan IRC : <a href="https://kiwiirc.com/client/irc.freenode.net/#recalbox">https://kiwiirc.com/client/irc.freenode.net/#recalbox</a></li>
+  <li>Le wiki : <a href="https://github.com/recalbox/recalbox-os/wiki/Home-(FR)">https://github.com/recalbox/recalbox-os/wiki/Home-(FR)</a></li>
+</ul>
+
+<br />
+
+<p>
+  Si on vous demande d'envoyer le résultat du script <code>recalbox-support.sh</code>, vous
+  pouvez le faire automatiquement ci-dessous. Vous obtiendrez alors un lien de
+  téléchargement qu'il vous suffira de copier / coller sur le forum.
+</p>
+
+<form method="post">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Exécution de recalbox-support.sh</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <button type="submit" class="btn btn-success">Exécuter le script</button>
+      </p>
+
+    <% if (typeof downloadUrl !== 'undefined') { %>
+      <p>
+        Lien de téléchargement à donner : <a href="<%= downloadUrl %>" target="_blank"><%= downloadUrl %></a>
+      </p>
+    <% } %>
+    </div>
+  </div>
+</form>

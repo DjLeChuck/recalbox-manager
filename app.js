@@ -16,15 +16,16 @@ var controllers = require('./controllers/controllers');
 var systems = require('./controllers/systems');
 var logs = require('./controllers/logs');
 var recalboxConf = require('./controllers/recalbox-conf');
+var support = require('./controllers/support');
 
 var app = koa();
 
 app.keys = ['The cake is a lie!'];
 
+app.use(serve(path.join(__dirname, '/assets')));
 app.use(session(app));
 app.use(flash());
 app.use(bodyParser());
-app.use(serve(path.join(__dirname, '/assets')));
 app.use(function *(next) {
   this.state.config = require('./lib/utils').getConfig();
   this.state.api = require('./lib/api');
@@ -61,5 +62,7 @@ app.use(_.get('/logs', logs.index));
 app.use(_.post('/logs', logs.index));
 app.use(_.get('/recalbox-conf', recalboxConf.index));
 app.use(_.post('/recalbox-conf', recalboxConf.save));
+app.use(_.get('/support', support.index));
+app.use(_.post('/support', support.sendReport));
 
 app.listen(3000);

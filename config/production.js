@@ -9,7 +9,21 @@ config.recalbox = {
     '/recalbox/share/system/.emulationstation/es_log.txt',
     '/recalbox/share/system/logs/recalbox.log',
   ],
-  confPath: '/recalbox/share/system/recalbox.conf'
+  confPath: '/recalbox/share/system/recalbox.conf',
+  supportScript: '/recalbox/scripts/recalbox-support.sh'
+};
+
+config.smartFile = {
+  url: 'https://app.smartfile.com/api/2',
+  folderName: '/recalbox-support',
+  api: {
+    upload: '/path/data',
+    link: '/link/'
+  },
+  keys: {
+    public: 'xmoZ9l3lL83utppjY7TzPML0jaTUu4',
+    private: 'C8SU1dYRj7gFImkEZfMUNm0h6ZGwkP'
+  }
 };
 
 // Audio

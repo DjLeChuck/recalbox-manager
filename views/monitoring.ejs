@@ -43,35 +43,37 @@
 </div>
 
 <h2>Systèmes de fichiers</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Périphérique</th>
-      <th>Montage</th>
-      <th>Type</th>
-      <th>Usage</th>
-      <th>Utilisé</th>
-      <th>Libre</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% disks.forEach(function (disk) { %>
-    <tr>
-      <td><%= disk.name %></td>
-      <td><%= disk.mountOn %></td>
-      <td></td>
-      <td>
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="<%= disk.used %>" aria-valuemin="0" aria-valuemax="<%= disk.total %>" style="width: <%= disk.percent %>; min-width: 2em;">
-            <%= disk.percent %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Périphérique</th>
+        <th>Montage</th>
+        <th>Type</th>
+        <th>Usage</th>
+        <th>Utilisé</th>
+        <th>Libre</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% disks.forEach(function (disk) { %>
+      <tr>
+        <td><%= disk.name %></td>
+        <td><%= disk.mountOn %></td>
+        <td></td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= disk.used %>" aria-valuemin="0" aria-valuemax="<%= disk.total %>" style="width: <%= disk.percent %>; min-width: 2em;">
+              <%= disk.percent %>
+            </div>
           </div>
-        </div>
-      </td>
-      <td><%= helpers.fileSizeFormat(disk.used) %></td>
-      <td><%= helpers.fileSizeFormat(disk.free) %></td>
-      <td><%= helpers.fileSizeFormat(disk.total) %></td>
-    </tr>
-  <% }); %>
-  </tbody>
-</table>
+        </td>
+        <td><%= helpers.fileSizeFormat(disk.used) %></td>
+        <td><%= helpers.fileSizeFormat(disk.free) %></td>
+        <td><%= helpers.fileSizeFormat(disk.total) %></td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</div>

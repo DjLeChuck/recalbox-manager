@@ -75,5 +75,15 @@
 	"Le wiki :": "Le wiki :",
 	"Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous. Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.": "Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous. Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.",
 	"Exécution de recalbox-support.sh": "Exécution de recalbox-support.sh",
-	"Exécuter le script": "Exécuter le script"
+	"Exécuter le script": "Exécuter le script",
+	"Automatique": "Automatique",
+	"Prise HDMI": "Prise HDMI",
+	"Prise Jack": "Prise Jack",
+	"Officiel": "Officiel",
+	"Shanwan": "Shanwan",
+	"Gasia": "Gasia",
+	"Personnalisé": "Personnalisé",
+	"Aucun": "Aucun",
+	"Retro": "Retro",
+	"Scanlines": "Scanlines"
 }

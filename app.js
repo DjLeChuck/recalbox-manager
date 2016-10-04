@@ -30,12 +30,6 @@ app.use(serve(path.join(__dirname, '/assets')));
 app.use(session(app));
 app.use(flash());
 app.use(bodyParser());
-app.use(function *(next) {
-  this.state.config = require('./lib/utils').getConfig();
-  this.state.api = require('./lib/api');
-
-  yield next;
-});
 
 // Configure ejs
 render(app, {
@@ -60,6 +54,13 @@ app.use(i18n(app, {
     'header' //  optional detect header      - `Accept-Language: zh-CN,zh;q=0.5`
   ]
 }));
+
+app.use(function *(next) {
+  this.state.config = require('./lib/utils').getConfig(this.i18n);
+  this.state.api = require('./lib/api')(this.i18n);
+
+  yield next;
+});
 
 // Routes
 app.use(_.get('/', home.index));

@@ -85,5 +85,6 @@
 	"Personnalisé": "Personnalisé",
 	"Aucun": "Aucun",
 	"Retro": "Retro",
-	"Scanlines": "Scanlines"
+	"Scanlines": "Scanlines",
+	"Dépannage": "Dépannage"
 }

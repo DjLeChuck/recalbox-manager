@@ -4,9 +4,9 @@ module.exports = {
 
     this.session.downloadUrl = undefined;
 
-    this.state.activePage = 'support';
+    this.state.activePage = 'help';
 
-    yield this.render('support');
+    yield this.render('help');
   },
 
   sendReport: function * () {

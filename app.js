@@ -18,7 +18,7 @@ var controllers = require('./controllers/controllers');
 var systems = require('./controllers/systems');
 var logs = require('./controllers/logs');
 var recalboxConf = require('./controllers/recalbox-conf');
-var support = require('./controllers/support');
+var help = require('./controllers/help');
 
 var app = koa();
 
@@ -77,7 +77,7 @@ app.use(_.get('/logs', logs.index));
 app.use(_.post('/logs', logs.index));
 app.use(_.get('/recalbox-conf', recalboxConf.index));
 app.use(_.post('/recalbox-conf', recalboxConf.save));
-app.use(_.get('/support', support.index));
-app.use(_.post('/support', support.sendReport));
+app.use(_.get('/help', help.index));
+app.use(_.post('/help', help.sendReport));
 
 app.listen(3000);

@@ -4,7 +4,6 @@ config.recalbox = {
   ip: '127.0.0.1',
   port: 1337,
   logsPaths: [
-    '/var/log/dmesg',
     '/var/log/messages',
     '/recalbox/share/system/.emulationstation/es_log.txt',
     '/recalbox/share/system/logs/recalbox.log',

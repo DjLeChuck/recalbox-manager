@@ -2,18 +2,17 @@
 
 <div class="bs-callout bs-callout-info">
   <p>
-    Si jamais les autres vues ne suffisent pas, le contenu du fichier
-    recalbox.conf peut-être entièrement vu et modifié via cette interface.
+    <%= __("Si jamais les autres vues ne suffisent pas, le contenu du fichier recalbox.conf peut-être entièrement vu et modifié via cette interface.") %>
   </p>
 </div>
 
-<p class="bg-info">Chemin d'accès : <%= recalboxConf.path %></p>
+<p class="bg-info"><%= __("Chemin d'accès :") %> <%= recalboxConf.path %></p>
 
 <form method="post">
   <textarea class="form-control" rows="28" name="recalbox_conf"><%= recalboxConf.content %></textarea>
 
   <p class="top30">
-    <a href="/recalbox-conf" class="btn btn-danger">Annuler</a>
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a href="/recalbox-conf" class="btn btn-danger"><%= __("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
   </p>
 </form>

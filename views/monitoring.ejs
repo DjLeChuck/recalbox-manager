@@ -1,6 +1,6 @@
-<h1>Monitoring</h1>
+<h1><%= __("Monitoring") %></h1>
 
-<h2>Proceseur</h2>
+<h2><%= __("Proceseur") %></h2>
 <div class="row">
 <% cpus.forEach(function (cpu, index) { %>
   <div class="col-md-6">
@@ -14,10 +14,10 @@
 <% }); %>
 </div>
 
-<h2>Mémoire</h2>
+<h2><%= __("Mémoire") %></h2>
 <div class="row">
   <div class="col-md-3">
-    <p>Libre: <%= ram.free %> MB</p>
+    <p><%= __("Libre :") %> <%= ram.free %> MB</p>
   </div>
   <div class="col-md-6">
     <div class="progress">
@@ -27,11 +27,11 @@
     </div>
   </div>
   <div class="col-md-3">
-    <p>Total: <%= ram.total %> MB</p>
+    <p><%= __("Total :") %> <%= ram.total %> MB</p>
   </div>
 </div>
 
-<h2>Température CPU</h2>
+<h2><%= __("Température CPU") %></h2>
 <div class="clearfix">
   <div class="c100 p<%= temperature.current_percent %> <%= temperature.color %>">
     <span title="<%= temperature.current %>°c / <%= temperature.max %>°c"><%= temperature.current %>°c</span>
@@ -42,18 +42,18 @@
   </div>
 </div>
 
-<h2>Systèmes de fichiers</h2>
+<h2><%= __("Systèmes de fichiers") %></h2>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
-        <th>Périphérique</th>
-        <th>Montage</th>
-        <th>Type</th>
-        <th>Usage</th>
-        <th>Utilisé</th>
-        <th>Libre</th>
-        <th>Total</th>
+        <th><%= __("Périphérique") %></th>
+        <th><%= __("Montage") %></th>
+        <th><%= __("Type") %></th>
+        <th><%= __("Usage") %></th>
+        <th><%= __("Utilisé") %></th>
+        <th><%= __("Libre") %></th>
+        <th><%= __("Total") %></th>
       </tr>
     </thead>
     <tbody>

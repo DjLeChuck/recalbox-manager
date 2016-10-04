@@ -1,15 +1,15 @@
-<h1>Configuration</h1>
+<h1><%= __("Configuration") %></h1>
 
-<p class="important">Cette page permet de gérer différentes configurations de recalbox tel que les paramètres Wi-Fi, la timezone, la locale, etc.</p>
+<p class="important"><%= __("Cette page permet de gérer différentes configurations de recalbox tel que les paramètres Wi-Fi, la timezone, la locale, etc.") %></p>
 
 <form method="post" action="/configuration" class="form-horizontal">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Options système</h3>
+      <h3 class="panel-title"><%= __("Options système") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="locale" class="col-md-4 control-label">Langue du système</label>
+        <label for="locale" class="col-md-4 control-label"><%= __("Langue du système") %></label>
         <div class="col-md-6">
           <select name="locale" id="locale" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% systemlocales.forEach(function (item) { %>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="keyboardlayout" class="col-md-4 control-label">Layout du clavier</label>
+        <label for="keyboardlayout" class="col-md-4 control-label"><%= __("Layout du clavier") %></label>
         <div class="col-md-6">
           <select name="keyboardlayout" id="keyboardlayout" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% keyboardlayouts.forEach(function (item) { %>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="timezone" class="col-md-4 control-label">Timezone</label>
+        <label for="timezone" class="col-md-4 control-label"><%= __("Timezone") %></label>
         <div class="col-md-6">
           <select name="timezone" id="timezone" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% timezones.forEach(function (timezone) { %>
@@ -49,17 +49,17 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Options réseau</h3>
+      <h3 class="panel-title"><%= __("Options réseau") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="hostname" class="col-md-4 control-label">Nom d'hôte</label>
+        <label for="hostname" class="col-md-4 control-label"><%= __("Nom d'hôte") %></label>
         <div class="col-md-6">
-          <input type="text" name="hostname" id="hostname" class="form-control" placeholder="Nom d'hôte" value="<%= curHostname.hostname %>">
+          <input type="text" name="hostname" id="hostname" class="form-control" placeholder="<%= __('Nom d\'hôte') %>" value="<%= curHostname.hostname %>">
         </div>
       </div>
       <div class="form-group">
-        <label for="wifi-enabled" class="col-md-4 control-label">Activer le wifi</label>
+        <label for="wifi-enabled" class="col-md-4 control-label"><%= __("Activer le wifi") %></label>
         <div class="col-md-6">
           <input type="hidden" name="wifi[enabled]" value="0">
           <input type="checkbox" name="wifi[enabled]" value="1" id="wifi-enabled" data-switch<% if (1 == wifi.enabled) { %> checked="checked"<% } %>>
@@ -68,21 +68,19 @@
 
       <div class="well">
         <div class="alert alert-warning" role="alert">
-          Attention, si vous vous trompez dans vos informations
-          vous risquez de ne plus pouvoir accéder à votre
-          recalbox par le wifi.
+          <%= __("Attention, si vous vous trompez dans vos informations vous risquez de ne plus pouvoir accéder à votre recalbox par le wifi.") %>
         </div>
 
         <div class="form-group">
-          <label for="wifi-ssid" class="col-md-4 control-label">SSID</label>
+          <label for="wifi-ssid" class="col-md-4 control-label"><%= __("SSID") %></label>
           <div class="col-md-6">
-            <input type="text" name="wifi[ssid]" class="form-control" id="wifi-ssid" placeholder="SSID" value="<%= wifi.ssid %>">
+            <input type="text" name="wifi[ssid]" class="form-control" id="wifi-ssid" placeholder="<%= __('SSID') %>" value="<%= wifi.ssid %>">
           </div>
         </div>
         <div class="form-group">
-          <label for="wifi-key" class="col-md-4 control-label">Clé</label>
+          <label for="wifi-key" class="col-md-4 control-label"><%= __("Clé") %></label>
           <div class="col-md-6">
-            <input type="text" name="wifi[key]" class="form-control" id="wifi-key" placeholder="Clé" value="<%= wifi.key %>">
+            <input type="text" name="wifi[key]" class="form-control" id="wifi-key" placeholder="<%= __('Clé') %>" value="<%= wifi.key %>">
           </div>
         </div>
       </div>
@@ -91,25 +89,25 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Options Kodi</h3>
+      <h3 class="panel-title"><%= __("Options Kodi") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="kodi-enabled" class="col-md-4 control-label">Activer Kodi</label>
+        <label for="kodi-enabled" class="col-md-4 control-label"><%= __("Activer Kodi") %></label>
         <div class="col-md-6">
           <input type="hidden" name="kodi[enabled]" value="0">
           <input type="checkbox" name="kodi[enabled]" value="1" id="kodi-enabled" data-switch<% if (1 == kodi.enabled) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
-        <label for="kodi-atstartup" class="col-md-4 control-label">Lancer Kodi au démarrage</label>
+        <label for="kodi-atstartup" class="col-md-4 control-label"><%= __("Lancer Kodi au démarrage") %></label>
         <div class="col-md-6">
           <input type="hidden" name="kodi[atstartup]" value="0">
           <input type="checkbox" name="kodi[atstartup]" value="1" id="kodi-atstartup" data-switch<% if (1 == kodi.atstartup) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
-        <label for="kodi-xbutton" class="col-md-4 control-label">Lancer Kodi via la touche <kbd>X</kbd></label>
+        <label for="kodi-xbutton" class="col-md-4 control-label"><%- __("Lancer Kodi via la touche %s", "<kbd>X</kbd>") %></label>
         <div class="col-md-6">
           <input type="hidden" name="kodi[xbutton]" value="0">
           <input type="checkbox" name="kodi[xbutton]" value="1" id="kodi-xbutton" data-switch<% if (1 == kodi.xbutton) { %> checked="checked"<% } %>>
@@ -120,11 +118,11 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Mises à jour</h3>
+      <h3 class="panel-title"><%= __("Mises à jour") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="updates-enabled" class="col-md-7 control-label">Vérifier les mises à jours au démarrage du système</label>
+        <label for="updates-enabled" class="col-md-7 control-label"><%= __("Vérifier les mises à jours au démarrage du système") %></label>
         <div class="col-md-3">
           <input type="hidden" name="updates[enabled]" value="0">
           <input type="checkbox" name="updates[enabled]" value="1" id="updates-enabled" data-switch<% if (1 == updates.enabled) { %> checked="checked"<% } %>>
@@ -134,18 +132,18 @@
   </div>
 
   <p>
-    <a href="/configuration" class="btn btn-danger">Annuler</a>
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a href="/configuration" class="btn btn-danger"><%= __("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
   </p>
 
   <div class="panel panel-danger">
     <div class="panel-heading">
-      <h3 class="panel-title">Redémarrage et arrêt</h3>
+      <h3 class="panel-title"><%= __("Redémarrage et arrêt") %></h3>
     </div>
     <div class="panel-body">
-      <button type="submit" name="shutdown" value="reboot" class="btn btn-warning">Redémarer le système</button>
+      <button type="submit" name="shutdown" value="reboot" class="btn btn-warning"><%= __("Redémarer le système") %></button>
 
-      <button type="submit" name="shutdown" value="halt" class="btn btn-danger">Arrêter le système</button>
+      <button type="submit" name="shutdown" value="halt" class="btn btn-danger"><%= __("Arrêter le système") %></button>
     </div>
   </div>
 </form>

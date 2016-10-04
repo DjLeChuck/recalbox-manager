@@ -1,11 +1,11 @@
-<h1>Audio</h1>
+<h1><%= __("Audio") %></h1>
 
-<p class="important">Cette page permet de gérer la partie audio de recalbox.</p>
+<p class="important"><%= __("Cette page permet de gérer la partie audio de recalbox.") %></p>
 
 <form method="post" action="/audio">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Musique de fond</h3>
+      <h3 class="panel-title"><%= __("Musique de fond") %></h3>
     </div>
     <div class="panel-body">
       <input type="hidden" name="bgmusic" value="0" />
@@ -15,7 +15,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Volume du son</h3>
+      <h3 class="panel-title"><%= __("Volume du son") %></h3>
     </div>
     <div class="panel-body top40">
       <input type="text" name="volume" value="<%= audio.volume %>" class="slider" data-slider data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<%= audio.volume %>" />
@@ -24,7 +24,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Sortie audio</h3>
+      <h3 class="panel-title"><%= __("Sortie audio") %></h3>
     </div>
     <div class="panel-body">
       <select name="device" data-select>
@@ -38,7 +38,7 @@
   </div>
 
   <p>
-    <a href="/audio" class="btn btn-danger">Annuler</a>
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a href="/audio" class="btn btn-danger"><%= __("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
   </p>
 </form>

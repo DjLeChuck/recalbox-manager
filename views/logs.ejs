@@ -1,13 +1,13 @@
-<h1>Logs</h1>
+<h1><%= __("Logs") %></h1>
 
 <form method="post">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Fichiers de logs</h3>
+      <h3 class="panel-title"><%= __("Fichiers de logs") %></h3>
     </div>
     <div class="panel-body">
       <select name="log_path" data-select>
-        <option value="">Choisissez</option>
+        <option value=""><%= __("Choisissez") %></option>
       <% logs.forEach(function (logPath) { %>
         <option value="<%= logPath %>"<% if (typeof currentLog !== 'undefined' && currentLog.path === logPath) { %> selected="selected"<% } %>>
           <%= logPath %>
@@ -18,12 +18,12 @@
   </div>
 
   <p>
-    <button type="submit" class="btn btn-success">Voir</button>
+    <button type="submit" class="btn btn-success"><%= __("Voir") %></button>
   </p>
 </form>
 
 <% if (typeof currentLog !== 'undefined') { %>
-<p class="bg-info">Fichier en cours de visualisation : <strong><%= currentLog.path %></strong></p>
+<p class="bg-info"><%= __("Fichier en cours de visualisation :") %> <strong><%= currentLog.path %></strong></p>
 
 <textarea class="form-control" rows="25"><%= currentLog.content %></textarea>
 <% } %>

@@ -6,6 +6,8 @@ var bodyParser = require('koa-bodyparser');
 var serve = require('koa-static');
 var session = require('koa-session');
 var flash = require('koa-flash');
+var locale = require('koa-locale');
+var i18n = require('koa-i18n');
 
 // Controllers
 var home = require('./controllers/home');
@@ -19,6 +21,8 @@ var recalboxConf = require('./controllers/recalbox-conf');
 var support = require('./controllers/support');
 
 var app = koa();
+
+locale(app);
 
 app.keys = ['The cake is a lie!'];
 
@@ -46,6 +50,16 @@ app.use(function *(next) {
 
   yield next;
 });
+
+app.use(i18n(app, {
+  directory: './config/locales',
+  locales: ['fr', 'en'],
+  modes: [
+    'query', //  optional detect querystring - `/?locale=en-US`
+    'cookie', //  optional detect cookie      - `Cookie: locale=zh-TW`
+    'header' //  optional detect header      - `Accept-Language: zh-CN,zh;q=0.5`
+  ]
+}));
 
 // Routes
 app.use(_.get('/', home.index));

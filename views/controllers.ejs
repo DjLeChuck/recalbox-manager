@@ -1,15 +1,15 @@
-<h1>Contrôleurs</h1>
+<h1><%= __("Contrôleurs") %></h1>
 
-<p class="important">Cette page permet de gérer les différents contrôleurs supportés par de recalbox.</p>
+<p class="important"><%= __("Cette page permet de gérer les différents contrôleurs supportés par de recalbox.") %></p>
 
 <form method="post" action="/controllers" class="form-horizontal">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Contrôleur DB9</h3>
+      <h3 class="panel-title"><%= __("Contrôleur DB9") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="db9-enabled" class="col-md-4 control-label">Support des contrôleurs DB9</label>
+        <label for="db9-enabled" class="col-md-4 control-label"><%= __("Support des contrôleurs DB9") %></label>
         <div class="col-md-6">
           <input type="hidden" name="db9[enabled]" value="0">
           <input type="checkbox" name="db9[enabled]" value="1" id="db9-enabled" data-switch<% if (1 == curDb9.enabled) { %> checked="checked"<% } %>>
@@ -18,7 +18,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="db9-args" class="col-md-4 control-label">Paramètres</label>
+        <label for="db9-args" class="col-md-4 control-label"><%= __("Paramètres") %></label>
         <div class="col-md-6">
           <input type="text" name="db9[args]" value="<%= curDb9.args %>" id="db9-args">
         </div>
@@ -28,11 +28,11 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Contrôleur Gamecon</h3>
+      <h3 class="panel-title"><%= __("Contrôleur Gamecon") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="gamecon-enabled" class="col-md-4 control-label">Support des contrôleurs Gamecon</label>
+        <label for="gamecon-enabled" class="col-md-4 control-label"><%= __("Support des contrôleurs Gamecon") %></label>
         <div class="col-md-6">
           <input type="hidden" name="gamecon[enabled]" value="0">
           <input type="checkbox" name="gamecon[enabled]" value="1" id="gamecon-enabled" data-switch<% if (1 == curGamecon.enabled) { %> checked="checked"<% } %>>
@@ -41,7 +41,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="gamecon-args" class="col-md-4 control-label">Paramètres</label>
+        <label for="gamecon-args" class="col-md-4 control-label"><%= __("Paramètres") %></label>
         <div class="col-md-6">
           <input type="text" name="gamecon[args]" value="<%= curGamecon.args %>" id="gamecon-args">
         </div>
@@ -51,11 +51,11 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Contrôleur GPIO</h3>
+      <h3 class="panel-title"><%= __("Contrôleur GPIO") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="gpio-enabled" class="col-md-4 control-label">Support des contrôleurs GPIO</label>
+        <label for="gpio-enabled" class="col-md-4 control-label"><%= __("Support des contrôleurs GPIO") %></label>
         <div class="col-md-6">
           <input type="hidden" name="gpio[enabled]" value="0">
           <input type="checkbox" name="gpio[enabled]" value="1" id="gpio-enabled" data-switch<% if (1 == curGpio.enabled) { %> checked="checked"<% } %>>
@@ -64,7 +64,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="gpio-args" class="col-md-4 control-label">Paramètres</label>
+        <label for="gpio-args" class="col-md-4 control-label"><%= __("Paramètres") %></label>
         <div class="col-md-6">
           <input type="text" name="gpio[args]" value="<%= curGpio.args %>" id="gpio-args">
         </div>
@@ -74,11 +74,11 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Contrôleur PS3</h3>
+      <h3 class="panel-title"><%= __("Contrôleur PS3") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="ps3-enabled" class="col-md-4 control-label">Support des contrôleurs PS3</label>
+        <label for="ps3-enabled" class="col-md-4 control-label"><%= __("Support des contrôleurs PS3") %></label>
         <div class="col-md-6">
           <input type="hidden" name="ps3[enabled]" value="0">
           <input type="checkbox" name="ps3[enabled]" value="1" id="ps3-enabled" data-switch<% if (1 == curPs3.enabled) { %> checked="checked"<% } %>>
@@ -87,7 +87,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="ps3-driver" class="col-md-4 control-label">Driver à utiliser</label>
+        <label for="ps3-driver" class="col-md-4 control-label"><%= __("Driver à utiliser") %></label>
         <div class="col-md-6">
           <select name="ps3[driver]" id="ps3-driver" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% ps3drivers.forEach(function (item) { %>
@@ -103,11 +103,11 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Contrôleur XBOX</h3>
+      <h3 class="panel-title"><%= __("Contrôleur XBOX") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="xboxdrv-enabled" class="col-md-4 control-label">Support des contrôleurs XBOX</label>
+        <label for="xboxdrv-enabled" class="col-md-4 control-label"><%= __("Support des contrôleurs XBOX") %></label>
         <div class="col-md-6">
           <input type="hidden" name="xboxdrv[enabled]" value="0">
           <input type="checkbox" name="xboxdrv[enabled]" value="1" id="xboxdrv-enabled" data-switch<% if (1 == curXboxdrv.enabled) { %> checked="checked"<% } %>>
@@ -116,7 +116,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="xboxdrv-nbcontrols" class="col-md-4 control-label">Nombre des contrôleurs</label>
+        <label for="xboxdrv-nbcontrols" class="col-md-4 control-label"><%= __("Nombre des contrôleurs") %></label>
         <div class="col-md-6">
           <input type="text" name="xboxdrv[nbcontrols]" value="<%= curXboxdrv.nbcontrols %>" class="slider" data-slider data-slider-min="0" data-slider-max="4" data-slider-step="1" data-slider-value="<%= curXboxdrv.nbcontrols %>" />
         </div>
@@ -125,7 +125,7 @@
   </div>
 
   <p>
-    <a href="/controllers" class="btn btn-danger">Annuler</a>
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a href="/controllers" class="btn btn-danger"><%= __("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
   </p>
 </form>

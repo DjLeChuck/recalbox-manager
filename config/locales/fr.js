@@ -122,5 +122,6 @@
 	"Activer RetroAchievements": "Activer RetroAchievements",
 	"Login": "Login",
 	"Mot de passe": "Mot de passe",
-	"Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.": "Cette modification nécessite de redémarrer EmulationStation pour être prise en compte."
+	"Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.": "Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.",
+	"Gestion des ROMs": "Gestion des ROMs"
 }

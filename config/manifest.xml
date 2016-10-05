@@ -1,0 +1,461 @@
+
+<?xml version='1.0' encoding='UTF-8'?>
+<systems>
+   <system key="atari2600" name="Atari 2600">
+      <extensions>
+         <extension>a26</extension>
+         <extension>bin</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/atari-2600</link>
+      </download_links>
+   </system>
+   <system key="atari7800" name="Atari 7800">
+      <extensions>
+         <extension>a78</extension>
+         <extension>bin</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/atari-7800</link>
+      </download_links>
+      <bios>
+         <file md5="0763f1ffb006ddbe32e52d497ee848ae">7800 BIOS (U).rom</file>
+      </bios>
+   </system>
+   <system key="fba" name="FBA">
+      <extensions>
+         <extension>fba</extension>
+         <extension>zip</extension>
+      </extensions>
+   </system>
+   <system key="fba_libretro" name="FBA Libretro">
+      <extensions>
+         <extension>fba</extension>
+         <extension>zip</extension>
+      </extensions>
+   </system>
+   <system key="fds" name="Nintendo Family Computer Disk System">
+      <extensions>
+         <extension>fds</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-famicom-disk-system</link>
+      </download_links>
+      <bios>
+         <file md5="ca30b50f880eb660a320674ed365ef7a">disksys.rom</file>
+      </bios>
+   </system>
+   <system key="gamegear" name="Game Gear">
+      <extensions>
+         <extension>gg</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/sega-game-gear</link>
+      </download_links>
+   </system>
+   <system key="gb" name="Game Boy">
+      <extensions>
+         <extension>gb</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-game-boy</link>
+      </download_links>
+   </system>
+   <system key="gba" name="Game Boy Advance">
+      <extensions>
+         <extension>gba</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-game-boy-advance</link>
+      </download_links>
+      <bios>
+         <file md5="a860e8c0b6d573d191e4ec7db1b1e4f6">gba_bios.bin</file>
+      </bios>
+   </system>
+   <system key="gbc" name="Game Boy Color">
+      <extensions>
+         <extension>gb</extension>
+         <extension>gbc</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-game-boy</link>
+         <link>http://www.planetemu.net/roms/nintendo-game-boy-color</link>
+      </download_links>
+   </system>
+   <system key="gw" name="Game &amp; Watch">
+      <extensions>
+         <extension>mgw</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://bot.libretro.com/assets/cores/gw/</link>
+      </download_links>
+   </system>
+   <system key="lutro" name="LUA games">
+      <extensions>
+         <extension>lua</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>https://github.com/libretro/lutro-platformer</link>
+         <link>https://github.com/libretro/lutro-game-of-life</link>
+         <link>https://github.com/libretro/lutro-snake</link>
+         <link>https://github.com/libretro/lutro-tetris</link>
+         <link>https://github.com/libretro/lutro-iyfct</link>
+         <link>https://github.com/libretro/lutro-pong</link>
+      </download_links>
+   </system>
+   <system key="lynx" name="Lynx">
+      <extensions>
+         <extension>lnx</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/atari-lynx</link>
+      </download_links>
+      <bios>
+         <file md5="fcd403db69f54290b51035d82f835e7b">lynxboot.img</file>
+      </bios>
+   </system>
+   <system key="mame" name="Mame">
+      <extensions>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>https://www.google.fr/webhp?ie=UTF-8#safe=off&amp;q=mame4all%200.37b5%20complete%20romset%202270</link>
+      </download_links>
+   </system>
+   <system key="mastersystem" name="Sega Master System">
+      <extensions>
+         <extension>sms</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/sega-master-system</link>
+      </download_links>
+   </system>
+   <system key="megadrive" name="Megadrive">
+      <extensions>
+         <extension>gen</extension>
+         <extension>md</extension>
+         <extension>smd</extension>
+         <extension>bin</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/sega-mega-drive</link>
+      </download_links>
+   </system>
+   <system key="msx" name="MSX">
+      <extensions>
+         <extension>mx1</extension>
+         <extension>mx2</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/goodmsx1</link>
+         <link>http://www.planetemu.net/roms/goodmsx2</link>
+      </download_links>
+      <bios>
+         <file md5="d6dedca1112ddfda94cc9b2e426b818b">CARTS.SHA</file>
+         <file md5="85b38e4128bbc300e675f55b278683a8">CYRILLIC.FNT</file>
+         <file md5="80dcd1ad1a4cf65d64b7ba10504e8190">DISK.ROM</file>
+         <file md5="af8537262df8df267072f359399a7635">FMPAC16.ROM</file>
+         <file md5="6f69cc8b5ed761b03afd78000dfb0e19">FMPAC.ROM</file>
+         <file md5="c83e50e9f33b8dd893c414691822740d">ITALIC.FNT</file>
+         <file md5="febe8782b466d7c3b16de6d104826b34">KANJI.ROM</file>
+         <file md5="2183c2aff17cf4297bdb496de78c2e8a">MSX2EXT.ROM</file>
+         <file md5="7c8243c71d8f143b2531f01afa6a05dc">MSX2PEXT.ROM</file>
+         <file md5="6d8c0ca64e726c82a4b726e9b01cdf1e">MSX2P.ROM</file>
+         <file md5="ec3a01c91f24fbddcbcab0ad301bc9ef">MSX2.ROM</file>
+         <file md5="6418d091cd6907bbcf940324339e43bb">MSXDOS2.ROM</file>
+         <file md5="aa95aea2563cd5ec0a0919b44cc17d47">MSX.ROM</file>
+         <file md5="403cdea1cbd2bb24fae506941f8f655e">PAINTER.ROM</file>
+         <file md5="279efd1eae0d358eecd4edc7d9adedf3">RS232.ROM</file>
+      </bios>
+   </system>
+   <system key="msx1" name="MSX1">
+      <extensions>
+         <extension>mx1</extension>
+         <extension>mx2</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/goodmsx1</link>
+      </download_links>
+   </system>
+   <system key="msx2" name="MSX2">
+      <extensions>
+         <extension>mx1</extension>
+         <extension>mx2</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/goodmsx2</link>
+      </download_links>
+   </system>
+   <system key="n64" name="Nintendo64">
+      <extensions>
+         <extension>n64</extension>
+         <extension>v64</extension>
+         <extension>z64</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-nintendo-64</link>
+      </download_links>
+   </system>
+   <system key="neogeo" name="NeoGeo">
+      <extensions>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.gametronik.com/site/AffichListingAll/neogeo/</link>
+      </download_links>
+   </system>
+   <system key="nes" name="Nintendo Entertainment System">
+      <extensions>
+         <extension>nes</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-nes</link>
+      </download_links>
+   </system>
+   <system key="ngp" name="NeoGeo Pocket">
+      <extensions>
+         <extension>ngp</extension>
+         <extension>ngc</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/snk-neo-geo-pocket</link>
+         <link>http://www.planetemu.net/roms/snk-neo-geo-pocket-color</link>
+      </download_links>
+   </system>
+   <system key="ngpc" name="NeoGeo Pocket Color">
+      <extensions>
+         <extension>ngp</extension>
+         <extension>ngc</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/snk-neo-geo-pocket-color</link>
+      </download_links>
+   </system>
+   <system key="pcengine" name="PC Engine">
+      <extensions>
+         <extension>pce</extension>
+         <extension>cue</extension>
+         <extension>ccd</extension>
+         <extension>sgx</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nec-pc-engine</link>
+         <link>http://www.mondemul.net/zisos.php?genre=liste&amp;type=pcecd</link>
+      </download_links>
+      <bios>
+         <file md5="ff1a674273fe3540ccef576376407d1d">syscard3.pce</file>
+      </bios>
+   </system>
+   <system key="pcenginecd" name="PC Engine CD">
+      <extensions>
+         <extension>pce</extension>
+         <extension>cue</extension>
+         <extension>ccd</extension>
+         <extension>sgx</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.mondemul.net/zisos.php?genre=liste&amp;type=pcecd</link>
+      </download_links>
+   </system>
+   <system key="supergrafx" name="SuperGrafx">
+      <extensions>
+         <extension>pce</extension>
+         <extension>cue</extension>
+         <extension>ccd</extension>
+         <extension>sgx</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nec-super-grafx</link>
+      </download_links>
+   </system>
+   <system key="prboom" name="PRBoom">
+      <extensions>
+         <extension>wad</extension>
+      </extensions>
+   </system>
+   <system key="psx" name="PSX">
+      <extensions>
+         <extension>img</extension>
+         <extension>bin</extension>
+         <extension>iso</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.mondemul.net/machine.php?type=psx</link>
+      </download_links>
+      <bios>
+         <file md5="924e392ed05558ffdb115408c263dccf">SCPH1001.BIN</file>
+      </bios>
+   </system>
+   <system key="scummvm" name="ScummVM">
+      <extensions />
+      <download_links>
+         <link>a26</link>
+      </download_links>
+   </system>
+   <system key="sega32x" name="Sega 32x">
+      <extensions>
+         <extension>32x</extension>
+         <extension>smd</extension>
+         <extension>bin</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/sega-32x</link>
+      </download_links>
+      <bios>
+         <file md5="6a5433f6a132a2b683635819a6dcf085">32X_G_BIOS.BIN</file>
+         <file md5="f88354ec482be09aeccd76a97bb75868">32X_M_BIOS.BIN</file>
+         <file md5="7f041b6a55cd7423a6c08a219335269e">32X_S_BIOS.BIN</file>
+      </bios>
+   </system>
+   <system key="segacd" name="Sega CD">
+      <extensions>
+         <extension>cue</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/sega-mega-cd-and-sega-cd-games</link>
+      </download_links>
+      <bios>
+         <file md5="854b9150240a198070150e4566ae1290">us_scd2_9306.bin</file>
+         <file md5="d8b8b720dea6c6ba25c309ed633930f4">eu_mcd2_9306.bin</file>
+         <file md5="bdeb4c47da613946d422d97d98b21cda">jp_mcd1_9112.bin</file>
+      </bios>
+   </system>
+   <system key="sg1000" name="SG1000">
+      <extensions>
+         <extension>sg</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/sega-sg-1000</link>
+      </download_links>
+   </system>
+   <system key="snes" name="Super Nintendo">
+      <extensions>
+         <extension>sfc</extension>
+         <extension>smc</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-super-nes</link>
+      </download_links>
+   </system>
+   <system key="vectrex" name="Vectrex">
+      <extensions>
+         <extension>vec</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.gametronik.com/site/AffichListingAll/vectrex/</link>
+      </download_links>
+   </system>
+   <system key="virtualboy" name="Nintendo Virtual Boy">
+      <extensions>
+         <extension>vb</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/nintendo-virtual-boy</link>
+      </download_links>
+   </system>
+   <system key="wswan" name="Wonder Swan">
+      <extensions>
+         <extension>ws</extension>
+         <extension>wsc</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/bandai-wonderswan</link>
+      </download_links>
+   </system>
+   <system key="wswanc" name="Wonder Swan Color">
+      <extensions>
+         <extension>ws</extension>
+         <extension>wsc</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/bandai-wonderswan-color</link>
+      </download_links>
+   </system>
+   <system key="amstradcpc" name="Amstrad CPC">
+      <extensions>
+         <extension>dsk</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/amstrad-cpc-games-dsk</link>
+      </download_links>
+   </system>
+   <system key="atarist" name="Atari ST">
+      <extensions>
+         <extension>st</extension>
+         <extension>stx</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/atari-st-games-st</link>
+         <link>http://www.planetemu.net/roms/atari-st-games-stx</link>
+      </download_links>
+      <bios>
+         <file md5="b2a8570de2e850c5acf81cb80512d9f6">tos.img</file>
+      </bios>
+   </system>
+   <system key="o2em" name="Odyssey 2">
+      <extensions>
+         <extension>bin</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/roms/magnavox-odyssey2</link>
+      </download_links>
+      <bios>
+         <file md5="562d5ebf9e030a40d6fabfc2f33139fd">o2rom.bin</file>
+      </bios>
+   </system>
+   <system key="zx81" name="Sinclair ZX81">
+      <extensions>
+         <extension>tzx</extension>
+         <extension>p</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>https://www.loveroms.com/roms/sinclair-zx81</link>
+      </download_links>
+   </system>
+   <system key="zxspectrum" name="Sinclair ZX Spectrum">
+      <extensions>
+         <extension>tzx</extension>
+         <extension>tap</extension>
+         <extension>z80</extension>
+         <extension>rzx</extension>
+         <extension>scl</extension>
+         <extension>tr</extension>
+         <extension>zip</extension>
+      </extensions>
+      <download_links>
+         <link>http://www.planetemu.net/machine/zx-spectrum</link>
+      </download_links>
+   </system>
+</systems>

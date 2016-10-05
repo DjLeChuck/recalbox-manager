@@ -29,6 +29,9 @@ module.exports = function (i18n) {
         command: 'raspi2png -p',
         savePath: '/recalbox/share/screenshots'
       },
+      romsPath: '/recalbox/share/roms',
+      biosPath: '/recalbox/share/bios',
+      manifest: __dirname + '/manifest.xml',
 
       // Audio
       audio: {

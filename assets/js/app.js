@@ -9,4 +9,7 @@ $(function () {
     $("[data-slider]").slider({
         tooltip: "always"
     });
+
+    // matchHeight
+    $("[data-match-height]").matchHeight();
 });

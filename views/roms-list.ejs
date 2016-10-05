@@ -1,0 +1,16 @@
+<div class="page-header"><h1><%= __("Gestion des ROMs") %></h1></div>
+
+<div class="row">
+<% systems.forEach(function (system) { %>
+  <div class="col-md-3 col-xs-6">
+    <div class="panel panel-default">
+      <div class="panel-body bg-info text-center" data-match-height>
+        <a href="/roms/<%= system.name %>">
+          <span class="glyphicon glyphicon-folder-open big-glyphicon" aria-hidden="true"></span><br />
+          <%= system.fullname %>
+        </a>
+      </div>
+    </div>
+  </div>
+<% }); %>
+</div>

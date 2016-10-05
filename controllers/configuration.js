@@ -22,22 +22,6 @@ module.exports = {
     var post = this.request.body;
     var requests = [];
 
-    // Gestion du redémarrage / arrêt
-    if (undefined !== post.shutdown) {
-      switch (post.shutdown) {
-        case 'reboot':
-          // @todo Wait for reboot. The manager will be unreachable for a while.
-          yield this.state.api.post('/reboots');
-          break;
-        case 'halt':
-          // @todo What to do? The manager will become unreachable.
-          yield this.state.api.post('/shutdowns');
-          break;
-        default:
-          this.throw('Unknown shutdown action.');
-      }
-    }
-
     // Prepare requests
     Object.keys(post).forEach(function (key) {
       var val = post[key];

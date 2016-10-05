@@ -10,18 +10,17 @@
 
 <br />
 
-<p>
-  <%- __("Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous. Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.", "<code>recalbox-support.sh</code>") %>
-</p>
-
 <form method="post">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title"><%= __("Exécution de recalbox-support.sh") %></h3>
     </div>
     <div class="panel-body">
+      <p><%- __("Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous.", "<code>recalbox-support.sh</code>") %></p>
+      <p><%= __("Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.") %></p>
+
       <p>
-        <button type="submit" class="btn btn-success"><%= __("Exécuter le script") %></button>
+        <button type="submit" name="support" value="1" class="btn btn-success"><%= __("Exécuter le script") %></button>
       </p>
 
     <% if (typeof downloadUrl !== 'undefined') { %>
@@ -29,6 +28,17 @@
         <%= __("Lien de téléchargement à donner :") %> <a href="<%= downloadUrl %>" target="_blank"><%= downloadUrl %></a>
       </p>
     <% } %>
+    </div>
+  </div>
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= __("Redémarrage et arrêt") %></h3>
+    </div>
+    <div class="panel-body">
+      <button type="submit" name="shutdown" value="reboot" class="btn btn-warning"><%= __("Redémarer le système") %></button>
+
+      <button type="submit" name="shutdown" value="halt" class="btn btn-danger"><%= __("Arrêter le système") %></button>
     </div>
   </div>
 </form>

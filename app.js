@@ -78,6 +78,6 @@ app.use(_.post('/logs', logs.index));
 app.use(_.get('/recalbox-conf', recalboxConf.index));
 app.use(_.post('/recalbox-conf', recalboxConf.save));
 app.use(_.get('/help', help.index));
-app.use(_.post('/help', help.sendReport));
+app.use(_.post('/help', help.post));
 
 app.listen(3000);

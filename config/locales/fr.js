@@ -121,5 +121,6 @@
 	"Les haut-faits sont conçus par et pour la communauté.": "Les haut-faits sont conçus par et pour la communauté.",
 	"Activer RetroAchievements": "Activer RetroAchievements",
 	"Login": "Login",
-	"Mot de passe": "Mot de passe"
+	"Mot de passe": "Mot de passe",
+	"Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.": "Cette modification nécessite de redémarrer EmulationStation pour être prise en compte."
 }

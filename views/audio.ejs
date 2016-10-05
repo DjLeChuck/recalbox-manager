@@ -8,7 +8,11 @@
       <h3 class="panel-title"><%= __("Musique de fond") %></h3>
     </div>
     <div class="panel-body">
-      <p class=""><%= __("Cette modification nécessite de redémarrer EmulationStation.") %></p>
+      <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+        <span class="sr-only"><%= __("Attention :") %></span>
+        <%= __("Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.") %>
+      </div>
 
       <input type="hidden" name="bgmusic" value="0" />
       <input type="checkbox" name="bgmusic" value="1" data-switch<% if (1 == audio.bgmusic) { %> checked="checked"<% } %> />

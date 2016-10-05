@@ -24,6 +24,7 @@ module.exports = function (i18n) {
       confPath: '/recalbox/share/system/recalbox.conf',
       supportScript: '/recalbox/scripts/recalbox-support.sh',
       emulationStationPath: '/etc/init.d/S31emulationstation',
+      configScript: '/recalbox/scripts/recalbox-config.sh',
       raspi2png: {
         command: 'raspi2png -p',
         savePath: '/recalbox/share/screenshots'

@@ -92,5 +92,9 @@
 	"Redémarer ES": "Redémarer ES",
 	"Arrêter ES": "Arrêter ES",
 	"Démarrer ES": "Démarrer ES",
-	"Redémarrage et arrêt du système": "Redémarrage et arrêt du système"
+	"Redémarrage et arrêt du système": "Redémarrage et arrêt du système",
+	"Effectuer une capture d'écran": "Effectuer une capture d'écran",
+	"Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.": "Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.",
+	"Le résultat sera sauvegardé dans le dossier %s.": "Le résultat sera sauvegardé dans le dossier %s.",
+	"Faire une capture": "Faire une capture"
 }

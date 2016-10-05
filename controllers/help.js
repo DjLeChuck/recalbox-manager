@@ -1,8 +1,11 @@
 module.exports = {
   index: function * () {
     this.state.downloadUrl = this.session.downloadUrl || undefined;
-
     this.session.downloadUrl = undefined;
+
+    this.state.raspi2png = this.state.config.recalbox.raspi2png;
+    this.state.screenshotPath = this.session.screenshotPath || undefined;
+    this.session.screenshotPath = undefined;
 
     this.state.activePage = 'help';
 
@@ -94,7 +97,17 @@ module.exports = {
       fs.unlinkSync(returnPath);
 
       this.session.downloadUrl = JSON.parse(linkFileResult.body).href;
-    }
+    // Gestion de la capture d'écran raspi2png
+  } else if (undefined !== post.screenshot) {
+    var format = require('date-format');
+    var execSync = require('child_process').execSync;
+    var raspi2png = this.state.config.recalbox.raspi2png;
+    var returnPath = raspi2png.savePath + "/screenshot-" + format.asString("yyyy-MM-dd_hh-mm-ss-SSS", new Date()) + ".png"
+
+    execSync(raspi2png.command + " " + returnPath);
+
+    this.session.screenshotPath = returnPath;
+  }
 
     this.redirect('back');
   }

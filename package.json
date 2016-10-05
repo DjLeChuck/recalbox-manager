@@ -6,6 +6,7 @@
   "main": "app.js",
   "dependencies": {
     "co-request": "^1.0.0",
+    "date-format": "0.0.2",
     "filesize": "^3.3.0",
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.2.0",

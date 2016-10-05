@@ -31,14 +31,27 @@
     </div>
   </div>
 
-  <div class="panel panel-danger">
+  <div class="panel panel-warning">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Redémarrage et arrêt") %></h3>
+      <h3 class="panel-title"><%= __("Redémarrage et arrêt d'EmulationStation") %></h3>
     </div>
     <div class="panel-body">
-      <button type="submit" name="shutdown" value="reboot" class="btn btn-warning"><%= __("Redémarer le système") %></button>
+      <button type="submit" name="es" value="restart" class="btn btn-warning"><%= __("Redémarer ES") %></button>
 
-      <button type="submit" name="shutdown" value="halt" class="btn btn-danger"><%= __("Arrêter le système") %></button>
+      <button type="submit" name="es" value="stop" class="btn btn-danger"><%= __("Arrêter ES") %></button>
+
+      <button type="submit" name="es" value="start" class="btn btn-success"><%= __("Démarrer ES") %></button>
+    </div>
+  </div>
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= __("Redémarrage et arrêt du système") %></h3>
+    </div>
+    <div class="panel-body">
+      <button type="submit" name="system" value="reboot" class="btn btn-warning"><%= __("Redémarer le système") %></button>
+
+      <button type="submit" name="system" value="shutdown" class="btn btn-danger"><%= __("Arrêter le système") %></button>
     </div>
   </div>
 </form>

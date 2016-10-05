@@ -12,27 +12,52 @@ module.exports = {
   post: function * () {
     var post = this.request.body;
 
-    // Gestion du redémarrage / arrêt
-    if (undefined !== post.shutdown) {
+    // Gestion du redémarrage / arrêt du système
+    if (undefined !== post.system) {
       var spawn = require('child_process').spawn;
 
-      switch (post.shutdown) {
+      switch (post.system) {
         case 'reboot':
           // @todo Wait for reboot. The manager will be unreachable for a while.
           spawn('reboot');
           break;
-        case 'halt':
+        case 'shutdown':
           // @todo What to do? The manager will become unreachable.
-          spawn('shutdown', ['now']);
+          var shutdown = spawn('shutdown', ['-h', 'now']);
+
+          shutdown.stdout.on('data', function (data) {
+            console.log(`stdout: ${data}`);
+          });
+
+          shutdown.stderr.on('data', function (data) {
+            console.log(`stderr: ${data}`);
+          });
+
+          shutdown.on('close', function (code) {
+            console.log(`child process exited with code ${code}`);
+          });
           break;
         default:
-          this.throw('Unknown shutdown action.');
+          this.throw('Unknown system action.');
+      }
+    // Gestion du redémarrage / arrêt d'EmulationStation
+    } else if (undefined !== post.es) {
+      var spawn = require('child_process').spawn;
+
+      switch (post.es) {
+        case 'restart':
+        case 'stop':
+        case 'start':
+          spawn(this.state.config.recalbox.emulationStationPath, [post.es]);
+          break;
+        default:
+          this.throw('Unknown ES action.');
       }
     // Gestion du recalbox-support.sh
     } else if (undefined !== post.support) {
       var execSync = require('child_process').execSync;
       var uniqid = require('uniqid');
-      var returnPath = '/recalbox/recalbox-support-' + uniqid() + '.tar.gz';
+      var returnPath = '/recalbox/share/saves/recalbox-support-' + uniqid() + '.tar.gz';
       var request = require('co-request');
       var fs = require('fs');
       var smartFile = this.state.config.smartFile;

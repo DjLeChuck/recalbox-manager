@@ -87,5 +87,10 @@
 	"Nombre des contrôleurs": "Nombre des contrôleurs",
 	"Si jamais les autres vues ne suffisent pas, le contenu du fichier recalbox.conf peut-être entièrement vu et modifié via cette interface.": "Si jamais les autres vues ne suffisent pas, le contenu du fichier recalbox.conf peut-être entièrement vu et modifié via cette interface.",
 	"Chemin d'accès :": "Chemin d'accès :",
-	"Lien de téléchargement à donner :": "Lien de téléchargement à donner :"
+	"Lien de téléchargement à donner :": "Lien de téléchargement à donner :",
+	"Redémarrage et arrêt d'EmulationStation": "Redémarrage et arrêt d'EmulationStation",
+	"Redémarer ES": "Redémarer ES",
+	"Arrêter ES": "Arrêter ES",
+	"Démarrer ES": "Démarrer ES",
+	"Redémarrage et arrêt du système": "Redémarrage et arrêt du système"
 }

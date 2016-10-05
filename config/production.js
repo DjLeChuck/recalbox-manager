@@ -23,6 +23,7 @@ module.exports = function (i18n) {
       ],
       confPath: '/recalbox/share/system/recalbox.conf',
       supportScript: '/recalbox/scripts/recalbox-support.sh',
+      emulationStationPath: '/etc/init.d/S31emulationstation',
 
       // Audio
       audio: {

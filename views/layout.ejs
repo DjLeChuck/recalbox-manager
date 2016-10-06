@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><%= __("Recalbox Manager") %></a>
+          <a class="navbar-brand" href="/"><%= __("Recalbox Manager") %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -40,8 +40,19 @@
             <li<% if ('controllers' == activePage) { %> class="active"<% } %>><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <%= __("Contrôleurs") %></a></li>
             <li<% if ('systems' == activePage) { %> class="active"<% } %>><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> <%= __("Systèmes") %></a></li>
             <li<% if ('configuration' == activePage) { %> class="active"<% } %>><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <%= __("Configuration") %></a></li>
-            <li<% if ('logs' == activePage) { %> class="active"<% } %>><a href="/logs"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= __("Logs") %></a></li>
-            <li<% if ('recalbox-conf' == activePage) { %> class="active"<% } %>><a href="/recalbox-conf"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> recalbox.conf</a></li>
+            <li<% if ('roms' == activePage) { %> class="active"<% } %>><a href="/roms"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <%= __("ROMs") %></a></li>
+            <li class="dropdown<% if (-1 !== ['help', 'logs', 'recalbox-conf'].indexOf(activePage)) { %> active<% } %>">
+              <a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= __("Dépannage") %>
+                <span class="caret"></span>
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="dropdown-menu">
+                <li<% if ('help' == activePage) { %> class="active"<% } %>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= __("Dépannage") %></a></li>
+                <li<% if ('logs' == activePage) { %> class="active"<% } %>><a href="/logs"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= __("Logs") %></a></li>
+                <li<% if ('recalbox-conf' == activePage) { %> class="active"<% } %>><a href="/recalbox-conf"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> recalbox.conf</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

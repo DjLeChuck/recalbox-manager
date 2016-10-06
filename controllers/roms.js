@@ -8,7 +8,7 @@ module.exports= {
 
     // Recherche des "noms complets"
     for (var i = 0; i < currentSystems.length; i++) {
-      var fullname = utils.findSystemFullname(currentSystems[i]) || currentSystems[i];
+      var fullname = utils.getSystemFullname(currentSystems[i]) || currentSystems[i];
 
       systems[i] = {
         name: currentSystems[i],
@@ -26,7 +26,10 @@ module.exports= {
   view: function * (name) {
     var utils = require('../lib/utils');
 
-    this.state.fullname = utils.findSystemFullname(name) || name;
+    this.state.system = {
+      name: name,
+      fullname: utils.getSystemFullname(name) || name
+    };
 
     var list = [];
     var romsList = utils.getRoms(name);
@@ -45,5 +48,21 @@ module.exports= {
     this.state.activePage = 'roms';
 
     yield this.render('roms-view');
+  },
+
+  launch: function * () {
+    yield this.state.api.post('/systems/' + this.request.body.system + '/launcher', this.request.body.rom, true);
+
+    this.body = 'OK';
+  },
+
+  delete: function * () {
+    var res = yield this.state.api.delete('/systems/' + this.request.body.system + '/roms/' + this.request.body.rom);
+
+    if (204 === res.statusCode) {
+      this.body = 'OK';
+    } else {
+      this.throw('Unable to delete the ROM "' + this.request.body.system + ":" + this.request.body.rom + '".');
+    }
   }
 };

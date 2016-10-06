@@ -204,6 +204,19 @@ body {padding-top: 50px}
 .c100.orange.dark:hover > span{color:#e08833}
 
 /**
+ * Bootstrap spinner
+ */
+ .glyphicon-spin{-webkit-animation:spin 1800ms infinite linear;animation:spin 1800ms infinite linear}
+ @-webkit-keyframes spin {
+ 0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}
+ 100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}
+ }
+ @keyframes spin {
+ 0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}
+ 100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}
+ }
+
+/**
  * CUSTOM
  */
 .top5 { padding-top:5px; }
@@ -215,3 +228,4 @@ body {padding-top: 50px}
 .top40 { padding-top:40px; }
 
 .big-glyphicon {font-size:4em;}
+.no-display{display:none;}

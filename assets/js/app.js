@@ -13,9 +13,94 @@ $(function () {
     // matchHeight
     $("[data-match-height]").matchHeight();
 
-    // deleteModal
-    $("#deleteModal").on("show.bs.modal", function (event) {
-      $(this).find("[data-fullname]")
-        .text($(event.relatedTarget).data("fullname"));
+    // Launch ROM
+    var $launchAlertSuccess = $("[data-launch-alert=success]");
+    var $launchAlertError = $("[data-launch-alert=error]");
+
+    $("[data-play]").on("click", function () {
+      var $this = $(this);
+      var $toggleHidden = $this.find("[data-toggle-hidden]");
+
+      $this.attr("disabled", true);
+      $toggleHidden.toggleClass("hidden");
+
+      $.ajax({
+        url: "/roms/launch",
+        type: "post",
+        data: {
+          system: $this.data("system"),
+          rom: $this.data("rom")
+        }
+      }).done(function () {
+        $launchAlertSuccess.fadeIn(800, function () {
+          setTimeout(function () {
+            $launchAlertSuccess.fadeOut(800);
+          }, 2000);
+        });
+      }).fail(function () {
+        $launchAlertError.fadeIn(800, function () {
+          setTimeout(function () {
+            $launchAlertError.fadeOut(800);
+          }, 2000);
+        });
+      }).always(function () {
+        $this.attr("disabled", false);
+        $toggleHidden.toggleClass("hidden");
+      });
+
+      return false;
+    });
+
+    // Delete ROM
+    var $deleteAlertSuccess = $("[data-delete-alert=success]");
+    var $deleteAlertError = $("[data-delete-alert=error]");
+    var $deleteForm = $("[data-delete=form]");
+    var $deleteModal = $("#deleteModal");
+
+    $deleteModal.on("show.bs.modal", function (event) {
+      var $button = $(event.relatedTarget);
+      var $this = $(this);
+
+      $this.find("[data-fullname]").text($button.data("fullname"));
+      $this.find("[name=system]").val($button.data("system"));
+      $this.find("[name=rom]").val($button.data("fullname"));
+      $this.find("[data-index]").val($button.data("index"));
+    });
+
+    $("[data-delete=confirm]").on("click", function (event) {
+      var $button = $(this);
+      var $toggleHidden = $button.find("[data-toggle-hidden]");
+
+      $button.attr("disabled", true);
+      $toggleHidden.toggleClass("hidden");
+
+      $.ajax({
+        url: $deleteForm.attr("action"),
+        type: $deleteForm.attr("method"),
+        data: $deleteForm.serialize()
+      }).done(function () {
+        $deleteModal.modal("hide");
+
+        $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
+          $(this).remove();
+        });
+
+        $deleteAlertSuccess.fadeIn(800, function () {
+          setTimeout(function () {
+            $deleteAlertSuccess.fadeOut(800);
+          }, 2000);
+        });
+      }).fail(function () {
+        $deleteAlertError.fadeIn(800, function () {
+          setTimeout(function () {
+            $deleteAlertError.fadeOut(800);
+          }, 2000);
+        });
+      }).always(function () {
+        $button.attr("disabled", false);
+        $toggleHidden.toggleClass("hidden");
+      });
+
+      return false;
     });
 });

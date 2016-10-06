@@ -1,6 +1,40 @@
-<div class="page-header"><h1><%= __("Gestion des ROMs") %> - <%= fullname %></h1></div>
+<div class="page-header"><h1><%= __("Gestion des ROMs") %> - <%= system.fullname %></h1></div>
+
+<ol class="breadcrumb">
+  <li><a href="/"><%= __("Accueil") %></a></li>
+  <li><a href="/roms"><%= __("ROMs") %></a></li>
+  <li class="active"><%= system.fullname %></li>
+</ol>
 
 <p><%= __("Nombre total de ROMs :") %> <%= roms.list.length %></p>
+
+<div class="alert alert-warning">
+  <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+  <span class="sr-only"><%= __("Attention :") %></span>
+  <%= __("Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications.") %>
+</div>
+
+<div class="alert alert-success alert-dismissible no-display" role="alert" data-launch-alert="success">
+  <strong><%= __("Et voilà !") %></strong>
+  <%= __("Votre jeu devrez s'être lancé !") %>
+  <small><%= __("Normalement...") %></small>
+</div>
+
+<div class="alert alert-error alert-dismissible no-display" role="alert" data-launch-alert="error">
+  <strong><%= __("Oups !") %></strong>
+  <%= __("Il semble que votre jeu n'est pas réussi à se lancer.") %>
+</div>
+
+<div class="alert alert-success alert-dismissible no-display" role="alert" data-delete-alert="success">
+  <strong><%= __("Et voilà !") %></strong>
+  <%= __("Votre ROM a bien été supprimée !") %>
+  <small><%= __("Normalement...") %></small>
+</div>
+
+<div class="alert alert-error alert-dismissible no-display" role="alert" data-delete-alert="error">
+  <strong><%= __("Oups !") %></strong>
+  <%= __("Il semble que votre ROM n'ait pas été supprimée.") %>
+</div>
 
 <div class="table-responsive">
   <table class="table table-striped table-hover">
@@ -12,15 +46,16 @@
       </tr>
     </thead>
     <tbody>
-    <% roms.list.forEach (function (rom) { %>
-      <tr>
+    <% roms.list.forEach (function (rom, index) { %>
+      <tr data-row="<%= index %>">
         <td></td>
         <td><%= rom.fullname %></td>
         <td>
-          <button class="btn btn-success" type="submit" aria-label="<%= __('Lancer') %>">
-            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+          <button class="btn btn-success has-spinner" type="submit" aria-label="<%= __('Lancer') %>" data-play data-rom="<%= rom.fullname %>" data-system="<%= system.name %>">
+            <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+            <span class="glyphicon glyphicon-play" aria-hidden="true" data-toggle-hidden></span>
           </button>
-          <button class="btn btn-danger" type="submit" aria-label="<%= __('Supprimer') %>" data-toggle="modal" data-target="#deleteModal" data-fullname="<%= rom.fullname %>">
+          <button class="btn btn-danger" type="submit" aria-label="<%= __('Supprimer') %>" data-toggle="modal" data-target="#deleteModal" data-fullname="<%= rom.fullname %>" data-rom="<%= rom.fullname %>" data-system="<%= system.name %>" data-index="<%= index %>">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>
         </td>
@@ -38,11 +73,20 @@
         <h4 class="modal-title" id="deleteModalTitle"><%= __("Attention") %></h4>
       </div>
       <div class="modal-body">
-        <p><%- __("Voulez-vous vraiment supprimer %s ?", "<strong data-fullname></strong>") %>
+        <p><%- __("Voulez-vous vraiment supprimer %s ?", "<strong data-fullname></strong>") %></p>
+
+        <form method="post" action="/roms/delete" data-delete="form">
+          <input type="hidden" name="system" />
+          <input type="hidden" name="rom" />
+          <input type="hidden" data-index />
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><%= __("Non") %></button>
-        <button type="button" class="btn btn-warning"><%= __("Oui") %></button>
+        <button type="button" class="btn btn-warning" data-delete="confirm">
+          <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+          <%= __("Oui") %>
+        </button>
       </div>
     </div>
   </div>

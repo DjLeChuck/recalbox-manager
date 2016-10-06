@@ -133,5 +133,14 @@
 	"Attention": "Attention",
 	"Voulez-vous vraiment supprimer %s ?": "Voulez-vous vraiment supprimer %s ?",
 	"Non": "Non",
-	"Oui": "Oui"
+	"Oui": "Oui",
+	"ROMs": "ROMs",
+	"Et voilà !": "Et voilà !",
+	"Votre jeu devrez s'être lancé !": "Votre jeu devrez s'être lancé !",
+	"Normalement...": "Normalement...",
+	"Oups !": "Oups !",
+	"Il semble que votre jeu n'est pas réussi à se lancer.": "Il semble que votre jeu n'est pas réussi à se lancer.",
+	"Votre ROM a bien été supprimée !": "Votre ROM a bien été supprimée !",
+	"Il semble que votre ROM n'ait pas été supprimée.": "Il semble que votre ROM n'ait pas été supprimée.",
+	"Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications.": "Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications."
 }

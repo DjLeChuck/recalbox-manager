@@ -1,34 +1,20 @@
 module.exports= {
   list: function * () {
-    var fs = require('fs');
-    var xml2js = require('xml2js');
-    var parser = new xml2js.Parser({
-      trim: true,
-      explicitArray: false
-    });
+    var utils = require('../lib/utils');
     var systems = [];
 
     // Dossiers de ROMs existants
-    var currentSystems = require('../lib/utils').getDirectories(this.state.config.recalbox.romsPath);
+    var currentSystems = utils.getDirectories(this.state.config.recalbox.romsPath);
 
-    // Systèmes connus par le manifest.xml
-    parser.parseString(fs.readFileSync(this.state.config.recalbox.manifest), function (err, result) {
-      var systemsList = result.systems.system;
+    // Recherche des "noms complets"
+    for (var i = 0; i < currentSystems.length; i++) {
+      var fullname = utils.findSystemFullname(currentSystems[i]) || currentSystems[i];
 
-      // Recherche des "noms complets" dans le manifest
-      for (var i = 0; i < currentSystems.length; i++) {
-        systems[i] = {
-          name: currentSystems[i],
-          fullname: currentSystems[i]
-        };
-
-        for (var j = 0; j < systemsList.length; j++) {
-          if (currentSystems[i] === systemsList[j].$.key) {
-            systems[i].fullname = systemsList[j].$.name;
-          }
-        }
-      }
-    });
+      systems[i] = {
+        name: currentSystems[i],
+        fullname: fullname
+      };
+    }
 
     this.state.systems = systems;
 
@@ -38,6 +24,24 @@ module.exports= {
   },
 
   view: function * (name) {
+    var utils = require('../lib/utils');
+
+    this.state.fullname = utils.findSystemFullname(name) || name;
+
+    var list = [];
+    var romsList = utils.getRoms(name);
+
+    for (var i = 0; i < romsList.length; i++) {
+      list[i] = {
+        fullname: romsList[i],
+      };
+    }
+
+    this.state.roms = {
+      path: require('path').join(this.state.config.recalbox.romsPath, name),
+      list: list
+    };
+
     this.state.activePage = 'roms';
 
     yield this.render('roms-view');

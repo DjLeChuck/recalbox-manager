@@ -12,4 +12,10 @@ $(function () {
 
     // matchHeight
     $("[data-match-height]").matchHeight();
+
+    // deleteModal
+    $("#deleteModal").on("show.bs.modal", function (event) {
+      $(this).find("[data-fullname]")
+        .text($(event.relatedTarget).data("fullname"));
+    });
 });

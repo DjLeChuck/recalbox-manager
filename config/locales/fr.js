@@ -123,5 +123,15 @@
 	"Login": "Login",
 	"Mot de passe": "Mot de passe",
 	"Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.": "Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.",
-	"Gestion des ROMs": "Gestion des ROMs"
+	"Gestion des ROMs": "Gestion des ROMs",
+	"Nombre total de ROMs :": "Nombre total de ROMs :",
+	"ROM": "ROM",
+	"Taille": "Taille",
+	"Options": "Options",
+	"Lancer": "Lancer",
+	"Supprimer": "Supprimer",
+	"Attention": "Attention",
+	"Voulez-vous vraiment supprimer %s ?": "Voulez-vous vraiment supprimer %s ?",
+	"Non": "Non",
+	"Oui": "Oui"
 }

@@ -27,7 +27,6 @@ module.exports = {
     }
 
     // Set volume
-    console.log(this.state.config.recalbox.configScript + " volume " + post.volume);
     require('child_process').execSync(this.state.config.recalbox.configScript + " volume " + post.volume);
 
     this.flash = { success: 'La configuration a bien été sauvegardée.' };

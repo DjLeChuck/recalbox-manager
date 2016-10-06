@@ -26,19 +26,7 @@ module.exports = {
           break;
         case 'shutdown':
           // @todo What to do? The manager will become unreachable.
-          var shutdown = spawn('shutdown', ['-h', 'now']);
-
-          shutdown.stdout.on('data', function (data) {
-            console.log(`stdout: ${data}`);
-          });
-
-          shutdown.stderr.on('data', function (data) {
-            console.log(`stderr: ${data}`);
-          });
-
-          shutdown.on('close', function (code) {
-            console.log(`child process exited with code ${code}`);
-          });
+          spawn('shutdown', ['-h', 'now']);
           break;
         default:
           this.throw('Unknown system action.');

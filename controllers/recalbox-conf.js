@@ -2,7 +2,7 @@ module.exports = {
   index: function * () {
     this.state.recalboxConf = {
       path: this.state.config.recalbox.confPath,
-      content: yield require('../lib/utils').readFile(this.state.config.recalbox.confPath)
+      content: require('fs').readFileSync(this.state.config.recalbox.confPath)
     };
 
     this.state.activePage = 'recalbox-conf';
@@ -13,7 +13,7 @@ module.exports = {
   },
 
   save: function * () {
-    yield require('../lib/utils').writeFile(this.state.config.recalbox.confPath, this.request.body.recalbox_conf);
+    require('fs').writeFileSync(this.state.config.recalbox.confPath, this.request.body.recalbox_conf);
 
     this.flash = { success: 'Le fichier a bien été sauvegardé.' };
 

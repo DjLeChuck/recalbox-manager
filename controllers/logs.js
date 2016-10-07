@@ -6,7 +6,7 @@ module.exports.index = function * () {
   if (undefined !== logPath && "" !== logPath) {
     this.state.currentLog = {
       path: logPath,
-      content: yield require('../lib/utils').readFile(logPath)
+      content: require('fs').readFileSync(logPath)
     };
   }
 

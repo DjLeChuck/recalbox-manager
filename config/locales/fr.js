@@ -143,5 +143,6 @@
 	"Votre ROM a bien été supprimée !": "Votre ROM a bien été supprimée !",
 	"Il semble que votre ROM n'ait pas été supprimée.": "Il semble que votre ROM n'ait pas été supprimée.",
 	"Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications.": "Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications.",
-	"Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications."
+	"Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.",
+	"Nom": "Nom"
 }

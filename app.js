@@ -83,6 +83,6 @@ app.use(_.post('/help', help.post));
 app.use(_.get('/roms', roms.list));
 app.use(_.post('/roms/launch', roms.launch));
 app.use(_.post('/roms/delete', roms.delete));
-app.use(_.get('/roms/:name', roms.view));
+app.use(_.get('/roms/:name/:path*', roms.view));
 
 app.listen(3000);

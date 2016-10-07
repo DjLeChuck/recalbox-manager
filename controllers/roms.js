@@ -23,8 +23,11 @@ module.exports= {
     yield this.render('roms-list');
   },
 
-  view: function * (name) {
+  view: function * (name, subPath) {
     var utils = require('../lib/utils');
+    var path = require('path');
+    var romBasePath = path.join(this.state.config.recalbox.romsPath, name);
+    subPath = subPath || '';
 
     this.state.system = {
       name: name,
@@ -32,7 +35,7 @@ module.exports= {
     };
 
     var list = [];
-    var romsList = utils.getRoms(name);
+    var romsList = utils.getRoms(name, subPath);
 
     for (var i = 0; i < romsList.length; i++) {
       list[i] = {
@@ -41,9 +44,18 @@ module.exports= {
     }
 
     this.state.roms = {
-      path: require('path').join(this.state.config.recalbox.romsPath, name),
+      path: romBasePath,
       list: list
     };
+
+    this.state.breadCrumb = [['', this.i18n.__('Accueil')], ['roms', this.i18n.__('ROMs')], [name, this.state.system.fullname]];
+
+    if ("" !== subPath) {
+      this.state.breadCrumb = this.state.breadCrumb.concat(subPath.split('/'));
+    }
+
+    this.state.basePath = path.join('/roms', name, subPath);
+    this.state.subDirectories = utils.getDirectories(path.join(romBasePath, subPath), this.state.config.recalbox.romsExcludedFolders);
 
     this.state.activePage = 'roms';
 

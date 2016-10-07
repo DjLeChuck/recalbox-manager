@@ -1,10 +1,6 @@
 <div class="page-header"><h1><%= __("Gestion des ROMs") %> - <%= system.fullname %></h1></div>
 
-<ol class="breadcrumb">
-  <li><a href="/"><%= __("Accueil") %></a></li>
-  <li><a href="/roms"><%= __("ROMs") %></a></li>
-  <li class="active"><%= system.fullname %></li>
-</ol>
+<%- include('partials/breadcrumb', { breadCrumb: breadCrumb }); %>
 
 <p><%= __("Nombre total de ROMs :") %> <%= roms.list.length %></p>
 
@@ -41,11 +37,20 @@
     <thead>
       <tr>
         <th>#</th>
-        <th><%= __("ROM") %></th>
+        <th><%= __("Nom") %></th>
         <th><%= __("Options") %></th>
       </tr>
     </thead>
     <tbody>
+  <% if (undefined !== subDirectories) { %>
+    <% subDirectories.forEach(function (item) { %>
+      <tr>
+        <td></td>
+        <td><a href="<%= basePath %>/<%= item %>"><%= item %></a></td>
+        <td></td>
+      </tr>
+    <% }); %>
+  <% } %>
     <% roms.list.forEach (function (rom, index) { %>
       <tr data-row="<%= index %>">
         <td></td>

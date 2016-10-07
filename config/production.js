@@ -30,6 +30,7 @@ module.exports = function (i18n) {
         savePath: '/recalbox/share/screenshots'
       },
       romsPath: '/recalbox/share/roms',
+      romsExcludedFolders: ['downloaded_images'],
       biosPath: '/recalbox/share/bios',
       manifest: __dirname + '/manifest.xml',
       esSystemsCfgPath: '/recalbox/share_init/system/.emulationstation/es_systems.cfg',

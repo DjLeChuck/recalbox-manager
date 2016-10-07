@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+<% var path = []; %>
+<% breadCrumb.forEach(function (item, index) { %>
+  <% var subPath = typeof item === 'object' ? item[0] : item; %>
+  <% var subName = typeof item === 'object' ? item[1] : item; %>
+  <% var isLast = breadCrumb.length === (index + 1); %>
+  <% if (isLast) { %>
+    <li class="active"><%= subName %></li>
+  <% } else { %>
+    <li><a href="<%= path.join('/') %>/<%= subPath %>"><%= subName %></a></li>
+  <% } %>
+  <% path.push(subPath); %>
+<% }); %>
+</ol>

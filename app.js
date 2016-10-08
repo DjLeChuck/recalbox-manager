@@ -28,6 +28,7 @@ locale(app);
 app.keys = ['The cake is a lie!'];
 
 app.use(serve(path.join(__dirname, '/assets')));
+app.use(serve('/recalbox/share/roms'));
 app.use(session(app));
 app.use(flash());
 app.use(bodyParser());

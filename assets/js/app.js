@@ -103,4 +103,29 @@ $(function () {
 
       return false;
     });
+
+    // Back to top
+    var $backToTop = $('#back-to-top');
+
+    if (0 < $backToTop.length) {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+          $backToTop.fadeIn();
+        } else {
+          $backToTop.fadeOut();
+        }
+      });
+
+      // scroll body to 0px on click
+      $backToTop.on("click", function () {
+        $backToTop.tooltip("hide");
+        $("body,html").animate({
+          scrollTop: 0
+        }, 800);
+
+        return false;
+      });
+
+      $backToTop.tooltip("show");
+    }
 });

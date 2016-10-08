@@ -53,7 +53,7 @@
   <% } %>
     <% roms.list.forEach (function (rom, index) { %>
       <tr data-row="<%= index %>">
-        <td></td>
+        <td><img src="<%= rom.image %>" alt="" class="img-thumbnail rom-image" /></td>
         <td><%= rom.fullname %></td>
         <td>
           <button class="btn btn-success has-spinner" type="submit" aria-label="<%= __('Lancer') %>" data-play data-rom="<%= rom.fullname %>" data-system="<%= system.name %>">
@@ -69,6 +69,10 @@
     </tbody>
   </table>
 </div>
+
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="<%= __('Cliquez pour retourner en haut de la page') %>" data-toggle="tooltip" data-placement="left">
+  <span class="glyphicon glyphicon-chevron-up"></span>
+</a>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle">
   <div class="modal-dialog" role="document">

@@ -26,7 +26,7 @@ module.exports= {
   view: function * (name, subPath) {
     var utils = require('../lib/utils');
     var path = require('path');
-    var romBasePath = path.join(this.state.config.recalbox.romsPath, name);
+    var romBasePath = utils.getSystemRomsBasePath(name);
     subPath = subPath || '';
 
     this.state.system = {
@@ -36,10 +36,20 @@ module.exports= {
 
     var list = [];
     var romsList = utils.getRoms(name, subPath);
+    var gamelist = utils.getSystemGamelist(name);
 
     for (var i = 0; i < romsList.length; i++) {
+      var fullname = romsList[i];
+      var image = '';
+
+      if (undefined !== gamelist[romsList[i]]) {
+        fullname = undefined !== gamelist[romsList[i]].name ? gamelist[romsList[i]].name : fullname;
+        image = undefined !== gamelist[romsList[i]].image ? path.join('/', name, gamelist[romsList[i]].image) : image;
+      }
+
       list[i] = {
-        fullname: romsList[i],
+        fullname: fullname,
+        image: image
       };
     }
 

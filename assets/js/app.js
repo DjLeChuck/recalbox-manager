@@ -26,7 +26,7 @@ $(function () {
 
       $.ajax({
         url: "/roms/launch",
-        type: "post",
+        method: "post",
         data: {
           system: $this.data("system"),
           rom: $this.data("rom")
@@ -76,7 +76,7 @@ $(function () {
 
       $.ajax({
         url: $deleteForm.attr("action"),
-        type: $deleteForm.attr("method"),
+        method: $deleteForm.attr("method"),
         data: $deleteForm.serialize()
       }).done(function () {
         $deleteModal.modal("hide");
@@ -128,4 +128,63 @@ $(function () {
 
       $backToTop.tooltip("show");
     }
+
+    // Help
+    var $submitBtns = $("[data-form-ajax] [type=submit]");
+
+    $submitBtns.on("click", function () {
+      $submitBtns.data("clicked", false);
+
+      $(this).data("clicked", true);
+    });
+
+    $("[data-form-ajax]").on("submit", function () {
+      var $button = $submitBtns.filter(function () { return $(this).data("clicked"); });
+
+      if ($button.is("[data-noajax]")) {
+        return true;
+      }
+
+      // Ne pas déplacer après var $form = $(this);
+      $(this).append(
+        $('<input type="hidden" data-submitted>').attr({
+          name: $button.attr("name"),
+          value: $button.attr("value"),
+        })
+      );
+
+      var $form = $(this);
+
+      $.ajax({
+        url: $form.attr("action"),
+        method: $form.attr("method"),
+        data: $form.serialize(),
+        beforeSend: function () {
+          $button.find("[data-toggle-hidden]").toggleClass("hidden");
+          $button.attr("disabled", true);
+
+          return true;
+        }
+      }).done(function (response) {
+        var $result = $button.closest("div").find("[data-result]");
+
+        $result.find("[data-value]").each(function () {
+          var $resultItem = $(this);
+
+          if ($resultItem.is("a")) {
+            $resultItem.attr("href", response.value);
+          } else {
+            $resultItem.text(response.value);
+          }
+        });
+
+        $result.removeClass("no-display");
+      }).always(function () {
+        $button.find("[data-toggle-hidden]").toggleClass("hidden");
+        $button.attr("disabled", false);
+        $("[data-submitted]").remove();
+      });
+
+      return false;
+    });
 });

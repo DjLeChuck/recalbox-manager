@@ -146,5 +146,6 @@
 	"Nom": "Nom",
 	"Cliquez pour retourner en haut de la page": "Cliquez pour retourner en haut de la page",
 	"Il semble que votre jeu n'ait pas réussi à se lancer.": "Il semble que votre jeu n'ait pas réussi à se lancer.",
-	"Votre jeu devrait s'être lancé !": "Votre jeu devrait s'être lancé !"
+	"Votre jeu devrait s'être lancé !": "Votre jeu devrait s'être lancé !",
+	"Capture d'écran enregistrée :": "Capture d'écran enregistrée :"
 }

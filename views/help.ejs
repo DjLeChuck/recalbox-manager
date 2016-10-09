@@ -10,7 +10,7 @@
 
 <br />
 
-<form method="post">
+<form method="post" action="/help" data-form-ajax>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title"><%= __("Effectuer une capture d'écran") %></h3>
@@ -20,13 +20,16 @@
       <p><%- __("Le résultat sera sauvegardé dans le dossier %s.", "<code>" + raspi2png.savePath + "</code>") %></p>
 
       <p>
-        <button type="submit" name="screenshot" value="1" class="btn btn-success"><%= __("Faire une capture") %></button>
+        <button type="submit" name="screenshot" value="1" class="btn btn-success">
+          <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+          <%= __("Faire une capture") %>
+        </button>
       </p>
 
+      <p class="no-display" data-result><%= __("Capture d'écran enregistrée :") %> <code data-value></code></p>
+
     <% if (typeof screenshotPath !== 'undefined') { %>
-      <p>
-        <%= __("Capture d'écran enregistrée :") %> <code><%= screenshotPath %></code></a>
-      </p>
+      <p><%= __("Capture d'écran enregistrée :") %> <code><%= screenshotPath %></code></a></p>
     <% } %>
     </div>
   </div>
@@ -40,13 +43,16 @@
       <p><%= __("Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.") %></p>
 
       <p>
-        <button type="submit" name="support" value="1" class="btn btn-success"><%= __("Exécuter le script") %></button>
+        <button type="submit" name="support" value="1" class="btn btn-success">
+          <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+          <%= __("Exécuter le script") %>
+        </button>
       </p>
 
+      <p class="no-display" data-result><%= __("Lien de téléchargement à donner :") %> <a href="" target="_blank" data-value><span data-value></span></a></p>
+
     <% if (typeof downloadUrl !== 'undefined') { %>
-      <p>
-        <%= __("Lien de téléchargement à donner :") %> <a href="<%= downloadUrl %>" target="_blank"><%= downloadUrl %></a>
-      </p>
+      <p><%= __("Lien de téléchargement à donner :") %> <a href="<%= downloadUrl %>" target="_blank"><%= downloadUrl %></a></p>
     <% } %>
     </div>
   </div>
@@ -58,11 +64,20 @@
           <h3 class="panel-title"><%= __("Redémarrage et arrêt d'EmulationStation") %></h3>
         </div>
         <div class="panel-body">
-          <button type="submit" name="es" value="restart" class="btn btn-warning"><%= __("Redémarer ES") %></button>
+          <button type="submit" name="es" value="restart" class="btn btn-warning">
+            <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+            <%= __("Redémarer ES") %>
+          </button>
 
-          <button type="submit" name="es" value="stop" class="btn btn-danger"><%= __("Arrêter ES") %></button>
+          <button type="submit" name="es" value="stop" class="btn btn-danger">
+            <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+            <%= __("Arrêter ES") %>
+          </button>
 
-          <button type="submit" name="es" value="start" class="btn btn-success"><%= __("Démarrer ES") %></button>
+          <button type="submit" name="es" value="start" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+            <%= __("Démarrer ES") %>
+          </button>
         </div>
       </div>
     </div>
@@ -72,9 +87,9 @@
           <h3 class="panel-title"><%= __("Redémarrage et arrêt du système") %></h3>
         </div>
         <div class="panel-body">
-          <button type="submit" name="system" value="reboot" class="btn btn-warning"><%= __("Redémarer le système") %></button>
+          <button type="submit" name="system" value="reboot" class="btn btn-warning" data-noajax><%= __("Redémarer le système") %></button>
 
-          <button type="submit" name="system" value="shutdown" class="btn btn-danger"><%= __("Arrêter le système") %></button>
+          <button type="submit" name="system" value="shutdown" class="btn btn-danger" data-noajax><%= __("Arrêter le système") %></button>
         </div>
       </div>
     </div>

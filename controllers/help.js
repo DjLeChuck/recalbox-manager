@@ -14,6 +14,7 @@ module.exports = {
 
   post: function * () {
     var post = this.request.body;
+    var isAjax = (this.request.get('X-Requested-With') === 'XMLHttpRequest');
 
     // Gestion du redémarrage / arrêt du système
     if (undefined !== post.system) {
@@ -31,6 +32,8 @@ module.exports = {
         default:
           this.throw('Unknown system action.');
       }
+
+      this.redirect('back');
     // Gestion du redémarrage / arrêt d'EmulationStation
     } else if (undefined !== post.es) {
       var spawn = require('child_process').spawn;
@@ -40,6 +43,12 @@ module.exports = {
         case 'stop':
         case 'start':
           spawn(this.state.config.recalbox.emulationStationPath, [post.es]);
+
+          if (isAjax) {
+            this.body = { success: true };
+          } else {
+            this.redirect('back');
+          }
           break;
         default:
           this.throw('Unknown ES action.');
@@ -84,19 +93,35 @@ module.exports = {
       // Remove local file
       fs.unlinkSync(returnPath);
 
-      this.session.downloadUrl = JSON.parse(linkFileResult.body).href;
+      if (isAjax) {
+        this.body = {
+          success: true,
+          value: JSON.parse(linkFileResult.body).href
+        };
+      } else {
+        this.session.downloadUrl = JSON.parse(linkFileResult.body).href;
+
+        this.redirect('back');
+      }
     // Gestion de la capture d'écran raspi2png
-  } else if (undefined !== post.screenshot) {
-    var format = require('date-format');
-    var execSync = require('child_process').execSync;
-    var raspi2png = this.state.config.recalbox.raspi2png;
-    var returnPath = raspi2png.savePath + "/screenshot-" + format.asString("yyyy-MM-dd_hh-mm-ss-SSS", new Date()) + ".png"
+    } else if (undefined !== post.screenshot) {
+      var format = require('date-format');
+      var execSync = require('child_process').execSync;
+      var raspi2png = this.state.config.recalbox.raspi2png;
+      var returnPath = raspi2png.savePath + "/screenshot-" + format.asString("yyyy-MM-dd_hh-mm-ss-SSS", new Date()) + ".png"
 
-    execSync(raspi2png.command + " " + returnPath);
+      execSync(raspi2png.command + " " + returnPath);
 
-    this.session.screenshotPath = returnPath;
-  }
+      if (isAjax) {
+        this.body = {
+          success: true,
+          value: returnPath
+        };
+      } else {
+        this.session.screenshotPath = returnPath;
 
-    this.redirect('back');
+        this.redirect('back');
+      }
+    }
   }
 };

@@ -20,6 +20,7 @@ var logs = require('./controllers/logs');
 var recalboxConf = require('./controllers/recalbox-conf');
 var help = require('./controllers/help');
 var roms = require('./controllers/roms');
+var isDev = 'development' === (process.env.NODE_ENV || 'production');
 
 var app = koa();
 
@@ -37,8 +38,8 @@ app.use(bodyParser());
 render(app, {
   root: path.join(__dirname, 'views'),
   viewExt: 'ejs',
-  cache: false,
-  debug: true
+  cache: !isDev,
+  debug: isDev
 });
 
 app.use(function *(next) {

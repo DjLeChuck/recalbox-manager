@@ -137,7 +137,6 @@
 	"ROMs": "ROMs",
 	"Et voilà !": "Et voilà !",
 	"Votre jeu devrez s'être lancé !": "Votre jeu devrez s'être lancé !",
-	"Normalement...": "Normalement...",
 	"Oups !": "Oups !",
 	"Il semble que votre jeu n'est pas réussi à se lancer.": "Il semble que votre jeu n'est pas réussi à se lancer.",
 	"Votre ROM a bien été supprimée !": "Votre ROM a bien été supprimée !",
@@ -145,5 +144,7 @@
 	"Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications.": "Supprimer des ROMs nécessite qu'EmulationStation soit redémarrer pour prendre en compte les modifications.",
 	"Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.",
 	"Nom": "Nom",
-	"Cliquez pour retourner en haut de la page": "Cliquez pour retourner en haut de la page"
+	"Cliquez pour retourner en haut de la page": "Cliquez pour retourner en haut de la page",
+	"Il semble que votre jeu n'ait pas réussi à se lancer.": "Il semble que votre jeu n'ait pas réussi à se lancer.",
+	"Votre jeu devrait s'être lancé !": "Votre jeu devrait s'être lancé !"
 }

@@ -10,26 +10,32 @@
   <%= __("Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.") %>
 </div>
 
-<div class="alert alert-success alert-dismissible no-display" role="alert" data-launch-alert="success">
-  <strong><%= __("Et voilà !") %></strong>
-  <%= __("Votre jeu devrez s'être lancé !") %>
-  <small><%= __("Normalement...") %></small>
+<div class="sticky-alert center-block no-display">
+  <div class="alert alert-success" role="alert" data-launch-alert="success">
+    <strong><%= __("Et voilà !") %></strong>
+    <%= __("Votre jeu devrait s'être lancé !") %>
+  </div>
 </div>
 
-<div class="alert alert-error alert-dismissible no-display" role="alert" data-launch-alert="error">
-  <strong><%= __("Oups !") %></strong>
-  <%= __("Il semble que votre jeu n'est pas réussi à se lancer.") %>
+<div class="sticky-alert center-block no-display">
+  <div class="alert alert-danger" role="alert" data-launch-alert="error">
+    <strong><%= __("Oups !") %></strong>
+    <%= __("Il semble que votre jeu n'ait pas réussi à se lancer.") %>
+  </div>
 </div>
 
-<div class="alert alert-success alert-dismissible no-display" role="alert" data-delete-alert="success">
-  <strong><%= __("Et voilà !") %></strong>
-  <%= __("Votre ROM a bien été supprimée !") %>
-  <small><%= __("Normalement...") %></small>
+<div class="sticky-alert center-block no-display">
+  <div class="alert alert-success" role="alert" data-delete-alert="success">
+    <strong><%= __("Et voilà !") %></strong>
+    <%= __("Votre ROM a bien été supprimée !") %>
+  </div>
 </div>
 
-<div class="alert alert-error alert-dismissible no-display" role="alert" data-delete-alert="error">
-  <strong><%= __("Oups !") %></strong>
-  <%= __("Il semble que votre ROM n'ait pas été supprimée.") %>
+<div class="sticky-alert center-block no-display">
+  <div class="alert alert-danger" role="alert" data-delete-alert="error">
+    <strong><%= __("Oups !") %></strong>
+    <%= __("Il semble que votre ROM n'ait pas été supprimée.") %>
+  </div>
 </div>
 
 <div class="table-responsive">

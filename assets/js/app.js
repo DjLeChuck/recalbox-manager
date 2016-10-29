@@ -108,11 +108,10 @@ $(function () {
     var $upload = $("#roms-upload");
 
     if (0 < $upload.length) {
-      console.log('ok');
-
-      var $upload = $("#roms-upload").dropzone({
+      $upload.dropzone({
         paramName: "roms",
-        
+        dictDefaultMessage: $upload.data("drop-here"),
+        dictResponseError: $upload.data("server-error")
       });
     }
 

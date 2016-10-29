@@ -10,7 +10,9 @@
   <%= __("Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.") %>
 </div>
 
-<form action="/roms/upload" class="dropzone" enctype="multipart/form-data" id="roms-upload">
+<form action="/roms/upload" class="dropzone" enctype="multipart/form-data" id="roms-upload"
+  data-drop-here="<%= __('Déposer des fichiers ici pour les uploader.') %>"
+  data-server-error="<%= __('Erreur lors de l\'upload.') %>">
   <input type="hidden" name="upload_path" value="<%= currentPath %>" />
 </form>
 

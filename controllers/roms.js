@@ -74,18 +74,18 @@ module.exports= {
   },
 
   launch: function * () {
-    yield this.state.api.post('/systems/' + this.request.body.system + '/launcher', this.request.body.rom, true);
+    yield this.state.api.post('/systems/' + this.request.fields.system + '/launcher', this.request.fields.rom, true);
 
     this.body = 'OK';
   },
 
   delete: function * () {
-    var res = yield this.state.api.delete('/systems/' + this.request.body.system + '/roms/' + this.request.body.rom);
+    var res = yield this.state.api.delete('/systems/' + this.request.fields.system + '/roms/' + this.request.fields.rom);
 
     if (204 === res.statusCode) {
       this.body = 'OK';
     } else {
-      this.throw('Unable to delete the ROM "' + this.request.body.system + ":" + this.request.body.rom + '".');
+      this.throw('Unable to delete the ROM "' + this.request.fields.system + ":" + this.request.fields.rom + '".');
     }
   },
 

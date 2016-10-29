@@ -149,5 +149,7 @@
 	"Votre jeu devrait s'être lancé !": "Votre jeu devrait s'être lancé !",
 	"Capture d'écran enregistrée :": "Capture d'écran enregistrée :",
 	"Déposer des fichiers ici pour les uploader.": "Déposer des fichiers ici pour les uploader.",
-	"Erreur lors de l'upload.": "Erreur lors de l'upload."
+	"Erreur lors de l'upload.": "Erreur lors de l'upload.",
+	"Uploader des ROMs": "Uploader des ROMs",
+	"Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.": "Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing."
 }

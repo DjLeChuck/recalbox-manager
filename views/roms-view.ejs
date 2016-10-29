@@ -10,11 +10,23 @@
   <%= __("Supprimer des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.") %>
 </div>
 
-<form action="/roms/upload" class="dropzone" enctype="multipart/form-data" id="roms-upload"
-  data-drop-here="<%= __('Déposer des fichiers ici pour les uploader.') %>"
-  data-server-error="<%= __('Erreur lors de l\'upload.') %>">
-  <input type="hidden" name="upload_path" value="<%= currentPath %>" />
-</form>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-upload" aria-expanded="false" aria-controls="collapse-upload">
+  <%= __("Uploader des ROMs") %>
+</button>
+<div class="collapse" id="collapse-upload">
+  <br />
+
+  <div class="well">
+    <p><%= __("Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.") %></p>
+
+    <form action="/roms/upload" class="dropzone" enctype="multipart/form-data" id="roms-upload"
+      data-drop-here="<%= __('Déposer des fichiers ici pour les uploader.') %>"
+      data-server-error="<%= __('Erreur lors de l\'upload.') %>">
+      <input type="hidden" name="upload_path" value="<%= currentPath %>" />
+    </form>
+  </div>
+</div>
+
 
 <div class="sticky-alert center-block no-display">
   <div class="alert alert-success" role="alert" data-launch-alert="success">

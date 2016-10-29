@@ -9,7 +9,7 @@
     "date-format": "0.0.2",
     "filesize": "^3.3.0",
     "koa": "^1.2.4",
-    "koa-bodyparser": "^2.2.0",
+    "koa-better-body": "^3.0.2",
     "koa-ejs": "^3.0.0",
     "koa-flash": "^1.0.0",
     "koa-i18n": "^1.2.0",

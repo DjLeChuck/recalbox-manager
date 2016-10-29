@@ -104,6 +104,18 @@ $(function () {
       return false;
     });
 
+    // Upload ROMs
+    var $upload = $("#roms-upload");
+
+    if (0 < $upload.length) {
+      console.log('ok');
+
+      var $upload = $("#roms-upload").dropzone({
+        paramName: "roms",
+        
+      });
+    }
+
     // Back to top
     var $backToTop = $('#back-to-top');
 

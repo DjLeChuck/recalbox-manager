@@ -65,7 +65,8 @@ module.exports= {
     }
 
     this.state.basePath = path.join('/roms', name, subPath);
-    this.state.subDirectories = utils.getDirectories(path.join(romBasePath, subPath), this.state.config.recalbox.romsExcludedFolders);
+    this.state.currentPath = path.join(romBasePath, subPath);
+    this.state.subDirectories = utils.getDirectories(this.state.currentPath, this.state.config.recalbox.romsExcludedFolders);
 
     this.state.activePage = 'roms';
 
@@ -86,5 +87,21 @@ module.exports= {
     } else {
       this.throw('Unable to delete the ROM "' + this.request.body.system + ":" + this.request.body.rom + '".');
     }
+  },
+
+  upload: function * () {
+    var path = require('path');
+    var fs = require('fs');
+    var uploadPath = this.request.fields.upload_path;
+
+    for (var i = 0; i < this.request.files.length; i++) {
+      var file = this.request.files[i];
+
+      fs.readFile(file.path, function (err, data) {
+        fs.writeFileSync(path.join(uploadPath, file.name), data);
+      });
+    }
+
+    this.body = 'OK';
   }
 };

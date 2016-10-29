@@ -1,7 +1,7 @@
 module.exports.index = function * () {
   this.state.logs = this.state.config.recalbox.logsPaths;
 
-  var logPath = this.request.body.log_path;
+  var logPath = this.request.fields ? this.request.fields.log_path : undefined;
 
   if (undefined !== logPath && "" !== logPath) {
     this.state.currentLog = {

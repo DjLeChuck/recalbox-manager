@@ -10,7 +10,7 @@ module.exports = {
     yield this.render('audio');
   },
   save: function *() {
-    var post = this.request.body;
+    var post = this.request.fields;
     var requests = [];
 
     // Prepare requests

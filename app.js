@@ -2,7 +2,7 @@ var _ = require('koa-route');
 var koa = require('koa');
 var render = require('koa-ejs');
 var path = require('path');
-var bodyParser = require('koa-bodyparser');
+var body = require('koa-better-body');
 var serve = require('koa-static');
 var session = require('koa-session');
 var flash = require('koa-flash');
@@ -32,7 +32,7 @@ app.use(serve(path.join(__dirname, '/assets')));
 app.use(serve('/recalbox/share/roms'));
 app.use(session(app));
 app.use(flash());
-app.use(bodyParser());
+app.use(body());
 
 // Configure ejs
 render(app, {
@@ -83,6 +83,7 @@ app.use(_.post('/recalbox-conf', recalboxConf.save));
 app.use(_.get('/help', help.index));
 app.use(_.post('/help', help.post));
 app.use(_.get('/roms', roms.list));
+app.use(_.post('/roms/upload', roms.upload));
 app.use(_.post('/roms/launch', roms.launch));
 app.use(_.post('/roms/delete', roms.delete));
 app.use(_.get('/roms/:name/:path*', roms.view));

@@ -1,5 +1,8 @@
 # recalbox-manager
-A web interface to manage recalbox configuration
+A web interface to manage recalbox configuration.
+
+## Note
+The API activation step is only needed if you want launch game through the web interface. Otherwise, it's not necessary.
 
 ## Installation from sources
 1. Clone or download the repository: `git clone https://github.com/DjLeChuck/recalbox-manager.git`
@@ -17,5 +20,4 @@ A web interface to manage recalbox configuration
 5. Go on http://recalbox:3000/
 
 ## Known issues
-* There is a problem with string values and the recalbox API which corrupts parameters like SSID, controllers' params, etc.. We must wait the next version of the API to fix the problem.
-* Les modifications ne sont pas directement appliquées; Le recalbox doit être redémarré.
+* Some changes are not directly applied; The recalbox must be restarted.

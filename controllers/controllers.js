@@ -1,10 +1,25 @@
 module.exports = {
   index: function *() {
-    this.state.curDb9 = yield this.state.api.get('/controllers/db9');
-    this.state.curGamecon = yield this.state.api.get('/controllers/gamecon');
-    this.state.curGpio = yield this.state.api.get('/controllers/gpio');
-    this.state.curPs3 = yield this.state.api.get('/controllers/ps3');
-    this.state.curXboxdrv = yield this.state.api.get('/controllers/xboxdrv');
+    this.state.db9 = {
+      enabled: this.state.api.load('controllers.db9.enabled'),
+      args: this.state.api.load('controllers.db9.args'),
+    };
+    this.state.gamecon = {
+      enabled: this.state.api.load('controllers.gamecon.enabled'),
+      args: this.state.api.load('controllers.gamecon.args'),
+    };
+    this.state.gpio = {
+      enabled: this.state.api.load('controllers.gpio.enabled'),
+      args: this.state.api.load('controllers.gpio.args'),
+    };
+    this.state.ps3 = {
+      enabled: this.state.api.load('controllers.ps3.enabled'),
+      driver: this.state.api.load('controllers.ps3.driver'),
+    };
+    this.state.xboxdrv = {
+      enabled: this.state.api.load('controllers.xboxdrv.enabled'),
+      nbcontrols: this.state.api.load('controllers.xboxdrv.nbcontrols'),
+    };
 
     this.state.ps3drivers = this.state.config.recalbox.controllers.ps3drivers;
 
@@ -16,30 +31,15 @@ module.exports = {
   },
   save: function *() {
     var post = this.request.fields;
-    var requests = [];
+    var api = this.state.api;
 
-    // Prepare requests
+    // Set values
     Object.keys(post).forEach(function (key) {
       var val = post[key];
       val = Array.isArray(val) ? val[val.length - 1] : val;
 
-      // Traitement des champs de type tableau name[key]
-      if (typeof val === 'object') {
-        Object.keys(val).forEach(function (subkey) {
-          var subval = val[subkey];
-          subval = Array.isArray(subval) ? subval[subval.length - 1] : subval;
-
-          requests.push({ url: '/controllers/' + key + '/' + subkey, body: subval });
-        });
-      } else {
-        requests.push({ url: '/controllers/' + key, body: val });
-      }
+      api.save(key, val);
     });
-
-    // Execute requests
-    for (var i = 0; i < requests.length; i++) {
-      yield this.state.api.put(requests[i]);
-    }
 
     this.flash = { success: 'La configuration a bien été sauvegardée.' };
 

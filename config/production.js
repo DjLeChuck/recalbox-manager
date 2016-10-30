@@ -33,6 +33,7 @@ module.exports = function (i18n) {
       romsExcludedFolders: ['downloaded_images'],
       biosPath: '/recalbox/share/bios',
       esSystemsCfgPath: '/recalbox/share_init/system/.emulationstation/es_systems.cfg',
+      systemSettingsCommand: 'python /usr/lib/python2.7/site-packages/configgen/settings/recalboxSettings.pyc',
 
       // Audio
       audio: {
@@ -54,6 +55,11 @@ module.exports = function (i18n) {
 
       // Configuration
       configuration: {
+        updatesTypes: [
+          {key: 'stable', value: i18n.__("Stable")},
+          {key: 'beta', value: i18n.__("Bêta")},
+          {key: 'unstable', value: i18n.__("Instable")},
+        ],
         keyboardlayouts: [
           {key: 'us', value: 'American'},
           {key: 'de', value: 'Deutsch'},

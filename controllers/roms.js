@@ -39,7 +39,8 @@ module.exports= {
     var gamelist = utils.getSystemGamelist(name);
 
     for (var i = 0; i < romsList.length; i++) {
-      var fullname = romsList[i];
+      var filename = romsList[i];
+      var fullname = filename;
       var image = '';
 
       if (undefined !== gamelist[romsList[i]]) {
@@ -48,6 +49,7 @@ module.exports= {
       }
 
       list[i] = {
+        filename: filename,
         fullname: fullname,
         image: image
       };
@@ -74,18 +76,22 @@ module.exports= {
   },
 
   launch: function * () {
-    yield this.state.api.post('/systems/' + this.request.fields.system + '/launcher', this.request.fields.rom, true);
+    yield this.state.api.launchGame(this.request.fields.system, this.request.fields.rom);
 
     this.body = 'OK';
   },
 
   delete: function * () {
-    var res = yield this.state.api.delete('/systems/' + this.request.fields.system + '/roms/' + this.request.fields.rom);
+    var path = require('path');
+    var fs = require('fs');
+    var romPath = path.join(this.request.fields.current_path, this.request.fields.rom);
 
-    if (204 === res.statusCode) {
+    try {
+      fs.unlinkSync(filePath);
+
       this.body = 'OK';
-    } else {
-      this.throw('Unable to delete the ROM "' + this.request.fields.system + ":" + this.request.fields.rom + '".');
+    } catch (error) {
+      this.throw('Unable to delete the ROM "' + romPath + '".');
     }
   },
 

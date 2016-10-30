@@ -14,8 +14,8 @@
         <%= __("Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.") %>
       </div>
 
-      <input type="hidden" name="bgmusic" value="0" />
-      <input type="checkbox" name="bgmusic" value="1" data-switch<% if (1 == audio.bgmusic) { %> checked="checked"<% } %> />
+      <input type="hidden" name="audio.bgmusic" value="0" />
+      <input type="checkbox" name="audio.bgmusic" value="1" data-switch<% if (1 == audio.bgmusic) { %> checked="checked"<% } %> />
     </div>
   </div>
 
@@ -24,7 +24,7 @@
       <h3 class="panel-title"><%= __("Volume du son") %></h3>
     </div>
     <div class="panel-body top40">
-      <input type="text" name="volume" value="<%= audio.volume %>" class="slider" data-slider data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<%= audio.volume %>" />
+      <input type="text" name="audio.volume" value="<%= audio.volume %>" class="slider" data-slider data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<%= audio.volume %>" />
     </div>
   </div>
 
@@ -33,7 +33,7 @@
       <h3 class="panel-title"><%= __("Sortie audio") %></h3>
     </div>
     <div class="panel-body">
-      <select name="device" data-select>
+      <select name="audio.device" data-select>
       <% devices.forEach(function (item) { %>
         <option value="<%= item.key %>"<% if (audio.device == item.key) { %> selected="selected"<% } %>>
           <%= item.value %>

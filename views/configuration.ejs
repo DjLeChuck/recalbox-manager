@@ -9,11 +9,11 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="locale" class="col-md-4 control-label"><%= __("Langue du système") %></label>
+        <label for="system-language" class="col-md-4 control-label"><%= __("Langue du système") %></label>
         <div class="col-md-6">
-          <select name="locale" id="locale" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <select name="system.language" id="system-language" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% systemlocales.forEach(function (item) { %>
-            <option value="<%= item.key %>"<% if (curLocale.locale == item.key) { %> selected="selected"<% } %>>
+            <option value="<%= item.key %>"<% if (system.language == item.key) { %> selected="selected"<% } %>>
               <%= item.value %>
             </option>
           <% }); %>
@@ -23,9 +23,9 @@
       <div class="form-group">
         <label for="keyboardlayout" class="col-md-4 control-label"><%= __("Layout du clavier") %></label>
         <div class="col-md-6">
-          <select name="keyboardlayout" id="keyboardlayout" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <select name="system.kblayout" id="keyboardlayout" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% keyboardlayouts.forEach(function (item) { %>
-            <option value="<%= item.key %>"<% if (curKeyboardlayout.keyboardlayout == item.key) { %> selected="selected"<% } %>>
+            <option value="<%= item.key %>"<% if (system.kblayout == item.key) { %> selected="selected"<% } %>>
               <%= item.value %>
             </option>
           <% }); %>
@@ -35,9 +35,9 @@
       <div class="form-group">
         <label for="timezone" class="col-md-4 control-label"><%= __("Timezone") %></label>
         <div class="col-md-6">
-          <select name="timezone" id="timezone" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <select name="system.timezone" id="timezone" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% timezones.forEach(function (timezone) { %>
-            <option value="<%= timezone %>"<% if (curTimezone.timezone == timezone) { %> selected="selected"<% } %>>
+            <option value="<%= timezone %>"<% if (system.timezone == timezone) { %> selected="selected"<% } %>>
               <%= timezone %>
             </option>
           <% }); %>
@@ -55,14 +55,14 @@
       <div class="form-group">
         <label for="hostname" class="col-md-4 control-label"><%= __("Nom d'hôte") %></label>
         <div class="col-md-6">
-          <input type="text" name="hostname" id="hostname" class="form-control" placeholder="<%= __('Nom d\'hôte') %>" value="<%= curHostname.hostname %>">
+          <input type="text" name="system.hostname" id="hostname" class="form-control" placeholder="<%= __('Nom d\'hôte') %>" value="<%= system.hostname %>">
         </div>
       </div>
       <div class="form-group">
         <label for="wifi-enabled" class="col-md-4 control-label"><%= __("Activer le wifi") %></label>
         <div class="col-md-6">
-          <input type="hidden" name="wifi[enabled]" value="0">
-          <input type="checkbox" name="wifi[enabled]" value="1" id="wifi-enabled" data-switch<% if (1 == wifi.enabled) { %> checked="checked"<% } %>>
+          <input type="hidden" name="wifi.enabled" value="0">
+          <input type="checkbox" name="wifi.enabled" value="1" id="wifi-enabled" data-switch<% if (1 == wifi.enabled) { %> checked="checked"<% } %>>
         </div>
       </div>
 
@@ -74,13 +74,13 @@
         <div class="form-group">
           <label for="wifi-ssid" class="col-md-4 control-label"><%= __("SSID") %></label>
           <div class="col-md-6">
-            <input type="text" name="wifi[ssid]" class="form-control" id="wifi-ssid" placeholder="<%= __('SSID') %>" value="<%= wifi.ssid %>">
+            <input type="text" name="wifi.ssid" class="form-control" id="wifi-ssid" placeholder="<%= __('SSID') %>" value="<%= wifi.ssid %>">
           </div>
         </div>
         <div class="form-group">
           <label for="wifi-key" class="col-md-4 control-label"><%= __("Clé") %></label>
           <div class="col-md-6">
-            <input type="text" name="wifi[key]" class="form-control" id="wifi-key" placeholder="<%= __('Clé') %>" value="<%= wifi.key %>">
+            <input type="text" name="wifi.key" class="form-control" id="wifi-key" placeholder="<%= __('Clé') %>" value="<%= wifi.key %>">
           </div>
         </div>
       </div>
@@ -95,22 +95,22 @@
       <div class="form-group">
         <label for="kodi-enabled" class="col-md-4 control-label"><%= __("Activer Kodi") %></label>
         <div class="col-md-6">
-          <input type="hidden" name="kodi[enabled]" value="0">
-          <input type="checkbox" name="kodi[enabled]" value="1" id="kodi-enabled" data-switch<% if (1 == kodi.enabled) { %> checked="checked"<% } %>>
+          <input type="hidden" name="kodi.enabled" value="0">
+          <input type="checkbox" name="kodi.enabled" value="1" id="kodi-enabled" data-switch<% if (1 == kodi.enabled) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
         <label for="kodi-atstartup" class="col-md-4 control-label"><%= __("Lancer Kodi au démarrage") %></label>
         <div class="col-md-6">
-          <input type="hidden" name="kodi[atstartup]" value="0">
-          <input type="checkbox" name="kodi[atstartup]" value="1" id="kodi-atstartup" data-switch<% if (1 == kodi.atstartup) { %> checked="checked"<% } %>>
+          <input type="hidden" name="kodi.atstartup" value="0">
+          <input type="checkbox" name="kodi.atstartup" value="1" id="kodi-atstartup" data-switch<% if (1 == kodi.atstartup) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
         <label for="kodi-xbutton" class="col-md-4 control-label"><%- __("Lancer Kodi via la touche %s", "<kbd>X</kbd>") %></label>
         <div class="col-md-6">
-          <input type="hidden" name="kodi[xbutton]" value="0">
-          <input type="checkbox" name="kodi[xbutton]" value="1" id="kodi-xbutton" data-switch<% if (1 == kodi.xbutton) { %> checked="checked"<% } %>>
+          <input type="hidden" name="kodi.xbutton" value="0">
+          <input type="checkbox" name="kodi.xbutton" value="1" id="kodi-xbutton" data-switch<% if (1 == kodi.xbutton) { %> checked="checked"<% } %>>
         </div>
       </div>
     </div>
@@ -124,8 +124,20 @@
       <div class="form-group">
         <label for="updates-enabled" class="col-md-7 control-label"><%= __("Vérifier les mises à jours au démarrage du système") %></label>
         <div class="col-md-3">
-          <input type="hidden" name="updates[enabled]" value="0">
-          <input type="checkbox" name="updates[enabled]" value="1" id="updates-enabled" data-switch<% if (1 == updates.enabled) { %> checked="checked"<% } %>>
+          <input type="hidden" name="updates.enabled" value="0">
+          <input type="checkbox" name="updates.enabled" value="1" id="updates-enabled" data-switch<% if (1 == updates.enabled) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="update-type" class="col-md-7 control-label"><%= __("Type de version") %></label>
+        <div class="col-md-3">
+          <select name="updates.type" id="updates-type" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <% updatesTypes.forEach(function (item) { %>
+            <option value="<%= item.key %>"<% if (updates.type == item.key) { %> selected="selected"<% } %>>
+              <%= item.value %>
+            </option>
+          <% }); %>
+          </select>
         </div>
       </div>
     </div>

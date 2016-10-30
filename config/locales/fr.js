@@ -151,5 +151,9 @@
 	"Déposer des fichiers ici pour les uploader.": "Déposer des fichiers ici pour les uploader.",
 	"Erreur lors de l'upload.": "Erreur lors de l'upload.",
 	"Uploader des ROMs": "Uploader des ROMs",
-	"Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.": "Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing."
+	"Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.": "Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.",
+	"Stable": "Stable",
+	"Bêta": "Bêta",
+	"Instable": "Instable",
+	"Type de version": "Type de version"
 }

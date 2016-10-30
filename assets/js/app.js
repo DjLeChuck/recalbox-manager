@@ -62,8 +62,7 @@ $(function () {
       var $this = $(this);
 
       $this.find("[data-fullname]").text($button.data("fullname"));
-      $this.find("[name=system]").val($button.data("system"));
-      $this.find("[name=rom]").val($button.data("fullname"));
+      $this.find("[name=rom]").val($button.data("filename"));
       $this.find("[data-index]").val($button.data("index"));
     });
 

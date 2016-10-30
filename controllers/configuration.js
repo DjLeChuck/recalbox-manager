@@ -1,16 +1,30 @@
 module.exports = {
   index: function *() {
-    this.state.curKeyboardlayout = yield this.state.api.get('/keyboardlayout');
-    this.state.curLocale = yield this.state.api.get('/locale');
-    this.state.curHostname = yield this.state.api.get('/hostname');
-    this.state.curTimezone = yield this.state.api.get('/timezone');
-    this.state.wifi = yield this.state.api.get('/wifi');
-    this.state.kodi = yield this.state.api.get('/kodi');
-    this.state.updates = yield this.state.api.get('/updates/enabled');
+    this.state.system = {
+      kblayout: this.state.api.load('system.kblayout'),
+      language: this.state.api.load('system.language'),
+      hostname: this.state.api.load('system.hostname'),
+      timezone: this.state.api.load('system.timezone'),
+    };
+    this.state.wifi = {
+      enabled: this.state.api.load('wifi.enabled'),
+      ssid: this.state.api.load('wifi.ssid'),
+      key: this.state.api.load('wifi.key'),
+    };
+    this.state.kodi = {
+      enabled: this.state.api.load('kodi.enabled'),
+      atstartup: this.state.api.load('kodi.atstartup'),
+      xbutton: this.state.api.load('kodi.xbutton'),
+    };
+    this.state.updates = {
+      enabled: this.state.api.load('updates.enabled'),
+      type: this.state.api.load('updates.type'),
+    };
 
     this.state.keyboardlayouts = this.state.config.recalbox.configuration.keyboardlayouts;
     this.state.systemlocales = this.state.config.recalbox.configuration.systemlocales;
     this.state.timezones = this.state.config.recalbox.configuration.timezones;
+    this.state.updatesTypes = this.state.config.recalbox.configuration.updatesTypes;
 
     this.state.activePage = 'configuration';
 
@@ -20,30 +34,15 @@ module.exports = {
   },
   save: function *() {
     var post = this.request.fields;
-    var requests = [];
+    var api = this.state.api;
 
-    // Prepare requests
+    // Set values
     Object.keys(post).forEach(function (key) {
       var val = post[key];
       val = Array.isArray(val) ? val[val.length - 1] : val;
 
-      // Traitement des champs de type tableau name[key]
-      if (typeof val === 'object') {
-        Object.keys(val).forEach(function (subkey) {
-          var subval = val[subkey];
-          subval = Array.isArray(subval) ? subval[subval.length - 1] : subval;
-
-          requests.push({ url: '/' + key + '/' + subkey, body: subval });
-        });
-      } else {
-        requests.push({ url: '/' + key, body: val });
-      }
+      api.save(key, val);
     });
-
-    // Execute requests
-    for (var i = 0; i < requests.length; i++) {
-      yield this.state.api.put(requests[i]);
-    }
 
     this.flash = { success: 'La configuration a bien été sauvegardée.' };
 

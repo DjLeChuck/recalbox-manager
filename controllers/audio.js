@@ -1,6 +1,10 @@
 module.exports = {
   index: function *() {
-    this.state.audio = yield this.state.api.get('/audio');
+    this.state.audio = {
+      volume: this.state.api.load('audio.volume'),
+      device: this.state.api.load('audio.device'),
+      bgmusic: this.state.api.load('audio.bgmusic')
+    };
     this.state.devices = this.state.config.recalbox.audio.devices;
 
     this.state.activePage = 'audio';
@@ -11,20 +15,15 @@ module.exports = {
   },
   save: function *() {
     var post = this.request.fields;
-    var requests = [];
+    var api = this.state.api;
 
-    // Prepare requests
+    // Save values
     Object.keys(post).forEach(function (key) {
       var val = post[key];
       val = Array.isArray(val) ? val[val.length - 1] : val;
 
-      requests.push({ url: '/audio/' + key, body: val });
+      api.save(key, val);
     });
-
-    // Execute requests
-    for (var i = 0; i < requests.length; i++) {
-      yield this.state.api.put(requests[i]);
-    }
 
     // Set volume
     require('child_process').execSync(this.state.config.recalbox.configScript + " volume " + post.volume);

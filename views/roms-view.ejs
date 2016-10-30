@@ -80,10 +80,12 @@
         <td><img src="<%= rom.image %>" alt="" class="img-thumbnail rom-image" /></td>
         <td><%= rom.fullname %></td>
         <td>
+        <% if (1 == gameLaunchingAvailable) { %>
           <button class="btn btn-success has-spinner" type="submit" aria-label="<%= __('Lancer') %>" data-play data-rom="<%= rom.fullname %>" data-system="<%= system.name %>">
             <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
             <span class="glyphicon glyphicon-play" aria-hidden="true" data-toggle-hidden></span>
           </button>
+        <% } %>
           <button class="btn btn-danger" type="submit" aria-label="<%= __('Supprimer') %>" data-toggle="modal" data-target="#deleteModal" data-fullname="<%= rom.fullname %>"
             data-filename="<%= rom.filename %>" data-index="<%= index %>">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

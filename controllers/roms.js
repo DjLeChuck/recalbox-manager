@@ -29,6 +29,8 @@ module.exports= {
     var romBasePath = utils.getSystemRomsBasePath(name);
     subPath = subPath || '';
 
+    this.state.gameLaunchingAvailable = this.state.api.load('system.api.enabled');
+
     this.state.system = {
       name: name,
       fullname: utils.getSystemFullname(name) || name

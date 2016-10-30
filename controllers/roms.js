@@ -89,7 +89,7 @@ module.exports= {
     var romPath = path.join(this.request.fields.current_path, this.request.fields.rom);
 
     try {
-      fs.unlinkSync(filePath);
+      fs.unlinkSync(romPath);
 
       this.body = 'OK';
     } catch (error) {

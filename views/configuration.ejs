@@ -118,6 +118,27 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
+      <h3 class="panel-title"><%= __("API") %></h3>
+    </div>
+    <div class="panel-body">
+      <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+        <span class="sr-only"><%= __("Attention :") %></span>
+        <%= __("Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.") %>
+      </div>
+
+      <div class="form-group">
+        <label for="api-enabled" class="col-md-7 control-label"><%= __("Activer l'option de recalbox qui permet d'interagir avec via une API REST") %></label>
+        <div class="col-md-3">
+          <input type="hidden" name="system.api.enabled" value="0">
+          <input type="checkbox" name="system.api.enabled" value="1" id="api-enabled" data-switch<% if (1 == system.api.enabled) { %> checked="checked"<% } %>>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
       <h3 class="panel-title"><%= __("Mises à jour") %></h3>
     </div>
     <div class="panel-body">

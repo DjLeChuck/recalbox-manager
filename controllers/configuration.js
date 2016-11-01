@@ -5,6 +5,9 @@ module.exports = {
       language: this.state.api.load('system.language'),
       hostname: this.state.api.load('system.hostname'),
       timezone: this.state.api.load('system.timezone'),
+      api: {
+        enabled: this.state.api.load('system.api.enabled'),
+      },
     };
     this.state.wifi = {
       enabled: this.state.api.load('wifi.enabled'),

@@ -97,7 +97,6 @@
 	"Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.": "Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.",
 	"Le résultat sera sauvegardé dans le dossier %s.": "Le résultat sera sauvegardé dans le dossier %s.",
 	"Faire une capture": "Faire une capture",
-	"Cette modification nécessite de redémarrer EmulationStation.": "Cette modification nécessite de redémarrer EmulationStation.",
 	"Système": "Système",
 	"Cette page permet de gérer les différents réglages système de recalbox.": "Cette page permet de gérer les différents réglages système de recalbox.",
 	"Ratio de l'écran": "Ratio de l'écran",
@@ -155,5 +154,8 @@
 	"Stable": "Stable",
 	"Bêta": "Bêta",
 	"Instable": "Instable",
-	"Type de version": "Type de version"
+	"Type de version": "Type de version",
+	"API": "API",
+	"Activer l'option de recalbox qui permet d'interagir avec via une API REST": "Activer l'option de recalbox qui permet d'interagir avec via une API REST",
+  "Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.": "Cette modification nécessite de redémarrer votre recalbox pour être prise en compte."
 }

@@ -8,6 +8,9 @@ module.exports = {
       api: {
         enabled: this.state.api.load('system.api.enabled'),
       },
+      es: {
+        menu: this.state.api.load('system.es.menu'),
+      },
     };
     this.state.wifi = {
       enabled: this.state.api.load('wifi.enabled'),
@@ -28,6 +31,7 @@ module.exports = {
     this.state.systemlocales = this.state.config.recalbox.configuration.systemlocales;
     this.state.timezones = this.state.config.recalbox.configuration.timezones;
     this.state.updatesTypes = this.state.config.recalbox.configuration.updatesTypes;
+    this.state.esMenus = this.state.config.recalbox.configuration.esMenus;
 
     this.state.activePage = 'configuration';
 

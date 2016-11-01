@@ -157,5 +157,11 @@
 	"Type de version": "Type de version",
 	"API": "API",
 	"Activer l'option de recalbox qui permet d'interagir avec via une API REST": "Activer l'option de recalbox qui permet d'interagir avec via une API REST",
-  "Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.": "Cette modification nécessite de redémarrer votre recalbox pour être prise en compte."
+	"Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.": "Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.",
+	"EmulationStation": "EmulationStation",
+	"Choix du style de menu": "Choix du style de menu",
+	"Options disponibles :": "Options disponibles :",
+	"correspond au menu de base avec toutes les options,": "correspond au menu de base avec toutes les options,",
+	"n'offre aucun menu excepté celui de recherche de jeux,": "n'offre aucun menu excepté celui de recherche de jeux,",
+	"comporte peu de menu, seulement ceux nécessaires pour les bartops.": "comporte peu de menu, seulement ceux nécessaires pour les bartops."
 }

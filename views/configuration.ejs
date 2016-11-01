@@ -118,6 +118,32 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
+      <h3 class="panel-title"><%= __("EmulationStation") %></h3>
+    </div>
+    <div class="panel-body">
+      <h4><%= __("Choix du style de menu") %></h4>
+
+      <div class="bs-callout bs-callout-warning">
+        <h4><%= __("Options disponibles :") %></h4>
+        <ul>
+          <li><strong>default</strong> <%= ("correspond au menu de base avec toutes les options,") %></li>
+          <li><strong>none</strong> <%= ("n'offre aucun menu excepté celui de recherche de jeux,") %></li>
+          <li><strong>bartop</strong> <%= ("comporte peu de menu, seulement ceux nécessaires pour les bartops.") %></li>
+        </ul>
+      </div>
+
+      <select name="system.es.menu" class="selectpicker show-tick form-control" data-select data-live-search="true">
+      <% esMenus.forEach(function (item) { %>
+        <option value="<%= item %>"<% if (system.es.menu == item) { %> selected="selected"<% } %>>
+          <%= item %>
+        </option>
+      <% }); %>
+      </select>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
       <h3 class="panel-title"><%= __("API") %></h3>
     </div>
     <div class="panel-body">

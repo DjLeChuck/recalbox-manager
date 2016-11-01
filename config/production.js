@@ -60,6 +60,11 @@ module.exports = function (i18n) {
           {key: 'beta', value: i18n.__("Bêta")},
           {key: 'unstable', value: i18n.__("Instable")},
         ],
+        esMenus: [
+          'default',
+          'none',
+          'bartop',
+        ],
         keyboardlayouts: [
           {key: 'us', value: 'American'},
           {key: 'de', value: 'Deutsch'},

@@ -65,6 +65,11 @@ module.exports = function (i18n) {
           'none',
           'bartop',
         ],
+        emulatorsSpecialkeys: [
+          'default',
+          'nomenu',
+          'none'
+        ],
         keyboardlayouts: [
           {key: 'us', value: 'American'},
           {key: 'de', value: 'Deutsch'},

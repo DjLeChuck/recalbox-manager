@@ -163,5 +163,10 @@
 	"Options disponibles :": "Options disponibles :",
 	"correspond au menu de base avec toutes les options,": "correspond au menu de base avec toutes les options,",
 	"n'offre aucun menu excepté celui de recherche de jeux,": "n'offre aucun menu excepté celui de recherche de jeux,",
-	"comporte peu de menu, seulement ceux nécessaires pour les bartops.": "comporte peu de menu, seulement ceux nécessaires pour les bartops."
+	"comporte peu de menu, seulement ceux nécessaires pour les bartops.": "comporte peu de menu, seulement ceux nécessaires pour les bartops.",
+	"Touche spéciale": "Touche spéciale",
+	"Choix du comportement de la touche spéciale dans les émulateurs": "Choix du comportement de la touche spéciale dans les émulateurs",
+  "correspond au fonctionnement de base avec toutes les possibilités,": "correspond au fonctionnement de base avec toutes les possibilités,",
+  "désactive l'affichage du menu,": "désactive l'affichage du menu,",
+  "désactive la touche spéciale.": "désactive la touche spéciale."
 }

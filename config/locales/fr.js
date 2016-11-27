@@ -129,6 +129,7 @@
 	"Options": "Options",
 	"Lancer": "Lancer",
 	"Supprimer": "Supprimer",
+	"Information": "Informations",
 	"Attention": "Attention",
 	"Voulez-vous vraiment supprimer %s ?": "Voulez-vous vraiment supprimer %s ?",
 	"Non": "Non",

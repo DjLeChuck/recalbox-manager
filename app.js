@@ -43,7 +43,10 @@ render(app, {
 });
 
 app.use(function *(next) {
-  this.state.flash = this.state.flash || {};
+  // Switch locale
+  if (this.request.query.locale) {
+    this.cookies.set('locale', this.request.query.locale);
+  }
 
   yield next;
 });
@@ -59,6 +62,9 @@ app.use(i18n(app, {
 }));
 
 app.use(function *(next) {
+  // Define empty flash message container if not exists
+  this.state.flash = this.state.flash || {};
+
   this.state.config = require('./lib/utils').getConfig(this.i18n);
   this.state.api = require('./lib/api')();
 

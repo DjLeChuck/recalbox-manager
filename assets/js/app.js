@@ -55,18 +55,18 @@ $(function () {
     var $showInfoModal = $("#showInfoModal");
 
     $showInfoModal.on("show.bs.modal", function (event) {
-          var $button = $(event.relatedTarget);
-          var $this = $(this);
+      var $button = $(event.relatedTarget);
+      var $this = $(this);
 
-          $this.find("[data-fullname]").text($button.data("fullname"));
-          $this.find("[name=rom]").val($button.data("filename"));
-          $this.find("[data-index]").val($button.data("index"));
-          $this.find("[data-publisher]").text($button.data("publisher"));
-          $this.find("[data-developer]").text($button.data("developer"));
-          $this.find("[data-genre]").text($button.data("genre"));
-          $this.find("[data-players]").text($button.data("players"));
-          $this.find("[data-releasedate]").text($button.data("releasedate"));
-          $this.find("[data-desc]").text($button.data("desc"));
+      $this.find("[data-fullname]").text($button.data("fullname"));
+      $this.find("[name=rom]").val($button.data("filename"));
+      $this.find("[data-index]").val($button.data("index"));
+      $this.find("[data-publisher]").text($button.data("publisher"));
+      $this.find("[data-developer]").text($button.data("developer"));
+      $this.find("[data-genre]").text($button.data("genre"));
+      $this.find("[data-players]").text($button.data("players"));
+      $this.find("[data-releasedate]").text($button.data("releasedate"));
+      $this.find("[data-desc]").text($button.data("desc"));
     });
 
     // Delete ROM

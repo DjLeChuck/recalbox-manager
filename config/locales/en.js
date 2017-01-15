@@ -167,7 +167,13 @@
 	"comporte peu de menu, seulement ceux nécessaires pour les bartops.": "has filtered options, suitable for bartops.",
 	"Touche spéciale": "Hotkey",
 	"Choix du comportement de la touche spéciale dans les émulateurs": "Behaviour of the hotkey",
-  "correspond au fonctionnement de base avec toutes les possibilités,": "is the default behaviour with all options",
-  "désactive l'affichage du menu,": "disable the menu,",
-  "désactive la touche spéciale.": "disables the hotkey."
+	"correspond au fonctionnement de base avec toutes les possibilités,": "is the default behaviour with all options",
+	"désactive l'affichage du menu,": "disable the menu,",
+	"désactive la touche spéciale.": "disables the hotkey.",
+  "Éditeur : %s": "Publisher: %s",
+	"Développeur : %s": "Developer: %s",
+	"Date de sortie : %s": "Release Date: %s",
+	"Genre : %s": "Genre: %s",
+	"Joueurs : %s": "Players: %s",
+	"Description : %s": "Description: %s"
 }

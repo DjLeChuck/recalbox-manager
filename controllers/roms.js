@@ -43,17 +43,20 @@ module.exports= {
     for (var i = 0; i < romsList.length; i++) {
       var filename = romsList[i];
       var fullname = filename;
-      var image = '';
+      var image = desc = genre = releasedate = developer = publisher = players = '';
 
       if (undefined !== gamelist[romsList[i]]) {
+        if (gamelist[romsList[i]].releasedate) {
+          releasedate = utils.formatGameReleaseDate(gamelist[romsList[i]].releasedate);
+        }
+
         fullname = undefined !== gamelist[romsList[i]].name ? gamelist[romsList[i]].name : fullname;
         image = undefined !== gamelist[romsList[i]].image ? path.join('/', name, gamelist[romsList[i]].image) : image;
-        desc = undefined !== gamelist[romsList[i]].desc ? gamelist[romsList[i]].desc : undefined;
-        genre = undefined !== gamelist[romsList[i]].genre ? gamelist[romsList[i]].genre : undefined;
-        releasedate = undefined !== gamelist[romsList[i]].releasedate ? gamelist[romsList[i]].releasedate : undefined;
-        developer = undefined !== gamelist[romsList[i]].developer ? gamelist[romsList[i]].developer : undefined;
-        publisher = undefined !== gamelist[romsList[i]].publisher ? gamelist[romsList[i]].publisher : undefined;
-        players = undefined !== gamelist[romsList[i]].players ? gamelist[romsList[i]].players : undefined;
+        desc = undefined !== gamelist[romsList[i]].desc ? gamelist[romsList[i]].desc : '';
+        genre = undefined !== gamelist[romsList[i]].genre ? gamelist[romsList[i]].genre : '';
+        developer = undefined !== gamelist[romsList[i]].developer ? gamelist[romsList[i]].developer : '';
+        publisher = undefined !== gamelist[romsList[i]].publisher ? gamelist[romsList[i]].publisher : '';
+        players = undefined !== gamelist[romsList[i]].players ? gamelist[romsList[i]].players : '';
       }
 
       list[i] = {

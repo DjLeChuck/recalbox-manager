@@ -1,5 +1,4 @@
 {
-  {
 	"Automatique": "Automatic",
 	"Prise HDMI": "HDMI",
 	"Prise Jack": "Jack",
@@ -93,7 +92,7 @@
 	"Redémarer ES": "Restart ES",
 	"Arrêter ES": "Stop ES",
 	"Démarrer ES": "Start ES",
-	"Redémarrage et arrêt du système": "system stop and restart",
+	"Redémarrage et arrêt du système": "System stop and restart",
 	"Effectuer une capture d'écran": "Take a screenshot",
 	"Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.": "With the underneath button you can take a screenshot.",
 	"Le résultat sera sauvegardé dans le dossier %s.": "The capture will be saved in %s.",
@@ -170,6 +169,4 @@
   "correspond au fonctionnement de base avec toutes les possibilités,": "is the default behaviour with all options",
   "désactive l'affichage du menu,": "disable the menu,",
   "désactive la touche spéciale.": "disables the hotkey."
-}
-
 }

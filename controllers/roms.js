@@ -48,12 +48,24 @@ module.exports= {
       if (undefined !== gamelist[romsList[i]]) {
         fullname = undefined !== gamelist[romsList[i]].name ? gamelist[romsList[i]].name : fullname;
         image = undefined !== gamelist[romsList[i]].image ? path.join('/', name, gamelist[romsList[i]].image) : image;
+        desc = undefined !== gamelist[romsList[i]].desc ? gamelist[romsList[i]].desc : undefined;
+        genre = undefined !== gamelist[romsList[i]].genre ? gamelist[romsList[i]].genre : undefined;
+        releasedate = undefined !== gamelist[romsList[i]].releasedate ? gamelist[romsList[i]].releasedate : undefined;
+        developer = undefined !== gamelist[romsList[i]].developer ? gamelist[romsList[i]].developer : undefined;
+        publisher = undefined !== gamelist[romsList[i]].publisher ? gamelist[romsList[i]].publisher : undefined;
+        players = undefined !== gamelist[romsList[i]].players ? gamelist[romsList[i]].players : undefined;
       }
 
       list[i] = {
         filename: filename,
         fullname: fullname,
-        image: image
+        image: image,
+        desc: desc,
+        genre: genre,
+        releasedate: releasedate,
+        developer: developer,
+        publisher: publisher,
+        players: players
       };
     }
 

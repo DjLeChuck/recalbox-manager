@@ -129,6 +129,7 @@
 	"Options": "Options",
 	"Lancer": "Launch",
 	"Supprimer": "Delete",
+	"Information": "Informations",
 	"Attention": "Warning",
 	"Voulez-vous vraiment supprimer %s ?": "Do you really want to delete %s ?",
 	"Non": "No",

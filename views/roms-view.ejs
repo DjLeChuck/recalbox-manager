@@ -90,6 +90,11 @@
             data-filename="<%= rom.filename %>" data-index="<%= index %>">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </button>
+          <button class="btn btn-info" type="submit" aria-label="<%= __('Information') %>" data-toggle="modal" data-target="#showInfoModal" data-fullname="<%= rom.fullname %>"
+             data-filename="<%= rom.filename %>" data-index="<%= index %>" data-desc="<%= rom.desc %>" data-genre="<%= rom.genre %>" data-releasedate="<%= rom.releasedate %>"
+             data-players="<%= rom.players %>" data-publisher="<%= rom.publisher %>" data-developer="<%= rom.developer %>">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+          </button>
         </td>
       </tr>
     <% }); %>
@@ -123,6 +128,27 @@
           <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
           <%= __("Oui") %>
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="showInfoModal" tabindex="-1" role="dialog" aria-labelledby="showInfoModalTitle">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="showInfoModalTitle"><strong data-fullname></strong></h4>
+      </div>
+      <div class="modal-body">
+        <p><%- __("Éditeur : %s","<strong data-publisher></strong>") %></p>
+        <p><%- __("Développeur : %s", "<strong data-developer></strong>") %></p>
+        <p><%- __("Date de sortie : %s", "<strong data-releasedate></strong>") %></p>
+        <p><%- __("Genre : %s", "<strong data-genre></strong>") %></p>
+        <p><%- __("Joueurs : %s", "<strong data-players></strong>") %></p>
+        <p><%- __("Description : %s", "<strong data-desc></strong>") %></p>
       </div>
     </div>
   </div>

@@ -129,6 +129,7 @@
 	"Options": "Options",
 	"Lancer": "Lancer",
 	"Supprimer": "Supprimer",
+	"Information": "Informations",
 	"Attention": "Attention",
 	"Voulez-vous vraiment supprimer %s ?": "Voulez-vous vraiment supprimer %s ?",
 	"Non": "Non",
@@ -166,7 +167,13 @@
 	"comporte peu de menu, seulement ceux nécessaires pour les bartops.": "comporte peu de menu, seulement ceux nécessaires pour les bartops.",
 	"Touche spéciale": "Touche spéciale",
 	"Choix du comportement de la touche spéciale dans les émulateurs": "Choix du comportement de la touche spéciale dans les émulateurs",
-  "correspond au fonctionnement de base avec toutes les possibilités,": "correspond au fonctionnement de base avec toutes les possibilités,",
-  "désactive l'affichage du menu,": "désactive l'affichage du menu,",
-  "désactive la touche spéciale.": "désactive la touche spéciale."
+	"correspond au fonctionnement de base avec toutes les possibilités,": "correspond au fonctionnement de base avec toutes les possibilités,",
+	"désactive l'affichage du menu,": "désactive l'affichage du menu,",
+	"désactive la touche spéciale.": "désactive la touche spéciale.",
+	"Éditeur : %s": "Éditeur : %s",
+	"Développeur : %s": "Développeur : %s",
+	"Date de sortie : %s": "Date de sortie : %s",
+	"Genre : %s": "Genre : %s",
+	"Joueurs : %s": "Joueurs : %s",
+	"Description : %s": "Description : %s"
 }

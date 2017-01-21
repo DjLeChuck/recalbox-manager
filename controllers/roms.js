@@ -42,21 +42,20 @@ module.exports= {
 
     for (var i = 0; i < romsList.length; i++) {
       var filename = romsList[i];
+      var filepath = path.join(subPath, filename);
       var fullname = filename;
       var image = desc = genre = releasedate = developer = publisher = players = '';
 
-      if (undefined !== gamelist[romsList[i]]) {
-        if (gamelist[romsList[i]].releasedate) {
-          releasedate = utils.formatGameReleaseDate(gamelist[romsList[i]].releasedate);
-        }
-
-        fullname = undefined !== gamelist[romsList[i]].name ? gamelist[romsList[i]].name : fullname;
-        image = undefined !== gamelist[romsList[i]].image ? path.join('/', name, gamelist[romsList[i]].image) : image;
-        desc = undefined !== gamelist[romsList[i]].desc ? gamelist[romsList[i]].desc : '';
-        genre = undefined !== gamelist[romsList[i]].genre ? gamelist[romsList[i]].genre : '';
-        developer = undefined !== gamelist[romsList[i]].developer ? gamelist[romsList[i]].developer : '';
-        publisher = undefined !== gamelist[romsList[i]].publisher ? gamelist[romsList[i]].publisher : '';
-        players = undefined !== gamelist[romsList[i]].players ? gamelist[romsList[i]].players : '';
+      if (undefined !== gamelist[filepath]) {
+        var romData = gamelist[filepath];
+        releasedate = undefined !== romData.releasedate ? utils.formatGameReleaseDate(romData.releasedate) : '';
+        fullname = undefined !== romData.name ? romData.name : fullname;
+        image = undefined !== romData.image ? path.join('/', name, romData.image) : image;
+        desc = undefined !== romData.desc ? romData.desc : '';
+        genre = undefined !== romData.genre ? romData.genre : '';
+        developer = undefined !== romData.developer ? romData.developer : '';
+        publisher = undefined !== romData.publisher ? romData.publisher : '';
+        players = undefined !== romData.players ? romData.players : '';
       }
 
       list[i] = {

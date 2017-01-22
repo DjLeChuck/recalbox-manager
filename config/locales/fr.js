@@ -179,5 +179,6 @@
 	"Il semble que les données de votre ROM n'aient pas été mises à jour.": "Il semble que les données de votre ROM n'aient pas été mises à jour.",
 	"Jour": "Jour",
 	"Mois": "Mois",
-	"Année": "Année"
+	"Année": "Année",
+	"Note": "Note"
 }

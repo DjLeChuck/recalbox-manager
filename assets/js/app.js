@@ -103,6 +103,10 @@ $(function () {
     var $updateAlertError = $("[data-update-alert=error]");
     var $updateForm = $("[data-update=form]");
     var $updateModal = $("#updateModal");
+    var $starRating = $updateModal.find("[data-rating-div]").rateYo({
+      maxValue: 1,
+      precision: 2
+    });
 
     $updateModal.on("show.bs.modal", function (event) {
       var $button = $(event.relatedTarget);
@@ -117,9 +121,15 @@ $(function () {
       $this.find("[data-genre]").val($button.data("genre"));
       $this.find("[data-players]").val($button.data("players"));
       $this.find("[data-desc]").val($button.data("desc"));
+      $this.find("[data-rating]").val($button.data("rating") || 0);
       $this.find("[data-releasedate-day]").selectpicker('val', $button.data("releasedate-day") || '00');
       $this.find("[data-releasedate-month]").selectpicker('val', $button.data("releasedate-month") || '00');
       $this.find("[data-releasedate-year]").val($button.data("releasedate-year"));
+
+      $starRating.rateYo("option", "rating", $this.find("[data-rating]").val());
+      $starRating.rateYo("option", "onSet", function (rating) {
+        $updateModal.find("[data-rating]").val(rating);
+      });
     });
 
     $("[data-update=confirm]").on("click", function (event) {
@@ -145,6 +155,7 @@ $(function () {
           players: $updateForm.find("[data-players]").val(),
           publisher: $updateForm.find("[data-publisher]").val(),
           developer: $updateForm.find("[data-developer]").val(),
+          rating: $updateForm.find("[data-rating]").val(),
           releasedateDay: $updateForm.find("[data-releasedate-day]").val(),
           releasedateMonth: $updateForm.find("[data-releasedate-month]").val(),
           releasedateYear: $updateForm.find("[data-releasedate-year]").val(),

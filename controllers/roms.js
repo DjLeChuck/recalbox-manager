@@ -44,7 +44,8 @@ module.exports= {
       var filename = romsList[i];
       var filepath = path.join(subPath, filename);
       var fullname = filename;
-      var image = desc = genre = releasedate = developer = publisher = players = '';
+      var image = desc = genre = releasedate = developer =
+          publisher = players = rating = '';
 
       if (undefined !== gamelist[filepath]) {
         var romData = gamelist[filepath];
@@ -56,6 +57,7 @@ module.exports= {
         developer = undefined !== romData.developer ? romData.developer : '';
         publisher = undefined !== romData.publisher ? romData.publisher : '';
         players = undefined !== romData.players ? romData.players : '';
+        rating = undefined !== romData.rating ? romData.rating : 0;
       }
 
       list[i] = {
@@ -67,7 +69,8 @@ module.exports= {
         releasedate: releasedate,
         developer: developer,
         publisher: publisher,
-        players: players
+        players: players,
+        rating: rating
       };
     }
 
@@ -132,13 +135,14 @@ module.exports= {
     }
 
     // Update game data
-    // image, rating
+    // image
     gameData.name = this.request.fields.name || gameData.name;
     gameData.desc = this.request.fields.desc.replace(/(\r\n|\r)/gm,"\n") || gameData.desc;
     gameData.developer = this.request.fields.developer || gameData.developer;
     gameData.publisher = this.request.fields.publisher || gameData.publisher;
     gameData.genre = this.request.fields.genre || gameData.genre;
     gameData.players = this.request.fields.players || gameData.players;
+    gameData.rating = this.request.fields.rating || gameData.rating;
     var year = this.request.fields.releasedate_year || '0000';
     var month = this.request.fields.releasedate_month || '00';
     var day = this.request.fields.releasedate_day || '00';

@@ -129,8 +129,10 @@
                data-toggle="modal" data-target="#updateModal" data-fullname="<%= rom.fullname %>"
                data-filename="<%= rom.filename %>" data-index="<%= index %>" data-desc="<%= rom.desc %>"
                data-genre="<%= rom.genre %>" data-players="<%= rom.players %>" data-publisher="<%= rom.publisher %>"
-               data-releasedate-day="<%= rom.releasedate.day %>" data-releasedate-month="<%= rom.releasedate.month %>"
+               data-releasedate-day="<%= rom.releasedate.day %>"
+               data-releasedate-month="<%= rom.releasedate.month %>"
                data-releasedate-year="<%= rom.releasedate.year %>"
+               data-rating="<%= rom.rating %>"
                data-developer="<%= rom.developer %>" data-update="trigger">
               <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </button>
@@ -253,6 +255,13 @@
             <label for="players" class="col-sm-3 control-label"><%= __('Joueurs') %></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="players" name="players" data-players />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="rating" class="col-sm-3 control-label"><%= __('Note') %></label>
+            <div class="col-sm-9">
+              <div data-rating-div></div>
+              <input type="hidden" name="rating" data-rating />
             </div>
           </div>
           <div class="form-group">

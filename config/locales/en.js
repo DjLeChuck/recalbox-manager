@@ -179,5 +179,6 @@
 	"Il semble que les données de votre ROM n'aient pas été mises à jour.": "It look like your ROM couldn't be updated.",
 	"Jour": "Day",
 	"Mois": "Month",
-	"Année": "Year"
+	"Année": "Year",
+	"Note": "Rating"
 }

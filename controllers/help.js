@@ -56,8 +56,8 @@ module.exports = {
     // Gestion du recalbox-support.sh
     } else if (undefined !== post.support) {
       var execSync = require('child_process').execSync;
-      var uniqid = require('uniqid');
-      var returnPath = '/recalbox/share/saves/recalbox-support-' + uniqid() + '.tar.gz';
+      var uniqid = new Date().getTime();
+      var returnPath = '/recalbox/share/saves/recalbox-support-' + uniqid + '.tar.gz';
       var request = require('co-request');
       var fs = require('fs');
       var smartFile = this.state.config.smartFile;

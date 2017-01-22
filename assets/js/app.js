@@ -117,8 +117,8 @@ $(function () {
       $this.find("[data-genre]").val($button.data("genre"));
       $this.find("[data-players]").val($button.data("players"));
       $this.find("[data-desc]").val($button.data("desc"));
-      $this.find("[data-releasedate-day]").selectpicker('val', $button.data("releasedate-day"));
-      $this.find("[data-releasedate-month]").selectpicker('val', $button.data("releasedate-month"));
+      $this.find("[data-releasedate-day]").selectpicker('val', $button.data("releasedate-day") || '00');
+      $this.find("[data-releasedate-month]").selectpicker('val', $button.data("releasedate-month") || '00');
       $this.find("[data-releasedate-year]").val($button.data("releasedate-year"));
     });
 

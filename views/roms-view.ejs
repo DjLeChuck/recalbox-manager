@@ -218,7 +218,7 @@
                 <div class="col-xs-3">
                   <div class="form-group">
                     <select class="selectpicker form-control" id="releasedate-day" name="releasedate_day" data-releasedate-day>
-                      <option value=""><%= __('Jour') %></option>
+                      <option value="00"><%= __('Jour') %></option>
                     <% for (var x = 1; x < 32; x++) { %>
                       <option value="<%= ("0" + x).slice(-2) %>"><%= ("0" + x).slice(-2) %></option>
                     <% } %>
@@ -228,7 +228,7 @@
                 <div class="col-xs-4">
                   <div class="form-group">
                     <select class="selectpicker form-control" id="releasedate-month" name="releasedate_month" data-releasedate-month>
-                      <option value=""><%= __('Mois') %></option>
+                      <option value="00"><%= __('Mois') %></option>
                     <% for (var x = 1; x < 13; x++) { %>
                       <option value="<%= ("0" + x).slice(-2) %>"><%= ("0" + x).slice(-2) %></option>
                     <% } %>

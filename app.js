@@ -91,6 +91,7 @@ app.use(_.post('/help', help.post));
 app.use(_.get('/roms', roms.list));
 app.use(_.post('/roms/upload', roms.upload));
 app.use(_.post('/roms/launch', roms.launch));
+app.use(_.post('/roms/update', roms.update));
 app.use(_.post('/roms/delete', roms.delete));
 app.use(_.get('/roms/:name/:path*', roms.view));
 

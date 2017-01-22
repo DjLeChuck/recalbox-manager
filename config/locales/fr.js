@@ -170,10 +170,14 @@
 	"correspond au fonctionnement de base avec toutes les possibilités,": "correspond au fonctionnement de base avec toutes les possibilités,",
 	"désactive l'affichage du menu,": "désactive l'affichage du menu,",
 	"désactive la touche spéciale.": "désactive la touche spéciale.",
-	"Éditeur : %s": "Éditeur : %s",
-	"Développeur : %s": "Développeur : %s",
-	"Date de sortie : %s": "Date de sortie : %s",
-	"Genre : %s": "Genre : %s",
-	"Joueurs : %s": "Joueurs : %s",
-	"Description : %s": "Description : %s"
+	"Fermer": "Fermer",
+	"Valider": "Valider",
+	"Éditeur": "Éditeur",
+	"Développeur": "Développeur",
+	"Date de sortie": "Date de sortie",
+	"Genre": "Genre",
+	"Joueurs": "Joueurs",
+	"Description": "Description",
+	"Les données de votre ROM ont bien été mises à jour !": "Les données de votre ROM ont bien été mises à jour !",
+	"Il semble que les données de votre ROM n'aient pas été mises à jour.": "Il semble que les données de votre ROM n'aient pas été mises à jour."
 }

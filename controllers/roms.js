@@ -82,6 +82,7 @@ module.exports= {
       this.state.breadCrumb = this.state.breadCrumb.concat(subPath.split('/'));
     }
 
+    this.state.subPath = subPath;
     this.state.basePath = path.join('/roms', name, subPath);
     this.state.currentPath = path.join(romBasePath, subPath);
     this.state.subDirectories = utils.getDirectories(this.state.currentPath, this.state.config.recalbox.romsExcludedFolders);
@@ -95,6 +96,68 @@ module.exports= {
     yield this.state.api.launchGame(this.request.fields.system, this.request.fields.rom);
 
     this.body = 'OK';
+  },
+
+  update: function * () {
+    var system = this.request.fields.system;
+
+    if (!system) {
+      this.throw('Unable to update the ROM "' + gameData.name + '".');
+    }
+
+    var path = require('path');
+    var romPath = path.join(this.request.fields.sub_path || '', this.request.fields.rom);
+
+    if (!romPath) {
+      this.throw('Unable to update the ROM "' + gameData.name + '".');
+    }
+
+    var fs = require('fs');
+    var xml2js = require('xml2js');
+    var builder = new xml2js.Builder();
+    var utils = require('../lib/utils');
+    var rawGameList = utils.getSystemGamelist(system, true);
+    var gameData = { path: './' + romPath };
+    var gameIndex;
+
+    for (var i = 0; i < rawGameList.gameList.game.length; i++) {
+      var item = rawGameList.gameList.game[i];
+
+      if ('./' + romPath === item.path) {
+        gameData = item;
+        gameIndex = i;
+
+        break;
+      }
+    }
+
+    // Update game data
+    // image, rating, releasedate
+    gameData.name = this.request.fields.name || gameData.name;
+    gameData.desc = this.request.fields.desc || gameData.desc;
+    gameData.developer = this.request.fields.developer || gameData.developer;
+    gameData.publisher = this.request.fields.publisher || gameData.publisher;
+    gameData.genre = this.request.fields.genre || gameData.genre;
+    gameData.players = this.request.fields.players || gameData.players;
+
+    // Save change
+    if (undefined !== gameIndex) {
+      // Replace existing entry
+      rawGameList.gameList.game[gameIndex] = gameData;
+    } else {
+      // Add new entry
+      rawGameList.gameList.game.push(gameData);
+    }
+
+    var xml = builder.buildObject(rawGameList);
+
+    try {
+      fs.writeFileSync(utils.getSystemGamelistPath(system), xml);
+
+      this.body = 'OK';
+    } catch (error) {
+      this.throw('Unable to update the ROM "' + gameData.name + '".');
+    }
   },
 
   delete: function * () {

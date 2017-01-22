@@ -13,6 +13,14 @@ $(function () {
     // matchHeight
     $("[data-match-height]").matchHeight();
 
+    function showThenHideAlertBox($el) {
+      $el.fadeIn(800, function () {
+        setTimeout(function () {
+          $el.fadeOut(800);
+        }, 2000);
+      });
+    }
+
     // Launch ROM
     var $launchAlertSuccess = $("[data-launch-alert=success]");
     var $launchAlertError = $("[data-launch-alert=error]");
@@ -32,41 +40,15 @@ $(function () {
           rom: $this.data("rom")
         }
       }).done(function () {
-        $launchAlertSuccess.fadeIn(800, function () {
-          setTimeout(function () {
-            $launchAlertSuccess.fadeOut(800);
-          }, 2000);
-        });
+        showThenHideAlertBox($launchAlertSuccess);
       }).fail(function () {
-        $launchAlertError.fadeIn(800, function () {
-          setTimeout(function () {
-            $launchAlertError.fadeOut(800);
-          }, 2000);
-        });
+        showThenHideAlertBox($launchAlertError);
       }).always(function () {
         $this.attr("disabled", false);
         $toggleHidden.toggleClass("hidden");
       });
 
       return false;
-    });
-
-    //Show Info
-    var $showInfoModal = $("#showInfoModal");
-
-    $showInfoModal.on("show.bs.modal", function (event) {
-      var $button = $(event.relatedTarget);
-      var $this = $(this);
-
-      $this.find("[data-fullname]").text($button.data("fullname"));
-      $this.find("[name=rom]").val($button.data("filename"));
-      $this.find("[data-index]").val($button.data("index"));
-      $this.find("[data-publisher]").text($button.data("publisher"));
-      $this.find("[data-developer]").text($button.data("developer"));
-      $this.find("[data-genre]").text($button.data("genre"));
-      $this.find("[data-players]").text($button.data("players"));
-      $this.find("[data-releasedate]").text($button.data("releasedate"));
-      $this.find("[data-desc]").text($button.data("desc"));
     });
 
     // Delete ROM
@@ -102,17 +84,71 @@ $(function () {
           $(this).remove();
         });
 
-        $deleteAlertSuccess.fadeIn(800, function () {
-          setTimeout(function () {
-            $deleteAlertSuccess.fadeOut(800);
-          }, 2000);
-        });
+        showThenHideAlertBox($deleteAlertSuccess);
       }).fail(function () {
-        $deleteAlertError.fadeIn(800, function () {
-          setTimeout(function () {
-            $deleteAlertError.fadeOut(800);
-          }, 2000);
+        showThenHideAlertBox($deleteAlertError);
+      }).always(function () {
+        $button.attr("disabled", false);
+        $toggleHidden.toggleClass("hidden");
+      });
+
+      return false;
+    });
+
+    // Update ROM
+    var $updateAlertSuccess = $("[data-update-alert=success]");
+    var $updateAlertError = $("[data-update-alert=error]");
+    var $updateForm = $("[data-update=form]");
+    var $updateModal = $("#updateModal");
+
+    $updateModal.on("show.bs.modal", function (event) {
+      var $button = $(event.relatedTarget);
+      var $this = $(this);
+
+      $this.find("[data-fullname]").text($button.data("fullname"));
+      $this.find("[data-fullname-val]").val($button.data("fullname"));
+      $this.find("[name=rom]").val($button.data("filename"));
+      $this.find("[data-index]").data("index", $button.data("index"));
+      $this.find("[data-publisher]").val($button.data("publisher"));
+      $this.find("[data-developer]").val($button.data("developer"));
+      $this.find("[data-genre]").val($button.data("genre"));
+      $this.find("[data-players]").val($button.data("players"));
+      $this.find("[data-releasedate]").text($button.data("releasedate"));
+      $this.find("[data-desc]").val($button.data("desc"));
+    });
+
+    $("[data-update=confirm]").on("click", function (event) {
+      var $button = $(this);
+      var $toggleHidden = $button.find("[data-toggle-hidden]");
+
+      $button.attr("disabled", true);
+      $toggleHidden.toggleClass("hidden");
+
+      $.ajax({
+        url: $updateForm.attr("action"),
+        method: $updateForm.attr("method"),
+        data: $updateForm.serialize()
+      }).done(function () {
+        // Update data on page
+        var $updateButton = $("[data-update=trigger][data-index=" + $updateForm.data("index") + "]");
+        var fullname = $updateForm.find("[data-fullname-val]").val();
+
+        $updateButton.data({
+          fullname: fullname,
+          desc: $updateForm.find("[data-desc]").val(),
+          genre: $updateForm.find("[data-genre]").val(),
+          //releasedate: $updateForm.find("[data-releasedate]").val(),
+          players: $updateForm.find("[data-players]").val(),
+          publisher: $updateForm.find("[data-publisher]").val(),
+          developer: $updateForm.find("[data-developer]").val(),
         });
+
+        $("[data-rom-fullname][data-index=" + $updateForm.data("index") + "]").text(fullname);
+
+        $updateModal.modal("hide");
+        showThenHideAlertBox($updateAlertSuccess);
+      }).fail(function () {
+        showThenHideAlertBox($updateAlertError);
       }).always(function () {
         $button.attr("disabled", false);
         $toggleHidden.toggleClass("hidden");

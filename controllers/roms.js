@@ -134,7 +134,7 @@ module.exports= {
     // Update game data
     // image, rating, releasedate
     gameData.name = this.request.fields.name || gameData.name;
-    gameData.desc = this.request.fields.desc || gameData.desc;
+    gameData.desc = this.request.fields.desc.replace(/(\r\n|\r)/gm,"\n") || gameData.desc;
     gameData.developer = this.request.fields.developer || gameData.developer;
     gameData.publisher = this.request.fields.publisher || gameData.publisher;
     gameData.genre = this.request.fields.genre || gameData.genre;

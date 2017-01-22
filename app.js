@@ -67,6 +67,7 @@ app.use(function *(next) {
 
   this.state.config = require('./lib/utils').getConfig(this.i18n);
   this.state.api = require('./lib/api')();
+  this.state.currentUrl = this.request.url;
 
   yield next;
 });

@@ -179,5 +179,8 @@
 	"Joueurs": "Joueurs",
 	"Description": "Description",
 	"Les données de votre ROM ont bien été mises à jour !": "Les données de votre ROM ont bien été mises à jour !",
-	"Il semble que les données de votre ROM n'aient pas été mises à jour.": "Il semble que les données de votre ROM n'aient pas été mises à jour."
+	"Il semble que les données de votre ROM n'aient pas été mises à jour.": "Il semble que les données de votre ROM n'aient pas été mises à jour.",
+	"Jour": "Jour",
+	"Mois": "Mois",
+	"Année": "Année"
 }

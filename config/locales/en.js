@@ -170,6 +170,8 @@
 	"correspond au fonctionnement de base avec toutes les possibilités,": "is the default behaviour with all options",
 	"désactive l'affichage du menu,": "disable the menu,",
 	"désactive la touche spéciale.": "disables the hotkey.",
+	"Fermer": "Close",
+	"Valider": "Validate",
 	"Éditeur": "Publisher",
 	"Développeur": "Developer",
 	"Date de sortie": "Release Date",
@@ -178,6 +180,7 @@
 	"Description": "Description",
 	"Les données de votre ROM ont bien été mises à jour !": "Your ROM data has been updaded!",
 	"Il semble que les données de votre ROM n'aient pas été mises à jour.": "It look like your ROM couldn't be updated.",
-	"Fermer": "Close",
-	"Valider": "Validate"
+	"Jour": "Day",
+	"Mois": "Month",
+	"Année": "Year"
 }

@@ -116,8 +116,10 @@ $(function () {
       $this.find("[data-developer]").val($button.data("developer"));
       $this.find("[data-genre]").val($button.data("genre"));
       $this.find("[data-players]").val($button.data("players"));
-      $this.find("[data-releasedate]").text($button.data("releasedate"));
       $this.find("[data-desc]").val($button.data("desc"));
+      $this.find("[data-releasedate-day]").selectpicker('val', $button.data("releasedate-day"));
+      $this.find("[data-releasedate-month]").selectpicker('val', $button.data("releasedate-month"));
+      $this.find("[data-releasedate-year]").val($button.data("releasedate-year"));
     });
 
     $("[data-update=confirm]").on("click", function (event) {
@@ -140,10 +142,12 @@ $(function () {
           fullname: fullname,
           desc: $updateForm.find("[data-desc]").val(),
           genre: $updateForm.find("[data-genre]").val(),
-          //releasedate: $updateForm.find("[data-releasedate]").val(),
           players: $updateForm.find("[data-players]").val(),
           publisher: $updateForm.find("[data-publisher]").val(),
           developer: $updateForm.find("[data-developer]").val(),
+          releasedateDay: $updateForm.find("[data-releasedate-day]").val(),
+          releasedateMonth: $updateForm.find("[data-releasedate-month]").val(),
+          releasedateYear: $updateForm.find("[data-releasedate-year]").val(),
         });
 
         $("[data-rom-fullname][data-index=" + $updateForm.data("index") + "]").text(fullname);

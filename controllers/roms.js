@@ -48,7 +48,7 @@ module.exports= {
 
       if (undefined !== gamelist[filepath]) {
         var romData = gamelist[filepath];
-        releasedate = undefined !== romData.releasedate ? utils.formatGameReleaseDate(romData.releasedate) : '';
+        releasedate = undefined !== romData.releasedate ? utils.parseGameReleaseDate(romData.releasedate) : '';
         fullname = undefined !== romData.name ? romData.name : fullname;
         image = undefined !== romData.image ? path.join('/', name, romData.image) : image;
         desc = undefined !== romData.desc ? romData.desc : '';
@@ -132,13 +132,17 @@ module.exports= {
     }
 
     // Update game data
-    // image, rating, releasedate
+    // image, rating
     gameData.name = this.request.fields.name || gameData.name;
     gameData.desc = this.request.fields.desc.replace(/(\r\n|\r)/gm,"\n") || gameData.desc;
     gameData.developer = this.request.fields.developer || gameData.developer;
     gameData.publisher = this.request.fields.publisher || gameData.publisher;
     gameData.genre = this.request.fields.genre || gameData.genre;
     gameData.players = this.request.fields.players || gameData.players;
+    var year = this.request.fields.releasedate_year || '0000';
+    var month = this.request.fields.releasedate_month || '00';
+    var day = this.request.fields.releasedate_day || '00';
+    gameData.releasedate = year + month + day + 'T000000';
 
     // Save change
     if (undefined !== gameIndex) {
@@ -156,6 +160,8 @@ module.exports= {
 
       this.body = 'OK';
     } catch (error) {
+      console.error(error);
+
       this.throw('Unable to update the ROM "' + gameData.name + '".');
     }
   },

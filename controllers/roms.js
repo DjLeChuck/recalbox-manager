@@ -102,14 +102,14 @@ module.exports= {
     var system = this.request.fields.system;
 
     if (!system) {
-      this.throw('Unable to update the ROM "' + gameData.name + '".');
+      this.throw('Unable to update the ROM "' + this.request.fields.rom + '".');
     }
 
     var path = require('path');
     var romPath = path.join(this.request.fields.sub_path || '', this.request.fields.rom);
 
     if (!romPath) {
-      this.throw('Unable to update the ROM "' + gameData.name + '".');
+      this.throw('Unable to update the ROM "' + this.request.fields.rom + '".');
     }
 
     var fs = require('fs');
@@ -162,15 +162,53 @@ module.exports= {
 
   delete: function * () {
     var path = require('path');
+    var romName = this.request.fields.rom;
+    var romPath = path.join(this.request.fields.sub_path || '', romName);
+
+    if (!romPath) {
+      this.throw('Unable to delete the ROM "' + romName + '".');
+    }
+
+    var romFullPath = path.join(this.request.fields.current_path, romName);
+
+    if (!romFullPath) {
+      this.throw('Unable to delete the ROM "' + romName + '".');
+    }
+
     var fs = require('fs');
-    var romPath = path.join(this.request.fields.current_path, this.request.fields.rom);
 
     try {
-      fs.unlinkSync(romPath);
+      fs.unlinkSync(romFullPath);
+
+      var utils = require('../lib/utils');
+      var system = this.request.fields.system;
+      var rawGameList = utils.getSystemGamelist(system, true);
+      var gameIndex;
+
+      for (var i = 0; i < rawGameList.gameList.game.length; i++) {
+        var item = rawGameList.gameList.game[i];
+
+        if ('./' + romPath === item.path) {
+          gameIndex = i;
+
+          break;
+        }
+      }
+
+      if (undefined !== gameIndex) {
+        var xml2js = require('xml2js');
+        var builder = new xml2js.Builder();
+
+        delete rawGameList.gameList.game[gameIndex];
+
+        var xml = builder.buildObject(rawGameList);
+
+        fs.writeFileSync(utils.getSystemGamelistPath(system), xml);
+      }
 
       this.body = 'OK';
     } catch (error) {
-      this.throw('Unable to delete the ROM "' + romPath + '".');
+      this.throw('Unable to delete the ROM "' + romName + '".');
     }
   },
 

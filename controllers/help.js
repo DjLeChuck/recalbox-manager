@@ -105,10 +105,10 @@ module.exports = {
       }
     // Gestion de la capture d'écran raspi2png
     } else if (undefined !== post.screenshot) {
-      var format = require('date-format');
+      var moment = require('moment');
       var execSync = require('child_process').execSync;
       var raspi2png = this.state.config.recalbox.raspi2png;
-      var returnPath = raspi2png.savePath + "/screenshot-" + format.asString("yyyy-MM-dd_hh-mm-ss-SSS", new Date()) + ".png"
+      var returnPath = raspi2png.savePath + "/screenshot-" + moment().format("YYYY-MM-DD_HH-mm-ss-SSS") + ".png"
 
       execSync(raspi2png.command + " " + returnPath);
 

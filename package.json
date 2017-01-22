@@ -6,7 +6,6 @@
   "main": "app.js",
   "dependencies": {
     "co-request": "^1.0.0",
-    "date-format": "0.0.2",
     "filesize": "^3.3.0",
     "koa": "^1.2.4",
     "koa-better-body": "^3.0.2",
@@ -17,6 +16,7 @@
     "koa-route": "^2.4.2",
     "koa-session": "^3.3.1",
     "koa-static": "^2.0.0",
+    "moment": "^2.17.1",
     "uniqid": "^4.1.0",
     "xml2js": "^0.4.17"
   },

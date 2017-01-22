@@ -2,7 +2,7 @@
 
 <%- include('partials/breadcrumb', { breadCrumb: breadCrumb }); %>
 
-<p><%= __("Nombre total de ROMs :") %> <%= roms.list.length %></p>
+<p><%= __("Nombre total de ROMs :") %> <span data-rom-number><%= roms.list.length %></span></p>
 
 <div class="alert alert-warning">
   <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>

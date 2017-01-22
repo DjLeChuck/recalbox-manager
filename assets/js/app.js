@@ -56,6 +56,7 @@ $(function () {
     var $deleteAlertError = $("[data-delete-alert=error]");
     var $deleteForm = $("[data-delete=form]");
     var $deleteModal = $("#deleteModal");
+    var $romNumber = $("[data-rom-number]");
 
     $deleteModal.on("show.bs.modal", function (event) {
       var $button = $(event.relatedTarget);
@@ -83,6 +84,8 @@ $(function () {
         $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
           $(this).remove();
         });
+
+        $romNumber.text(parseInt($romNumber.text()) - 1);
 
         showThenHideAlertBox($deleteAlertSuccess);
       }).fail(function () {

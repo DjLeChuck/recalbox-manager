@@ -96,4 +96,4 @@ app.use(_.post('/roms/update', roms.update));
 app.use(_.post('/roms/delete', roms.delete));
 app.use(_.get('/roms/:name/:path*', roms.view));
 
-app.set('port', process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);

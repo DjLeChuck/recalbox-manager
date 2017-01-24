@@ -26,10 +26,10 @@
         </button>
       </p>
 
-      <p class="no-display" data-result><%= __("Capture d'écran enregistrée :") %> <code data-value></code></p>
+      <p class="no-display" data-result><%= __("Capture d'écran enregistrée :") %> <a data-value target="_blank">Télécharger</a></p>
 
     <% if (typeof screenshotPath !== 'undefined') { %>
-      <p><%= __("Capture d'écran enregistrée :") %> <code><%= screenshotPath %></code></a></p>
+      <p><%= __("Capture d'écran enregistrée :") %> <a href="<%= screenshotName %>" target="_blank">Télécharger</a></p>
     <% } %>
     </div>
   </div>

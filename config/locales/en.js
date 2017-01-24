@@ -3,6 +3,7 @@
 	"Prise HDMI": "HDMI",
 	"Prise Jack": "Jack",
 	"Officiel": "Official",
+	"Shanwan": "Shanwan",
 	"Bluez 5": "Bluez 5",
 	"Personnalisé": "Custom",
 	"Aucun": "None",

@@ -48,6 +48,7 @@ module.exports = function (i18n) {
       controllers: {
         ps3drivers: [
           {key: 'official', value: i18n.__("Officiel")},
+          {key: 'shanwan', value: i18n.__("Shanwan")},
           {key: 'bluez', value: i18n.__("Bluez 5")}
         ]
       },

@@ -5,7 +5,7 @@ module.exports.index = function *() {
 
   // Temperature
   var currentTemp = execSync('cat /sys/class/thermal/thermal_zone0/temp').toString() / 1000;
-  var maxTemp = execSync('cat /sys/class/thermal/thermal_zone0/trip_point_0_temp').toString() / 1000;
+  var maxTemp = 100;
   var currentPercent = Math.floor(currentTemp * 100 / maxTemp);
 
   this.state.temperature = {

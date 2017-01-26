@@ -16,6 +16,7 @@
     "koa-route": "^2.4.2",
     "koa-session": "^3.3.1",
     "koa-static": "^2.0.0",
+    "md5-file": "^3.1.1",
     "moment": "^2.17.1",
     "xml2js": "^0.4.17"
   },

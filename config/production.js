@@ -31,7 +31,8 @@ module.exports = function (i18n) {
       },
       romsPath: '/recalbox/share/roms',
       romsExcludedFolders: ['downloaded_images'],
-      biosPath: '/recalbox/share/bios',
+      biosPath: '/recalbox/share/bios/',
+      biosFilePath: '/recalbox/share/bios/readme.txt',
       esSystemsCfgPath: '/recalbox/share_init/system/.emulationstation/es_systems.cfg',
       systemSettingsCommand: 'python /usr/lib/python2.7/site-packages/configgen/settings/recalboxSettings.pyc',
 

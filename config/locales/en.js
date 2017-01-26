@@ -180,5 +180,13 @@
 	"Jour": "Day",
 	"Mois": "Month",
 	"Année": "Year",
-	"Note": "Rating"
+	"Note": "Rating",
+	"BIOS": "BIOS",
+	"Voici la liste de l'ensemble des BIOS supportés par recalbox.": "Here is the list of all the BIOS supported by recalbox.",
+	"Les fichiers sont à placer dans le répertoire suivant :": "Files should be placed in the following directory:",
+	"MD5": "MD5",
+	"Valide": "Valid",
+	"Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.": "Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.",
+	"MD5 attendu": "Expected MD5",
+	"Invalide": "Invalid"
 }

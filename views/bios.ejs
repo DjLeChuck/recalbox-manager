@@ -1,0 +1,32 @@
+<div class="page-header"><h1><%= __("BIOS") %></h1></div>
+
+<p><%= __("Voici la liste de l'ensemble des BIOS supportés par recalbox.") %></p>
+<p><%= __("Les fichiers sont à placer dans le répertoire suivant :") %> <code><%= biosPath %></code></p>
+<p><%= __("Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.") %></p>
+
+<table class="table table-striped table-hover table-nonfluid">
+  <thead>
+    <tr>
+      <th class="col-md-2"><%= __("BIOS") %></th>
+      <th class="col-md-3"><%= __("MD5 attendu") %></th>
+      <th class="col-md-1"><%= __("Valide") %></th>
+    </tr>
+    <tbody>
+    <% biosList.forEach((item) => { %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.md5 %></td>
+        <td>
+        <% if (true === item.valid) { %>
+          <span class="glyphicon glyphicon-ok medium-glyphicon alert alert-success" aria-hidden="true"></span>
+        <% } else if (false === item.valid) { %>
+          <span class="glyphicon glyphicon-remove medium-glyphicon alert alert-danger" aria-hidden="true"></span>
+        <% } else { %>
+          <span class="glyphicon glyphicon-minus medium-glyphicon alert" aria-hidden="true"></span>
+        <% } %>
+        </td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </thead>
+</table>

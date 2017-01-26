@@ -1,8 +1,47 @@
 <div class="page-header"><h1><%= __("BIOS") %></h1></div>
 
 <p><%= __("Voici la liste de l'ensemble des BIOS supportés par recalbox.") %></p>
-<p><%= __("Les fichiers sont à placer dans le répertoire suivant :") %> <code><%= biosPath %></code></p>
+<p><%= __("Les fichiers se trouvent dans le répertoire suivant :") %> <code><%= biosPath %></code></p>
 <p><%= __("Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.") %></p>
+
+<div class="alert alert-warning">
+  <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+  <span class="sr-only"><%= __("Attention :") %></span>
+  <%= __("Supprimer ou modifier des BIOS nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.") %>
+</div>
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-upload" aria-expanded="false" aria-controls="collapse-upload">
+  <%= __("Uploader des BIOS") %>
+</button>
+<div class="collapse" id="collapse-upload">
+  <br />
+
+  <div class="well">
+    <p><%= __("Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.") %></p>
+
+    <form action="/bios/upload" class="dropzone" enctype="multipart/form-data" id="bios-upload"
+      data-drop-here="<%= __('Déposer des fichiers ici pour les uploader.') %>"
+      data-server-error="<%= __('Erreur lors de l\'upload.') %>">
+    </form>
+  </div>
+</div>
+
+<br />
+<br />
+
+<div class="sticky-alert center-block no-display" data-delete-alert="success">
+  <div class="alert alert-success" role="alert">
+    <strong><%= __("Et voilà !") %></strong>
+    <%= __("Votre BIOS a bien été supprimée !") %>
+  </div>
+</div>
+
+<div class="sticky-alert center-block no-display" data-delete-alert="error">
+  <div class="alert alert-danger" role="alert">
+    <strong><%= __("Oups !") %></strong>
+    <%= __("Il semble que votre BIOS n'ait pas été supprimée.") %>
+  </div>
+</div>
 
 <table class="table table-striped table-hover table-nonfluid">
   <thead>
@@ -10,10 +49,11 @@
       <th class="col-md-2"><%= __("BIOS") %></th>
       <th class="col-md-3"><%= __("MD5 attendu") %></th>
       <th class="col-md-1"><%= __("Valide") %></th>
+      <th class="col-md-1"><%= __("Option") %></th>
     </tr>
     <tbody>
-    <% biosList.forEach((item) => { %>
-      <tr>
+    <% biosList.forEach((item, index) => { %>
+      <tr data-row="<%= index %>">
         <td><%= item.name %></td>
         <td><%= item.md5 %></td>
         <td>
@@ -25,8 +65,43 @@
           <span class="glyphicon glyphicon-minus medium-glyphicon alert" aria-hidden="true"></span>
         <% } %>
         </td>
+        <td>
+        <% if (null !== item.valid) { %>
+          <button class="btn btn-danger" type="submit" aria-label="<%= __('Supprimer') %>"
+            data-toggle="modal" data-target="#deleteBiosModal"
+            data-name="<%= item.name %>" data-index="<%= index %>">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
+        <% } %>
+        </td>
       </tr>
     <% }); %>
     </tbody>
   </thead>
 </table>
+
+<div class="modal fade" id="deleteBiosModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteModalTitle"><%= __("Attention") %></h4>
+      </div>
+      <div class="modal-body">
+        <p><%- __("Voulez-vous vraiment supprimer %s ?", "<strong data-name></strong>") %></p>
+
+        <form method="post" action="/bios/delete" data-delete="form">
+          <input type="hidden" name="bios" />
+          <input type="hidden" data-index />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __("Non") %></button>
+        <button type="button" class="btn btn-warning" data-delete="confirm">
+          <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
+          <%= __("Oui") %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

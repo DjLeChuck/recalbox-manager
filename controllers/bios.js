@@ -32,5 +32,46 @@ module.exports = {
     this.state.biosList = bios;
 
     yield this.render('bios');
+  },
+
+  delete: function * () {
+    var path = require('path');
+    var biosName = this.request.fields.bios;
+
+    if (!biosName) {
+      this.throw('Unable to delete the BIOS.');
+    }
+
+    var biosFullPath = path.join(this.state.config.recalbox.biosPath, biosName);
+
+    if (!biosFullPath) {
+      this.throw('Unable to delete the BIOS "' + biosName + '".');
+    }
+
+    var fs = require('fs');
+
+    try {
+      fs.unlinkSync(biosFullPath);
+
+      this.body = 'OK';
+    } catch (error) {
+      this.throw('Unable to delete the BIOS "' + biosName + '".');
+    }
+  },
+
+  upload: function * () {
+    var path = require('path');
+    var fs = require('fs');
+    var uploadPath = this.state.config.recalbox.biosPath;
+
+    for (var i = 0; i < this.request.files.length; i++) {
+      var file = this.request.files[i];
+
+      fs.readFile(file.path, function (err, data) {
+        fs.writeFileSync(path.join(uploadPath, file.name), data);
+      });
+    }
+
+    this.body = 'OK';
   }
 };

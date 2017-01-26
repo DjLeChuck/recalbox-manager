@@ -80,6 +80,8 @@ app.use(_.get('/monitoring', monitoring.index));
 app.use(_.get('/audio', audio.index));
 app.use(_.post('/audio', audio.save));
 app.use(_.get('/bios', bios.index));
+app.use(_.post('/bios/upload', bios.upload));
+app.use(_.post('/bios/delete', bios.delete));
 app.use(_.get('/configuration', configuration.index));
 app.use(_.post('/configuration', configuration.save));
 app.use(_.get('/controllers', controllers.index));

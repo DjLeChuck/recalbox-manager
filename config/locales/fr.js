@@ -183,10 +183,16 @@
 	"Note": "Note",
 	"BIOS": "BIOS",
 	"Voici la liste de l'ensemble des BIOS supportés par recalbox.": "Voici la liste de l'ensemble des BIOS supportés par recalbox.",
-	"Les fichiers sont à placer dans le répertoire suivant :": "Les fichiers sont à placer dans le répertoire suivant :",
+	"Les fichiers se trouvent dans le répertoire suivant :": "Les fichiers se trouvent dans le répertoire suivant :",
 	"MD5": "MD5",
 	"Valide": "Valide",
 	"Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.": "Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.",
 	"MD5 attendu": "MD5 attendu",
-	"Invalide": "Invalide"
+	"Invalide": "Invalide",
+	"Supprimer ou modifier des BIOS nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "Supprimer ou modifier des BIOS nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.",
+	"Uploader des BIOS": "Uploader des BIOS",
+	"Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.": "Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.",
+	"Option": "Option",
+	"Votre BIOS a bien été supprimée !": "Votre BIOS a bien été supprimée !",
+	"Il semble que votre BIOS n'ait pas été supprimée.": "Il semble que votre BIOS n'ait pas été supprimée."
 }

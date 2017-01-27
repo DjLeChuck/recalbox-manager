@@ -189,7 +189,6 @@
 	"Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.": "Using the last column in the table, you can see if the BIOS you have is good or not.",
 	"MD5 attendu": "Expected MD5",
 	"Invalide": "Invalid",
-	"Supprimer ou modifier des BIOS nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "You must restart EmulationStation to update the BIOS list.",
 	"Uploader des BIOS": "Upload BIOS",
 	"Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.": "Once the BIOS are uploaded, reload the page to check their MD5.",
 	"Option": "Option",

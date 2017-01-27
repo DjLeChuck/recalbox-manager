@@ -41,7 +41,7 @@ module.exports = {
       api.save(key, val);
     });
 
-    this.flash = { success: 'La configuration a bien été sauvegardée.' };
+    this.flash = { success: this.i18n.__('La configuration a bien été sauvegardée.') };
 
     this.redirect('back');
   }

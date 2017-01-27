@@ -194,5 +194,7 @@
 	"Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.": "Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.",
 	"Option": "Option",
 	"Votre BIOS a bien été supprimée !": "Votre BIOS a bien été supprimée !",
-	"Il semble que votre BIOS n'ait pas été supprimée.": "Il semble que votre BIOS n'ait pas été supprimée."
+	"Il semble que votre BIOS n'ait pas été supprimée.": "Il semble que votre BIOS n'ait pas été supprimée.",
+	"La configuration a bien été sauvegardée.": "La configuration a bien été sauvegardée.",
+	"Le fichier a bien été sauvegardé.": "Le fichier a bien été sauvegardé."
 }

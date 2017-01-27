@@ -15,7 +15,7 @@ module.exports = {
   save: function * () {
     require('fs').writeFileSync(this.state.config.recalbox.confPath, this.request.fields.recalbox_conf);
 
-    this.flash = { success: 'Le fichier a bien été sauvegardé.' };
+    this.flash = { success: this.i18n.__('Le fichier a bien été sauvegardé.') };
 
     this.redirect('back');
   }

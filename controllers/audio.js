@@ -33,7 +33,7 @@ module.exports = {
       console.error(error);
     }
 
-    this.flash = { success: 'La configuration a bien été sauvegardée.' };
+    this.flash = { success: this.i18n.__('La configuration a bien été sauvegardée.') };
 
     this.redirect('back');
   }

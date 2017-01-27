@@ -196,5 +196,7 @@
 	"Votre BIOS a bien été supprimée !": "Votre BIOS a bien été supprimée !",
 	"Il semble que votre BIOS n'ait pas été supprimée.": "Il semble que votre BIOS n'ait pas été supprimée.",
 	"La configuration a bien été sauvegardée.": "La configuration a bien été sauvegardée.",
-	"Le fichier a bien été sauvegardé.": "Le fichier a bien été sauvegardé."
+	"Le fichier a bien été sauvegardé.": "Le fichier a bien été sauvegardé.",
+	"Utiliser le gamepad virtuel": "Utiliser le gamepad virtuel",
+	"Utiliser le clavier virtuel": "Utiliser le clavier virtuel"
 }

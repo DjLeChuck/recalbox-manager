@@ -186,7 +186,7 @@
 	"Les fichiers se trouvent dans le répertoire suivant :": "Files are in the following directory:",
 	"MD5": "MD5",
 	"Valide": "Valid",
-	"Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.": "Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.",
+	"Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.": "Using the last column in the table, you can see if the BIOS you have is good or not.",
 	"MD5 attendu": "Expected MD5",
 	"Invalide": "Invalid",
 	"Supprimer ou modifier des BIOS nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "You must restart EmulationStation to update the BIOS list.",

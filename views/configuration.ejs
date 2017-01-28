@@ -35,7 +35,8 @@
       <div class="form-group">
         <label for="timezone" class="col-md-4 control-label"><%= __("Timezone") %></label>
         <div class="col-md-6">
-          <select name="system.timezone" id="timezone" class="selectpicker show-tick form-control" data-select data-live-search="true">
+          <select name="system.timezone" id="timezone" class="selectpicker show-tick form-control" data-select="timezone" data-live-search="true">
+            <option value="">&dash;</option>
           <% timezones.forEach(function (timezone) { %>
             <option value="<%= timezone %>"<% if (system.timezone == timezone) { %> selected="selected"<% } %>>
               <%= timezone %>

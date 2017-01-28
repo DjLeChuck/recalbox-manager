@@ -21,6 +21,17 @@ $(function () {
       });
     }
 
+    // Timezone select
+    var $timeZoneSelect = $("[data-select=timezone]");
+
+    if (0 < $timeZoneSelect.length) {
+      if ("" === $timeZoneSelect.val()) {
+        var timezone = jstz.determine();
+
+        $timeZoneSelect.selectpicker("val", timezone.name());
+      }
+    }
+
     // Launch ROM
     var $launchAlertSuccess = $("[data-launch-alert=success]");
     var $launchAlertError = $("[data-launch-alert=error]");

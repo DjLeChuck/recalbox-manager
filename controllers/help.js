@@ -12,6 +12,11 @@ module.exports = {
     this.state.screenshotSavePath = this.state.screenshotSavePath.replace("%s", "<code>" + this.state.config.recalbox.raspi2png.savePath + "</code>");
     this.state.recalboxSupportSavePath = this.state.gt.gettext("Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous.");
     this.state.recalboxSupportSavePath = this.state.recalboxSupportSavePath.replace("%s", "<code>recalbox-support.sh</code>");
+    this.state.links = {
+      forum: this.state.gt.gettext("https://forum.recalbox.com/"),
+      irc: this.state.gt.gettext("https://kiwiirc.com/client/irc.freenode.net/#recalbox"),
+      wiki: this.state.gt.gettext("https://github.com/recalbox/recalbox-os/wiki/Home-(FR)"),
+    };
 
     yield this.render('help');
   },

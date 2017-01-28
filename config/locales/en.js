@@ -183,7 +183,7 @@
 	"Note": "Rating",
 	"BIOS": "BIOS",
 	"Voici la liste de l'ensemble des BIOS supportés par recalbox.": "Here is the list of all the BIOS supported by recalbox.",
-	"Les fichiers se trouvent dans le répertoire suivant :": "Files are in the following directory:",
+	"Les fichiers se trouvent dans le répertoire suivant :": "Files are located in:",
 	"MD5": "MD5",
 	"Valide": "Valid",
 	"Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.": "Using the last column in the table, you can see if the BIOS you have is good or not.",

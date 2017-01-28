@@ -1,11 +1,11 @@
-<div class="page-header"><h1><%= __("Dépannage") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Dépannage") %></h1></div>
 
-<p><%= __("Pour toute demandes générales, techniques ou besoin d'aide, vous avez plusieurs choix :") %></p>
+<p><%= gt.gettext("Pour toute demandes générales, techniques ou besoin d'aide, vous avez plusieurs choix :") %></p>
 
 <ul>
-  <li><%= __("Le forum :") %> <a href="https://forum.recalbox.com/">https://forum.recalbox.com/</a></li>
-  <li><%= __("Le chan IRC :") %> <a href="https://kiwiirc.com/client/irc.freenode.net/#recalbox">https://kiwiirc.com/client/irc.freenode.net/#recalbox</a></li>
-  <li><%= __("Le wiki :") %> <a href="https://github.com/recalbox/recalbox-os/wiki/Home-(FR)">https://github.com/recalbox/recalbox-os/wiki/Home-(FR)</a></li>
+  <li><%= gt.gettext("Le forum :") %> <a href="https://forum.recalbox.com/">https://forum.recalbox.com/</a></li>
+  <li><%= gt.gettext("Le chan IRC :") %> <a href="https://kiwiirc.com/client/irc.freenode.net/#recalbox">https://kiwiirc.com/client/irc.freenode.net/#recalbox</a></li>
+  <li><%= gt.gettext("Le wiki :") %> <a href="https://github.com/recalbox/recalbox-os/wiki/Home-(FR)">https://github.com/recalbox/recalbox-os/wiki/Home-(FR)</a></li>
 </ul>
 
 <br />
@@ -13,46 +13,46 @@
 <form method="post" action="/help" data-form-ajax>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Effectuer une capture d'écran") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Effectuer une capture d'écran") %></h3>
     </div>
     <div class="panel-body">
-      <p><%= __("Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.") %></p>
-      <p><%- __("Le résultat sera sauvegardé dans le dossier %s.", "<code>" + raspi2png.savePath + "</code>") %></p>
+      <p><%= gt.gettext("Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.") %></p>
+      <p><%- screenshotSavePath %></p>
 
       <p>
         <button type="submit" name="screenshot" value="1" class="btn btn-success">
           <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-          <%= __("Faire une capture") %>
+          <%= gt.gettext("Faire une capture") %>
         </button>
       </p>
 
-      <p class="no-display" data-result><%= __("Capture d'écran enregistrée :") %> <a data-value target="_blank">Télécharger</a></p>
+      <p class="no-display" data-result><%= gt.gettext("Capture d'écran enregistrée :") %> <a data-value target="_blank">Télécharger</a></p>
 
     <% if (typeof screenshotPath !== 'undefined') { %>
-      <p><%= __("Capture d'écran enregistrée :") %> <a href="<%= screenshotName %>" target="_blank">Télécharger</a></p>
+      <p><%= gt.gettext("Capture d'écran enregistrée :") %> <a href="<%= screenshotName %>" target="_blank">Télécharger</a></p>
     <% } %>
     </div>
   </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Exécution de recalbox-support.sh") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Exécution de recalbox-support.sh") %></h3>
     </div>
     <div class="panel-body">
-      <p><%- __("Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous.", "<code>recalbox-support.sh</code>") %></p>
-      <p><%= __("Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.") %></p>
+      <p><%- recalboxSupportSavePath %></p>
+      <p><%= gt.gettext("Vous obtiendrez alors un lien de téléchargement qu'il vous suffira de copier / coller sur le forum.") %></p>
 
       <p>
         <button type="submit" name="support" value="1" class="btn btn-success">
           <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-          <%= __("Exécuter le script") %>
+          <%= gt.gettext("Exécuter le script") %>
         </button>
       </p>
 
-      <p class="no-display" data-result><%= __("Lien de téléchargement à donner :") %> <a href="" target="_blank" data-value><span data-value></span></a></p>
+      <p class="no-display" data-result><%= gt.gettext("Lien de téléchargement à donner :") %> <a href="" target="_blank" data-value><span data-value></span></a></p>
 
     <% if (typeof downloadUrl !== 'undefined') { %>
-      <p><%= __("Lien de téléchargement à donner :") %> <a href="<%= downloadUrl %>" target="_blank"><%= downloadUrl %></a></p>
+      <p><%= gt.gettext("Lien de téléchargement à donner :") %> <a href="<%= downloadUrl %>" target="_blank"><%= downloadUrl %></a></p>
     <% } %>
     </div>
   </div>
@@ -61,22 +61,22 @@
     <div class="col-md-6">
       <div class="panel panel-warning">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= __("Redémarrage et arrêt d'EmulationStation") %></h3>
+          <h3 class="panel-title"><%= gt.gettext("Redémarrage et arrêt d'EmulationStation") %></h3>
         </div>
         <div class="panel-body">
           <button type="submit" name="es" value="restart" class="btn btn-warning">
             <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-            <%= __("Redémarer ES") %>
+            <%= gt.gettext("Redémarer ES") %>
           </button>
 
           <button type="submit" name="es" value="stop" class="btn btn-danger">
             <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-            <%= __("Arrêter ES") %>
+            <%= gt.gettext("Arrêter ES") %>
           </button>
 
           <button type="submit" name="es" value="start" class="btn btn-success">
             <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-            <%= __("Démarrer ES") %>
+            <%= gt.gettext("Démarrer ES") %>
           </button>
         </div>
       </div>
@@ -84,12 +84,12 @@
     <div class="col-md-6">
       <div class="panel panel-danger">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= __("Redémarrage et arrêt du système") %></h3>
+          <h3 class="panel-title"><%= gt.gettext("Redémarrage et arrêt du système") %></h3>
         </div>
         <div class="panel-body">
-          <button type="submit" name="system" value="reboot" class="btn btn-warning" data-noajax><%= __("Redémarer le système") %></button>
+          <button type="submit" name="system" value="reboot" class="btn btn-warning" data-noajax><%= gt.gettext("Redémarer le système") %></button>
 
-          <button type="submit" name="system" value="shutdown" class="btn btn-danger" data-noajax><%= __("Arrêter le système") %></button>
+          <button type="submit" name="system" value="shutdown" class="btn btn-danger" data-noajax><%= gt.gettext("Arrêter le système") %></button>
         </div>
       </div>
     </div>

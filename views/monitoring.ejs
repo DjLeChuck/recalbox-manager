@@ -1,6 +1,6 @@
-<div class="page-header"><h1><%= __("Monitoring") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Monitoring") %></h1></div>
 
-<h2><%= __("Proceseur") %></h2>
+<h2><%= gt.gettext("Proceseur") %></h2>
 <div class="row">
 <% cpus.forEach(function (cpu, index) { %>
   <div class="col-md-6">
@@ -14,10 +14,10 @@
 <% }); %>
 </div>
 
-<h2><%= __("Mémoire") %></h2>
+<h2><%= gt.gettext("Mémoire") %></h2>
 <div class="row">
   <div class="col-md-3">
-    <p><%= __("Libre :") %> <%= ram.free %> MB</p>
+    <p><%= gt.gettext("Libre :") %> <%= ram.free %> MB</p>
   </div>
   <div class="col-md-6">
     <div class="progress">
@@ -27,11 +27,11 @@
     </div>
   </div>
   <div class="col-md-3">
-    <p><%= __("Total :") %> <%= ram.total %> MB</p>
+    <p><%= gt.gettext("Total :") %> <%= ram.total %> MB</p>
   </div>
 </div>
 
-<h2><%= __("Température CPU") %></h2>
+<h2><%= gt.gettext("Température CPU") %></h2>
 <div class="clearfix">
   <div class="c100 p<%= temperature.current_percent %> <%= temperature.color %>">
     <span title="<%= temperature.current %>°c / <%= temperature.max %>°c"><%= temperature.current %>°c</span>
@@ -42,18 +42,18 @@
   </div>
 </div>
 
-<h2><%= __("Systèmes de fichiers") %></h2>
+<h2><%= gt.gettext("Systèmes de fichiers") %></h2>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
-        <th><%= __("Périphérique") %></th>
-        <th><%= __("Montage") %></th>
-        <th><%= __("Type") %></th>
-        <th><%= __("Usage") %></th>
-        <th><%= __("Utilisé") %></th>
-        <th><%= __("Libre") %></th>
-        <th><%= __("Total") %></th>
+        <th><%= gt.gettext("Périphérique") %></th>
+        <th><%= gt.gettext("Montage") %></th>
+        <th><%= gt.gettext("Type") %></th>
+        <th><%= gt.gettext("Usage") %></th>
+        <th><%= gt.gettext("Utilisé") %></th>
+        <th><%= gt.gettext("Libre") %></th>
+        <th><%= gt.gettext("Total") %></th>
       </tr>
     </thead>
     <tbody>

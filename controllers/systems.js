@@ -24,6 +24,9 @@ module.exports = {
 
     this.state.flash = this.flash;
 
+    this.state.retroAchievementsDesc = this.state.gt.gettext("RetroAchievements.org (%s) est un site communautaire qui permet de gagner des haut-faits sur mesure dans les jeux d'arcade grâce à l'émulation.");
+    this.state.retroAchievementsDesc = this.state.retroAchievementsDesc.replace("%s", '<a href="http://retroachievements.org/">http://retroachievements.org/</a>');
+
     yield this.render('systems');
   },
   save: function *() {
@@ -38,7 +41,7 @@ module.exports = {
       api.save(key, val);
     });
 
-    this.flash = { success: this.i18n.__('La configuration a bien été sauvegardée.') };
+    this.flash = { success: this.state.gt.gettext('La configuration a bien été sauvegardée.') };
 
     this.redirect('back');
   }

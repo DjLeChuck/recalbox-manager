@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= __("Recalbox - Manager") %></title>
+    <title><%= gt.gettext("Recalbox - Manager") %></title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,32 +32,32 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><%= __("Recalbox Manager") %></a>
+          <a class="navbar-brand" href="/"><%= gt.gettext("Recalbox Manager") %></a>
           <ul class="navbar-brand list-inline locale-switcher">
-            <li><a href="<%= currentUrl %>/?locale=fr"><img src="/img/flag-fr.png" alt="Français" /></a></li>
-            <li><a href="<%= currentUrl %>/?locale=en"><img src="/img/flag-us.png" alt="English" /></a></li>
+            <li><a href="<%= currentUrl %>/?locale=fr-FR"><img src="/img/flag-fr.png" alt="Français" /></a></li>
+            <li><a href="<%= currentUrl %>/?locale=en-US"><img src="/img/flag-us.png" alt="English" /></a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li<% if ('home' == activePage) { %> class="active"<% } %>><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= __("Accueil") %></a></li>
-            <li<% if ('monitoring' == activePage) { %> class="active"<% } %>><a href="/monitoring"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> <%= __("Monitoring") %></a></li>
-            <li<% if ('audio' == activePage) { %> class="active"<% } %>><a href="/audio"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> <%= __("Audio") %></a></li>
-            <li<% if ('bios' == activePage) { %> class="active"<% } %>><a href="/bios"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> <%= __("Bios") %></a></li>
-            <li<% if ('controllers' == activePage) { %> class="active"<% } %>><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <%= __("Contrôleurs") %></a></li>
-            <li<% if ('systems' == activePage) { %> class="active"<% } %>><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> <%= __("Systèmes") %></a></li>
-            <li<% if ('configuration' == activePage) { %> class="active"<% } %>><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <%= __("Configuration") %></a></li>
-            <li<% if ('roms' == activePage) { %> class="active"<% } %>><a href="/roms"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <%= __("ROMs") %></a></li>
+            <li<% if ('home' == activePage) { %> class="active"<% } %>><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= gt.gettext("Accueil") %></a></li>
+            <li<% if ('monitoring' == activePage) { %> class="active"<% } %>><a href="/monitoring"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> <%= gt.gettext("Monitoring") %></a></li>
+            <li<% if ('audio' == activePage) { %> class="active"<% } %>><a href="/audio"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> <%= gt.gettext("Audio") %></a></li>
+            <li<% if ('bios' == activePage) { %> class="active"<% } %>><a href="/bios"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> <%= gt.gettext("Bios") %></a></li>
+            <li<% if ('controllers' == activePage) { %> class="active"<% } %>><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <%= gt.gettext("Contrôleurs") %></a></li>
+            <li<% if ('systems' == activePage) { %> class="active"<% } %>><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> <%= gt.gettext("Systèmes") %></a></li>
+            <li<% if ('configuration' == activePage) { %> class="active"<% } %>><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <%= gt.gettext("Configuration") %></a></li>
+            <li<% if ('roms' == activePage) { %> class="active"<% } %>><a href="/roms"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <%= gt.gettext("ROMs") %></a></li>
             <li class="dropdown<% if (-1 !== ['help', 'logs', 'recalbox-conf'].indexOf(activePage)) { %> active<% } %>">
               <a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= __("Dépannage") %>
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= gt.gettext("Dépannage") %>
                 <span class="caret"></span>
               </a>
 
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="dropdown-menu">
-                <li<% if ('logs' == activePage) { %> class="active"<% } %>><a href="/logs"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= __("Logs") %></a></li>
+                <li<% if ('logs' == activePage) { %> class="active"<% } %>><a href="/logs"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= gt.gettext("Logs") %></a></li>
                 <li<% if ('recalbox-conf' == activePage) { %> class="active"<% } %>><a href="/recalbox-conf"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> recalbox.conf</a></li>
-                <li<% if ('help' == activePage) { %> class="active"<% } %>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= __("Dépannage") %></a></li>
+                <li<% if ('help' == activePage) { %> class="active"<% } %>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= gt.gettext("Dépannage") %></a></li>
               </ul>
             </li>
           </ul>
@@ -69,17 +69,17 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li<% if ('home' == activePage) { %> class="active"<% } %>><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= __("Accueil") %></a></li>
-            <li<% if ('monitoring' == activePage) { %> class="active"<% } %>><a href="/monitoring"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> <%= __("Monitoring") %></a></li>
-            <li<% if ('audio' == activePage) { %> class="active"<% } %>><a href="/audio"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> <%= __("Audio") %></a></li>
-            <li<% if ('bios' == activePage) { %> class="active"<% } %>><a href="/bios"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> <%= __("Bios") %></a></li>
-            <li<% if ('controllers' == activePage) { %> class="active"<% } %>><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <%= __("Contrôleurs") %></a></li>
-            <li<% if ('systems' == activePage) { %> class="active"<% } %>><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> <%= __("Systèmes") %></a></li>
-            <li<% if ('configuration' == activePage) { %> class="active"<% } %>><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <%= __("Configuration") %></a></li>
-            <li<% if ('roms' == activePage) { %> class="active"<% } %>><a href="/roms"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <%= __("ROMs") %></a></li>
-            <li<% if ('logs' == activePage) { %> class="active"<% } %>><a href="/logs"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= __("Logs") %></a></li>
+            <li<% if ('home' == activePage) { %> class="active"<% } %>><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= gt.gettext("Accueil") %></a></li>
+            <li<% if ('monitoring' == activePage) { %> class="active"<% } %>><a href="/monitoring"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> <%= gt.gettext("Monitoring") %></a></li>
+            <li<% if ('audio' == activePage) { %> class="active"<% } %>><a href="/audio"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> <%= gt.gettext("Audio") %></a></li>
+            <li<% if ('bios' == activePage) { %> class="active"<% } %>><a href="/bios"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> <%= gt.gettext("Bios") %></a></li>
+            <li<% if ('controllers' == activePage) { %> class="active"<% } %>><a href="/controllers"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <%= gt.gettext("Contrôleurs") %></a></li>
+            <li<% if ('systems' == activePage) { %> class="active"<% } %>><a href="/systems"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> <%= gt.gettext("Systèmes") %></a></li>
+            <li<% if ('configuration' == activePage) { %> class="active"<% } %>><a href="/configuration"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <%= gt.gettext("Configuration") %></a></li>
+            <li<% if ('roms' == activePage) { %> class="active"<% } %>><a href="/roms"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <%= gt.gettext("ROMs") %></a></li>
+            <li<% if ('logs' == activePage) { %> class="active"<% } %>><a href="/logs"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= gt.gettext("Logs") %></a></li>
             <li<% if ('recalbox-conf' == activePage) { %> class="active"<% } %>><a href="/recalbox-conf"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> recalbox.conf</a></li>
-            <li<% if ('help' == activePage) { %> class="active"<% } %>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= __("Dépannage") %></a></li>
+            <li<% if ('help' == activePage) { %> class="active"<% } %>><a href="/help"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> <%= gt.gettext("Dépannage") %></a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

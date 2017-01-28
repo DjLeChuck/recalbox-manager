@@ -79,7 +79,7 @@ module.exports= {
       list: list
     };
 
-    this.state.breadCrumb = [['', this.i18n.__('Accueil')], ['roms', this.i18n.__('ROMs')], [name, this.state.system.fullname]];
+    this.state.breadCrumb = [['', this.state.gt.gettext('Accueil')], ['roms', this.state.gt.gettext('ROMs')], [name, this.state.system.fullname]];
 
     if ("" !== subPath) {
       this.state.breadCrumb = this.state.breadCrumb.concat(subPath.split('/'));
@@ -91,6 +91,10 @@ module.exports= {
     this.state.subDirectories = utils.getDirectories(this.state.currentPath, this.state.config.recalbox.romsExcludedFolders);
 
     this.state.activePage = 'roms';
+
+    this.state.uploadError = this.state.gt.gettext("Erreur lors de l'upload.");
+    this.state.deleteConfirmation = this.state.gt.gettext("Voulez-vous vraiment supprimer %s ?");
+    this.state.deleteConfirmation = this.state.deleteConfirmation.replace("%s", "<strong data-fullname></strong>");
 
     yield this.render('roms-view');
   },

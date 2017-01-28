@@ -1,27 +1,27 @@
-<div class="page-header"><h1><%= __("Gestion des ROMs") %> - <%= system.fullname %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Gestion des ROMs") %> - <%= system.fullname %></h1></div>
 
 <%- include('partials/breadcrumb', { breadCrumb: breadCrumb }); %>
 
-<p><%= __("Nombre total de ROMs :") %> <span data-rom-number><%= roms.list.length %></span></p>
+<p><%= gt.gettext("Nombre total de ROMs :") %> <span data-rom-number><%= roms.list.length %></span></p>
 
 <div class="alert alert-warning">
   <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-  <span class="sr-only"><%= __("Attention :") %></span>
-  <%= __("Supprimer ou modifier des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.") %>
+  <span class="sr-only"><%= gt.gettext("Attention :") %></span>
+  <%= gt.gettext("Supprimer ou modifier des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.") %>
 </div>
 
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-upload" aria-expanded="false" aria-controls="collapse-upload">
-  <%= __("Uploader des ROMs") %>
+  <%= gt.gettext("Uploader des ROMs") %>
 </button>
 <div class="collapse" id="collapse-upload">
   <br />
 
   <div class="well">
-    <p><%= __("Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.") %></p>
+    <p><%= gt.gettext("Une fois les ROMs uploadées, il faudra recharger la page pour les voir apparaître dans le listing.") %></p>
 
     <form action="/roms/upload" class="dropzone" enctype="multipart/form-data" id="roms-upload"
-      data-drop-here="<%= __('Déposer des fichiers ici pour les uploader.') %>"
-      data-server-error="<%= __('Erreur lors de l\'upload.') %>">
+      data-drop-here="<%= gt.gettext('Déposer des fichiers ici pour les uploader.') %>"
+      data-server-error="<%= uploadError %>">
       <input type="hidden" name="upload_path" value="<%= currentPath %>" />
     </form>
   </div>
@@ -32,43 +32,43 @@
 
 <div class="sticky-alert center-block no-display" data-launch-alert="success">
   <div class="alert alert-success" role="alert">
-    <strong><%= __("Et voilà !") %></strong>
-    <%= __("Votre jeu devrait s'être lancé !") %>
+    <strong><%= gt.gettext("Et voilà !") %></strong>
+    <%= gt.gettext("Votre jeu devrait s'être lancé !") %>
   </div>
 </div>
 
 <div class="sticky-alert center-block no-display" data-launch-alert="error">
   <div class="alert alert-danger" role="alert">
-    <strong><%= __("Oups !") %></strong>
-    <%= __("Il semble que votre jeu n'ait pas réussi à se lancer.") %>
+    <strong><%= gt.gettext("Oups !") %></strong>
+    <%= gt.gettext("Il semble que votre jeu n'ait pas réussi à se lancer.") %>
   </div>
 </div>
 
 <div class="sticky-alert center-block no-display" data-delete-alert="success">
   <div class="alert alert-success" role="alert">
-    <strong><%= __("Et voilà !") %></strong>
-    <%= __("Votre ROM a bien été supprimée !") %>
+    <strong><%= gt.gettext("Et voilà !") %></strong>
+    <%= gt.gettext("Votre ROM a bien été supprimée !") %>
   </div>
 </div>
 
 <div class="sticky-alert center-block no-display" data-delete-alert="error">
   <div class="alert alert-danger" role="alert">
-    <strong><%= __("Oups !") %></strong>
-    <%= __("Il semble que votre ROM n'ait pas été supprimée.") %>
+    <strong><%= gt.gettext("Oups !") %></strong>
+    <%= gt.gettext("Il semble que votre ROM n'ait pas été supprimée.") %>
   </div>
 </div>
 
 <div class="sticky-alert center-block no-display" data-update-alert="success">
   <div class="alert alert-success" role="alert">
-    <strong><%= __("Et voilà !") %></strong>
-    <%= __("Les données de votre ROM ont bien été mises à jour !") %>
+    <strong><%= gt.gettext("Et voilà !") %></strong>
+    <%= gt.gettext("Les données de votre ROM ont bien été mises à jour !") %>
   </div>
 </div>
 
 <div class="sticky-alert center-block no-display" data-update-alert="error">
   <div class="alert alert-danger" role="alert">
-    <strong><%= __("Oups !") %></strong>
-    <%= __("Il semble que les données de votre ROM n'aient pas été mises à jour.") %>
+    <strong><%= gt.gettext("Oups !") %></strong>
+    <%= gt.gettext("Il semble que les données de votre ROM n'aient pas été mises à jour.") %>
   </div>
 </div>
 
@@ -114,18 +114,18 @@
 
           <div class="col-md-5 col-lg-3 center-block">
           <% if (1 == gameLaunchingAvailable) { %>
-            <button class="btn btn-success has-spinner" type="submit" aria-label="<%= __('Lancer') %>"
+            <button class="btn btn-success has-spinner" type="submit" aria-label="<%= gt.gettext('Lancer') %>"
                data-play data-rom="<%= rom.fullname %>" data-system="<%= system.name %>">
               <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
               <span class="glyphicon glyphicon-play" aria-hidden="true" data-toggle-hidden></span>
             </button>
           <% } %>
-            <button class="btn btn-danger" type="submit" aria-label="<%= __('Supprimer') %>"
+            <button class="btn btn-danger" type="submit" aria-label="<%= gt.gettext('Supprimer') %>"
               data-toggle="modal" data-target="#deleteModal" data-fullname="<%= rom.fullname %>"
               data-filename="<%= rom.filename %>" data-index="<%= index %>">
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
-            <button class="btn btn-primary" type="submit" aria-label="<%= __('Information') %>"
+            <button class="btn btn-primary" type="submit" aria-label="<%= gt.gettext('Information') %>"
                data-toggle="modal" data-target="#updateModal" data-fullname="<%= rom.fullname %>"
                data-filename="<%= rom.filename %>" data-index="<%= index %>" data-desc="<%= rom.desc %>"
                data-genre="<%= rom.genre %>" data-players="<%= rom.players %>" data-publisher="<%= rom.publisher %>"
@@ -147,7 +147,7 @@
   <% } %>
 <% }); %>
 
-<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="<%= __('Cliquez pour retourner en haut de la page') %>" data-toggle="tooltip" data-placement="left">
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="<%= gt.gettext('Cliquez pour retourner en haut de la page') %>" data-toggle="tooltip" data-placement="left">
   <span class="glyphicon glyphicon-chevron-up"></span>
 </a>
 
@@ -156,10 +156,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="deleteModalTitle"><%= __("Attention") %></h4>
+        <h4 class="modal-title" id="deleteModalTitle"><%= gt.gettext("Attention") %></h4>
       </div>
       <div class="modal-body">
-        <p><%- __("Voulez-vous vraiment supprimer %s ?", "<strong data-fullname></strong>") %></p>
+        <p><%- deleteConfirmation %></p>
 
         <form method="post" action="/roms/delete" data-delete="form">
           <input type="hidden" name="rom" />
@@ -170,10 +170,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __("Non") %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= gt.gettext("Non") %></button>
         <button type="button" class="btn btn-warning" data-delete="confirm">
           <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-          <%= __("Oui") %>
+          <%= gt.gettext("Oui") %>
         </button>
       </div>
     </div>
@@ -196,31 +196,31 @@
           <input type="hidden" name="system" value="<%= system.name %>" />
 
           <div class="form-group">
-            <label for="publisher" class="col-sm-3 control-label"><%= __('Nom') %></label>
+            <label for="publisher" class="col-sm-3 control-label"><%= gt.gettext('Nom') %></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="name" name="name" data-fullname-val />
             </div>
           </div>
           <div class="form-group">
-            <label for="publisher" class="col-sm-3 control-label"><%= __('Éditeur') %></label>
+            <label for="publisher" class="col-sm-3 control-label"><%= gt.gettext('Éditeur') %></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="publisher" name="publisher" data-publisher />
             </div>
           </div>
           <div class="form-group">
-            <label for="developer" class="col-sm-3 control-label"><%= __('Développeur') %></label>
+            <label for="developer" class="col-sm-3 control-label"><%= gt.gettext('Développeur') %></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="developer" name="developer" data-developer />
             </div>
           </div>
           <div class="form-group">
-            <label for="releasedate" class="col-sm-3 control-label"><%= __('Date de sortie') %></label>
+            <label for="releasedate" class="col-sm-3 control-label"><%= gt.gettext('Date de sortie') %></label>
             <div class="col-sm-9">
               <div class="row date-picker-select">
                 <div class="col-xs-3">
                   <div class="form-group">
                     <select class="selectpicker form-control" id="releasedate-day" name="releasedate_day" data-releasedate-day>
-                      <option value="00"><%= __('Jour') %></option>
+                      <option value="00"><%= gt.gettext('Jour') %></option>
                     <% for (var x = 1; x < 32; x++) { %>
                       <option value="<%= ("0" + x).slice(-2) %>"><%= ("0" + x).slice(-2) %></option>
                     <% } %>
@@ -230,7 +230,7 @@
                 <div class="col-xs-4">
                   <div class="form-group">
                     <select class="selectpicker form-control" id="releasedate-month" name="releasedate_month" data-releasedate-month>
-                      <option value="00"><%= __('Mois') %></option>
+                      <option value="00"><%= gt.gettext('Mois') %></option>
                     <% for (var x = 1; x < 13; x++) { %>
                       <option value="<%= ("0" + x).slice(-2) %>"><%= ("0" + x).slice(-2) %></option>
                     <% } %>
@@ -239,33 +239,33 @@
                 </div>
                 <div class="col-xs-5">
                   <div class="form-group">
-                    <input type="number" class="form-control" id="releasedate-year" name="releasedate_year" data-releasedate-year placeholder="<%= __('Année') %>" />
+                    <input type="number" class="form-control" id="releasedate-year" name="releasedate_year" data-releasedate-year placeholder="<%= gt.gettext('Année') %>" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="genre" class="col-sm-3 control-label"><%= __('Genre') %></label>
+            <label for="genre" class="col-sm-3 control-label"><%= gt.gettext('Genre') %></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="genre" name="genre" data-genre />
             </div>
           </div>
           <div class="form-group">
-            <label for="players" class="col-sm-3 control-label"><%= __('Joueurs') %></label>
+            <label for="players" class="col-sm-3 control-label"><%= gt.gettext('Joueurs') %></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="players" name="players" data-players />
             </div>
           </div>
           <div class="form-group">
-            <label for="rating" class="col-sm-3 control-label"><%= __('Note') %></label>
+            <label for="rating" class="col-sm-3 control-label"><%= gt.gettext('Note') %></label>
             <div class="col-sm-9">
               <div data-rating-div></div>
               <input type="hidden" name="rating" data-rating />
             </div>
           </div>
           <div class="form-group">
-            <label for="desc" class="col-sm-3 control-label"><%= __('Description') %></label>
+            <label for="desc" class="col-sm-3 control-label"><%= gt.gettext('Description') %></label>
             <div class="col-sm-9">
               <textarea class="form-control" id="desc" name="desc" rows="10" data-desc></textarea>
             </div>
@@ -273,10 +273,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Fermer') %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= gt.gettext('Fermer') %></button>
         <button type="button" class="btn btn-primary" data-update="confirm">
           <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-          <%= __('Valider') %>
+          <%= gt.gettext('Valider') %>
         </button>
       </div>
     </div>

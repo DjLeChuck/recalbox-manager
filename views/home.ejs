@@ -1,14 +1,14 @@
-<div class="page-header"><h1><%= __("Accueil") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Accueil") %></h1></div>
 
 <div class="row">
   <div class="col-md-2 col-md-offset-2 text-center">
     <div class="panel panel-default">
       <div class="panel-body">
         <a href="//<%= hostname %>:8080/" target="_blank">
-          <img src="img/gamepad.png" alt="<%= __('Utiliser le gamepad virtuel') %>" />
+          <img src="img/gamepad.png" alt="<%= gt.gettext('Utiliser le gamepad virtuel') %>" />
           <br />
           <br />
-          <%= __("Utiliser le gamepad virtuel") %>
+          <%= gt.gettext("Utiliser le gamepad virtuel") %>
         </a>
       </div>
     </div>
@@ -17,10 +17,10 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <a href="//<%= hostname %>:8080/keyboard.html" target="_blank">
-          <img src="img/keyboard.png" alt="<%= __('Utiliser le clavier virtuel') %>" />
+          <img src="img/keyboard.png" alt="<%= gt.gettext('Utiliser le clavier virtuel') %>" />
           <br />
           <br />
-          <%= __("Utiliser le clavier virtuel") %>
+          <%= gt.gettext("Utiliser le clavier virtuel") %>
         </a>
       </div>
     </div>

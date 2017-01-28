@@ -3,11 +3,15 @@ module.exports = {
     this.state.downloadUrl = this.session.downloadUrl || undefined;
     this.session.downloadUrl = undefined;
 
-    this.state.raspi2png = this.state.config.recalbox.raspi2png;
     this.state.screenshotPath = this.session.screenshotPath || undefined;
     this.session.screenshotPath = undefined;
 
     this.state.activePage = 'help';
+
+    this.state.screenshotSavePath = this.state.gt.gettext("Le résultat sera sauvegardé dans le dossier %s.");
+    this.state.screenshotSavePath = this.state.screenshotSavePath.replace("%s", "<code>" + this.state.config.recalbox.raspi2png.savePath + "</code>");
+    this.state.recalboxSupportSavePath = this.state.gt.gettext("Si on vous demande d'envoyer le résultat du script %s, vous pouvez le faire automatiquement ci-dessous.");
+    this.state.recalboxSupportSavePath = this.state.recalboxSupportSavePath.replace("%s", "<code>recalbox-support.sh</code>");
 
     yield this.render('help');
   },

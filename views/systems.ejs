@@ -1,11 +1,11 @@
-<div class="page-header"><h1><%= __("Système") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Système") %></h1></div>
 
-<p class="important"><%= __("Cette page permet de gérer les différents réglages système de recalbox.") %></p>
+<p class="important"><%= gt.gettext("Cette page permet de gérer les différents réglages système de recalbox.") %></p>
 
 <form method="post" action="/systems" class="form-horizontal">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Ratio de l'écran") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Ratio de l'écran") %></h3>
     </div>
     <div class="panel-body">
       <select name="global.ratio" class="selectpicker show-tick form-control" data-select data-live-search="true">
@@ -20,15 +20,18 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Set de shaders") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Set de shaders") %></h3>
     </div>
     <div class="panel-body">
       <div class="bs-callout bs-callout-warning">
-        <h4><%= __("Shaders disponibles :") %></h4>
+        <h4><%= gt.gettext("Shaders disponibles :") %></h4>
         <ul>
-          <li><strong>scanlines</strong> <%= __("active les scanlines sur tous les emulateurs,") %></li>
-          <li><strong>retro</strong> <%= __("sélectionne le \"meilleur\" shader pour chaque système, choisi par la communauté. Il vous apportera l'expérience de jeu la plus proche de l'expérience originale,") %></li>
-          <li><strong>none</strong> <%= __("ne met aucun shaders.") %></li>
+          <li><strong>scanlines</strong> <%= gt.gettext("active les scanlines sur tous les emulateurs,") %></li>
+          <li>
+            <strong>retro</strong>
+            <%= gt.gettext('sélectionne le "meilleur" shader pour chaque système, choisi par la communauté.') %>
+            <%= gt.gettext("Il vous apportera l'expérience de jeu la plus proche de l'expérience originale,") %></li>
+          <li><strong>none</strong> <%= gt.gettext("ne met aucun shaders.") %></li>
         </ul>
       </div>
 
@@ -44,7 +47,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Lissage des jeux") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Lissage des jeux") %></h3>
     </div>
     <div class="panel-body">
       <input type="hidden" name="global.smooth" value="0" />
@@ -54,15 +57,15 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Rembobinage des jeux") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Rembobinage des jeux") %></h3>
     </div>
     <div class="panel-body">
-      <p><%= __("L'option rembobinage vous autorise à effectuer des retours dans le temps lors de votre partie.") %></p>
+      <p><%= gt.gettext("L'option rembobinage vous autorise à effectuer des retours dans le temps lors de votre partie.") %></p>
 
       <div class="alert alert-warning">
         <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-        <span class="sr-only"><%= __("Attention :") %></span>
-        <%= __("Cela peut ralentir certains émulateurs (snes, psx) si vous l'activez par défaut.") %>
+        <span class="sr-only"><%= gt.gettext("Attention :") %></span>
+        <%= gt.gettext("Cela peut ralentir certains émulateurs (snes, psx) si vous l'activez par défaut.") %>
       </div>
 
       <input type="hidden" name="global.rewind" value="0" />
@@ -72,12 +75,12 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Sauvegarde / Chargement automatique") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Sauvegarde / Chargement automatique") %></h3>
     </div>
     <div class="panel-body">
       <p>
-        <%= __("Cette option vous permet de créer une sauvegarde automatique de votre jeu quand vous le quittez, puis de la charger à nouveau quand vous le relancerez.") %>
-        <%= __("Une fois le jeu lancé et la sauvegarde chargée, si vous souhaitez revenir à l'écran titre du jeu, utilisez la commande spéciale de reset.") %>
+        <%= gt.gettext("Cette option vous permet de créer une sauvegarde automatique de votre jeu quand vous le quittez, puis de la charger à nouveau quand vous le relancerez.") %>
+        <%= gt.gettext("Une fois le jeu lancé et la sauvegarde chargée, si vous souhaitez revenir à l'écran titre du jeu, utilisez la commande spéciale de reset.") %>
       </p>
 
       <input type="hidden" name="global.autosave" value="0" />
@@ -87,11 +90,11 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Pixel perfect") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Pixel perfect") %></h3>
     </div>
     <div class="panel-body">
       <p>
-        <%= __("Une fois activée, votre écran sera rognée, et vous aure un rendu \"pixel perfect\" dans vos jeux.") %>
+        <%= gt.gettext('Une fois activée, votre écran sera rognée, et vous aure un rendu "pixel perfect" dans vos jeux.') %>
       </p>
 
       <input type="hidden" name="global.integerscale" value="0" />
@@ -101,14 +104,14 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Retroachievements") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Retroachievements") %></h3>
     </div>
     <div class="panel-body">
-      <p><%- __("RetroAchievements.org (%s) est un site communautaire qui permet de gagner des haut-faits sur mesure dans les jeux d'arcade grâce à l'émulation.", '<a href="http://retroachievements.org/">http://retroachievements.org/</a>') %></p>
-      <p><%= __("Les haut-faits sont conçus par et pour la communauté.") %></p>
+      <p><%- retroAchievementsDesc %></p>
+      <p><%= gt.gettext("Les haut-faits sont conçus par et pour la communauté.") %></p>
 
       <div class="form-group">
-        <label for="retroachievements-enabled" class="col-md-4 control-label"><%= __("Activer RetroAchievements") %></label>
+        <label for="retroachievements-enabled" class="col-md-4 control-label"><%= gt.gettext("Activer RetroAchievements") %></label>
         <div class="col-md-6">
           <input type="hidden" name="global.retroachievements" value="0">
           <input type="checkbox" name="global.retroachievements" value="1" id="retroachievements-enabled" data-switch<% if (1 == global.retroachievements) { %> checked="checked"<% } %>>
@@ -117,15 +120,15 @@
 
       <div class="well">
         <div class="form-group">
-          <label for="retroachievements-username" class="col-md-4 control-label"><%= __("Login") %></label>
+          <label for="retroachievements-username" class="col-md-4 control-label"><%= gt.gettext("Login") %></label>
           <div class="col-md-6">
-            <input type="text" name="global.retroachievements.username" class="form-control" id="retroachievements-username" placeholder="<%= __('Login') %>" value="<%= global['retroachievements.username'] %>">
+            <input type="text" name="global.retroachievements.username" class="form-control" id="retroachievements-username" placeholder="<%= gt.gettext('Login') %>" value="<%= global['retroachievements.username'] %>">
           </div>
         </div>
         <div class="form-group">
-          <label for="retroachievements-password" class="col-md-4 control-label"><%= __("Mot de passe") %></label>
+          <label for="retroachievements-password" class="col-md-4 control-label"><%= gt.gettext("Mot de passe") %></label>
           <div class="col-md-6">
-            <input type="text" name="global.retroachievements.password" class="form-control" id="retroachievements-password" placeholder="<%= __('Mot de passe') %>" value="<%= global['retroachievements.password'] %>">
+            <input type="text" name="global.retroachievements.password" class="form-control" id="retroachievements-password" placeholder="<%= gt.gettext('Mot de passe') %>" value="<%= global['retroachievements.password'] %>">
           </div>
         </div>
       </div>
@@ -133,7 +136,7 @@
   </div>
 
   <p>
-    <a href="/systems" class="btn btn-danger"><%= __("Annuler") %></a>
-    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
+    <a href="/systems" class="btn btn-danger"><%= gt.gettext("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= gt.gettext("Enregistrer") %></button>
   </p>
 </form>

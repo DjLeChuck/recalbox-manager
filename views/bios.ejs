@@ -1,21 +1,21 @@
-<div class="page-header"><h1><%= __("BIOS") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("BIOS") %></h1></div>
 
-<p><%= __("Voici la liste de l'ensemble des BIOS supportés par recalbox.") %></p>
-<p><%= __("Les fichiers se trouvent dans le répertoire suivant :") %> <code><%= biosPath %></code></p>
-<p><%= __("Grâce à la dernière colonne du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.") %></p>
+<p><%= gt.gettext("Voici la liste de l'ensemble des BIOS supportés par recalbox.") %></p>
+<p><%= gt.gettext("Les fichiers se trouvent dans le répertoire suivant :") %> <code><%= biosPath %></code></p>
+<p><%= gt.gettext('Grâce à la colonne "Valide" du tableau, vous pouvez voir si les BIOS que vous possédez sont bons ou non.') %></p>
 
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-upload" aria-expanded="false" aria-controls="collapse-upload">
-  <%= __("Uploader des BIOS") %>
+  <%= gt.gettext("Uploader des BIOS") %>
 </button>
 <div class="collapse" id="collapse-upload">
   <br />
 
   <div class="well">
-    <p><%= __("Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.") %></p>
+    <p><%= gt.gettext("Une fois les BIOS uploadés, il faudra recharger la page pour vérifier leur MD5.") %></p>
 
     <form action="/bios/upload" class="dropzone" enctype="multipart/form-data" id="bios-upload"
-      data-drop-here="<%= __('Déposer des fichiers ici pour les uploader.') %>"
-      data-server-error="<%= __('Erreur lors de l\'upload.') %>">
+      data-drop-here="<%= gt.gettext('Déposer des fichiers ici pour les uploader.') %>"
+      data-server-error="<%= uploadError %>">
     </form>
   </div>
 </div>
@@ -25,25 +25,25 @@
 
 <div class="sticky-alert center-block no-display" data-delete-alert="success">
   <div class="alert alert-success" role="alert">
-    <strong><%= __("Et voilà !") %></strong>
-    <%= __("Votre BIOS a bien été supprimée !") %>
+    <strong><%= gt.gettext("Et voilà !") %></strong>
+    <%= gt.gettext("Votre BIOS a bien été supprimée !") %>
   </div>
 </div>
 
 <div class="sticky-alert center-block no-display" data-delete-alert="error">
   <div class="alert alert-danger" role="alert">
-    <strong><%= __("Oups !") %></strong>
-    <%= __("Il semble que votre BIOS n'ait pas été supprimée.") %>
+    <strong><%= gt.gettext("Oups !") %></strong>
+    <%= gt.gettext("Il semble que votre BIOS n'ait pas été supprimée.") %>
   </div>
 </div>
 
 <table class="table table-striped table-hover table-nonfluid">
   <thead>
     <tr>
-      <th class="col-md-2"><%= __("BIOS") %></th>
-      <th class="col-md-3"><%= __("MD5 attendu") %></th>
-      <th class="col-md-1"><%= __("Valide") %></th>
-      <th class="col-md-1"><%= __("Action") %></th>
+      <th class="col-md-2"><%= gt.gettext("BIOS") %></th>
+      <th class="col-md-3"><%= gt.gettext("MD5 attendu") %></th>
+      <th class="col-md-1"><%= gt.gettext("Valide") %></th>
+      <th class="col-md-1"><%= gt.gettext("Action") %></th>
     </tr>
     <tbody>
     <% biosList.forEach((item, index) => { %>
@@ -61,7 +61,7 @@
         </td>
         <td>
         <% if (null !== item.valid) { %>
-          <button class="btn btn-danger" type="submit" aria-label="<%= __('Supprimer') %>"
+          <button class="btn btn-danger" type="submit" aria-label="<%= gt.gettext('Supprimer') %>"
             data-toggle="modal" data-target="#deleteBiosModal"
             data-name="<%= item.name %>" data-index="<%= index %>">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -79,10 +79,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="deleteModalTitle"><%= __("Attention") %></h4>
+        <h4 class="modal-title" id="deleteModalTitle"><%= gt.gettext("Attention") %></h4>
       </div>
       <div class="modal-body">
-        <p><%- __("Voulez-vous vraiment supprimer %s ?", "<strong data-name></strong>") %></p>
+        <p><%- deleteConfirmation %></p>
 
         <form method="post" action="/bios/delete" data-delete="form">
           <input type="hidden" name="bios" />
@@ -90,10 +90,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __("Non") %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= gt.gettext("Non") %></button>
         <button type="button" class="btn btn-warning" data-delete="confirm">
           <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-          <%= __("Oui") %>
+          <%= gt.gettext("Oui") %>
         </button>
       </div>
     </div>

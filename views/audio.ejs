@@ -1,17 +1,17 @@
-<div class="page-header"><h1><%= __("Audio") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Audio") %></h1></div>
 
-<p class="important"><%= __("Cette page permet de gérer la partie audio de recalbox.") %></p>
+<p class="important"><%= gt.gettext("Cette page permet de gérer la partie audio de recalbox.") %></p>
 
 <form method="post" action="/audio">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Musique de fond") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Musique de fond") %></h3>
     </div>
     <div class="panel-body">
       <div class="alert alert-warning">
         <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-        <span class="sr-only"><%= __("Attention :") %></span>
-        <%= __("Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.") %>
+        <span class="sr-only"><%= gt.gettext("Attention :") %></span>
+        <%= gt.gettext("Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.") %>
       </div>
 
       <input type="hidden" name="audio.bgmusic" value="0" />
@@ -21,7 +21,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Volume du son") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Volume du son") %></h3>
     </div>
     <div class="panel-body top40">
       <input type="text" name="audio.volume" value="<%= audio.volume %>" class="slider" data-slider data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="<%= audio.volume %>" />
@@ -30,7 +30,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Sortie audio") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Sortie audio") %></h3>
     </div>
     <div class="panel-body">
       <select name="audio.device" data-select>
@@ -44,7 +44,7 @@
   </div>
 
   <p>
-    <a href="/audio" class="btn btn-danger"><%= __("Annuler") %></a>
-    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
+    <a href="/audio" class="btn btn-danger"><%= gt.gettext("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= gt.gettext("Enregistrer") %></button>
   </p>
 </form>

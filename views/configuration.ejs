@@ -1,15 +1,15 @@
-<div class="page-header"><h1><%= __("Configuration") %></h1></div>
+<div class="page-header"><h1><%= gt.gettext("Configuration") %></h1></div>
 
-<p class="important"><%= __("Cette page permet de gérer différentes configurations de recalbox tel que les paramètres Wi-Fi, la timezone, la locale, etc.") %></p>
+<p class="important"><%= gt.gettext("Cette page permet de gérer différentes configurations de recalbox tel que les paramètres Wi-Fi, la timezone, la locale, etc.") %></p>
 
 <form method="post" action="/configuration" class="form-horizontal">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Options système") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Options système") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="system-language" class="col-md-4 control-label"><%= __("Langue du système") %></label>
+        <label for="system-language" class="col-md-4 control-label"><%= gt.gettext("Langue du système") %></label>
         <div class="col-md-6">
           <select name="system.language" id="system-language" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% systemlocales.forEach(function (item) { %>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="keyboardlayout" class="col-md-4 control-label"><%= __("Layout du clavier") %></label>
+        <label for="keyboardlayout" class="col-md-4 control-label"><%= gt.gettext("Layout du clavier") %></label>
         <div class="col-md-6">
           <select name="system.kblayout" id="keyboardlayout" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% keyboardlayouts.forEach(function (item) { %>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="timezone" class="col-md-4 control-label"><%= __("Timezone") %></label>
+        <label for="timezone" class="col-md-4 control-label"><%= gt.gettext("Timezone") %></label>
         <div class="col-md-6">
           <select name="system.timezone" id="timezone" class="selectpicker show-tick form-control" data-select="timezone" data-live-search="true">
             <option value="">&dash;</option>
@@ -50,17 +50,18 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Options réseau") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Options réseau") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="hostname" class="col-md-4 control-label"><%= __("Nom d'hôte") %></label>
+        <label for="hostname" class="col-md-4 control-label"><%= gt.gettext("Nom d'hôte") %></label>
         <div class="col-md-6">
-          <input type="text" name="system.hostname" id="hostname" class="form-control" placeholder="<%= __('Nom d\'hôte') %>" value="<%= system.hostname %>">
+          <% var hostName = gt.gettext("Nom d'hôte") %>
+          <input type="text" name="system.hostname" id="hostname" class="form-control" placeholder="<%= hostName %>" value="<%= system.hostname %>">
         </div>
       </div>
       <div class="form-group">
-        <label for="wifi-enabled" class="col-md-4 control-label"><%= __("Activer le wifi") %></label>
+        <label for="wifi-enabled" class="col-md-4 control-label"><%= gt.gettext("Activer le wifi") %></label>
         <div class="col-md-6">
           <input type="hidden" name="wifi.enabled" value="0">
           <input type="checkbox" name="wifi.enabled" value="1" id="wifi-enabled" data-switch<% if (1 == wifi.enabled) { %> checked="checked"<% } %>>
@@ -69,19 +70,19 @@
 
       <div class="well">
         <div class="alert alert-warning" role="alert">
-          <%= __("Attention, si vous vous trompez dans vos informations vous risquez de ne plus pouvoir accéder à votre recalbox par le wifi.") %>
+          <%= gt.gettext("Attention, si vous vous trompez dans vos informations vous risquez de ne plus pouvoir accéder à votre recalbox par le wifi.") %>
         </div>
 
         <div class="form-group">
-          <label for="wifi-ssid" class="col-md-4 control-label"><%= __("SSID") %></label>
+          <label for="wifi-ssid" class="col-md-4 control-label"><%= gt.gettext("SSID") %></label>
           <div class="col-md-6">
-            <input type="text" name="wifi.ssid" class="form-control" id="wifi-ssid" placeholder="<%= __('SSID') %>" value="<%= wifi.ssid %>">
+            <input type="text" name="wifi.ssid" class="form-control" id="wifi-ssid" placeholder="<%= gt.gettext('SSID') %>" value="<%= wifi.ssid %>">
           </div>
         </div>
         <div class="form-group">
-          <label for="wifi-key" class="col-md-4 control-label"><%= __("Clé") %></label>
+          <label for="wifi-key" class="col-md-4 control-label"><%= gt.gettext("Clé") %></label>
           <div class="col-md-6">
-            <input type="text" name="wifi.key" class="form-control" id="wifi-key" placeholder="<%= __('Clé') %>" value="<%= wifi.key %>">
+            <input type="text" name="wifi.key" class="form-control" id="wifi-key" placeholder="<%= gt.gettext('Clé') %>" value="<%= wifi.key %>">
           </div>
         </div>
       </div>
@@ -90,25 +91,25 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Options Kodi") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Options Kodi") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="kodi-enabled" class="col-md-4 control-label"><%= __("Activer Kodi") %></label>
+        <label for="kodi-enabled" class="col-md-4 control-label"><%= gt.gettext("Activer Kodi") %></label>
         <div class="col-md-6">
           <input type="hidden" name="kodi.enabled" value="0">
           <input type="checkbox" name="kodi.enabled" value="1" id="kodi-enabled" data-switch<% if (1 == kodi.enabled) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
-        <label for="kodi-atstartup" class="col-md-4 control-label"><%= __("Lancer Kodi au démarrage") %></label>
+        <label for="kodi-atstartup" class="col-md-4 control-label"><%= gt.gettext("Lancer Kodi au démarrage") %></label>
         <div class="col-md-6">
           <input type="hidden" name="kodi.atstartup" value="0">
           <input type="checkbox" name="kodi.atstartup" value="1" id="kodi-atstartup" data-switch<% if (1 == kodi.atstartup) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
-        <label for="kodi-xbutton" class="col-md-4 control-label"><%- __("Lancer Kodi via la touche %s", "<kbd>X</kbd>") %></label>
+        <label for="kodi-xbutton" class="col-md-4 control-label"><%- gt.gettext("Lancer Kodi via la touche <kbd>X</kbd>") %></label>
         <div class="col-md-6">
           <input type="hidden" name="kodi.xbutton" value="0">
           <input type="checkbox" name="kodi.xbutton" value="1" id="kodi-xbutton" data-switch<% if (1 == kodi.xbutton) { %> checked="checked"<% } %>>
@@ -119,17 +120,17 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("EmulationStation") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("EmulationStation") %></h3>
     </div>
     <div class="panel-body">
-      <h4><%= __("Choix du style de menu") %></h4>
+      <h4><%= gt.gettext("Choix du style de menu") %></h4>
 
       <div class="bs-callout bs-callout-warning">
-        <h4><%= __("Options disponibles :") %></h4>
+        <h4><%= gt.gettext("Options disponibles :") %></h4>
         <ul>
-          <li><strong>default</strong> <%= ("correspond au menu de base avec toutes les options,") %></li>
-          <li><strong>none</strong> <%= ("n'offre aucun menu excepté celui de recherche de jeux,") %></li>
-          <li><strong>bartop</strong> <%= ("comporte peu de menu, seulement ceux nécessaires pour les bartops.") %></li>
+          <li><strong>default</strong> <%= gt.gettext("correspond au menu de base avec toutes les options,") %></li>
+          <li><strong>none</strong> <%= gt.gettext("n'offre aucun menu excepté celui de recherche de jeux,") %></li>
+          <li><strong>bartop</strong> <%= gt.gettext("comporte peu de menu, seulement ceux nécessaires pour les bartops.") %></li>
         </ul>
       </div>
 
@@ -145,17 +146,17 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Touche spéciale") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Touche spéciale") %></h3>
     </div>
     <div class="panel-body">
-      <h4><%= __("Choix du comportement de la touche spéciale dans les émulateurs") %></h4>
+      <h4><%= gt.gettext("Choix du comportement de la touche spéciale dans les émulateurs") %></h4>
 
       <div class="bs-callout bs-callout-warning">
-        <h4><%= __("Options disponibles :") %></h4>
+        <h4><%= gt.gettext("Options disponibles :") %></h4>
         <ul>
-          <li><strong>default</strong> <%= ("correspond au fonctionnement de base avec toutes les possibilités,") %></li>
-          <li><strong>nomenu</strong> <%= ("désactive l'affichage du menu,") %></li>
-          <li><strong>none</strong> <%= ("désactive la touche spéciale.") %></li>
+          <li><strong>default</strong> <%= gt.gettext("correspond au fonctionnement de base avec toutes les possibilités,") %></li>
+          <li><strong>nomenu</strong> <%= gt.gettext("désactive l'affichage du menu,") %></li>
+          <li><strong>none</strong> <%= gt.gettext("désactive la touche spéciale.") %></li>
         </ul>
       </div>
 
@@ -171,17 +172,17 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("API") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("API") %></h3>
     </div>
     <div class="panel-body">
       <div class="alert alert-warning">
         <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-        <span class="sr-only"><%= __("Attention :") %></span>
-        <%= __("Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.") %>
+        <span class="sr-only"><%= gt.gettext("Attention :") %></span>
+        <%= gt.gettext("Cette modification nécessite de redémarrer votre recalbox pour être prise en compte.") %>
       </div>
 
       <div class="form-group">
-        <label for="api-enabled" class="col-md-7 control-label"><%= __("Activer l'option de recalbox qui permet d'interagir avec via une API REST") %></label>
+        <label for="api-enabled" class="col-md-7 control-label"><%= gt.gettext("Activer l'option de recalbox qui permet d'interagir avec via une API REST") %></label>
         <div class="col-md-3">
           <input type="hidden" name="system.api.enabled" value="0">
           <input type="checkbox" name="system.api.enabled" value="1" id="api-enabled" data-switch<% if (1 == system.api.enabled) { %> checked="checked"<% } %>>
@@ -192,18 +193,18 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= __("Mises à jour") %></h3>
+      <h3 class="panel-title"><%= gt.gettext("Mises à jour") %></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="updates-enabled" class="col-md-7 control-label"><%= __("Vérifier les mises à jours au démarrage du système") %></label>
+        <label for="updates-enabled" class="col-md-7 control-label"><%= gt.gettext("Vérifier les mises à jours au démarrage du système") %></label>
         <div class="col-md-3">
           <input type="hidden" name="updates.enabled" value="0">
           <input type="checkbox" name="updates.enabled" value="1" id="updates-enabled" data-switch<% if (1 == updates.enabled) { %> checked="checked"<% } %>>
         </div>
       </div>
       <div class="form-group">
-        <label for="update-type" class="col-md-7 control-label"><%= __("Type de version") %></label>
+        <label for="update-type" class="col-md-7 control-label"><%= gt.gettext("Type de version") %></label>
         <div class="col-md-3">
           <select name="updates.type" id="updates-type" class="selectpicker show-tick form-control" data-select data-live-search="true">
           <% updatesTypes.forEach(function (item) { %>
@@ -218,7 +219,7 @@
   </div>
 
   <p>
-    <a href="/configuration" class="btn btn-danger"><%= __("Annuler") %></a>
-    <button type="submit" class="btn btn-success"><%= __("Enregistrer") %></button>
+    <a href="/configuration" class="btn btn-danger"><%= gt.gettext("Annuler") %></a>
+    <button type="submit" class="btn btn-success"><%= gt.gettext("Enregistrer") %></button>
   </p>
 </form>

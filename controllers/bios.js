@@ -31,6 +31,10 @@ module.exports = {
 
     this.state.biosList = bios;
 
+    this.state.uploadError = this.state.gt.gettext("Erreur lors de l'upload.");
+    this.state.deleteConfirmation = this.state.gt.gettext("Voulez-vous vraiment supprimer %s ?");
+    this.state.deleteConfirmation = this.state.deleteConfirmation.replace("%s", "<strong data-name></strong>");
+
     yield this.render('bios');
   },
 

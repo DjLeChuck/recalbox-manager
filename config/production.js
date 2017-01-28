@@ -1,4 +1,4 @@
-module.exports = function (i18n) {
+module.exports = function (gt) {
   return {
     smartFile: {
       url: 'https://app.smartfile.com/api/2',
@@ -39,27 +39,27 @@ module.exports = function (i18n) {
       // Audio
       audio: {
         devices: [
-          {key: 'auto', value: i18n.__("Automatique")},
-          {key: 'hdmi', value: i18n.__("Prise HDMI")},
-          {key: 'jack', value: i18n.__("Prise Jack")}
+          {key: 'auto', value: gt.gettext("Automatique")},
+          {key: 'hdmi', value: gt.gettext("Prise HDMI")},
+          {key: 'jack', value: gt.gettext("Prise Jack")}
         ]
       },
 
       // Controllers
       controllers: {
         ps3drivers: [
-          {key: 'official', value: i18n.__("Officiel")},
-          {key: 'shanwan', value: i18n.__("Shanwan")},
-          {key: 'bluez', value: i18n.__("Bluez 5")}
+          {key: 'official', value: gt.gettext("Officiel")},
+          {key: 'shanwan', value: gt.gettext("Shanwan")},
+          {key: 'bluez', value: gt.gettext("Bluez 5")}
         ]
       },
 
       // Configuration
       configuration: {
         updatesTypes: [
-          {key: 'stable', value: i18n.__("Stable")},
-          {key: 'beta', value: i18n.__("Bêta")},
-          {key: 'unstable', value: i18n.__("Instable")},
+          {key: 'stable', value: gt.gettext("Stable")},
+          {key: 'beta', value: gt.gettext("Bêta")},
+          {key: 'unstable', value: gt.gettext("Instable")},
         ],
         esMenus: [
           'default',
@@ -685,17 +685,17 @@ module.exports = function (i18n) {
       // Systems
       systems: {
         ratio: [
-          {key: 'auto', value: i18n.__("Automatique")},
+          {key: 'auto', value: gt.gettext("Automatique")},
           {key: '4/3', value: '4/3'},
           {key: '16/9', value: '16/9'},
           {key: '16/10', value: '16/10'},
-          {key: 'custom', value: i18n.__("Personnalisé")}
+          {key: 'custom', value: gt.gettext("Personnalisé")}
         ],
 
         shaderset: [
-          {key: 'none', value: i18n.__("Aucun")},
-          {key: 'retro', value: i18n.__("Retro")},
-          {key: 'scanlines', value: i18n.__("Scanlines")},
+          {key: 'none', value: gt.gettext("Aucun")},
+          {key: 'retro', value: gt.gettext("Retro")},
+          {key: 'scanlines', value: gt.gettext("Scanlines")},
         ],
 
         tvservice: {

@@ -7,7 +7,7 @@ var serve = require('koa-static');
 var session = require('koa-session');
 var flash = require('koa-flash');
 var locale = require('koa-locale');
-var i18n = require('koa-i18n');
+var Gettext = require('node-gettext');
 
 // Controllers
 var home = require('./controllers/home');
@@ -46,28 +46,38 @@ render(app, {
 
 app.use(function *(next) {
   // Switch locale
-  if (this.request.query.locale) {
-    this.cookies.set('locale', this.request.query.locale);
+  let managerLocale;
+  let localeQuery = this.request.getLocaleFromQuery();
+
+  if (localeQuery) {
+    managerLocale = localeQuery;
+  } else {
+    let localeCookie = this.request.getLocaleFromCookie();
+
+    if (localeCookie) {
+      managerLocale = localeCookie;
+    } else {
+      managerLocale = this.request.getLocaleFromHeader();
+    }
   }
+
+  this.cookies.set('locale', managerLocale);
+
+  var gt = new Gettext();
+  var locale = managerLocale.replace('-', '_');
+  var fileContents = require('fs').readFileSync(`config/locales/${locale}.mo`);
+  gt.addTextdomain(locale, fileContents);
+
+  this.state.gt = gt;
 
   yield next;
 });
-
-app.use(i18n(app, {
-  directory: './config/locales',
-  locales: ['fr', 'en'],
-  modes: [
-    'query', //  optional detect querystring - `/?locale=en-US`
-    'cookie', //  optional detect cookie      - `Cookie: locale=zh-TW`
-    'header' //  optional detect header      - `Accept-Language: zh-CN,zh;q=0.5`
-  ]
-}));
 
 app.use(function *(next) {
   // Define empty flash message container if not exists
   this.state.flash = this.state.flash || {};
 
-  this.state.config = require('./lib/utils').getConfig(this.i18n);
+  this.state.config = require('./lib/utils').getConfig(this.state.gt);
   this.state.api = require('./lib/api')();
   this.state.currentUrl = this.request.path.replace(/\/+$/g,"");
 

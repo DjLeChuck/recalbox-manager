@@ -128,6 +128,10 @@ module.exports= {
     var gameIndex;
 
     if (rawGameList.gameList.game) {
+      if (!Array.isArray(rawGameList.gameList.game)) {
+        rawGameList.gameList.game = [rawGameList.gameList.game];
+      }
+
       for (var i = 0; i < rawGameList.gameList.game.length; i++) {
         var item = rawGameList.gameList.game[i];
 

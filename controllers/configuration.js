@@ -43,17 +43,11 @@ module.exports = {
 
     yield this.render('configuration');
   },
+
   save: function *() {
-    var post = this.request.fields;
-    var api = this.state.api;
+    var utils = require('../lib/utils');
 
-    // Set values
-    Object.keys(post).forEach(function (key) {
-      var val = post[key];
-      val = Array.isArray(val) ? val[val.length - 1] : val;
-
-      api.save(key, val);
-    });
+    utils.handleRecalboxConfigUpdate(this.request.fields, this.state.api);
 
     this.flash = { success: this.state.gt.gettext('La configuration a bien été sauvegardée.') };
 

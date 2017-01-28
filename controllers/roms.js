@@ -123,15 +123,19 @@ module.exports= {
     var gameData = { path: './' + romPath };
     var gameIndex;
 
-    for (var i = 0; i < rawGameList.gameList.game.length; i++) {
-      var item = rawGameList.gameList.game[i];
+    if (rawGameList.gameList.game) {
+      for (var i = 0; i < rawGameList.gameList.game.length; i++) {
+        var item = rawGameList.gameList.game[i];
 
-      if ('./' + romPath === item.path) {
-        gameData = item;
-        gameIndex = i;
+        if ('./' + romPath === item.path) {
+          gameData = item;
+          gameIndex = i;
 
-        break;
+          break;
+        }
       }
+    } else {
+      rawGameList.gameList = { game: [] };
     }
 
     // Update game data

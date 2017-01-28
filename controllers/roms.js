@@ -1,4 +1,4 @@
-module.exports= {
+module.exports = {
   list: function * () {
     var utils = require('../lib/utils');
     var systems = [];

@@ -2,6 +2,7 @@ var _ = require('koa-route');
 var koa = require('koa');
 var render = require('koa-ejs');
 var path = require('path');
+var fs = require('fs');
 var body = require('koa-better-body');
 var serve = require('koa-static');
 var session = require('koa-session');
@@ -46,7 +47,7 @@ render(app, {
 
 app.use(function *(next) {
   // Switch locale
-  let managerLocale;
+  let managerLocale = 'en-US';
   let localeQuery = this.request.getLocaleFromQuery();
 
   if (localeQuery) {
@@ -65,7 +66,9 @@ app.use(function *(next) {
 
   var gt = new Gettext();
   var locale = managerLocale.replace('-', '_');
-  var fileContents = require('fs').readFileSync(`config/locales/${locale}.mo`);
+  var moFile = `config/locales/${locale}.mo`;
+  moFile = fs.existsSync(moFile) ? moFile : 'config/locales/en_US.mo';
+  var fileContents = require('fs').readFileSync(moFile);
   gt.addTextdomain(locale, fileContents);
 
   this.state.gt = gt;

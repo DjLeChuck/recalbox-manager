@@ -1,7 +1,7 @@
 module.exports.index = function *() {
   this.state.activePage = 'home';
 
-  this.state.hostname = this.state.api.load('system.hostname');
+  this.state.hostname = this.request.hostname;
 
   yield this.render('home');
 };

@@ -307,6 +307,50 @@ $(function () {
     return false;
   });
 
+  // Delete screenshot
+  var $deleteAlertSuccess = $("[data-delete-alert=success]");
+  var $deleteAlertError = $("[data-delete-alert=error]");
+  var $deleteForm = $("[data-delete=form]");
+  var $deleteScreenshotModal = $("#deleteScreenshotModal");
+
+  $deleteScreenshotModal.on("show.bs.modal", function (event) {
+    var $button = $(event.relatedTarget);
+    var $this = $(this);
+
+    $this.find("[data-name]").text($button.data("name"));
+    $this.find("[name=screenshot]").val($button.data("name"));
+    $this.find("[data-index]").val($button.data("index"));
+  });
+
+  $("[data-delete=confirm]", $deleteScreenshotModal).on("click", function (event) {
+    var $button = $(this);
+    var $toggleHidden = $button.find("[data-toggle-hidden]");
+
+    $button.attr("disabled", true);
+    $toggleHidden.toggleClass("hidden");
+
+    $.ajax({
+      url: $deleteForm.attr("action"),
+      method: $deleteForm.attr("method"),
+      data: $deleteForm.serialize()
+    }).done(function () {
+      $deleteScreenshotModal.modal("hide");
+
+      $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
+        $(this).remove();
+      });
+
+      showThenHideAlertBox($deleteAlertSuccess);
+    }).fail(function () {
+      showThenHideAlertBox($deleteAlertError);
+    }).always(function () {
+      $button.attr("disabled", false);
+      $toggleHidden.toggleClass("hidden");
+    });
+
+    return false;
+  });
+
   // Help
   var $submitBtns = $("[data-form-ajax] [type=submit]");
 

@@ -31,6 +31,7 @@ module.exports = function (gt) {
       },
       romsPath: '/recalbox/share/roms',
       romsExcludedFolders: ['downloaded_images'],
+      screenshotsPath: '/recalbox/share/screenshots',
       biosPath: '/recalbox/share/bios/',
       biosFilePath: '/recalbox/share/bios/readme.txt',
       esSystemsCfgPath: '/recalbox/share_init/system/.emulationstation/es_systems.cfg',

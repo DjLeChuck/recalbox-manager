@@ -22,6 +22,7 @@ var logs = require('./controllers/logs');
 var recalboxConf = require('./controllers/recalbox-conf');
 var help = require('./controllers/help');
 var roms = require('./controllers/roms');
+var screenshots = require('./controllers/screenshots');
 var isDev = 'development' === (process.env.NODE_ENV || 'production');
 
 var app = koa();
@@ -113,5 +114,7 @@ app.use(_.post('/roms/launch', roms.launch));
 app.use(_.post('/roms/update', roms.update));
 app.use(_.post('/roms/delete', roms.delete));
 app.use(_.get('/roms/:name/:path*', roms.view));
+app.use(_.get('/screenshots', screenshots.index));
+app.use(_.post('/screenshots/delete', screenshots.delete));
 
 app.listen(process.env.PORT || 3000);

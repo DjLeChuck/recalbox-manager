@@ -235,3 +235,5 @@ body {padding-top: 50px}
 .locale-switcher { margin-bottom: 0; }
 .form-horizontal .date-picker-select .form-group { margin-left: 0; margin-right: 0; }
 .table-nonfluid { width: auto !important; }
+.relative { position: relative; }
+.relative .top-right { position: absolute; right: 7px; top: 7px; }

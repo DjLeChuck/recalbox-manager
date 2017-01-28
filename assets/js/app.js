@@ -1,338 +1,368 @@
 $(function () {
-    // Switch ON / OFF
-    $("[data-switch").bootstrapSwitch();
+  // Add hidden field with start values
+  var $formAddHidden = $("[data-form=add-hidden]");
 
-    // Input select
-    $("[data-select]").selectpicker();
+  if (0 < $formAddHidden.length) {
+    function getFieldsValues(fields) {
+      var values = {};
 
-    // Sliders
-    $("[data-slider]").slider({
-        tooltip: "always"
-    });
+      fields.each((i, item) => {
+        var $item = $(item);
+        var value;
 
-    // matchHeight
-    $("[data-match-height]").matchHeight();
-
-    function showThenHideAlertBox($el) {
-      $el.fadeIn(800, function () {
-        setTimeout(function () {
-          $el.fadeOut(800);
-        }, 2000);
-      });
-    }
-
-    // Timezone select
-    var $timeZoneSelect = $("[data-select=timezone]");
-
-    if (0 < $timeZoneSelect.length) {
-      if ("" === $timeZoneSelect.val()) {
-        var timezone = jstz.determine();
-
-        $timeZoneSelect.selectpicker("val", timezone.name());
-      }
-    }
-
-    // Launch ROM
-    var $launchAlertSuccess = $("[data-launch-alert=success]");
-    var $launchAlertError = $("[data-launch-alert=error]");
-
-    $("[data-play]").on("click", function () {
-      var $this = $(this);
-      var $toggleHidden = $this.find("[data-toggle-hidden]");
-
-      $this.attr("disabled", true);
-      $toggleHidden.toggleClass("hidden");
-
-      $.ajax({
-        url: "/roms/launch",
-        method: "post",
-        data: {
-          system: $this.data("system"),
-          rom: $this.data("rom")
-        }
-      }).done(function () {
-        showThenHideAlertBox($launchAlertSuccess);
-      }).fail(function () {
-        showThenHideAlertBox($launchAlertError);
-      }).always(function () {
-        $this.attr("disabled", false);
-        $toggleHidden.toggleClass("hidden");
-      });
-
-      return false;
-    });
-
-    // Delete ROM
-    var $deleteAlertSuccess = $("[data-delete-alert=success]");
-    var $deleteAlertError = $("[data-delete-alert=error]");
-    var $deleteForm = $("[data-delete=form]");
-    var $deleteModal = $("#deleteModal");
-    var $romNumber = $("[data-rom-number]");
-
-    $deleteModal.on("show.bs.modal", function (event) {
-      var $button = $(event.relatedTarget);
-      var $this = $(this);
-
-      $this.find("[data-fullname]").text($button.data("fullname"));
-      $this.find("[name=rom]").val($button.data("filename"));
-      $this.find("[data-index]").val($button.data("index"));
-    });
-
-    $("[data-delete=confirm]", $deleteModal).on("click", function (event) {
-      var $button = $(this);
-      var $toggleHidden = $button.find("[data-toggle-hidden]");
-
-      $button.attr("disabled", true);
-      $toggleHidden.toggleClass("hidden");
-
-      $.ajax({
-        url: $deleteForm.attr("action"),
-        method: $deleteForm.attr("method"),
-        data: $deleteForm.serialize()
-      }).done(function () {
-        $deleteModal.modal("hide");
-
-        $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
-          $(this).remove();
-        });
-
-        $romNumber.text(parseInt($romNumber.text()) - 1);
-
-        showThenHideAlertBox($deleteAlertSuccess);
-      }).fail(function () {
-        showThenHideAlertBox($deleteAlertError);
-      }).always(function () {
-        $button.attr("disabled", false);
-        $toggleHidden.toggleClass("hidden");
-      });
-
-      return false;
-    });
-
-    // Update ROM
-    var $updateAlertSuccess = $("[data-update-alert=success]");
-    var $updateAlertError = $("[data-update-alert=error]");
-    var $updateForm = $("[data-update=form]");
-    var $updateModal = $("#updateModal");
-    var $starRating = $updateModal.find("[data-rating-div]").rateYo({
-      maxValue: 1,
-      precision: 2
-    });
-
-    $updateModal.on("show.bs.modal", function (event) {
-      var $button = $(event.relatedTarget);
-      var $this = $(this);
-
-      $this.find("[data-fullname]").text($button.data("fullname"));
-      $this.find("[data-fullname-val]").val($button.data("fullname"));
-      $this.find("[name=rom]").val($button.data("filename"));
-      $this.find("[data-index]").data("index", $button.data("index"));
-      $this.find("[data-publisher]").val($button.data("publisher"));
-      $this.find("[data-developer]").val($button.data("developer"));
-      $this.find("[data-genre]").val($button.data("genre"));
-      $this.find("[data-players]").val($button.data("players"));
-      $this.find("[data-desc]").val($button.data("desc"));
-      $this.find("[data-rating]").val($button.data("rating") || 0);
-      $this.find("[data-releasedate-day]").selectpicker('val', $button.data("releasedate-day") || '00');
-      $this.find("[data-releasedate-month]").selectpicker('val', $button.data("releasedate-month") || '00');
-      $this.find("[data-releasedate-year]").val($button.data("releasedate-year"));
-
-      $starRating.rateYo("option", "rating", $this.find("[data-rating]").val());
-      $starRating.rateYo("option", "onSet", function (rating) {
-        $updateModal.find("[data-rating]").val(rating);
-      });
-    });
-
-    $("[data-update=confirm]").on("click", function (event) {
-      var $button = $(this);
-      var $toggleHidden = $button.find("[data-toggle-hidden]");
-
-      $button.attr("disabled", true);
-      $toggleHidden.toggleClass("hidden");
-
-      $.ajax({
-        url: $updateForm.attr("action"),
-        method: $updateForm.attr("method"),
-        data: $updateForm.serialize()
-      }).done(function () {
-        // Update data on page
-        var $updateButton = $("[data-update=trigger][data-index=" + $updateForm.data("index") + "]");
-        var fullname = $updateForm.find("[data-fullname-val]").val();
-
-        $updateButton.data({
-          fullname: fullname,
-          desc: $updateForm.find("[data-desc]").val(),
-          genre: $updateForm.find("[data-genre]").val(),
-          players: $updateForm.find("[data-players]").val(),
-          publisher: $updateForm.find("[data-publisher]").val(),
-          developer: $updateForm.find("[data-developer]").val(),
-          rating: $updateForm.find("[data-rating]").val(),
-          releasedateDay: $updateForm.find("[data-releasedate-day]").val(),
-          releasedateMonth: $updateForm.find("[data-releasedate-month]").val(),
-          releasedateYear: $updateForm.find("[data-releasedate-year]").val(),
-        });
-
-        $("[data-rom-fullname][data-index=" + $updateForm.data("index") + "]").text(fullname);
-
-        $updateModal.modal("hide");
-        showThenHideAlertBox($updateAlertSuccess);
-      }).fail(function () {
-        showThenHideAlertBox($updateAlertError);
-      }).always(function () {
-        $button.attr("disabled", false);
-        $toggleHidden.toggleClass("hidden");
-      });
-
-      return false;
-    });
-
-    // Upload ROMs
-    var $upload = $("#roms-upload");
-
-    if (0 < $upload.length) {
-      $upload.dropzone({
-        paramName: "roms",
-        dictDefaultMessage: $upload.data("drop-here"),
-        dictResponseError: $upload.data("server-error")
-      });
-    }
-
-    // Back to top
-    var $backToTop = $('#back-to-top');
-
-    if (0 < $backToTop.length) {
-      $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-          $backToTop.fadeIn();
+        if ($item.is(":checkbox")) {
+          value = parseInt(+$item.is(":checked"));
         } else {
-          $backToTop.fadeOut();
+          value = $item.val();
         }
+
+        values[$item.attr("name")] = value;
       });
 
-      // scroll body to 0px on click
-      $backToTop.on("click", function () {
-        $backToTop.tooltip("hide");
-        $("body,html").animate({
-          scrollTop: 0
-        }, 800);
-
-        return false;
-      });
-
-      $backToTop.tooltip("show");
+      return values;
     }
 
-    // Upload BIOS
-    var $uploadBios = $("#bios-upload");
+    $formAddHidden.prepend($("<input />", {
+      type: "hidden",
+      name: "__fields__",
+      value: btoa(JSON.stringify(getFieldsValues($formAddHidden.find("input,select,textarea"))))
+    }));
+  }
 
-    if (0 < $uploadBios.length) {
-      $uploadBios.dropzone({
-        paramName: "bios",
-        dictDefaultMessage: $uploadBios.data("drop-here"),
-        dictResponseError: $uploadBios.data("server-error")
-      });
+  // Switch ON / OFF
+  $("[data-switch").bootstrapSwitch();
+
+  // Input select
+  $("[data-select]").selectpicker();
+
+  // Sliders
+  $("[data-slider]").slider({
+      tooltip: "always"
+  });
+
+  // matchHeight
+  $("[data-match-height]").matchHeight();
+
+  function showThenHideAlertBox($el) {
+    $el.fadeIn(800, function () {
+      setTimeout(function () {
+        $el.fadeOut(800);
+      }, 2000);
+    });
+  }
+
+  // Timezone select
+  var $timeZoneSelect = $("[data-select=timezone]");
+
+  if (0 < $timeZoneSelect.length) {
+    if ("" === $timeZoneSelect.val()) {
+      var timezone = jstz.determine();
+
+      $timeZoneSelect.selectpicker("val", timezone.name());
     }
+  }
 
-    // Delete BIOS
-    var $deleteAlertSuccess = $("[data-delete-alert=success]");
-    var $deleteAlertError = $("[data-delete-alert=error]");
-    var $deleteForm = $("[data-delete=form]");
-    var $deleteBiosModal = $("#deleteBiosModal");
+  // Launch ROM
+  var $launchAlertSuccess = $("[data-launch-alert=success]");
+  var $launchAlertError = $("[data-launch-alert=error]");
 
-    $deleteBiosModal.on("show.bs.modal", function (event) {
-      var $button = $(event.relatedTarget);
-      var $this = $(this);
+  $("[data-play]").on("click", function () {
+    var $this = $(this);
+    var $toggleHidden = $this.find("[data-toggle-hidden]");
 
-      $this.find("[data-name]").text($button.data("name"));
-      $this.find("[name=bios]").val($button.data("name"));
-      $this.find("[data-index]").val($button.data("index"));
+    $this.attr("disabled", true);
+    $toggleHidden.toggleClass("hidden");
+
+    $.ajax({
+      url: "/roms/launch",
+      method: "post",
+      data: {
+        system: $this.data("system"),
+        rom: $this.data("rom")
+      }
+    }).done(function () {
+      showThenHideAlertBox($launchAlertSuccess);
+    }).fail(function () {
+      showThenHideAlertBox($launchAlertError);
+    }).always(function () {
+      $this.attr("disabled", false);
+      $toggleHidden.toggleClass("hidden");
     });
 
-    $("[data-delete=confirm]", $deleteBiosModal).on("click", function (event) {
-      var $button = $(this);
-      var $toggleHidden = $button.find("[data-toggle-hidden]");
+    return false;
+  });
 
-      $button.attr("disabled", true);
-      $toggleHidden.toggleClass("hidden");
+  // Delete ROM
+  var $deleteAlertSuccess = $("[data-delete-alert=success]");
+  var $deleteAlertError = $("[data-delete-alert=error]");
+  var $deleteForm = $("[data-delete=form]");
+  var $deleteModal = $("#deleteModal");
+  var $romNumber = $("[data-rom-number]");
 
-      $.ajax({
-        url: $deleteForm.attr("action"),
-        method: $deleteForm.attr("method"),
-        data: $deleteForm.serialize()
-      }).done(function () {
-        $deleteBiosModal.modal("hide");
+  $deleteModal.on("show.bs.modal", function (event) {
+    var $button = $(event.relatedTarget);
+    var $this = $(this);
 
-        $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
-          $(this).remove();
-        });
+    $this.find("[data-fullname]").text($button.data("fullname"));
+    $this.find("[name=rom]").val($button.data("filename"));
+    $this.find("[data-index]").val($button.data("index"));
+  });
 
-        showThenHideAlertBox($deleteAlertSuccess);
-      }).fail(function () {
-        showThenHideAlertBox($deleteAlertError);
-      }).always(function () {
-        $button.attr("disabled", false);
-        $toggleHidden.toggleClass("hidden");
+  $("[data-delete=confirm]", $deleteModal).on("click", function (event) {
+    var $button = $(this);
+    var $toggleHidden = $button.find("[data-toggle-hidden]");
+
+    $button.attr("disabled", true);
+    $toggleHidden.toggleClass("hidden");
+
+    $.ajax({
+      url: $deleteForm.attr("action"),
+      method: $deleteForm.attr("method"),
+      data: $deleteForm.serialize()
+    }).done(function () {
+      $deleteModal.modal("hide");
+
+      $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
+        $(this).remove();
       });
+
+      $romNumber.text(parseInt($romNumber.text()) - 1);
+
+      showThenHideAlertBox($deleteAlertSuccess);
+    }).fail(function () {
+      showThenHideAlertBox($deleteAlertError);
+    }).always(function () {
+      $button.attr("disabled", false);
+      $toggleHidden.toggleClass("hidden");
+    });
+
+    return false;
+  });
+
+  // Update ROM
+  var $updateAlertSuccess = $("[data-update-alert=success]");
+  var $updateAlertError = $("[data-update-alert=error]");
+  var $updateForm = $("[data-update=form]");
+  var $updateModal = $("#updateModal");
+  var $starRating = $updateModal.find("[data-rating-div]").rateYo({
+    maxValue: 1,
+    precision: 2
+  });
+
+  $updateModal.on("show.bs.modal", function (event) {
+    var $button = $(event.relatedTarget);
+    var $this = $(this);
+
+    $this.find("[data-fullname]").text($button.data("fullname"));
+    $this.find("[data-fullname-val]").val($button.data("fullname"));
+    $this.find("[name=rom]").val($button.data("filename"));
+    $this.find("[data-index]").data("index", $button.data("index"));
+    $this.find("[data-publisher]").val($button.data("publisher"));
+    $this.find("[data-developer]").val($button.data("developer"));
+    $this.find("[data-genre]").val($button.data("genre"));
+    $this.find("[data-players]").val($button.data("players"));
+    $this.find("[data-desc]").val($button.data("desc"));
+    $this.find("[data-rating]").val($button.data("rating") || 0);
+    $this.find("[data-releasedate-day]").selectpicker('val', $button.data("releasedate-day") || '00');
+    $this.find("[data-releasedate-month]").selectpicker('val', $button.data("releasedate-month") || '00');
+    $this.find("[data-releasedate-year]").val($button.data("releasedate-year"));
+
+    $starRating.rateYo("option", "rating", $this.find("[data-rating]").val());
+    $starRating.rateYo("option", "onSet", function (rating) {
+      $updateModal.find("[data-rating]").val(rating);
+    });
+  });
+
+  $("[data-update=confirm]").on("click", function (event) {
+    var $button = $(this);
+    var $toggleHidden = $button.find("[data-toggle-hidden]");
+
+    $button.attr("disabled", true);
+    $toggleHidden.toggleClass("hidden");
+
+    $.ajax({
+      url: $updateForm.attr("action"),
+      method: $updateForm.attr("method"),
+      data: $updateForm.serialize()
+    }).done(function () {
+      // Update data on page
+      var $updateButton = $("[data-update=trigger][data-index=" + $updateForm.data("index") + "]");
+      var fullname = $updateForm.find("[data-fullname-val]").val();
+
+      $updateButton.data({
+        fullname: fullname,
+        desc: $updateForm.find("[data-desc]").val(),
+        genre: $updateForm.find("[data-genre]").val(),
+        players: $updateForm.find("[data-players]").val(),
+        publisher: $updateForm.find("[data-publisher]").val(),
+        developer: $updateForm.find("[data-developer]").val(),
+        rating: $updateForm.find("[data-rating]").val(),
+        releasedateDay: $updateForm.find("[data-releasedate-day]").val(),
+        releasedateMonth: $updateForm.find("[data-releasedate-month]").val(),
+        releasedateYear: $updateForm.find("[data-releasedate-year]").val(),
+      });
+
+      $("[data-rom-fullname][data-index=" + $updateForm.data("index") + "]").text(fullname);
+
+      $updateModal.modal("hide");
+      showThenHideAlertBox($updateAlertSuccess);
+    }).fail(function () {
+      showThenHideAlertBox($updateAlertError);
+    }).always(function () {
+      $button.attr("disabled", false);
+      $toggleHidden.toggleClass("hidden");
+    });
+
+    return false;
+  });
+
+  // Upload ROMs
+  var $upload = $("#roms-upload");
+
+  if (0 < $upload.length) {
+    $upload.dropzone({
+      paramName: "roms",
+      dictDefaultMessage: $upload.data("drop-here"),
+      dictResponseError: $upload.data("server-error")
+    });
+  }
+
+  // Back to top
+  var $backToTop = $('#back-to-top');
+
+  if (0 < $backToTop.length) {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 50) {
+        $backToTop.fadeIn();
+      } else {
+        $backToTop.fadeOut();
+      }
+    });
+
+    // scroll body to 0px on click
+    $backToTop.on("click", function () {
+      $backToTop.tooltip("hide");
+      $("body,html").animate({
+        scrollTop: 0
+      }, 800);
 
       return false;
     });
 
-    // Help
-    var $submitBtns = $("[data-form-ajax] [type=submit]");
+    $backToTop.tooltip("show");
+  }
 
-    $submitBtns.on("click", function () {
-      $submitBtns.data("clicked", false);
+  // Upload BIOS
+  var $uploadBios = $("#bios-upload");
 
-      $(this).data("clicked", true);
+  if (0 < $uploadBios.length) {
+    $uploadBios.dropzone({
+      paramName: "bios",
+      dictDefaultMessage: $uploadBios.data("drop-here"),
+      dictResponseError: $uploadBios.data("server-error")
+    });
+  }
+
+  // Delete BIOS
+  var $deleteAlertSuccess = $("[data-delete-alert=success]");
+  var $deleteAlertError = $("[data-delete-alert=error]");
+  var $deleteForm = $("[data-delete=form]");
+  var $deleteBiosModal = $("#deleteBiosModal");
+
+  $deleteBiosModal.on("show.bs.modal", function (event) {
+    var $button = $(event.relatedTarget);
+    var $this = $(this);
+
+    $this.find("[data-name]").text($button.data("name"));
+    $this.find("[name=bios]").val($button.data("name"));
+    $this.find("[data-index]").val($button.data("index"));
+  });
+
+  $("[data-delete=confirm]", $deleteBiosModal).on("click", function (event) {
+    var $button = $(this);
+    var $toggleHidden = $button.find("[data-toggle-hidden]");
+
+    $button.attr("disabled", true);
+    $toggleHidden.toggleClass("hidden");
+
+    $.ajax({
+      url: $deleteForm.attr("action"),
+      method: $deleteForm.attr("method"),
+      data: $deleteForm.serialize()
+    }).done(function () {
+      $deleteBiosModal.modal("hide");
+
+      $("[data-row=" + $deleteForm.find("[data-index]").val() + "]").fadeOut(600, function () {
+        $(this).remove();
+      });
+
+      showThenHideAlertBox($deleteAlertSuccess);
+    }).fail(function () {
+      showThenHideAlertBox($deleteAlertError);
+    }).always(function () {
+      $button.attr("disabled", false);
+      $toggleHidden.toggleClass("hidden");
     });
 
-    $("[data-form-ajax]").on("submit", function () {
-      var $button = $submitBtns.filter(function () { return $(this).data("clicked"); });
+    return false;
+  });
 
-      if ($button.is("[data-noajax]")) {
+  // Help
+  var $submitBtns = $("[data-form-ajax] [type=submit]");
+
+  $submitBtns.on("click", function () {
+    $submitBtns.data("clicked", false);
+
+    $(this).data("clicked", true);
+  });
+
+  $("[data-form-ajax]").on("submit", function () {
+    var $button = $submitBtns.filter(function () { return $(this).data("clicked"); });
+
+    if ($button.is("[data-noajax]")) {
+      return true;
+    }
+
+    // Ne pas déplacer après var $form = $(this);
+    $(this).append(
+      $('<input type="hidden" data-submitted>').attr({
+        name: $button.attr("name"),
+        value: $button.attr("value"),
+      })
+    );
+
+    var $form = $(this);
+
+    $.ajax({
+      url: $form.attr("action"),
+      method: $form.attr("method"),
+      data: $form.serialize(),
+      beforeSend: function () {
+        $button.find("[data-toggle-hidden]").toggleClass("hidden");
+        $button.attr("disabled", true);
+
         return true;
       }
+    }).done(function (response) {
+      var $result = $button.closest("div").find("[data-result]");
 
-      // Ne pas déplacer après var $form = $(this);
-      $(this).append(
-        $('<input type="hidden" data-submitted>').attr({
-          name: $button.attr("name"),
-          value: $button.attr("value"),
-        })
-      );
+      $result.find("[data-value]").each(function () {
+        var $resultItem = $(this);
 
-      var $form = $(this);
-
-      $.ajax({
-        url: $form.attr("action"),
-        method: $form.attr("method"),
-        data: $form.serialize(),
-        beforeSend: function () {
-          $button.find("[data-toggle-hidden]").toggleClass("hidden");
-          $button.attr("disabled", true);
-
-          return true;
+        if ($resultItem.is("a")) {
+          $resultItem.attr("href", response.value);
+        } else {
+          $resultItem.text(response.value);
         }
-      }).done(function (response) {
-        var $result = $button.closest("div").find("[data-result]");
-
-        $result.find("[data-value]").each(function () {
-          var $resultItem = $(this);
-
-          if ($resultItem.is("a")) {
-            $resultItem.attr("href", response.value);
-          } else {
-            $resultItem.text(response.value);
-          }
-        });
-
-        $result.removeClass("no-display");
-      }).always(function () {
-        $button.find("[data-toggle-hidden]").toggleClass("hidden");
-        $button.attr("disabled", false);
-        $("[data-submitted]").remove();
       });
 
-      return false;
+      $result.removeClass("no-display");
+    }).always(function () {
+      $button.find("[data-toggle-hidden]").toggleClass("hidden");
+      $button.attr("disabled", false);
+      $("[data-submitted]").remove();
     });
+
+    return false;
+  });
 });

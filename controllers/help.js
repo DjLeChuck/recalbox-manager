@@ -51,7 +51,10 @@ module.exports = {
         case 'restart':
         case 'stop':
         case 'start':
-          spawn(this.state.config.recalbox.emulationStationPath, [post.es]);
+          spawn(this.state.config.recalbox.emulationStationPath, [post.es], {
+            stdio: 'ignore', // piping all stdio to /dev/null
+            detached: true
+          }).unref();
 
           if (isAjax) {
             this.body = { success: true };

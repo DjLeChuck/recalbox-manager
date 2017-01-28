@@ -117,18 +117,19 @@ module.exports = {
       var moment = require('moment');
       var execSync = require('child_process').execSync;
       var raspi2png = this.state.config.recalbox.raspi2png;
-      var screenshotName = "screenshot-" + moment().format("YYYY-MM-DD_HH-mm-ss-SSS") + ".png";
+      var screenshotName = `screenshot-${moment().format("YYYY-MM-DD_HH-mm-ss-SSS")}.png`;
       var returnPath = raspi2png.savePath + "/" + screenshotName;
+      var screenshotUrl = `//${this.request.hostname}/${screenshotName}`;
 
       execSync(raspi2png.command + " " + returnPath);
 
       if (isAjax) {
         this.body = {
           success: true,
-          value: "//recalbox/" + screenshotName
+          value: screenshotUrl
         };
       } else {
-        this.session.screenshotName = "//recalbox/" + screenshotName;
+        this.session.screenshotName = screenshotUrl;
 
         this.redirect('back');
       }

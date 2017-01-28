@@ -13,29 +13,6 @@
 <form method="post" action="/help" data-form-ajax>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= gt.gettext("Effectuer une capture d'écran") %></h3>
-    </div>
-    <div class="panel-body">
-      <p><%= gt.gettext("Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.") %></p>
-      <p><%- screenshotSavePath %></p>
-
-      <p>
-        <button type="submit" name="screenshot" value="1" class="btn btn-success">
-          <span class="glyphicon glyphicon-refresh glyphicon-spin hidden" data-toggle-hidden></span>
-          <%= gt.gettext("Faire une capture") %>
-        </button>
-      </p>
-
-      <p class="no-display" data-result><%= gt.gettext("Capture d'écran enregistrée :") %> <a data-value target="_blank">Télécharger</a></p>
-
-    <% if (typeof screenshotPath !== 'undefined') { %>
-      <p><%= gt.gettext("Capture d'écran enregistrée :") %> <a href="<%= screenshotName %>" target="_blank">Télécharger</a></p>
-    <% } %>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
       <h3 class="panel-title"><%= gt.gettext("Exécution de recalbox-support.sh") %></h3>
     </div>
     <div class="panel-body">

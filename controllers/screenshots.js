@@ -3,10 +3,15 @@ module.exports = {
     const utils = require('../lib/utils');
     this.state.screenshots = utils.getScreenshots();
 
+    this.state.screenshotPath = this.session.screenshotPath || undefined;
+    this.session.screenshotPath = undefined;
+
     this.state.activePage = 'screenshots';
 
     this.state.deleteConfirmation = this.state.gt.gettext("Voulez-vous vraiment supprimer %s ?");
     this.state.deleteConfirmation = this.state.deleteConfirmation.replace("%s", "<strong data-name></strong>");
+    this.state.screenshotSavePath = this.state.gt.gettext("Le résultat sera sauvegardé dans le dossier %s.");
+    this.state.screenshotSavePath = this.state.screenshotSavePath.replace("%s", "<code>" + this.state.config.recalbox.raspi2png.savePath + "</code>");
 
     yield this.render('screenshots');
   },

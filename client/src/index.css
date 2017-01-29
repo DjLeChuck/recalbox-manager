@@ -1,0 +1,18 @@
+.top5 { padding-top:5px; }
+.top7 { padding-top:7px; }
+.top10 { padding-top:10px; }
+.top15 { padding-top:15px; }
+.top17 { padding-top:17px; }
+.top30 { padding-top:30px; }
+.top40 { padding-top:40px; }
+
+.big-glyphicon {font-size:4em;}
+.no-display{display:none;}
+.rom-image {max-width: 230px;}
+.back-to-top { cursor: pointer; position: fixed; bottom: 20px; right: 20px; display:none; }
+.sticky-alert { position: fixed; top: 47px; left: 0; right: 0; z-index: 7000; width:290px; }
+.locale-switcher { margin-bottom: 0; }
+.form-horizontal .date-picker-select .form-group { margin-left: 0; margin-right: 0; }
+.table-nonfluid { width: auto !important; }
+.relative { position: relative; }
+.relative .top-right { position: absolute; right: 7px; top: 7px; }

@@ -27,42 +27,42 @@ export default class Layout extends React.Component {
           <Navbar.Collapse>
             <Nav pullRight>
               <IndexLinkContainer to="/">
-                <NavItem><Glyphicon glyph="home" />Accueil</NavItem>
+                <NavItem><Glyphicon glyph="home" /> Accueil</NavItem>
               </IndexLinkContainer>
               <LinkContainer to="/monitoring">
-                <NavItem><Glyphicon glyph="signal" />Monitoring</NavItem>
+                <NavItem><Glyphicon glyph="signal" /> Monitoring</NavItem>
               </LinkContainer>
               <LinkContainer to="/audio">
-                <NavItem><Glyphicon glyph="volume-up" />Audio</NavItem>
+                <NavItem><Glyphicon glyph="volume-up" /> Audio</NavItem>
               </LinkContainer>
               <LinkContainer to="/bios">
-                <NavItem><Glyphicon glyph="cd" />BIOS</NavItem>
+                <NavItem><Glyphicon glyph="cd" /> BIOS</NavItem>
               </LinkContainer>
               <LinkContainer to="/controllers">
-                <NavItem><Glyphicon glyph="phone" />Contrôleurs</NavItem>
+                <NavItem><Glyphicon glyph="phone" /> Contrôleurs</NavItem>
               </LinkContainer>
               <LinkContainer to="/systems">
-                <NavItem><Glyphicon glyph="hdd" />Systèmes</NavItem>
+                <NavItem><Glyphicon glyph="hdd" /> Systèmes</NavItem>
               </LinkContainer>
               <LinkContainer to="/configuration">
-                <NavItem><Glyphicon glyph="cog" />Configuration</NavItem>
+                <NavItem><Glyphicon glyph="cog" /> Configuration</NavItem>
               </LinkContainer>
               <LinkContainer to="/roms">
-                <NavItem><Glyphicon glyph="floppy-disk" />ROMs</NavItem>
+                <NavItem><Glyphicon glyph="floppy-disk" /> ROMs</NavItem>
               </LinkContainer>
               <LinkContainer to="/screenshots">
-                <NavItem><Glyphicon glyph="picture" />Screenshots</NavItem>
+                <NavItem><Glyphicon glyph="picture" /> Screenshots</NavItem>
               </LinkContainer>
 
               <NavDropdown title={<span><Glyphicon glyph="question-sign" /> Dépannage </span>} id="basic-nav-dropdown">
                 <LinkContainer to="/logs">
-                  <NavItem><Glyphicon glyph="file" />Logs</NavItem>
+                  <NavItem><Glyphicon glyph="file" /> Logs</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/recalbox-conf">
-                  <NavItem><Glyphicon glyph="file" />recalbox.conf</NavItem>
+                  <NavItem><Glyphicon glyph="file" /> recalbox.conf</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/help">
-                  <NavItem><Glyphicon glyph="question-sign" />Dépannage</NavItem>
+                  <NavItem><Glyphicon glyph="question-sign" /> Dépannage</NavItem>
                 </LinkContainer>
               </NavDropdown>
             </Nav>
@@ -72,42 +72,42 @@ export default class Layout extends React.Component {
         <Grid fluid>
           <Row>
             <Col sm={3} md={2} className="sidebar">
-              <Nav>
+              <Nav className="nav-sidebar">
                 <IndexLinkContainer to="/">
-                  <NavItem><Glyphicon glyph="home" />Accueil</NavItem>
+                  <NavItem><Glyphicon glyph="home" /> Accueil</NavItem>
                 </IndexLinkContainer>
                 <LinkContainer to="/monitoring">
-                  <NavItem><Glyphicon glyph="signal" />Monitoring</NavItem>
+                  <NavItem><Glyphicon glyph="signal" /> Monitoring</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/audio">
-                  <NavItem><Glyphicon glyph="volume-up" />Audio</NavItem>
+                  <NavItem><Glyphicon glyph="volume-up" /> Audio</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/bios">
-                  <NavItem><Glyphicon glyph="cd" />BIOS</NavItem>
+                  <NavItem><Glyphicon glyph="cd" /> BIOS</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/controllers">
-                  <NavItem><Glyphicon glyph="phone" />Contrôleurs</NavItem>
+                  <NavItem><Glyphicon glyph="phone" /> Contrôleurs</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/systems">
-                  <NavItem><Glyphicon glyph="hdd" />Systèmes</NavItem>
+                  <NavItem><Glyphicon glyph="hdd" /> Systèmes</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/configuration">
-                  <NavItem><Glyphicon glyph="cog" />Configuration</NavItem>
+                  <NavItem><Glyphicon glyph="cog" /> Configuration</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/roms">
-                  <NavItem><Glyphicon glyph="floppy-disk" />ROMs</NavItem>
+                  <NavItem><Glyphicon glyph="floppy-disk" /> ROMs</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/screenshots">
-                  <NavItem><Glyphicon glyph="picture" />Screenshots</NavItem>
+                  <NavItem><Glyphicon glyph="picture" /> Screenshots</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/logs">
-                  <NavItem><Glyphicon glyph="file" />Logs</NavItem>
+                  <NavItem><Glyphicon glyph="file" /> Logs</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/recalbox-conf">
-                  <NavItem><Glyphicon glyph="file" />recalbox.conf</NavItem>
+                  <NavItem><Glyphicon glyph="file" /> recalbox.conf</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/help">
-                  <NavItem><Glyphicon glyph="question-sign" />Dépannage</NavItem>
+                  <NavItem><Glyphicon glyph="question-sign" /> Dépannage</NavItem>
                 </LinkContainer>
               </Nav>
             </Col>

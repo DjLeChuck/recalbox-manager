@@ -7,7 +7,6 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-bootstrap-select": "^0.14.0",

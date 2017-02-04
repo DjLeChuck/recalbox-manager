@@ -8,26 +8,21 @@ i18n
   .init({
     fallbackLng: 'en',
 
-    // have a common namespace used around the full app
-    /*ns: ['common'],
-    defaultNS: 'common',*/
-
     nsSeparator: false,
     keySeparator: false,
 
-    debug: 'production' !== process.env.NODE_ENV,
+    // too much verbose!
+    // debug: 'production' !== process.env.NODE_ENV,
+    debug: false,
 
     interpolation: {
       escapeValue: false // not needed for react!!
     },
 
     backend: {
-      // path where resources get loaded from, or a function
-      // returning a path:
-      // function(lngs, namespaces) { return customPath; }
-      // the returned path will interpolate lng, ns if provided like giving a static path
-      // loadPath: '/locales/{{lng}}.json',
-      loadPath: function(lngs, namespaces) { return `/locales/${lngs[0]}.json`; }
+      loadPath: function(lngs, namespaces) {
+        return `/locales/${lngs[0]}.json`;
+      }
     }
   });
 

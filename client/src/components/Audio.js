@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from 'react-loader';
+import { translate } from 'react-i18next';
 import { Panel, Alert, Glyphicon, Button } from 'react-bootstrap';
 import Switch from 'react-bootstrap-switch';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
@@ -95,25 +96,27 @@ class Audio extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <div>
-        <div className="page-header"><h1>Audio</h1></div>
+        <div className="page-header"><h1>{t('Audio')}</h1></div>
 
-        <p className="important">Cette page permet de gérer la partie audio de recalbox.</p>
+        <p className="important">{t('Cette page permet de gérer la partie audio de recalbox.')}</p>
 
         <Loader loaded={this.state.isLoaded}>
           <form onSubmit={this.onSubmit}>
-            <Panel header={<h3>Musique de fond</h3>}>
+            <Panel header={<h3>{t('Musique de fond')}</h3>}>
               <Alert bsStyle="warning">
-                <Glyphicon glyph="alert" /> <strong className="sr-only">Attention :</strong>
-                Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.
+                <Glyphicon glyph="alert" /> <strong className="sr-only">{t('Attention :')}</strong>
+                {t('Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.')}
               </Alert>
 
               <Switch name="audio.bgmusic" onChange={this.handleSwitchChange}
                 value={1 === parseInt(this.state['audio.bgmusic'], 10)} />
             </Panel>
 
-            <Panel header={<h3>Volume du son</h3>}>
+            <Panel header={<h3>{t('Volume du son')}</h3>}>
               <div className="top30">
                 <ReactBootstrapSlider slideStop={this.handleSliderChange}
                   value={parseInt(this.state['audio.volume'], 10)}
@@ -122,17 +125,17 @@ class Audio extends React.Component {
               </div>
             </Panel>
 
-            <Panel header={<h3>Sortie audio</h3>}>
+            <Panel header={<h3>{t('Sortie audio')}</h3>}>
               <Select2 name="audio.device" data={this.state.devices}
                 defaultValue={this.state['audio.device']} onChange={this.handleInputChange} />
             </Panel>
 
             <p>
-              <Button bsStyle="danger" onClick={this.reset}>Annuler</Button>{" "}
+              <Button bsStyle="danger" onClick={this.reset}>{t('Annuler')}</Button>{" "}
               <Button bsStyle="success" type="submit" disabled={this.state.isSaving}>
                 {this.state.isSaving &&
                   <span className="glyphicon glyphicon-refresh glyphicon-spin"></span>
-                } Enregistrer
+                } {t('Enregistrer')}
               </Button>
             </p>
           </form>
@@ -142,4 +145,4 @@ class Audio extends React.Component {
   }
 }
 
-export default Audio;
+export default translate()(Audio);

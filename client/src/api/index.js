@@ -13,13 +13,24 @@ function parseJSON(response) {
   return response.json();
 }
 
+function formatState(dataset) {
+  let result = {};
+
+  for (const [key, subdata] of Object.entries(dataset.data)) {
+    result[key] = subdata.value;
+  }
+
+  return result;
+}
+
 /**
  * grep values from recalbox.conf
  */
 export function grep(keys) {
   return fetch(`/grep?keys=${keys.join('|')}`)
     .then(checkStatus)
-    .then(parseJSON);
+    .then(parseJSON)
+    .then(formatState);
 }
 
 /**

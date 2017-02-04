@@ -51,18 +51,20 @@ module.exports = {
     // Controllers
     controllers: {
       ps3drivers: [
-        {key: 'official', value: "Officiel"},
-        {key: 'shanwan', value: "Shanwan"},
-        {key: 'bluez', value: "Bluez 5"}
+        {id: '', text: "–"},
+        {id: 'official', text: "Officiel"},
+        {id: 'shanwan', text: "Shanwan"},
+        {id: 'bluez', text: "Bluez 5"}
       ]
     },
 
     // Configuration
     configuration: {
       updatesTypes: [
-        {key: 'stable', value: "Stable"},
-        {key: 'beta', value: "Bêta"},
-        {key: 'unstable', value: "Instable"},
+        {id: '', text: "–"},
+        {id: 'stable', text: "Stable"},
+        {id: 'beta', text: "Bêta"},
+        {id: 'unstable', text: "Instable"},
       ],
       esMenus: [
         'default',
@@ -75,23 +77,25 @@ module.exports = {
         'none'
       ],
       keyboardlayouts: [
-        {key: 'us', value: 'American'},
-        {key: 'de', value: 'Deutsch'},
-        {key: 'en', value: 'English'},
-        {key: 'fr', value: 'Français'},
-        {key: 'es', value: 'Spanish'}
+        {id: '', text: "–"},
+        {id: 'us', text: 'American'},
+        {id: 'de', text: 'Deutsch'},
+        {id: 'en', text: 'English'},
+        {id: 'fr', text: 'Français'},
+        {id: 'es', text: 'Spanish'}
       ],
       systemlocales: [
-        {key: 'de_DE', value: 'Deutschland'},
-        {key: 'es_ES', value: 'España (es_ES)'},
-        {key: 'eu_ES', value: 'España (eu_ES)'},
-        {key: 'fr_FR', value: 'Français'},
-        {key: 'it_IT', value: 'Italia'},
-        {key: 'pt_BR', value: 'Português do Brasil'},
-        {key: 'tr_TR', value: 'Türkiye'},
-        {key: 'en_GB', value: 'United Kingdom'},
-        {key: 'en_US', value: 'USA'},
-        {key: 'zh_CN', value: '中华人民共和国'}
+        {id: '', text: "–"},
+        {id: 'de_DE', text: 'Deutschland'},
+        {id: 'es_ES', text: 'España (es_ES)'},
+        {id: 'eu_ES', text: 'España (eu_ES)'},
+        {id: 'fr_FR', text: 'Français'},
+        {id: 'it_IT', text: 'Italia'},
+        {id: 'pt_BR', text: 'Português do Brasil'},
+        {id: 'tr_TR', text: 'Türkiye'},
+        {id: 'en_GB', text: 'United Kingdom'},
+        {id: 'en_US', text: 'USA'},
+        {id: 'zh_CN', text: '中华人民共和国'}
       ],
       timezones: [
         'Africa/Abidjan',
@@ -688,17 +692,19 @@ module.exports = {
     // Systems
     systems: {
       ratio: [
-        {key: 'auto', value: "Automatique"},
-        {key: '4/3', value: '4/3'},
-        {key: '16/9', value: '16/9'},
-        {key: '16/10', value: '16/10'},
-        {key: 'custom', value: "Personnalisé"}
+        {id: '', text: "–"},
+        {id: 'auto', text: "Automatique"},
+        {id: '4/3', text: '4/3'},
+        {id: '16/9', text: '16/9'},
+        {id: '16/10', text: '16/10'},
+        {id: 'custom', text: "Personnalisé"}
       ],
 
       shaderset: [
-        {key: 'none', value: "Aucun"},
-        {key: 'retro', value: "Retro"},
-        {key: 'scanlines', value: "Scanlines"},
+        {id: '', text: "–"},
+        {id: 'none', text: "Aucun"},
+        {id: 'retro', text: "Retro"},
+        {id: 'scanlines', text: "Scanlines"},
       ],
     }
   }

@@ -1,15 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { translate } from 'react-i18next';
-import { Navbar, Nav, NavItem, NavDropdown, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import flagFr from '../dependencies/img/flag-fr.png';
-import flagUs from '../dependencies/img/flag-us.png';
+import flagEn from '../dependencies/img/flag-en.png';
+import flagEs from '../dependencies/img/flag-es.png';
+import flagDe from '../dependencies/img/flag-de.png';
+import flagPtBR from '../dependencies/img/flag-pt_BR.png';
+
+const languagesFlags = {
+  fr: flagFr,
+  en: flagEn,
+  es: flagEs,
+  de: flagDe,
+  'pt-BR': flagPtBR,
+};
 
 class Layout extends React.Component {
   render() {
     const { t } = this.props;
     const toggle = lng => this.props.i18n.changeLanguage(lng);
+    let languages = [];
+    const CurrentFlag = languagesFlags[this.props.i18n.language];
+
+    this.props.i18n.options.whitelist.map((locale) => {
+      if ('cimode' !== locale) {
+        const FlagImg = languagesFlags[locale];
+
+        languages.push(<MenuItem key={locale} onClick={() => toggle(locale)}>
+          <img src={FlagImg} alt={locale} />
+        </MenuItem>);
+      }
+    });
 
     return (
       <div>
@@ -18,13 +41,16 @@ class Layout extends React.Component {
             <Navbar.Brand>
               <Link to="/">{t('Recalbox Manager')}</Link>
             </Navbar.Brand>
-            <Navbar.Brand className="list-inline locale-switcher">
-              <NavItem onClick={() => toggle('fr')}><img src={flagFr} alt="Français" /></NavItem>
-              <NavItem onClick={() => toggle('en')}><img src={flagUs} alt="English" /></NavItem>
-            </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
+
           <Navbar.Collapse>
+            <Nav pullLeft>
+              <NavDropdown title={<img src={CurrentFlag} alt={this.props.i18n.language} />}
+                id="language-switcher" className="pull-left locale-switcher">
+                {languages}
+              </NavDropdown>
+            </Nav>
             <Nav pullRight>
               <IndexLinkContainer to="/">
                 <NavItem><Glyphicon glyph="home" /> {t('Accueil')}</NavItem>

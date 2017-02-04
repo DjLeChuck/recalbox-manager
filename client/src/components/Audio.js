@@ -6,7 +6,7 @@ import Switch from 'react-bootstrap-switch';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import Select2 from 'react-select2-wrapper';
 import { grep, conf, save } from '../api';
-import { diffObjects, cloneObject } from '../utils';
+import { diffObjects, cloneObject, FormActions } from '../utils';
 
 import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
 import '../dependencies/css/bootstrap-slider.min.css';
@@ -130,14 +130,7 @@ class Audio extends React.Component {
                 defaultValue={this.state['audio.device']} onChange={this.handleInputChange} />
             </Panel>
 
-            <p>
-              <Button bsStyle="danger" onClick={this.reset}>{t('Annuler')}</Button>{" "}
-              <Button bsStyle="success" type="submit" disabled={this.state.isSaving}>
-                {this.state.isSaving &&
-                  <span className="glyphicon glyphicon-refresh glyphicon-spin"></span>
-                } {t('Enregistrer')}
-              </Button>
-            </p>
+            <FormActions t={t} reset={this.reset} isSaving={this.state.isSaving} />
           </form>
         </Loader>
       </div>

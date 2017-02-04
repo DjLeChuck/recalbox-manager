@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap';
 
 export function diffObjects(prev, cur) {
   let newValues = Object.assign({}, prev, cur);
@@ -24,5 +24,18 @@ export function FieldGroup({ id, label, ...props }) {
       <Col componentClass={ControlLabel} md={4}>{label}</Col>
       <Col md={6}><FormControl {...props} /></Col>
     </FormGroup>
+  );
+}
+
+export function FormActions({ t, reset, isSaving }) {
+  return (
+    <p>
+      <Button bsStyle="danger" onClick={reset}>{t('Annuler')}</Button>{" "}
+      <Button bsStyle="success" type="submit" disabled={isSaving}>
+        {isSaving &&
+          <span className="glyphicon glyphicon-refresh glyphicon-spin"></span>
+        } {t('Enregistrer')}
+      </Button>
+    </p>
   );
 }

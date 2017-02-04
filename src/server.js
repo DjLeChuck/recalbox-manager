@@ -13,6 +13,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+// locales
+app.use('/locales', express.static('locales'));
+
 // parse application/json
 app.use(bodyParser.json());
 

@@ -16,3 +16,4 @@
 .table-nonfluid { width: auto !important; }
 .relative { position: relative; }
 .relative .top-right { position: absolute; right: 7px; top: 7px; }
+.loader { position: relative; min-height: 200px; }

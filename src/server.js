@@ -37,8 +37,8 @@ app.get('/grep', (req, res) => {
   let result = {};
 
   data.forEach((line) => {
-    const part = line.split('=');
-    let name = part[0];
+    const parts = line.split('=');
+    let name = parts.shift();
     let disabled;
 
     if (';' === name[0]) {
@@ -49,7 +49,7 @@ app.get('/grep', (req, res) => {
     }
 
     result[name] = {
-      value: part[1],
+      value: parts.join('='),
       disabled: disabled,
     };
   });

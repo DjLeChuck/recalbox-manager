@@ -25,13 +25,19 @@ class Layout extends React.Component {
     const CurrentFlag = languagesFlags[this.props.i18n.language];
 
     this.props.i18n.options.whitelist.map((locale) => {
-      if ('cimode' !== locale) {
-        const FlagImg = languagesFlags[locale];
-
-        languages.push(<MenuItem key={locale} onClick={() => toggle(locale)}>
-          <img src={FlagImg} alt={locale} />
-        </MenuItem>);
+      if ('cimode' === locale) {
+        return false;
       }
+
+      const FlagImg = languagesFlags[locale];
+
+      languages.push(
+        <MenuItem key={locale} onClick={() => toggle(locale)}>
+          <img src={FlagImg} alt={locale} />
+        </MenuItem>
+      );
+
+      return true;
     });
 
     return (

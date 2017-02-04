@@ -1,12 +1,14 @@
 import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Alert, Glyphicon, Col, Form, FormGroup, ControlLabel, Button } from 'react-bootstrap';
+import { Panel, Col, Form, FormGroup, ControlLabel } from 'react-bootstrap';
 import Switch from 'react-bootstrap-switch';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import Select2 from 'react-select2-wrapper';
 import { grep, conf, save } from '../api';
-import { diffObjects, cloneObject, FieldGroup, FormActions } from '../utils';
+import { diffObjects, cloneObject } from '../utils';
+import FieldGroup from './utils/FieldGroup';
+import FormActions from './utils/FormActions';
 
 import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
 import '../dependencies/css/bootstrap-slider.min.css';
@@ -100,9 +102,7 @@ class Controllers extends React.Component {
 
     this.currentValues = cloneObject(this.initialValues);
 
-    for (const [key, value] of Object.entries(this.initialValues)) {
-      this.setState({ [key]: value });
-    }
+    this.setState(this.currentValues);
   }
 
   render() {
@@ -227,7 +227,7 @@ class Controllers extends React.Component {
               </FormGroup>
             </Panel>
 
-            <FormActions t={t} reset={this.reset} isSaving={this.state.isSaving} />
+            <FormActions reset={this.reset} isSaving={this.state.isSaving} />
           </Form>
         </Loader>
       </div>

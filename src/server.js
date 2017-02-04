@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import config from 'config';
-import { execSync } from 'child_process';
+import { exec, execSync } from 'child_process';
 
 const app = express();
 
@@ -55,7 +55,18 @@ app.get('/grep', (req, res) => {
 });
 
 app.post('/save', (req, res) => {
-  console.log(req.body);
+  for (const key in req.body) {
+    execSync(`${config.get('recalbox.systemSettingsCommand')} -command save -key ${key} -value ${req.body[key]}`);
+  }
+
+  if (undefined !== req.body['audio.volume']) {
+    // Set volume
+    exec(`${config.get('recalbox.configScript')} volume ${req.body['audio.volume']}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+      }
+    });
+  }
 
   res.send({ success: true });
 });

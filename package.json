@@ -18,7 +18,8 @@
     "server": "babel-watch --watch config src/server.js",
     "client": "babel-node start-client.js",
     "build": "babel src -d dist",
-    "serve": "node dist/server.js"
+    "serve": "node dist/server.js",
+    "buildboth": "npm run build && cd client && npm run build && cd .."
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",

@@ -9,13 +9,13 @@
     ]
   },
   "dependencies": {
-    "child-process-promise": "^2.2.0",
+    "body-parser": "^1.16.0",
     "config": "^1.25.1",
     "express": "^4.14.0"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "babel-watch src/server.js",
+    "server": "babel-watch --watch config src/server.js",
     "client": "babel-node start-client.js",
     "build": "babel src -d dist",
     "serve": "node dist/server.js"

@@ -38,10 +38,7 @@ app.get('/get', (req, res) => {
 
       data.sort();
       break;
-    case 'logsList':
-      data = config.get('recalbox.logsPaths');
-      break;
-    case 'logsRead':
+    case 'readFile':
       data = fs.readFileSync(param).toString();
       break;
     default:

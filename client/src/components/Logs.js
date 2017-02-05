@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Button, FormControl, Col } from 'react-bootstrap';
-import { get } from '../api';
+import { conf, get } from '../api';
 
 class Logs extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Logs extends React.Component {
   }
 
   componentWillMount() {
-    get('logsList').then((response) => {
+    conf(['recalbox.logsPaths']).then((response) => {
       response.isLoaded = true;
 
       this.setState(response);
@@ -39,7 +39,7 @@ class Logs extends React.Component {
 
     this.setState({ loadingFile: true });
 
-    get('logsRead', this.state.log_file).then((response) => {
+    get('readFile', this.state.log_file).then((response) => {
       response.loadingFile = false;
 
       this.setState(response);
@@ -61,7 +61,7 @@ class Logs extends React.Component {
               <FormControl componentClass="select" name="log_file"
                 onChange={this.handleInputChange}>
                 <option>–</option>
-                {this.state.logsList && this.state.logsList.map((log) => {
+                {this.state['recalbox.logsPaths'] && this.state['recalbox.logsPaths'].map((log) => {
                   return <option key={log} value={log}>{log}</option>
                 })}
               </FormControl>
@@ -75,7 +75,7 @@ class Logs extends React.Component {
         </Loader>
 
         <Loader loaded={!this.state.loadingFile}>
-        {this.state.logsRead &&
+        {this.state.readFile &&
           <div>
             <p className="bg-info">
               {t("Fichier en cours de visualisation :")}{' '}
@@ -83,7 +83,7 @@ class Logs extends React.Component {
             </p>
 
             <FormControl componentClass="textarea" rows={25}
-              defaultValue={this.state.logsRead}
+              defaultValue={this.state.readFile}
             />
           </div>
         }

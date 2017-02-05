@@ -20,7 +20,7 @@ class SelectGroup extends React.Component {
           <Col componentClass={ControlLabel} md={4}>{this.props.label}</Col>
         }
           <Col md={6}>
-            <Select2 {...selectProps} />
+            <Select2 {...selectProps} style={{ width: '100%' }} />
           </Col>
         </FormGroup>
       </div>

@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import Layout from './components/Layout';
 import Index from './components/Index';
 import Audio from './components/Audio';
+import Systems from './components/Systems';
 import Controllers from './components/Controllers';
 import NotFound from './components/NotFound';
 
@@ -11,6 +12,7 @@ const routes = (
     <IndexRoute component={Index}/>
     <Route path="/audio" component={Audio}/>
     <Route path="/controllers" component={Controllers}/>
+    <Route path="/systems" component={Systems}/>
     <Route path="*" component={NotFound}/>
   </Route>
 );

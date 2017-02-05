@@ -1,12 +1,11 @@
 import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Alert, Glyphicon, Form } from 'react-bootstrap';
+import { Panel, Form, Well } from 'react-bootstrap';
 import { grep, conf, save } from '../api';
 import { diffObjects, cloneObject } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
-import SliderGroup from './utils/SliderGroup';
 import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
 
@@ -40,6 +39,7 @@ class Systems extends React.Component {
       'global.autosave',
       'global.integerscale',
       'global.retroachievements',
+      'global.retroachievements.hardcore',
       'global.retroachievements.username',
       'global.retroachievements.password',
     ]).then((data) => {
@@ -99,9 +99,6 @@ class Systems extends React.Component {
   render() {
     const { t } = this.props;
 
-    let retroAchievementsDesc = t("RetroAchievements.org (%s) est un site communautaire qui permet de gagner des haut-faits sur mesure dans les jeux d'arcade grâce à l'émulation.");
-    retroAchievementsDesc = retroAchievementsDesc.replace("%s", '<a href="http://retroachievements.org/">http://retroachievements.org/</a>');
-
     return (
       <div>
         <div className="page-header"><h1>{t('Système')}</h1></div>
@@ -110,141 +107,121 @@ class Systems extends React.Component {
 
         <Loader loaded={this.state.isLoaded}>
           <Form horizontal onSubmit={this.onSubmit}>
-            <Panel header={<h3 className="panel-title">{t("Ratio de l'écran")}</h3>}>
-              <SelectGroup id="global-ratio" name="global.ratio"
+            <Panel header={<h3>{t("Ratio de l'écran")}</h3>}>
+              <SelectGroup
+                id="global-ratio" name="global.ratio"
                 data={this.state.ratio}
                 defaultValue={this.state['global.ratio']}
                 onChange={this.handleInputChange}
               />
             </Panel>
 
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{t('Set de shaders')}</h3>
-              </div>
-              <div className="panel-body">
-                <div className="bs-callout bs-callout-warning">
-                  <h4>{t('Shaders disponibles :')}</h4>
-                  <ul>
-                    <li><strong>scanlines</strong> {t('active les scanlines sur tous les emulateurs,')}</li>
-                    <li>
-                      <strong>retro</strong>
-                      {t('sélectionne le "meilleur" shader pour chaque système, choisi par la communauté.')}
-                      {t("Il vous apportera l'expérience de jeu la plus proche de l'expérience originale,")}</li>
-                    <li><strong>none</strong> {t('ne met aucun shaders.')}</li>
-                  </ul>
-                </div>
+            <Panel header={<h3>{t("Set de shaders")}</h3>}>
+              <SelectGroup
+                id="global-shaderset" name="global.shaderset"
+                data={this.state.shaderset}
+                defaultValue={this.state['global.shaderset']}
+                onChange={this.handleInputChange}
+                preComponent={
+                  <div className="bs-callout bs-callout-warning">
+                    <h4>{t('Shaders disponibles :')}</h4>
+                    <ul>
+                      <li><strong>scanlines</strong> {t('active les scanlines sur tous les emulateurs,')}</li>
+                      <li>
+                        <strong>retro</strong>{' '}
+                        {t('sélectionne le "meilleur" shader pour chaque système, choisi par la communauté.')}
+                        {t("Il vous apportera l'expérience de jeu la plus proche de l'expérience originale,")}</li>
+                      <li><strong>none</strong> {t('ne met aucun shaders.')}</li>
+                    </ul>
+                  </div>
+                }
+              />
+            </Panel>
 
-                <Select2 id="global-shaderset" name="global.shaderset"
-                  data={this.state.shaderset}
-                  defaultValue={this.state['global.shaderset']}
+            <Panel header={<h3>{t('Lissage des jeux')}</h3>}>
+              <SwitchGroup
+                id="global-smooth" name="global.smooth"
+                value={this.state['global.smooth']}
+                onChange={this.handleSwitchChange}
+              />
+            </Panel>
+
+            <Panel header={<h3>{t('Rembobinage des jeux')}</h3>}>
+              <SwitchGroup
+                id="global-rewind" name="global.rewind"
+                value={this.state['global.rewind']}
+                onChange={this.handleSwitchChange}
+                help={<p>{t("L'option rembobinage vous autorise à effectuer des retours dans le temps lors de votre partie.")}</p>}
+                warning={t("Cela peut ralentir certains émulateurs (snes, psx) si vous l'activez par défaut.")}
+              />
+            </Panel>
+
+            <Panel header={<h3>{t('Sauvegarde / Chargement automatique')}</h3>}>
+                <SwitchGroup
+                  id="global-autosave" name="global.autosave"
+                  value={this.state['global.autosave']}
+                  onChange={this.handleSwitchChange}
+                  help={
+                    <div>
+                      <p>{t('Cette option vous permet de créer une sauvegarde automatique de votre jeu quand vous le quittez, puis de la charger à nouveau quand vous le relancerez.')}</p>
+                      <p>{t("Une fois le jeu lancé et la sauvegarde chargée, si vous souhaitez revenir à l'écran titre du jeu, utilisez la commande spéciale de reset.")}</p>
+                    </div>
+                  }
+                />
+            </Panel>
+
+            <Panel header={<h3>{t('Pixel perfect')}</h3>}>
+              <SwitchGroup
+                id="global-integerscale" name="global.integerscale"
+                value={this.state['global.integerscale']}
+                onChange={this.handleSwitchChange}
+                help={<p>{t('Une fois activée, votre écran sera rognée, et vous aure un rendu "pixel perfect" dans vos jeux.')}</p>}
+              />
+            </Panel>
+
+            <Panel header={<h3>{t('Retroachievements')}</h3>}>
+              <SwitchGroup label={t('Activer RetroAchievements')}
+                id="retroachievements-enabled" name="global.retroachievements"
+                value={this.state['global.retroachievements']}
+                onChange={this.handleSwitchChange}
+                help={
+                  <div>
+                    <p>
+                      RetroAchievements.org (<a href="http://retroachievements.org/">http://retroachievements.org/</a>){' '}
+                      {t("est un site communautaire qui permet de gagner des haut-faits sur mesure dans les jeux d'arcade grâce à l'émulation.")}
+                    </p>
+                    <p>{t('Les haut-faits sont conçus par et pour la communauté.')}</p>
+                  </div>
+                }
+              />
+
+              <Well>
+                <FieldGroup type="text" label={t('Login')}
+                  id="retroachievements-username" name="global.retroachievements.username"
+                  value={this.state['global.retroachievements.username']}
                   onChange={this.handleInputChange}
                 />
-              </div>
-            </div>
 
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{t('Lissage des jeux')}</h3>
-              </div>
-              <div className="panel-body">
-                <Switch name="global.smooth"
+                <FieldGroup type="text" label={t('Mot de passe')}
+                  id="retroachievements-password" name="global.retroachievements.password"
+                  value={this.state['global.retroachievements.password']}
+                  onChange={this.handleInputChange}
+                />
+
+                <SwitchGroup label={t('Activer le mode Hardcore')}
+                  id="retroachievements-hardcore" name="global.retroachievements.hardcore"
+                  value={this.state['global.retroachievements.hardcore']}
                   onChange={this.handleSwitchChange}
-                  value={1 === parseInt(this.state['global.smooth'], 10)} />
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{t('Rembobinage des jeux')}</h3>
-              </div>
-              <div className="panel-body">
-                <p>{t("L'option rembobinage vous autorise à effectuer des retours dans le temps lors de votre partie.")}</p>
-
-                <div className="alert alert-warning">
-                  <span className="glyphicon glyphicon-alert" aria-hidden="true"></span>
-                  <span className="sr-only">{t('Attention :')}</span>
-                  {t("Cela peut ralentir certains émulateurs (snes, psx) si vous l'activez par défaut.")}
-                </div>
-
-                <Switch name="global.rewind"
-                  onChange={this.handleSwitchChange}
-                  value={1 === parseInt(this.state['global.rewind'], 10)} />
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{t('Sauvegarde / Chargement automatique')}</h3>
-              </div>
-              <div className="panel-body">
-                <p>
-                  {t('Cette option vous permet de créer une sauvegarde automatique de votre jeu quand vous le quittez, puis de la charger à nouveau quand vous le relancerez.')}
-                  {t("Une fois le jeu lancé et la sauvegarde chargée, si vous souhaitez revenir à l'écran titre du jeu, utilisez la commande spéciale de reset.")}
-                </p>
-
-                <Switch name="global.autosave"
-                  onChange={this.handleSwitchChange}
-                  value={1 === parseInt(this.state['global.autosave'], 10)} />
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{t('Pixel perfect')}</h3>
-              </div>
-              <div className="panel-body">
-                <p>
-                  {t('Une fois activée, votre écran sera rognée, et vous aure un rendu "pixel perfect" dans vos jeux.')}
-                </p>
-
-                <Switch name="global.integerscale"
-                  onChange={this.handleSwitchChange}
-                  value={1 === parseInt(this.state['global.integerscale'], 10)} />
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{t('Retroachievements')}</h3>
-              </div>
-              <div className="panel-body">
-                <p>{retroAchievementsDesc}</p>
-                <p>{t('Les haut-faits sont conçus par et pour la communauté.')}</p>
-
-                <div className="form-group">
-                  <label htmlFor="retroachievements-enabled" className="col-md-4 control-label">{t('Activer RetroAchievements')}</label>
-                  <div className="col-md-6">
-                    <Switch name="global.retroachievements"
-                      onChange={this.handleSwitchChange}
-                      value={1 === parseInt(this.state['global.retroachievements'], 10)} />
-                  </div>
-                </div>
-
-                <div className="well">
-                  <div className="form-group">
-                    <label htmlFor="retroachievements-username" className="col-md-4 control-label">{t('Login')}</label>
-                    <div className="col-md-6">
-                      <input type="text" name="global.retroachievements.username"
-                        className="form-control" id="retroachievements-username"
-                        placeholder={t('Login')}
-                        value={this.state['global.retroachievements.username']}
-                        onChange={this.handleInputChange} />
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="retroachievements-password" className="col-md-4 control-label">{t('Mot de passe')}</label>
-                    <div className="col-md-6">
-                      <input type="text" name="global.retroachievements.password"
-                        className="form-control" id="retroachievements-password"
-                        placeholder={t('Mot de passe')}
-                        value={this.state['global.retroachievements.password']}
-                        onChange={this.handleInputChange} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  warning={
+                    <span>
+                      {t("Le mode Hardcore Hardcore désactive *toutes* les possibilités de sauvegarder dans l'émulateur : vous ne pourrez ni sauvegarder ni recharger votre partie en cours de jeu.")}
+                      <br />
+                      {t("Vous devrez compléter le jeu et obtenir les hauts-faits du premier coup, comme c'était le cas sur la console originale !")}
+                    </span>
+                  }
+                />
+              </Well>
+            </Panel>
 
             <FormActions reset={this.reset} isSaving={this.state.isSaving} />
           </Form>

@@ -30,8 +30,14 @@ function formatConfig(dataset) {
 /**
  * get an option
  */
-export function get(option) {
-  return fetch(`/get?option=${option}`)
+export function get(option, param = undefined) {
+  let url = `/get?option=${option}`;
+
+  if (undefined !== param) {
+    url += `&param=${param}`;
+  }
+
+  return fetch(url)
     .then(checkStatus)
     .then(parseJSON)
     .then(formatConfig);

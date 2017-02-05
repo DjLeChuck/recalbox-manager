@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 // api routes and others
 app.get('/get', (req, res) => {
   const option = req.query.option;
+  const param = req.query.param;
   let data;
 
   switch (option) {
@@ -36,6 +37,12 @@ app.get('/get', (req, res) => {
       data.push('favorites');
 
       data.sort();
+      break;
+    case 'logsList':
+      data = config.get('recalbox.logsPaths');
+      break;
+    case 'logsRead':
+      data = fs.readFileSync(param).toString();
       break;
     default:
       throw new Error(`Option "${option}" unknown`);

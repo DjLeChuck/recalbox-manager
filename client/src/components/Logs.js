@@ -1,7 +1,8 @@
 import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Button, FormControl, Col } from 'react-bootstrap';
+import { Panel, Button, Form, FormControl, Col } from 'react-bootstrap';
+import FieldGroup from './utils/FieldGroup';
 import { conf, get } from '../api';
 
 class Logs extends React.Component {
@@ -76,16 +77,20 @@ class Logs extends React.Component {
 
         <Loader loaded={!this.state.loadingFile}>
         {this.state.readFile &&
-          <div>
-            <p className="bg-info">
-              {t("Fichier en cours de visualisation :")}{' '}
-              <strong>{this.state.log_file}</strong>
-            </p>
-
-            <FormControl componentClass="textarea" rows={25}
-              defaultValue={this.state.readFile}
-            />
-          </div>
+          <Form>
+            <Panel header={
+              <h3>
+                {t("Fichier en cours de visualisation :")}{' '}
+                <strong>{this.state.log_file}</strong>
+              </h3>
+            }>
+              <FieldGroup id="read-file" name="readFile"
+                componentClass="textarea" rows={28}
+                componentColMd={12}
+                defaultValue={this.state.readFile}
+              />
+            </Panel>
+          </Form>
         }
       </Loader>
       </div>

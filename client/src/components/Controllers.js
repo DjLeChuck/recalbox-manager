@@ -1,18 +1,14 @@
 import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Col, Form, FormGroup, ControlLabel } from 'react-bootstrap';
-import Switch from 'react-bootstrap-switch';
-import ReactBootstrapSlider from 'react-bootstrap-slider';
-import Select2 from 'react-select2-wrapper';
+import { Panel, Form } from 'react-bootstrap';
 import { grep, conf, save } from '../api';
 import { diffObjects, cloneObject } from '../utils';
 import FieldGroup from './utils/FieldGroup';
+import SelectGroup from './utils/SelectGroup';
+import SliderGroup from './utils/SliderGroup';
+import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
-
-import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
-import '../dependencies/css/bootstrap-slider.min.css';
-import 'react-select2-wrapper/css/select2.css';
 
 class Controllers extends React.Component {
   constructor(props) {
@@ -117,114 +113,76 @@ class Controllers extends React.Component {
         <Loader loaded={this.state.isLoaded}>
           <Form horizontal onSubmit={this.onSubmit}>
             <Panel header={<h3>{t('Contrôleur DB9')}</h3>}>
-              <FormGroup>
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Support des contrôleurs DB9')}
-                </Col>
-
-                <Col md={8}>
-                  <Switch name="controllers.db9.enabled"
-                    onChange={this.handleSwitchChange}
-                    value={1 === parseInt(this.state['controllers.db9.enabled'], 10)} />
-                </Col>
-              </FormGroup>
+              <SwitchGroup label={t('Support des contrôleurs DB9')}
+                id="db9-enabled" name="controllers.db9.enabled"
+                value={this.state['controllers.db9.enabled']}
+                onChange={this.handleSwitchChange}
+              />
 
               <FieldGroup type="text" label={t('Paramètres')}
                 id="db9-args" name="controllers.db9.args"
                 value={this.state['controllers.db9.args']}
-                onChange={this.handleInputChange} />
+                onChange={this.handleInputChange}
+              />
             </Panel>
 
             <Panel header={<h3>{t('Contrôleur Gamecon')}</h3>}>
-              <FormGroup>
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Support des contrôleurs Gamecon')}
-                </Col>
-
-                <Col md={8}>
-                  <Switch name="controllers.gamecon.enabled"
-                    onChange={this.handleSwitchChange}
-                    value={1 === parseInt(this.state['controllers.gamecon.enabled'], 10)} />
-                </Col>
-              </FormGroup>
+              <SwitchGroup label={t('Support des contrôleurs Gamecon')}
+                id="gamecon-enabled" name="controllers.gamecon.enabled"
+                value={this.state['controllers.gamecon.enabled']}
+                onChange={this.handleSwitchChange}
+              />
 
               <FieldGroup type="text" label={t('Paramètres')}
                 id="gamecon-args" name="controllers.gamecon.args"
                 value={this.state['controllers.gamecon.args']}
-                onChange={this.handleInputChange} />
+                onChange={this.handleInputChange}
+              />
             </Panel>
 
             <Panel header={<h3>{t('Contrôleur GPIO')}</h3>}>
-              <FormGroup>
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Support des contrôleurs GPIO')}
-                </Col>
-
-                <Col md={8}>
-                  <Switch name="controllers.gpio.enabled"
-                    onChange={this.handleSwitchChange}
-                    value={1 === parseInt(this.state['controllers.gpio.enabled'], 10)} />
-                </Col>
-              </FormGroup>
+              <SwitchGroup label={t('Support des contrôleurs GPIO')}
+                id="gpio-enabled" name="controllers.gpio.enabled"
+                value={this.state['controllers.gpio.enabled']}
+                onChange={this.handleSwitchChange}
+              />
 
               <FieldGroup type="text" label={t('Paramètres')}
                 id="gpio-args" name="controllers.gpio.args"
                 value={this.state['controllers.gpio.args']}
-                onChange={this.handleInputChange} />
+                onChange={this.handleInputChange}
+              />
             </Panel>
 
             <Panel header={<h3>{t('Contrôleur PS3')}</h3>}>
-              <FormGroup>
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Support des contrôleurs PS3')}
-                </Col>
+              <SwitchGroup label={t('Support des contrôleurs PS3')}
+                id="ps3-enabled" name="controllers.ps3.enabled"
+                value={this.state['controllers.ps3.enabled']}
+                onChange={this.handleSwitchChange}
+              />
 
-                <Col md={8}>
-                  <Switch name="controllers.ps3.enabled"
-                    onChange={this.handleSwitchChange}
-                    value={1 === parseInt(this.state['controllers.ps3.enabled'], 10)} />
-                </Col>
-              </FormGroup>
-
-              <FormGroup controlId="ps3-driver">
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Driver à utiliser')}
-                </Col>
-                <Col md={6}>
-                  <Select2 id="ps3-driver" name="controllers.ps3.driver"
-                    data={this.state.ps3drivers}
-                    defaultValue={this.state['controllers.ps3.driver']}
-                    onChange={this.handleInputChange}
-                  />
-                </Col>
-              </FormGroup>
+              <SelectGroup label={t('Driver à utiliser')}
+                id="ps3-driver" name="controllers.ps3.driver"
+                data={this.state.ps3drivers}
+                defaultValue={this.state['controllers.ps3.driver']}
+                onChange={this.handleInputChange}
+              />
             </Panel>
 
             <Panel header={<h3>{t('Contrôleur XBOX')}</h3>}>
-              <FormGroup>
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Support des contrôleurs XBOX')}
-                </Col>
+              <SwitchGroup label={t('Support des contrôleurs XBOX')}
+                id="xboxdrv-enabled" name="controllers.xboxdrv.enabled"
+                value={this.state['controllers.xboxdrv.enabled']}
+                onChange={this.handleSwitchChange}
+              />
 
-                <Col md={8}>
-                  <Switch name="controllers.xboxdrv.enabled"
-                    onChange={this.handleSwitchChange}
-                    value={1 === parseInt(this.state['controllers.xboxdrv.enabled'], 10)} />
-                </Col>
-              </FormGroup>
-
-              <FormGroup controlId="ps3-driver">
-                <Col componentClass={ControlLabel} md={4}>
-                  {t('Nombre des contrôleurs')}
-                </Col>
-                <Col md={6}>
-                  <ReactBootstrapSlider slideStop={this.handleSliderChange}
-                    value={parseInt(this.state['controllers.xboxdrv.nbcontrols'], 10)}
-                    step={1} max={4} min={0} tooltip="always"
-                    tooltip_position="bottom"
-                  />
-                </Col>
-              </FormGroup>
+              <SliderGroup label={t('Nombre des contrôleurs')}
+                id="xboxdrv-nbcontrols" name="controllers.xboxdrv.nbcontrols"
+                value={this.state['controllers.xboxdrv.nbcontrols']}
+                slideStop={this.handleSliderChange}
+                step={1} max={4} min={0}
+                tooltip="always" tooltip_position="bottom"
+              />
             </Panel>
 
             <FormActions reset={this.reset} isSaving={this.state.isSaving} />

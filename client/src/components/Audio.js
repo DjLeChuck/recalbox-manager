@@ -1,17 +1,13 @@
 import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Alert, Glyphicon } from 'react-bootstrap';
-import Switch from 'react-bootstrap-switch';
-import ReactBootstrapSlider from 'react-bootstrap-slider';
-import Select2 from 'react-select2-wrapper';
+import { Panel, Form } from 'react-bootstrap';
 import { grep, conf, save } from '../api';
 import { diffObjects, cloneObject } from '../utils';
+import SelectGroup from './utils/SelectGroup';
+import SliderGroup from './utils/SliderGroup';
+import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
-
-import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
-import '../dependencies/css/bootstrap-slider.min.css';
-import 'react-select2-wrapper/css/select2.css';
 
 class Audio extends React.Component {
   constructor(props) {
@@ -104,33 +100,38 @@ class Audio extends React.Component {
         <p className="important">{t('Cette page permet de gérer la partie audio de recalbox.')}</p>
 
         <Loader loaded={this.state.isLoaded}>
-          <form onSubmit={this.onSubmit}>
+          <Form onSubmit={this.onSubmit}>
             <Panel header={<h3>{t('Musique de fond')}</h3>}>
-              <Alert bsStyle="warning">
-                <Glyphicon glyph="alert" /> <strong className="sr-only">{t('Attention :')}</strong>
-                {t('Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.')}
-              </Alert>
-
-              <Switch name="audio.bgmusic" onChange={this.handleSwitchChange}
-                value={1 === parseInt(this.state['audio.bgmusic'], 10)} />
+              <SwitchGroup
+                id="audio-bgmusic" name="audio.bgmusic"
+                value={this.state['audio.bgmusic']}
+                onChange={this.handleSwitchChange}
+                warning={t('Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.')}
+              />
             </Panel>
 
             <Panel header={<h3>{t('Volume du son')}</h3>}>
-              <div className="top30">
-                <ReactBootstrapSlider slideStop={this.handleSliderChange}
-                  value={parseInt(this.state['audio.volume'], 10)}
-                  step={1} max={100} min={0} tooltip="always"
-                />
-              </div>
+              <SliderGroup
+                id="audio-volume" name="audio.volume"
+                value={this.state['audio.volume']}
+                slideStop={this.handleSliderChange}
+                step={1} max={100} min={0}
+                tooltip="always"
+                extraClass="top30"
+              />
             </Panel>
 
             <Panel header={<h3>{t('Sortie audio')}</h3>}>
-              <Select2 name="audio.device" data={this.state.devices}
-                defaultValue={this.state['audio.device']} onChange={this.handleInputChange} />
+              <SelectGroup
+                id="ps3-driver" name="audio.device"
+                data={this.state.devices}
+                defaultValue={this.state['audio.device']}
+                onChange={this.handleInputChange}
+              />
             </Panel>
 
             <FormActions reset={this.reset} isSaving={this.state.isSaving} />
-          </form>
+          </Form>
         </Loader>
       </div>
     );

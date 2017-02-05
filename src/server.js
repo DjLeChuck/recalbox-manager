@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import bodyParser from 'body-parser';
 import config from 'config';
 import { exec, execSync } from 'child_process';
@@ -20,6 +21,29 @@ app.use('/locales', express.static('locales'));
 app.use(bodyParser.json());
 
 // api routes and others
+app.get('/get', (req, res) => {
+  const option = req.query.option;
+  let data;
+
+  switch (option) {
+    case 'romsDirectories':
+      const srcpath = config.recalbox.romsPath;
+      data = fs.readdirSync(srcpath).filter((file) => {
+        return fs.statSync(path.join(srcpath, file)).isDirectory();
+      });
+
+      // add favorites "virtual" folder
+      data.push('favorites');
+
+      data.sort();
+      break;
+    default:
+      throw new Error(`Option "${option}" unknown`);
+  }
+
+  res.json({ success: true, data: data });
+});
+
 app.get('/conf', (req, res) => {
   let result = {};
 
@@ -27,7 +51,7 @@ app.get('/conf', (req, res) => {
     result[key] = config.get(key);
   });
 
-  res.send(result);
+  res.json(result);
 });
 
 app.get('/grep', (req, res) => {
@@ -71,7 +95,7 @@ app.post('/save', (req, res) => {
     });
   }
 
-  res.send({ success: true });
+  res.json({ success: true });
 });
 
 // handles all routes so you do not get a not found error

@@ -24,6 +24,15 @@ function formatState(dataset) {
 }
 
 /**
+ * get an option
+ */
+export function get(option) {
+  return fetch(`/get?option=${option}`)
+    .then(checkStatus)
+    .then(parseJSON);
+}
+
+/**
  * grep values from recalbox.conf
  */
 export function grep(keys) {

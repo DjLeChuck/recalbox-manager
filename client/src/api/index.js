@@ -23,13 +23,18 @@ function formatState(dataset) {
   return result;
 }
 
+function formatConfig(dataset) {
+  return dataset.data;
+}
+
 /**
  * get an option
  */
 export function get(option) {
   return fetch(`/get?option=${option}`)
     .then(checkStatus)
-    .then(parseJSON);
+    .then(parseJSON)
+    .then(formatConfig);
 }
 
 /**

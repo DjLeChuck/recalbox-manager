@@ -24,7 +24,7 @@ class Controllers extends React.Component {
 
   componentWillMount() {
     conf(['recalbox.controllers.ps3drivers']).then((response) => {
-      this.setState({ ps3drivers: response['recalbox.controllers.ps3drivers'] });
+      this.setState(response);
     }).catch((err) => {
       console.error(err);
     });
@@ -163,7 +163,7 @@ class Controllers extends React.Component {
 
               <SelectGroup label={t('Driver à utiliser')}
                 id="ps3-driver" name="controllers.ps3.driver"
-                data={this.state.ps3drivers}
+                data={this.state['recalbox.controllers.ps3drivers']}
                 defaultValue={this.state['controllers.ps3.driver']}
                 onChange={this.handleInputChange}
               />

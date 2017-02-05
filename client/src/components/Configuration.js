@@ -23,7 +23,7 @@ class Configuration extends React.Component {
 
   componentWillMount() {
     get('romsDirectories').then((response) => {
-      this.setState({ romsDirectories: response.data });
+      this.setState(response);
     }).catch((err) => {
       console.error(err);
     });

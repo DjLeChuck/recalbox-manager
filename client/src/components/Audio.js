@@ -18,13 +18,12 @@ class Audio extends React.Component {
     this.state = {
       isLoaded: false,
       isSaving: false,
-      devices: [],
     };
   }
 
   componentWillMount() {
     conf(['recalbox.audio.devices']).then((response) => {
-      this.setState({ devices: response['recalbox.audio.devices'] });
+      this.setState(response);
     }).catch((err) => {
       console.error(err);
     });
@@ -124,7 +123,7 @@ class Audio extends React.Component {
             <Panel header={<h3>{t('Sortie audio')}</h3>}>
               <SelectGroup
                 id="ps3-driver" name="audio.device"
-                data={this.state.devices}
+                data={this.state['recalbox.audio.devices']}
                 defaultValue={this.state['audio.device']}
                 onChange={this.handleInputChange}
               />

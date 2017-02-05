@@ -23,10 +23,7 @@ class Systems extends React.Component {
 
   componentWillMount() {
     conf(['recalbox.systems.ratio', 'recalbox.systems.shaderset']).then((response) => {
-      this.setState({
-        ratio: response['recalbox.systems.ratio'],
-        shaderset: response['recalbox.systems.shaderset'],
-      });
+      this.setState(response);
     }).catch((err) => {
       console.error(err);
     });
@@ -110,7 +107,7 @@ class Systems extends React.Component {
             <Panel header={<h3>{t("Ratio de l'écran")}</h3>}>
               <SelectGroup
                 id="global-ratio" name="global.ratio"
-                data={this.state.ratio}
+                data={this.state['recalbox.systems.ratio']}
                 defaultValue={this.state['global.ratio']}
                 onChange={this.handleInputChange}
               />
@@ -119,7 +116,7 @@ class Systems extends React.Component {
             <Panel header={<h3>{t("Set de shaders")}</h3>}>
               <SelectGroup
                 id="global-shaderset" name="global.shaderset"
-                data={this.state.shaderset}
+                data={this.state['recalbox.systems.shaderset']}
                 defaultValue={this.state['global.shaderset']}
                 onChange={this.handleInputChange}
                 preComponent={

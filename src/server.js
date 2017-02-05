@@ -41,7 +41,7 @@ app.get('/get', (req, res) => {
       throw new Error(`Option "${option}" unknown`);
   }
 
-  res.json({ success: true, data: data });
+  res.json({ success: true, data: { [option]: data }});
 });
 
 app.get('/conf', (req, res) => {

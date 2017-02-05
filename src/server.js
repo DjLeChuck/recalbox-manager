@@ -48,6 +48,22 @@ app.get('/get', (req, res) => {
   res.json({ success: true, data: { [option]: data }});
 });
 
+app.post('/post', (req, res) => {
+  const action = req.query.action;
+  const body = req.body;
+  let data;
+
+  switch (action) {
+    case 'writeFile':
+      data = fs.writeFileSync(body.file, body.data);
+      break;
+    default:
+      throw new Error(`Action "${action}" unknown`);
+  }
+
+  res.json({ success: true, data: data });
+});
+
 app.get('/conf', (req, res) => {
   let result = {};
 

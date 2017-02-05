@@ -23,7 +23,7 @@ function formatState(dataset) {
   return result;
 }
 
-function formatConfig(dataset) {
+function formatOption(dataset) {
   return dataset.data;
 }
 
@@ -40,7 +40,20 @@ export function get(option, param = undefined) {
   return fetch(url)
     .then(checkStatus)
     .then(parseJSON)
-    .then(formatConfig);
+    .then(formatOption);
+}
+
+/**
+ * post an action
+ */
+export function post(action, body = {}) {
+  return fetch(`/post?action=${action}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  })
+    .then(checkStatus)
+    .then(parseJSON);
 }
 
 /**

@@ -2,6 +2,7 @@ import React from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form, Well } from 'react-bootstrap';
+import reactStringReplace from 'react-string-replace';
 import { grep, conf, save } from '../api';
 import { diffObjects, cloneObject } from '../utils';
 import FieldGroup from './utils/FieldGroup';
@@ -13,6 +14,11 @@ class Systems extends React.Component {
   constructor(props) {
     super(props);
 
+    const { t } = this.props;
+
+    this.retroachievementDesc = reactStringReplace(t("RetroAchievements.org (%s) est un site communautaire qui permet de gagner des haut-faits sur mesure dans les jeux d'arcade grâce à l'émulation."), '%s', (match, i) => (
+      <a key={i} href="http://retroachievements.org/">http://retroachievements.org/</a>
+    ));
     this.initialValues = {};
     this.currentValues = {};
     this.state = {
@@ -184,8 +190,7 @@ class Systems extends React.Component {
                 help={
                   <div>
                     <p>
-                      RetroAchievements.org (<a href="http://retroachievements.org/">http://retroachievements.org/</a>){' '}
-                      {t("est un site communautaire qui permet de gagner des haut-faits sur mesure dans les jeux d'arcade grâce à l'émulation.")}
+                      {this.retroachievementDesc}
                     </p>
                     <p>{t('Les haut-faits sont conçus par et pour la communauté.')}</p>
                   </div>

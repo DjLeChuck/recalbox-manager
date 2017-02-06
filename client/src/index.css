@@ -54,4 +54,8 @@
   .collapse.in{
     display:block !important;
   }
+  .navbar-collapse.in {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
 }

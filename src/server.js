@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import md5File from 'md5-file';
 import bodyParser from 'body-parser';
 import config from 'config';
 import { exec, execSync } from 'child_process';
@@ -41,6 +42,31 @@ app.get('/get', (req, res) => {
     case 'readFile':
       data = fs.readFileSync(param).toString();
       break;
+    case 'biosList':
+      const md5Rule = /^[a-f0-9]{32}$/i;
+      const contents = fs.readFileSync(config.get('recalbox.biosFilePath'), 'utf8');
+      const biosPath = config.get('recalbox.biosPath');
+      data = [];
+
+      contents.split("\n").forEach((line) => {
+        let parts = line.split(' ');
+
+        if (!parts[0].match(md5Rule)) {
+          return;
+        }
+
+        parts = parts.filter(Boolean);
+        const md5 = parts.shift();
+        const name = parts.join(' ');
+        const thisBiosPath = path.join(biosPath, name);
+
+        data.push({
+          md5: md5,
+          name: name,
+          valid: fs.existsSync(thisBiosPath) ? md5 === md5File.sync(thisBiosPath) : null
+        });
+      });
+      break;
     default:
       throw new Error(`Option "${option}" unknown`);
   }
@@ -56,6 +82,11 @@ app.post('/post', (req, res) => {
   switch (action) {
     case 'writeFile':
       data = fs.writeFileSync(body.file, body.data);
+      break;
+    case 'deleteBios':
+      const biosPath = path.resolve(config.get('recalbox.biosPath'), body.file);
+
+      fs.unlinkSync(biosPath);
       break;
     default:
       throw new Error(`Action "${action}" unknown`);

@@ -11,6 +11,7 @@ config.recalbox = {
   systemSettingsCommand: 'python /var/www/development/Node.js/recalbox/recalbox/scripts/recalboxSettings.py',
   romsPath: '/var/www/development/Node.js/recalbox/recalbox/share/roms',
   biosPath: '/var/www/development/Node.js/recalbox/recalbox/share/bios/',
+  biosFilePath: '/var/www/development/Node.js/recalbox/recalbox/share/bios/readme.txt',
 };
 
 module.exports = config;

@@ -1,41 +1,45 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { translate } from 'react-i18next';
+import { Row, Col, Panel } from 'react-bootstrap';
 import gamepad from '../dependencies/img/gamepad.png';
 import keyboard from '../dependencies/img/keyboard.png';
 
-export default class Index extends Component {
+class Index extends Component {
   render() {
+    const { t } = this.props;
+
     return (
       <div>
-        <div className="page-header"><h1>Accueil</h1></div>
+        <div className="page-header"><h1>{t('Accueil')}</h1></div>
 
-        <div className="row">
-          <div className="col-md-2 col-md-offset-2 text-center">
-            <div className="panel panel-default">
-              <div className="panel-body">
-                <Link to="//localhost:8080/" target="_blank">
-                  <img src={gamepad} alt="Utiliser le gamepad virtuel" />
-                  <br />
-                  <br />
-                  Utiliser le gamepad virtuel
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-2 col-md-offset-2 text-center">
-            <div className="panel panel-default">
-              <div className="panel-body">
-                <Link to="//localhost:8080/keyboard.html" target="_blank">
-                  <img src={keyboard} alt="Utiliser le clavier virtuel" />
-                  <br />
-                  <br />
-                  Utiliser le clavier virtuel
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Row>
+          <Col md={2} mdOffset={2} className="text-center">
+            <Panel>
+              <Link to="//localhost:8080/" target="_blank">
+                <img src={gamepad} alt={t('Utiliser le gamepad virtuel')}
+                  className="img-responsive center-block" />
+                <br />
+                <br />
+                {t('Utiliser le gamepad virtuel')}
+              </Link>
+            </Panel>
+          </Col>
+          <Col md={2} mdOffset={2} className="text-center">
+            <Panel>
+              <Link to="//localhost:8080/keyboard.html" target="_blank">
+                <img src={keyboard} alt={t('Utiliser le clavier virtuel')}
+                  className="img-responsive center-block" />
+                <br />
+                <br />
+                {t('Utiliser le clavier virtuel')}
+              </Link>
+            </Panel>
+          </Col>
+        </Row>
       </div>
     );
   }
 }
+
+export default translate()(Index);

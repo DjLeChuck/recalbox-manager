@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import md5File from 'md5-file';
 import bodyParser from 'body-parser';
+import multer from 'multer';
 import config from 'config';
 import { exec, execSync } from 'child_process';
 
@@ -21,7 +22,30 @@ app.use('/locales', express.static('locales'));
 // parse application/json
 app.use(bodyParser.json());
 
-// api routes and others
+// Traitement d'une ligne du fichier readme.txt des BIOS
+const md5Rule = /^[a-f0-9]{32}$/i;
+const biosPath = config.get('recalbox.biosPath');
+
+function handleBiosLine(line) {
+  let parts = line.split(' ');
+
+  if (!parts[0].match(md5Rule)) {
+    return null;
+  }
+
+  parts = parts.filter(Boolean);
+  const md5 = parts.shift();
+  const name = parts.join(' ').trim();
+  const thisBiosPath = path.join(biosPath, name);
+
+  return {
+    md5: md5,
+    name: name,
+    valid: fs.existsSync(thisBiosPath) ? md5 === md5File.sync(thisBiosPath) : null
+  };
+}
+
+// Récupération de divers données (liste de répertoires, contenu de fichier, etc.)
 app.get('/get', (req, res) => {
   const option = req.query.option;
   const param = req.query.param;
@@ -43,28 +67,15 @@ app.get('/get', (req, res) => {
       data = fs.readFileSync(param).toString();
       break;
     case 'biosList':
-      const md5Rule = /^[a-f0-9]{32}$/i;
       const contents = fs.readFileSync(config.get('recalbox.biosFilePath'), 'utf8');
-      const biosPath = config.get('recalbox.biosPath');
       data = [];
 
       contents.split("\n").forEach((line) => {
-        let parts = line.split(' ');
+        let lineResult = handleBiosLine(line);
 
-        if (!parts[0].match(md5Rule)) {
-          return;
+        if (null !== lineResult) {
+          data.push(lineResult);
         }
-
-        parts = parts.filter(Boolean);
-        const md5 = parts.shift();
-        const name = parts.join(' ');
-        const thisBiosPath = path.join(biosPath, name);
-
-        data.push({
-          md5: md5,
-          name: name,
-          valid: fs.existsSync(thisBiosPath) ? md5 === md5File.sync(thisBiosPath) : null
-        });
       });
       break;
     default:
@@ -74,6 +85,7 @@ app.get('/get', (req, res) => {
   res.json({ success: true, data: { [option]: data }});
 });
 
+// Actions divers sur des données (écriture de fichier, suppression, etc.)
 app.post('/post', (req, res) => {
   const action = req.query.action;
   const body = req.body;
@@ -95,6 +107,7 @@ app.post('/post', (req, res) => {
   res.json({ success: true, data: data });
 });
 
+// Récupération de valeurs du fichier de config du manager
 app.get('/conf', (req, res) => {
   let result = {};
 
@@ -105,6 +118,7 @@ app.get('/conf', (req, res) => {
   res.json(result);
 });
 
+// Récupération de valeurs du fichier recalbox.conf
 app.get('/grep', (req, res) => {
   const keys = req.query.keys.replace(/\./g, '\\.');
   let data = execSync(`egrep -w "${keys}" ${config.recalbox.confPath}`);
@@ -132,6 +146,7 @@ app.get('/grep', (req, res) => {
   res.json({ success: true, data: result });
 });
 
+// Enregistrement de nouvelles valeurs dans le fichier recalbox.conf
 app.post('/save', (req, res) => {
   for (const key in req.body) {
     execSync(`${config.get('recalbox.systemSettingsCommand')} -command save -key ${key} -value ${req.body[key]}`);
@@ -147,6 +162,41 @@ app.post('/save', (req, res) => {
   }
 
   res.json({ success: true });
+});
+
+// Prise en charge de l'upload de BIOS
+const storage = multer.diskStorage({
+  destination: config.get('recalbox.biosPath'),
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  }
+});
+const uploadMulter = multer({ storage: storage });
+const upload = uploadMulter.single('file');
+
+app.post('/uploadBios', (req, res, next) => {
+  upload(req, res, function (err) {
+    if (err) {
+      // An error occurred when uploading
+      return res.statu(500).json({ success: false });
+    }
+
+    // Everything went fine
+    if (req.file && req.file.originalname) {
+      try {
+        let data = execSync(`grep -w "${req.file.originalname}" ${config.recalbox.biosFilePath}`);
+        let lineResult = handleBiosLine(data.toString());
+
+        if (null !== lineResult) {
+          lineResult.success = true;
+
+          return res.json(lineResult);
+        }
+      } catch (e) {}
+    }
+
+    res.json({ success: true });
+  });
 });
 
 // handles all routes so you do not get a not found error

@@ -3,8 +3,11 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Button, Collapse, Well, Table, Glyphicon, Modal } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
-import Dropzone from 'react-dropzone';
+import DropzoneComponent from 'react-dropzone-component';
 import { conf, get, post } from '../api';
+
+import 'react-dropzone-component/styles/filepicker.css';
+import 'dropzone/dist/min/dropzone.min.css';
 
 class Bios extends React.Component {
   constructor(props) {
@@ -17,6 +20,37 @@ class Bios extends React.Component {
       showModal: false,
       biosName: '',
       biosList: [],
+    };
+    this.componentConfig = {
+      showFiletypeIcon: true,
+      postUrl: '/uploadBios',
+    };
+    this.handlers = {
+      success: (file, result) => {
+        if (result.name) {
+          delete result.success;
+
+          let biosIndex = this.state.biosList.findIndex((item) => {
+            return item.name === result.name;
+          });
+          const list = [...this.state.biosList];
+          list[biosIndex] = result;
+
+          this.setState({ biosList: list });
+        }
+      },
+      error: (file, err) => {
+        console.error(file, err);
+      }
+    };
+    const t = this.props.t;
+    this.djsConfig = {
+      dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
+      dictResponseError: t("Erreur lors de l'upload."),
+      addRemoveLinks: true,
+      dictCancelUpload: t("Annuler l'upload"),
+      dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
+      dictRemoveFile: t('Retirer le fichier'),
     };
   }
 
@@ -71,11 +105,6 @@ class Bios extends React.Component {
     this.close();
   }
 
-  onDrop(acceptedFiles, rejectedFiles) {
-    console.log('Accepted files: ', acceptedFiles);
-    console.log('Rejected files: ', rejectedFiles);
-  }
-
   render() {
     const { t } = this.props;
 
@@ -98,10 +127,8 @@ class Bios extends React.Component {
         <Collapse in={this.state.open}>
           <div>
             <Well>
-              <Dropzone className="test" activeClassName="ok"
-                onDrop={this.onDrop}>
-                <div>{t('Déposer des fichiers ici pour les uploader.')}</div>
-              </Dropzone>
+              <DropzoneComponent config={this.componentConfig}
+                djsConfig={this.djsConfig} eventHandlers={this.handlers} />
             </Well>
           </div>
         </Collapse>
@@ -167,5 +194,9 @@ class Bios extends React.Component {
     );
   }
 }
+
+Bios.propTypes = {
+  t: React.PropTypes.func.isRequired
+};
 
 export default translate()(Bios);

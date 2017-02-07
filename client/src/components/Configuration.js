@@ -58,9 +58,10 @@ class Configuration extends React.Component {
       'system.es.menu',
       'system.emulators.specialkeys',
       'system.api.enabled',
-      'system.es.selectedsystem',
-      'system.es.bootongamelist',
-      'system.es.hidesystemview',
+      'emulationstation.selectedsystem',
+      'emulationstation.bootongamelist',
+      'emulationstation.hidesystemview',
+      'emulationstation.gamelistonly',
       'updates.enabled',
       'updates.type',
     ]).then((data) => {
@@ -272,24 +273,31 @@ class Configuration extends React.Component {
               />
 
               <SelectGroup label={t('Système sélectionné par défaut')}
-                id="system-es-selectedsystem" name="system.es.selectedsystem"
+                id="system-es-selectedsystem" name="emulationstation.selectedsystem"
                 data={this.state.romsDirectories}
-                defaultValue={this.state['system.es.selectedsystem']}
+                defaultValue={this.state['emulationstation.selectedsystem']}
                 onChange={this.handleInputChange}
               />
 
               <SwitchGroup label={t('Démarrer sur la liste de jeux du premier système (ou de celui sélectionné)')}
-                id="system-es-bootongamelist" name="system.es.bootongamelist"
-                value={this.state['system.es.bootongamelist']}
+                id="system-es-bootongamelist" name="emulationstation.bootongamelist"
+                value={this.state['emulationstation.bootongamelist']}
                 onChange={this.handleSwitchChange}
                 warning={t('ES se lancera et affichera directement la liste de jeux du premier système (ou celui sélectionné).')}
               />
 
               <SwitchGroup label={t("Désactiver la sélection des systèmes.")}
-                id="system-es-hidesystemview" name="system.es.hidesystemview"
-                value={this.state['system.es.hidesystemview']}
+                id="system-es-hidesystemview" name="emulationstation.hidesystemview"
+                value={this.state['emulationstation.hidesystemview']}
                 onChange={this.handleSwitchChange}
                 warning={t("ES se lancera et n'affichera QUE le premier système (ou celui sélectionné).")}
+              />
+
+              <SwitchGroup label={t("N'afficher que les jeux parsés.")}
+                id="system-es-gamelistonly" name="emulationstation.gamelistonly"
+                value={this.state['emulationstation.gamelistonly']}
+                onChange={this.handleSwitchChange}
+                warning={t("ES n'affichera que les jeux listés dans les fichiers gamelist.xml (accélère les temps d'affichage).")}
               />
             </Panel>
 

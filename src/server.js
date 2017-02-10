@@ -16,6 +16,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+// serves screenshots
+app.use('/screenshots/view', express.static(config.get('recalbox.screenshotsPath')));
+
 // locales
 app.use('/locales', express.static('locales'));
 
@@ -50,10 +53,17 @@ app.get('/get', (req, res) => {
   const option = req.query.option;
   const param = req.query.param;
   let data;
+  let srcpath;
 
   switch (option) {
+    case 'serverAddress':
+      data = {
+        ip: req.ip,
+        port: app.get('port'),
+      }
+      break;
     case 'romsDirectories':
-      const srcpath = config.recalbox.romsPath;
+      srcpath = config.recalbox.romsPath;
       data = fs.readdirSync(srcpath).filter((file) => {
         return fs.statSync(path.join(srcpath, file)).isDirectory();
       });
@@ -78,6 +88,12 @@ app.get('/get', (req, res) => {
         }
       });
       break;
+    case 'screenshotsList':
+      srcpath = config.get('recalbox.screenshotsPath');
+      data = fs.readdirSync(srcpath).filter((file) => {
+        return fs.statSync(path.join(srcpath, file)).isFile() && '.png' === path.extname(file);
+      });
+      break;
     default:
       throw new Error(`Option "${option}" unknown`);
   }
@@ -99,6 +115,22 @@ app.post('/post', (req, res) => {
       const biosPath = path.resolve(config.get('recalbox.biosPath'), body.file);
 
       fs.unlinkSync(biosPath);
+      break;
+    case 'takeScreenshot':
+      const raspi2png = config.get('recalbox.raspi2png');
+      const screenshotName = `screenshot-${new Date().toISOString()}.png`;
+      const returnPath = `${raspi2png.savePath}/${screenshotName}`;
+
+      if ('production' === app.get('env')) {
+        execSync(`${raspi2png.command} ${returnPath}`);
+      }
+
+      data = screenshotName;
+      break;
+    case 'deleteScreenshot':
+      const screenshotPath = path.resolve(config.get('recalbox.screenshotsPath'), body.file);
+
+      fs.unlinkSync(screenshotPath);
       break;
     default:
       throw new Error(`Action "${action}" unknown`);
@@ -152,7 +184,7 @@ app.post('/save', (req, res) => {
     execSync(`${config.get('recalbox.systemSettingsCommand')} -command save -key ${key} -value ${req.body[key]}`);
   }
 
-  if (undefined !== req.body['audio.volume']) {
+  if (undefined !== req.body['audio.volume'] && 'production' === app.get('env')) {
     // Set volume
     exec(`${config.get('recalbox.configScript')} volume ${req.body['audio.volume']}`, (error, stdout, stderr) => {
       if (error) {
@@ -178,7 +210,7 @@ app.post('/uploadBios', (req, res, next) => {
   upload(req, res, function (err) {
     if (err) {
       // An error occurred when uploading
-      return res.statu(500).json({ success: false });
+      return res.status(500).json({ success: false });
     }
 
     // Everything went fine
@@ -200,12 +232,12 @@ app.post('/uploadBios', (req, res, next) => {
 });
 
 // handles all routes so you do not get a not found error
-app.get('/*', function (req, res){
+app.get('/*', (req, res) => {
   res.sendFile(path.resolve('client/build/index.html'));
 });
 
 // start the server
-app.listen(app.get('port'),  (err) => {
+app.listen(app.get('port'), '127.0.0.1', (err) => {
   if (err) {
     return console.error(err);
   }

@@ -8,6 +8,7 @@ import Configuration from './components/Configuration';
 import Controllers from './components/Controllers';
 import Logs from './components/Logs';
 import RecalboxConf from './components/RecalboxConf';
+import Screenshots from './components/Screenshots';
 import Systems from './components/Systems';
 import NotFound from './components/NotFound';
 
@@ -20,6 +21,7 @@ const routes = (
     <Route path="/controllers" component={Controllers} />
     <Route path="/recalbox-conf" component={RecalboxConf} />
     <Route path="/logs" component={Logs} />
+    <Route path="/screenshots" component={Screenshots} />
     <Route path="/systems" component={Systems} />
     <Route path="*" component={NotFound} />
   </Route>

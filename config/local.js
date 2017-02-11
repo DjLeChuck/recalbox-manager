@@ -13,6 +13,7 @@ config.recalbox = {
   romsPath: '/var/www/development/Node.js/recalbox/recalbox/share/roms',
   biosPath: '/var/www/development/Node.js/recalbox/recalbox/share/bios/',
   biosFilePath: '/var/www/development/Node.js/recalbox/recalbox/share/bios/readme.txt',
+  savesPath: '/var/www/development/Node.js/recalbox/recalbox/saves',
 };
 
 module.exports = config;

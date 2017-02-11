@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import config from 'config';
+import request from 'superagent';
+import fs from 'fs';
 import uploadRouter from './routes/upload';
 import confRouter from './routes/conf';
 import grepRouter from './routes/grep';
@@ -44,6 +46,44 @@ app.use('/save', saveRouter);
 
 // Prise en charge des différents uploads (BIOS, ROMs)
 app.use('/upload', uploadRouter);
+
+app.get('/recalbox-support', (req, res) => {
+  const uniqid = new Date().getTime();
+  const archivePath = `${config.get('recalbox.savesPath')}/recalbox-support-${uniqid}.tar.gz`;
+  const smartFile = config.get('smartFile');
+
+  // Création de l'archive
+  execSync(`${config.get('recalbox.supportScript')} ${archivePath}`);
+
+  // Upload file
+  request
+    .post(smartFile.url + smartFile.api.upload + smartFile.folderName)
+    .auth(smartFile.keys.public, smartFile.keys.private)
+    .attach('file', archivePath)
+    .then((uploadResponse) => {
+      // Link file
+      const filePath = uploadResponse.body[0].path;
+
+      request
+        .post(smartFile.url + smartFile.api.link)
+        .auth(smartFile.keys.public, smartFile.keys.private)
+        .send({
+          path: filePath,
+          read: true,
+          list: true
+        })
+        .then((linkResponse) => {
+          // Remove local file
+          fs.unlinkSync(archivePath);
+
+          res.json({ url: linkResponse.body.href });
+        }).catch((err) => {
+          console.error(err);
+        })
+    }).catch((err) => {
+      console.error(err);
+    });
+});
 
 // handles all routes so you do not get a not found error
 app.get('/*', (req, res) => {

@@ -84,3 +84,9 @@ export function save(values) {
     .then(checkStatus)
     .then(parseJSON);
 }
+
+export function recalboxSupport() {
+  return fetch('/recalbox-support')
+    .then(checkStatus)
+    .then(parseJSON);
+}

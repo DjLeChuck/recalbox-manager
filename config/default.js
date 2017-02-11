@@ -37,6 +37,7 @@ module.exports = {
     biosFilePath: '/recalbox/share/bios/readme.txt',
     esSystemsCfgPath: '/recalbox/share_init/system/.emulationstation/es_systems.cfg',
     systemSettingsCommand: 'python /usr/lib/python2.7/site-packages/configgen/settings/recalboxSettings.pyc',
+    savesPath: '/recalbox/share/saves',
 
     // Audio
     audio: {

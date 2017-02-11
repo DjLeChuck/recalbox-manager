@@ -23,7 +23,7 @@ class Bios extends React.Component {
     };
     this.componentConfig = {
       showFiletypeIcon: true,
-      postUrl: '/uploadBios',
+      postUrl: '/upload/bios',
     };
     this.handlers = {
       success: (file, result) => {

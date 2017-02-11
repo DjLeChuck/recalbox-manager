@@ -6,6 +6,7 @@ import Audio from './components/Audio';
 import Bios from './components/Bios';
 import Configuration from './components/Configuration';
 import Controllers from './components/Controllers';
+import Help from './components/Help';
 import Logs from './components/Logs';
 import RecalboxConf from './components/RecalboxConf';
 import Screenshots from './components/Screenshots';
@@ -20,6 +21,7 @@ const routes = (
     <Route path="/configuration" component={Configuration} />
     <Route path="/controllers" component={Controllers} />
     <Route path="/recalbox-conf" component={RecalboxConf} />
+    <Route path="/help" component={Help} />
     <Route path="/logs" component={Logs} />
     <Route path="/screenshots" component={Screenshots} />
     <Route path="/systems" component={Systems} />

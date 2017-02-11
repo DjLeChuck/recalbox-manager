@@ -22,7 +22,7 @@ class Configuration extends React.Component {
   }
 
   componentWillMount() {
-    get('romsDirectories').then((response) => {
+    get('romsDirectories', 'addFavorites').then((response) => {
       this.setState(response);
     }).catch((err) => {
       console.error(err);

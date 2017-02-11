@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const option = req.query.option;
-  const param = req.query.param;
+  const param = req.query.param || {};
   let data;
   let srcpath;
 
@@ -26,7 +26,9 @@ router.get('/', (req, res) => {
       });
 
       // add favorites "virtual" folder
-      data.push('favorites');
+      if ('addFavorites' === param) {
+        data.push('favorites');
+      }
 
       data.sort();
       break;

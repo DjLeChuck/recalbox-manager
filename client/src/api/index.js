@@ -85,6 +85,13 @@ export function save(values) {
     .then(parseJSON);
 }
 
+export function esSystems() {
+  return fetch('/es-systems')
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(formatOption);
+}
+
 export function recalboxSupport() {
   return fetch('/recalbox-support')
     .then(checkStatus)

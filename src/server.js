@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import config from 'config';
 import request from 'superagent';
 import fs from 'fs';
+import xml2js from 'xml2js';
 import uploadRouter from './routes/upload';
 import confRouter from './routes/conf';
 import grepRouter from './routes/grep';
@@ -46,6 +47,36 @@ app.use('/save', saveRouter);
 
 // Prise en charge des différents uploads (BIOS, ROMs)
 app.use('/upload', uploadRouter);
+
+let esSystems;
+
+app.get('/es-systems', (req, res) => {
+  if (esSystems) {
+    return res.json({ success: true, data: { esSystems: esSystems }});
+  }
+
+  const parser = new xml2js.Parser({
+    trim: true,
+    explicitArray: false
+  });
+  let systemJson;
+
+  parser.parseString(fs.readFileSync(config.get('recalbox.esSystemsCfgPath')), (err, json) => {
+    esSystems = [];
+
+    json.systemList.system.forEach((system) => {
+      esSystems.push({
+        name: system.name,
+        fullname: system.fullname,
+        path: system.path,
+        extensions: system.extension ? system.extension.split(' ') : [],
+        launchCommand: system.command,
+      });
+    });
+
+    res.json({ success: true, data: { esSystems: esSystems }});
+  });
+});
 
 app.get('/recalbox-support', (req, res) => {
   const uniqid = new Date().getTime();

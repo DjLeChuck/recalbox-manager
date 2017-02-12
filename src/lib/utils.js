@@ -85,8 +85,6 @@ export async function getEsSystems() {
 }
 
 // Traitement des fichiers gamelist.xml
-let gamelistCollection = {};
-
 export function parseGameReleaseDate(releaseDate) {
   return {
     day: releaseDate.substring(6, 8),
@@ -103,12 +101,13 @@ export function getSystemGamelistPath(system) {
   return path.join(getSystemRomsBasePath(system), 'gamelist.xml');
 }
 
-export async function getSystemGamelist(system) {
-  if (gamelistCollection.system) {
-    return gamelistCollection.system;
+export async function getSystemGamelist(system, raw = false) {
+  const json = await xmlToJson(getSystemGamelistPath(system));
+
+  if (raw) {
+    return json;
   }
 
-  const json = await xmlToJson(getSystemGamelistPath(system));
   let list = {};
   let gameList = json.gameList.game || [];
 
@@ -119,8 +118,6 @@ export async function getSystemGamelist(system) {
   gameList.forEach((game) => {
     list[game.path.substring(2)] = game;
   });
-
-  gamelistCollection.system = list;
 
   return list;
 }

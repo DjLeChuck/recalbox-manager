@@ -84,8 +84,9 @@ router.get('/', async (req, res) => {
         const filepath = path.join(subpath, romName);
         let fullname = romName;
         let romData = {
-          filename: romName,
+          path: filepath,
           name: romName,
+          releasedate: {},
         };
 
         if (gamelist[filepath]) {

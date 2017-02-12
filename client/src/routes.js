@@ -27,7 +27,9 @@ const routes = (
     <Route path="recalbox-conf" component={RecalboxConf} />
     <Route path="roms">
       <IndexRoute component={RomsList} />
-      <Route path=":system" component={RomsView} />
+      <Route path=":system" component={RomsView}>
+        <Route path="**" />
+      </Route>
     </Route>
     <Route path="screenshots" component={Screenshots} />
     <Route path="systems" component={Systems} />

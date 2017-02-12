@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import Loader from 'react-loader';
+import Rating from 'react-rating';
 import { translate } from 'react-i18next';
 import {
   Alert, Button, Collapse, Well, Glyphicon, Panel, Row, Col,
@@ -79,6 +80,13 @@ class View extends React.Component {
     } else {
       editedGame[name] = target.value;
     }
+
+    this.setState({ editedGame });
+  }
+
+  onRate = (rating) => {
+    const editedGame = this.state.editedGame;
+    editedGame.rating = rating;
 
     this.setState({ editedGame });
   }
@@ -422,11 +430,11 @@ class View extends React.Component {
                 <FormGroup controlId="rating">
                   <Col componentClass={ControlLabel} md={3}>{t('Note')}</Col>
                   <Col md={9}>
-                    <div data-rating-div></div>
-                    <FormControl type="hidden" name="rating"
-                      value={this.state.editedGame.rating || '0'}
-                      onChange={this.handleInputChange}
-                    />
+                    <Rating stop={1} step={.2} fractions={2}
+                      initialRate={parseFloat(this.state.editedGame.rating)}
+                      empty="glyphicon glyphicon-star-empty big-glyphicon rating"
+                      full="glyphicon glyphicon-star big-glyphicon rating"
+                      onClick={this.onRate} />
                   </Col>
                 </FormGroup>
 

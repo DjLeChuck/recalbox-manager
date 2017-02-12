@@ -48,6 +48,9 @@ class Bios extends React.Component {
       dictCancelUpload: t("Annuler l'upload"),
       dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
       dictRemoveFile: t('Retirer le fichier'),
+      params: {
+        type: 'bios',
+      }
     };
   }
 

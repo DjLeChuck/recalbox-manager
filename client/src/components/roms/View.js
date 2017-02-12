@@ -39,31 +39,20 @@ class View extends React.Component {
     this.componentConfig = { postUrl: '/upload/roms' };
     this.handlers = {
       success: (file, result) => {
-        console.log(result);
-        // if (result.name) {
-        //   delete result.success;
-        //
-        //   let romIndex = this.state.biosList.findIndex((item) => {
-        //     return item.name === result.name;
-        //   });
-        //   const list = [...this.state.biosList];
-        //   list[romIndex] = result;
-        //
-        //   this.setState({ romsList: list });
-        // }
+        let list = [...this.state.romsList];
+
+        list.push(result.gameData);
+        list.sort((a, b) => {
+          return a.name < b.name;
+        });
+
+        this.setState({
+          romsList: list,
+        });
       },
       error: (file, err) => {
         console.error(file, err);
       }
-    };
-    const t = this.props.t;
-    this.djsConfig = {
-      dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
-      dictResponseError: t("Erreur lors de l'upload."),
-      addRemoveLinks: true,
-      dictCancelUpload: t("Annuler l'upload"),
-      dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
-      dictRemoveFile: t('Retirer le fichier'),
     };
   }
 
@@ -497,6 +486,21 @@ class View extends React.Component {
       }
 
       newState.breadcrumb = breadcrumb;
+
+      const t = this.props.t;
+      this.djsConfig = {
+        dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
+        dictResponseError: t("Erreur lors de l'upload."),
+        addRemoveLinks: true,
+        dictCancelUpload: t("Annuler l'upload"),
+        dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
+        dictRemoveFile: t('Retirer le fichier'),
+        params: {
+          type: 'rom',
+          system: newState.system,
+          path: splat,
+        }
+      };
 
       this.setState(newState);
     }).catch((err) => {

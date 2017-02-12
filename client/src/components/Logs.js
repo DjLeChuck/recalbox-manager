@@ -40,7 +40,7 @@ class Logs extends React.Component {
 
     this.setState({ loadingFile: true });
 
-    get('readFile', this.state.log_file).then((response) => {
+    get('readFile', `file=${this.state.log_file}`).then((response) => {
       response.loadingFile = false;
 
       this.setState(response);

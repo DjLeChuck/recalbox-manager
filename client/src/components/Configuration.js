@@ -22,7 +22,7 @@ class Configuration extends React.Component {
   }
 
   componentWillMount() {
-    get('romsDirectories', 'addFavorites').then((response) => {
+    get('directoryListing', 'addFavorites=1').then((response) => {
       this.setState(response);
     }).catch((err) => {
       console.error(err);
@@ -274,7 +274,7 @@ class Configuration extends React.Component {
 
               <SelectGroup label={t('Système sélectionné par défaut')}
                 id="system-es-selectedsystem" name="emulationstation.selectedsystem"
-                data={this.state.romsDirectories}
+                data={this.state.directoryListing}
                 defaultValue={this.state['emulationstation.selectedsystem']}
                 onChange={this.handleInputChange}
               />

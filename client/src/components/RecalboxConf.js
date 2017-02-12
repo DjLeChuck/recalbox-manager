@@ -21,7 +21,7 @@ class RecalboxConf extends React.Component {
 
   componentWillMount() {
     conf(['recalbox.confPath']).then((response) => {
-      get('readFile', response['recalbox.confPath']).then((data) => {
+      get('readFile', `file=${response['recalbox.confPath']}`).then((data) => {
         this.initialValues = Object.assign({}, data, response);
         let newState = this.initialValues;
         newState.isLoaded = true;

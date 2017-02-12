@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Glyphicon, Panel, Row, Col } from 'react-bootstrap';
-import { get, esSystems } from '../../api';
+import { get } from '../../api';
 
 class List extends React.Component {
   static propTypes = {
@@ -14,7 +14,7 @@ class List extends React.Component {
     super(props);
     this.state = {
       isLoaded: false,
-      romsDirectories: [],
+      directoryListing: [],
       esSystems: [],
     };
   }
@@ -22,8 +22,8 @@ class List extends React.Component {
   componentWillMount() {
     const promises = [];
 
-    promises.push(get('romsDirectories'));
-    promises.push(esSystems());
+    promises.push(get('directoryListing'));
+    promises.push(get('esSystems'));
 
     Promise.all(promises).then((values) => {
       let newState = { isLoaded: true };
@@ -47,7 +47,7 @@ class List extends React.Component {
 
         <Loader loaded={this.state.isLoaded}>
           <Row className="is-flex">
-            {this.state.romsDirectories.map((system, index) => {
+            {this.state.directoryListing.map((system, index) => {
               const systemData = this.state.esSystems.find((s) => {
                 return s.name === system;
               });

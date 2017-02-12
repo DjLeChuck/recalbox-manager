@@ -27,11 +27,11 @@ function formatOption(dataset) {
 /**
  * get an option
  */
-export function get(option, param = undefined) {
+export function get(option, params = undefined) {
   let url = `/get?option=${option}`;
 
-  if (undefined !== param) {
-    url += `&param=${param}`;
+  if (undefined !== params) {
+    url += `&params=${params}`;
   }
 
   return fetch(url)
@@ -83,13 +83,6 @@ export function save(values) {
   })
     .then(checkStatus)
     .then(parseJSON);
-}
-
-export function esSystems() {
-  return fetch('/es-systems')
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(formatOption);
 }
 
 export function recalboxSupport() {

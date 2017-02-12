@@ -6,9 +6,6 @@ import reactStringReplace from 'react-string-replace';
 import DropzoneComponent from 'react-dropzone-component';
 import { conf, get, post } from '../api';
 
-import 'react-dropzone-component/styles/filepicker.css';
-import 'dropzone/dist/min/dropzone.min.css';
-
 class Bios extends React.Component {
   constructor(props) {
     super(props);
@@ -21,10 +18,7 @@ class Bios extends React.Component {
       biosName: '',
       biosList: [],
     };
-    this.componentConfig = {
-      showFiletypeIcon: true,
-      postUrl: '/upload/bios',
-    };
+    this.componentConfig = { postUrl: '/upload/bios' };
     this.handlers = {
       success: (file, result) => {
         if (result.name) {

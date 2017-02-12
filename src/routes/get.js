@@ -2,10 +2,13 @@ import express from 'express';
 import config from 'config';
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 import {
   handleBiosLine, getEsSystems, getRoms, getSystemGamelist,
   parseGameReleaseDate
 } from '../lib/utils';
+
+const osutils = require('../lib/osutils');
 
 const router = express.Router();
 
@@ -114,6 +117,36 @@ router.get('/', async (req, res) => {
       break;
     case 'esSystems':
       data = await getEsSystems();
+      break;
+    case 'temperature':
+      const currentTemp = execSync('cat /sys/class/thermal/thermal_zone0/temp').toString() / 1000;
+      const maxTemp = 100;
+      const currentPercent = Math.floor(currentTemp * 100 / maxTemp);
+
+      data = {
+        current: Math.round(currentTemp, 2),
+        current_percent: currentPercent,
+        max: Math.round(maxTemp, 2),
+        color: currentPercent > 70 ? 'orange' : currentPercent < 30 ? 'green' : ''
+      }
+      break;
+    case 'ram':
+      const total = osutils.totalmem();
+      const free = osutils.freemem();
+      const used = total - free;
+
+      data = {
+        total: Math.round(total, 2),
+        used: Math.round(used, 2),
+        used_percent: Math.floor(used * 100 / total),
+        free: Math.round(free, 2)
+      };
+      break;
+    case 'disks':
+      data = osutils.listHardDrive();
+      break;
+    case 'cpus':
+      data = osutils.listCPUs();
       break;
     default:
       throw new Error(`Option "${option}" unknown`);

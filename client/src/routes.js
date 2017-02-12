@@ -8,6 +8,7 @@ import Configuration from './components/Configuration';
 import Controllers from './components/Controllers';
 import Help from './components/Help';
 import Logs from './components/Logs';
+import Monitoring from './components/Monitoring';
 import RecalboxConf from './components/RecalboxConf';
 import RomsList from './components/roms/List';
 import RomsView from './components/roms/View';
@@ -24,6 +25,7 @@ const routes = (
     <Route path="controllers" component={Controllers} />
     <Route path="help" component={Help} />
     <Route path="logs" component={Logs} />
+    <Route path="monitoring" component={Monitoring} />
     <Route path="recalbox-conf" component={RecalboxConf} />
     <Route path="roms">
       <IndexRoute component={RomsList} />

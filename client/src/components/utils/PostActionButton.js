@@ -6,6 +6,14 @@ class PostActionButton extends React.Component {
   static propTypes = {
     bsStyle: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
+    hideContentOnAction: PropTypes.bool.isRequired,
+    action: PropTypes.string.isRequired,
+    body: PropTypes.object.isRequired,
+  }
+
+  static defaultProps = {
+    body: {},
+    hideContentOnAction: false,
   }
 
   constructor(props) {
@@ -13,13 +21,13 @@ class PostActionButton extends React.Component {
     this.state = { isWorking: false };
   }
 
-  onClick = (e) => {
+  onClick = () => {
     this.setState({ isWorking: true });
 
-    const target = e.currentTarget;
-    const action = target.dataset.action;
+    const action = this.props.action;
+    const body = this.props.body;
 
-    post(action).then(() => {
+    post(action, body).then(() => {
       this.setState({ isWorking: false });
     }).catch((err) => {
       console.error(err);
@@ -27,11 +35,16 @@ class PostActionButton extends React.Component {
   }
 
   render() {
+    const renderChildren =
+      !this.state.isWorking ||
+      (this.state.isWorking && !this.props.hideContentOnAction)
+    ;
+
     return (
-      <Button onClick={this.onClick} {...this.props}>
+      <Button onClick={this.onClick} bsStyle={this.props.bsStyle}>
       {this.state.isWorking &&
         <Glyphicon glyph="refresh" className="glyphicon-spin" />
-      } {this.props.children}
+      } {renderChildren && this.props.children}
       </Button>
     );
   }

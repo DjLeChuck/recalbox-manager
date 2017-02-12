@@ -80,15 +80,15 @@ class Help extends React.Component {
           <Col md={6}>
             <Panel bsStyle="warning"
               header={<h3>{t("Redémarrage et arrêt d'EmulationStation")}</h3>}>
-              <PostActionButton bsStyle="warning" data-action="reboot-es">
+              <PostActionButton bsStyle="warning" action="reboot-es">
                 {t("Redémarer ES")}
               </PostActionButton>{' '}
 
-              <PostActionButton bsStyle="danger" data-action="shutdown-es">
+              <PostActionButton bsStyle="danger" action="shutdown-es">
                 {t("Arrêter ES")}
               </PostActionButton>{' '}
 
-              <PostActionButton bsStyle="success" data-action="start-es">
+              <PostActionButton bsStyle="success" action="start-es">
                 {t("Démarrer ES")}
               </PostActionButton>
             </Panel>
@@ -96,11 +96,11 @@ class Help extends React.Component {
           <Col md={6}>
             <Panel bsStyle="danger"
               header={<h3>{t("Redémarrage et arrêt du système")}</h3>}>
-              <PostActionButton bsStyle="warning" data-action="reboot-os">
+              <PostActionButton bsStyle="warning" action="reboot-os">
                 {t("Redémarer le système")}
               </PostActionButton>{' '}
 
-              <PostActionButton bsStyle="danger" data-action="shutdown-os">
+              <PostActionButton bsStyle="danger" action="shutdown-os">
                 {t("Arrêter le système")}
               </PostActionButton>
             </Panel>

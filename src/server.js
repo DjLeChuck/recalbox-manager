@@ -93,7 +93,7 @@ app.get('/*', (req, res) => {
 });
 
 // start the server
-app.listen(app.get('port'), '127.0.0.1', (err) => {
+app.listen(app.get('port'), (err) => {
   if (err) {
     return console.error(err);
   }

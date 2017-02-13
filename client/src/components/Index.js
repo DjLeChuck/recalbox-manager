@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { translate } from 'react-i18next';
 import { Row, Col, Panel } from 'react-bootstrap';
 import gamepad from '../dependencies/img/gamepad.png';
 import keyboard from '../dependencies/img/keyboard.png';
 
-class Index extends Component {
+class Index extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  }
+
   render() {
     const { t } = this.props;
 

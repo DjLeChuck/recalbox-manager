@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
@@ -10,6 +10,10 @@ import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
 
 class Audio extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -73,7 +77,7 @@ class Audio extends React.Component {
     if (0 < Object.keys(diff).length) {
       this.setState({ isSaving: true });
 
-      save(diff).then((data) => {
+      save(diff).then(() => {
         this.initialValues = cloneObject(this.currentValues);
 
         this.setState({ isSaving: false });

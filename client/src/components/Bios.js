@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Button, Collapse, Well, Table, Glyphicon, Modal } from 'react-bootstrap';
@@ -10,6 +10,10 @@ import 'react-dropzone-component/styles/filepicker.css';
 import 'dropzone/dist/min/dropzone.min.css';
 
 class Bios extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -194,9 +198,5 @@ class Bios extends React.Component {
     );
   }
 }
-
-Bios.propTypes = {
-  t: React.PropTypes.func.isRequired
-};
 
 export default translate()(Bios);

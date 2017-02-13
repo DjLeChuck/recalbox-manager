@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { translate } from 'react-i18next';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
@@ -18,6 +18,12 @@ const languagesFlags = {
 };
 
 class Layout extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+    i18n: PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired,
+  }
+
   render() {
     const { t } = this.props;
     const toggle = lng => this.props.i18n.changeLanguage(lng);

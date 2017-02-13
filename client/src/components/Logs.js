@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Button, Form, FormControl, Col } from 'react-bootstrap';
@@ -6,6 +6,10 @@ import FieldGroup from './utils/FieldGroup';
 import { conf, get } from '../api';
 
 class Logs extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, Col } from 'react-bootstrap';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import { cloneObject } from '../../utils';
@@ -6,6 +6,20 @@ import { cloneObject } from '../../utils';
 import '../../dependencies/css/bootstrap-slider.min.css';
 
 class SliderGroup extends React.Component {
+  static propTypes = {
+    value: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number,
+    ]).isRequired,
+    id: PropTypes.string.isRequired,
+    extraClass: PropTypes.string,
+    label: PropTypes.node,
+  }
+
+  static defaultProps = {
+    value: 0,
+  }
+
   render() {
     const sliderValue = parseInt(this.props.value, 10);
     let sliderProps = cloneObject(this.props);

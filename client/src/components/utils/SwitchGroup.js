@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, Col, Alert, Glyphicon } from 'react-bootstrap';
 import Switch from 'react-bootstrap-switch';
 import { cloneObject } from '../../utils';
@@ -6,6 +6,21 @@ import { cloneObject } from '../../utils';
 import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
 
 class SwitchGroup extends React.Component {
+  static propTypes = {
+    value: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number,
+    ]).isRequired,
+    id: PropTypes.string.isRequired,
+    help: PropTypes.node,
+    label: PropTypes.node,
+    warning: PropTypes.node,
+  }
+
+  static defaultProps = {
+    value: 0,
+  }
+
   render() {
     const switchValue = 1 === parseInt(this.props.value, 10);
     let switchProps = cloneObject(this.props);

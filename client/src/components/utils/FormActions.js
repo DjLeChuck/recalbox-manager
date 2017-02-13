@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { translate } from 'react-i18next';
 import { Glyphicon, Button } from 'react-bootstrap';
 
 class FormActions extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
+    isSaving: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    isSaving: false,
+  };
+
   render() {
     const { t } = this.props;
 

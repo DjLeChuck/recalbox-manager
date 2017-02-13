@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
@@ -8,6 +8,10 @@ import FieldGroup from './utils/FieldGroup';
 import FormActions from './utils/FormActions';
 
 class RecalboxConf extends React.Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -55,7 +59,7 @@ class RecalboxConf extends React.Component {
       post('writeFile', {
         file: this.state['recalbox.confPath'],
         data: this.state.readFile
-      }).then((data) => {
+      }).then(() => {
         this.initialValues = cloneObject(this.currentValues);
 
         this.setState({ isSaving: false });

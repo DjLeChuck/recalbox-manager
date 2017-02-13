@@ -30,9 +30,10 @@ router.get('/', async (req, res) => {
       data = req.hostname;
       break;
     case 'directoryListing':
-      let directoryPath = path.join(config.get('recalbox.romsPath'), params.subpath || '');
+      const directoryPath = path.join(config.get('recalbox.romsPath'), params.subpath || '');
+      const excluded = config.get('recalbox.romsExcludedFolders');
       data = fs.readdirSync(directoryPath).filter((file) => {
-        return fs.statSync(path.join(directoryPath, file)).isDirectory();
+        return -1 === excluded.indexOf(file) && fs.statSync(path.join(directoryPath, file)).isDirectory();
       });
 
       // add favorites "virtual" folder

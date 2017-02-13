@@ -10,14 +10,11 @@ import {
   ControlLabel
 } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
-import DropzoneComponent from 'react-dropzone-component';
+import CustomDropzone from '../utils/Dropzone';
 import PostActionButton from '../utils/PostActionButton';
 import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
 import { promisifyData } from '../../utils';
-
-import 'react-dropzone-component/styles/filepicker.css';
-import 'dropzone/dist/min/dropzone.min.css';
 
 class View extends React.Component {
   static propTypes = {
@@ -37,24 +34,6 @@ class View extends React.Component {
       directoryListing: [],
       breadcrumb: [],
       editedGame: { releasedate: {}},
-    };
-    this.componentConfig = { postUrl: '/upload/roms' };
-    this.handlers = {
-      success: (file, result) => {
-        let list = [...this.state.romsList];
-
-        list.push(result.gameData);
-        list.sort((a, b) => {
-          return a.name < b.name;
-        });
-
-        this.setState({
-          romsList: list,
-        });
-      },
-      error: (file, err) => {
-        console.error(file, err);
-      }
     };
   }
 
@@ -83,6 +62,19 @@ class View extends React.Component {
     }
 
     this.setState({ editedGame });
+  }
+
+  onUploadSuccess = (result) => {
+    let list = [...this.state.romsList];
+
+    list.push(result.gameData);
+    list.sort((a, b) => {
+      return a.name < b.name;
+    });
+
+    this.setState({
+      romsList: list,
+    });
   }
 
   onRate = (rating) => {
@@ -243,8 +235,8 @@ class View extends React.Component {
           <Collapse in={this.state.open}>
             <div>
               <Well>
-                <DropzoneComponent config={this.componentConfig}
-                  djsConfig={this.djsConfig} eventHandlers={this.handlers} />
+                <CustomDropzone type="roms" params={this.state.dropzoneParams}
+                  onSuccess={this.onUploadSuccess} />
             </Well>
           </div>
           </Collapse>
@@ -488,20 +480,9 @@ class View extends React.Component {
     }
 
     state.breadcrumb = breadcrumb;
-
-    const t = this.props.t;
-    this.djsConfig = {
-      dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
-      dictResponseError: t("Erreur lors de l'upload."),
-      addRemoveLinks: true,
-      dictCancelUpload: t("Annuler l'upload"),
-      dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
-      dictRemoveFile: t('Retirer le fichier'),
-      params: {
-        type: 'rom',
-        system: state.system,
-        path: splat,
-      }
+    state.dropzoneParams = {
+      system: state.system,
+      path: splat,
     };
 
     this.setState(state);

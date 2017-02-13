@@ -3,12 +3,9 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Button, Collapse, Well, Table, Glyphicon, Modal } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
-import DropzoneComponent from 'react-dropzone-component';
+import CustomDropzone from './utils/Dropzone';
 import { conf, get, post } from '../api';
 import { promisifyData } from '../utils';
-
-import 'react-dropzone-component/styles/filepicker.css';
-import 'dropzone/dist/min/dropzone.min.css';
 
 class Bios extends React.Component {
   static propTypes = {
@@ -26,37 +23,6 @@ class Bios extends React.Component {
       biosName: '',
       biosList: [],
     };
-    this.componentConfig = { postUrl: '/upload/bios' };
-    this.handlers = {
-      success: (file, result) => {
-        if (result.name) {
-          delete result.success;
-
-          let biosIndex = this.state.biosList.findIndex((item) => {
-            return item.name === result.name;
-          });
-          const list = [...this.state.biosList];
-          list[biosIndex] = result;
-
-          this.setState({ biosList: list });
-        }
-      },
-      error: (file, err) => {
-        console.error(file, err);
-      }
-    };
-    const t = this.props.t;
-    this.djsConfig = {
-      dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
-      dictResponseError: t("Erreur lors de l'upload."),
-      addRemoveLinks: true,
-      dictCancelUpload: t("Annuler l'upload"),
-      dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
-      dictRemoveFile: t('Retirer le fichier'),
-      params: {
-        type: 'bios',
-      }
-    };
   }
 
   async componentWillMount() {
@@ -68,6 +34,18 @@ class Bios extends React.Component {
     state.isLoaded = true;
 
     this.setState(state);
+  }
+
+  onUploadSuccess = (result) => {
+    if (result.name) {
+      let biosIndex = this.state.biosList.findIndex((item) => {
+        return item.name === result.name;
+      });
+      const list = [...this.state.biosList];
+      list[biosIndex] = result;
+
+      this.setState({ biosList: list });
+    }
   }
 
   close = () => {
@@ -128,8 +106,7 @@ class Bios extends React.Component {
         <Collapse in={this.state.open}>
           <div>
             <Well>
-              <DropzoneComponent config={this.componentConfig}
-                djsConfig={this.djsConfig} eventHandlers={this.handlers} />
+              <CustomDropzone type="bios" onSuccess={this.onUploadSuccess} />
             </Well>
           </div>
         </Collapse>

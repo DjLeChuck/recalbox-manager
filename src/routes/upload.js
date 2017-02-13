@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
       case 'bios':
         cb(null, config.get('recalbox.biosPath'));
         break;
-      case 'rom':
+      case 'roms':
         cb(null, path.resolve(config.get('recalbox.romsPath'), req.body.system, req.body.path));
         break;
     }

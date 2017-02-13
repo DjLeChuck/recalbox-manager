@@ -4,6 +4,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Glyphicon, Panel, Row, Col } from 'react-bootstrap';
 import { get } from '../../api';
+import { promisifyData } from '../../utils';
 
 class List extends React.Component {
   static propTypes = {
@@ -19,23 +20,15 @@ class List extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const promises = [];
+  async componentWillMount() {
+    const state = await promisifyData(
+      get('directoryListing'),
+      get('esSystems')
+    );
 
-    promises.push(get('directoryListing'));
-    promises.push(get('esSystems'));
+    state.isLoaded = true;
 
-    Promise.all(promises).then((values) => {
-      let newState = { isLoaded: true };
-
-      for (const value of values) {
-        Object.assign(newState, value);
-      }
-
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 
   render() {

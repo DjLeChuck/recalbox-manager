@@ -3,7 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
 import { grep, conf, save } from '../api';
-import { diffObjects, cloneObject } from '../utils';
+import { diffObjects, cloneObject, promisifyData } from '../utils';
 import SelectGroup from './utils/SelectGroup';
 import SliderGroup from './utils/SliderGroup';
 import SwitchGroup from './utils/SwitchGroup';
@@ -25,22 +25,16 @@ class Audio extends React.Component {
     };
   }
 
-  componentWillMount() {
-    conf(['recalbox.audio.devices']).then((response) => {
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+  async componentWillMount() {
+    const state = await promisifyData(
+      conf(['recalbox.audio.devices']),
+      grep(['audio.device', 'audio.volume', 'audio.bgmusic'])
+    );
 
-    grep(['audio.device', 'audio.volume', 'audio.bgmusic']).then((data) => {
-      this.initialValues = data;
-      let newState = data;
-      newState.isLoaded = true;
+    this.initialValues = state;
+    state.isLoaded = true;
 
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 
   handleSwitchChange = (elm, newState) => {

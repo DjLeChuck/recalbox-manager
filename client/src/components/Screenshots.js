@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import { Row, Col, Form, Panel, Button, Glyphicon, Modal } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
 import { conf, get, post } from '../api';
+import { promisifyData } from '../utils';
 
 class Screenshots extends React.Component {
   static propTypes = {
@@ -19,24 +20,17 @@ class Screenshots extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const promises = [];
+  async componentWillMount() {
+    const state = await promisifyData(
+      conf(['recalbox.screenshotsPath']),
+      get('hostname'),
+      get('screenshotsList')
+    );
 
-    promises.push(conf(['recalbox.screenshotsPath']));
-    promises.push(get('hostname'));
-    promises.push(get('screenshotsList'));
+    state.isLoaded = true;
+    state.showModal = false;
 
-    Promise.all(promises).then((values) => {
-      let newState = { isLoaded: true, showModal: false };
-
-      for (const value of values) {
-        Object.assign(newState, value);
-      }
-
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 
   takeScreenshot = (e) => {

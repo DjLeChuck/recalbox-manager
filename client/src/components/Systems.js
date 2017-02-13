@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { Panel, Form, Well } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
 import { grep, conf, save } from '../api';
-import { diffObjects, cloneObject } from '../utils';
+import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SwitchGroup from './utils/SwitchGroup';
@@ -31,33 +31,27 @@ class Systems extends React.Component {
     };
   }
 
-  componentWillMount() {
-    conf(['recalbox.systems.ratio', 'recalbox.systems.shaderset']).then((response) => {
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+  async componentWillMount() {
+    const state = await promisifyData(
+      conf(['recalbox.systems.ratio', 'recalbox.systems.shaderset']),
+      grep([
+        'global.ratio',
+        'global.shaderset',
+        'global.smooth',
+        'global.rewind',
+        'global.autosave',
+        'global.integerscale',
+        'global.retroachievements',
+        'global.retroachievements.hardcore',
+        'global.retroachievements.username',
+        'global.retroachievements.password',
+      ])
+    );
 
-    grep([
-      'global.ratio',
-      'global.shaderset',
-      'global.smooth',
-      'global.rewind',
-      'global.autosave',
-      'global.integerscale',
-      'global.retroachievements',
-      'global.retroachievements.hardcore',
-      'global.retroachievements.username',
-      'global.retroachievements.password',
-    ]).then((data) => {
-      this.initialValues = data;
-      let newState = data;
-      newState.isLoaded = true;
+    this.initialValues = state;
+    state.isLoaded = true;
 
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 
   handleSwitchChange = (elm, newState) => {

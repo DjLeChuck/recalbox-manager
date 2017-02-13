@@ -3,7 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form, Well, Alert, Tabs, Tab } from 'react-bootstrap';
 import { get, grep, conf, save } from '../api';
-import { diffObjects, cloneObject } from '../utils';
+import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SwitchGroup from './utils/SwitchGroup';
@@ -25,61 +25,50 @@ class Configuration extends React.Component {
     };
   }
 
-  componentWillMount() {
-    get('directoryListing', 'addFavorites=1').then((response) => {
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+  async componentWillMount() {
+    const state = await promisifyData(
+      get('directoryListing', 'addFavorites=1'),
+      conf([
+        'recalbox.configuration.keyboardlayouts',
+        'recalbox.configuration.systemlocales',
+        'recalbox.configuration.timezones',
+        'recalbox.configuration.updatesTypes',
+        'recalbox.configuration.esMenus',
+        'recalbox.configuration.emulatorsSpecialkeys',
+      ]),
+      grep([
+        'system.language',
+        'system.kblayout',
+        'system.timezone',
+        'system.hostname',
+        'wifi.enabled',
+        'wifi.ssid',
+        'wifi2.enabled',
+        'wifi2.ssid',
+        'wifi3.enabled',
+        'wifi3.ssid',
+        'kodi.enabled',
+        'kodi.atstartup',
+        'kodi.xbutton',
+        'system.es.menu',
+        'system.emulators.specialkeys',
+        'system.api.enabled',
+        'emulationstation.selectedsystem',
+        'emulationstation.bootongamelist',
+        'emulationstation.hidesystemview',
+        'emulationstation.gamelistonly',
+        'updates.enabled',
+        'updates.type',
+      ])
+    );
 
-    conf([
-      'recalbox.configuration.keyboardlayouts',
-      'recalbox.configuration.systemlocales',
-      'recalbox.configuration.timezones',
-      'recalbox.configuration.updatesTypes',
-      'recalbox.configuration.esMenus',
-      'recalbox.configuration.emulatorsSpecialkeys',
-    ]).then((response) => {
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+    state['wifi.key'] = '';
+    state['wifi2.key'] = '';
+    state['wifi3.key'] = '';
+    this.initialValues = state;
+    state.isLoaded = true;
 
-    grep([
-      'system.language',
-      'system.kblayout',
-      'system.timezone',
-      'system.hostname',
-      'wifi.enabled',
-      'wifi.ssid',
-      'wifi2.enabled',
-      'wifi2.ssid',
-      'wifi3.enabled',
-      'wifi3.ssid',
-      'kodi.enabled',
-      'kodi.atstartup',
-      'kodi.xbutton',
-      'system.es.menu',
-      'system.emulators.specialkeys',
-      'system.api.enabled',
-      'emulationstation.selectedsystem',
-      'emulationstation.bootongamelist',
-      'emulationstation.hidesystemview',
-      'emulationstation.gamelistonly',
-      'updates.enabled',
-      'updates.type',
-    ]).then((data) => {
-      data['wifi.key'] = '';
-      data['wifi2.key'] = '';
-      data['wifi3.key'] = '';
-      this.initialValues = data;
-      let newState = data;
-      newState.isLoaded = true;
-
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 
   handleSwitchChange = (elm, newState) => {

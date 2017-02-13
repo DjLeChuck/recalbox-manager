@@ -3,7 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
 import { grep, conf, save } from '../api';
-import { diffObjects, cloneObject } from '../utils';
+import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SliderGroup from './utils/SliderGroup';
@@ -26,33 +26,27 @@ class Controllers extends React.Component {
     };
   }
 
-  componentWillMount() {
-    conf(['recalbox.controllers.ps3drivers']).then((response) => {
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+  async componentWillMount() {
+    const state = await promisifyData(
+      conf(['recalbox.controllers.ps3drivers']),
+      grep([
+        'controllers.db9.enabled',
+        'controllers.db9.args',
+        'controllers.gamecon.enabled',
+        'controllers.gamecon.args',
+        'controllers.gpio.enabled',
+        'controllers.gpio.args',
+        'controllers.ps3.enabled',
+        'controllers.ps3.driver',
+        'controllers.xboxdrv.enabled',
+        'controllers.xboxdrv.nbcontrols',
+      ])
+    );
 
-    grep([
-      'controllers.db9.enabled',
-      'controllers.db9.args',
-      'controllers.gamecon.enabled',
-      'controllers.gamecon.args',
-      'controllers.gpio.enabled',
-      'controllers.gpio.args',
-      'controllers.ps3.enabled',
-      'controllers.ps3.driver',
-      'controllers.xboxdrv.enabled',
-      'controllers.xboxdrv.nbcontrols',
-    ]).then((data) => {
-      this.initialValues = data;
-      let newState = data;
-      newState.isLoaded = true;
+    this.initialValues = state;
+    state.isLoaded = true;
 
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 
   handleSwitchChange = (elm, newState) => {

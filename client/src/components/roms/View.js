@@ -14,6 +14,7 @@ import DropzoneComponent from 'react-dropzone-component';
 import PostActionButton from '../utils/PostActionButton';
 import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
+import { promisifyData } from '../../utils';
 
 import 'react-dropzone-component/styles/filepicker.css';
 import 'dropzone/dist/min/dropzone.min.css';
@@ -461,59 +462,49 @@ class View extends React.Component {
     );
   }
 
-  _loadRoms(params) {
-    const promises = [];
+  async _loadRoms(params) {
     const system = params.system;
     const splat = params.splat || '';
     const subpath = splat ? `${system}/${splat}` : system;
+    const state = await promisifyData(
+      get('romsList', `system=${system},subpath=${splat}`),
+      get('directoryListing', `subpath=${subpath}`),
+      get('systemFullname', `system=${system}`),
+      grep(['system.api.enabled'])
+    );
 
-    promises.push(get('romsList', `system=${system},subpath=${splat}`));
-    promises.push(get('directoryListing', `subpath=${subpath}`));
-    promises.push(get('systemFullname', `system=${system}`));
-    promises.push(grep(['system.api.enabled']));
+    state.isLoaded = true;
+    state.system = system;
+    state.subpath = subpath;
 
-    Promise.all(promises).then((values) => {
-      let newState = {
-        isLoaded: true,
-        system: system,
-        subpath: subpath,
-      };
+    let breadcrumb = [
+      ['', this.props.t('Accueil')],
+      ['roms', this.props.t('ROMs')],
+      [system, state.systemFullname],
+    ];
 
-      for (const value of values) {
-        Object.assign(newState, value);
+    if ("" !== splat) {
+      breadcrumb = breadcrumb.concat(splat.split('/'));
+    }
+
+    state.breadcrumb = breadcrumb;
+
+    const t = this.props.t;
+    this.djsConfig = {
+      dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
+      dictResponseError: t("Erreur lors de l'upload."),
+      addRemoveLinks: true,
+      dictCancelUpload: t("Annuler l'upload"),
+      dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
+      dictRemoveFile: t('Retirer le fichier'),
+      params: {
+        type: 'rom',
+        system: state.system,
+        path: splat,
       }
+    };
 
-      let breadcrumb = [
-        ['', this.props.t('Accueil')],
-        ['roms', this.props.t('ROMs')],
-        [system, newState.systemFullname],
-      ];
-
-      if ("" !== splat) {
-        breadcrumb = breadcrumb.concat(splat.split('/'));
-      }
-
-      newState.breadcrumb = breadcrumb;
-
-      const t = this.props.t;
-      this.djsConfig = {
-        dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
-        dictResponseError: t("Erreur lors de l'upload."),
-        addRemoveLinks: true,
-        dictCancelUpload: t("Annuler l'upload"),
-        dictCancelUploadConfirmation: t('Êtes-vous sûr de vouloir annuler cet upload ?'),
-        dictRemoveFile: t('Retirer le fichier'),
-        params: {
-          type: 'rom',
-          system: newState.system,
-          path: splat,
-        }
-      };
-
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 }
 

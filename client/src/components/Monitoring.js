@@ -3,6 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Row, Col, ProgressBar, Table } from 'react-bootstrap';
 import { get } from '../api';
+import { promisifyData } from '../utils';
 
 class Monitoring extends React.Component {
   static propTypes = {
@@ -131,25 +132,17 @@ class Monitoring extends React.Component {
     );
   }
 
-  _fetchData() {
-    const promises = [];
+  async _fetchData() {
+    const state = await promisifyData(
+      get('temperature'),
+      get('ram'),
+      get('disks'),
+      get('cpus')
+    );
 
-    promises.push(get('temperature'));
-    promises.push(get('ram'));
-    promises.push(get('disks'));
-    promises.push(get('cpus'));
+    state.isLoaded = true;
 
-    Promise.all(promises).then((values) => {
-      let newState = { isLoaded: true };
-
-      for (const value of values) {
-        Object.assign(newState, value);
-      }
-
-      this.setState(newState);
-    }).catch((err) => {
-      console.error(err);
-    });
+    this.setState(state);
   }
 }
 

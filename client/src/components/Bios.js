@@ -5,6 +5,7 @@ import { Button, Collapse, Well, Table, Glyphicon, Modal } from 'react-bootstrap
 import reactStringReplace from 'react-string-replace';
 import DropzoneComponent from 'react-dropzone-component';
 import { conf, get, post } from '../api';
+import { promisifyData } from '../utils';
 
 import 'react-dropzone-component/styles/filepicker.css';
 import 'dropzone/dist/min/dropzone.min.css';
@@ -58,19 +59,15 @@ class Bios extends React.Component {
     };
   }
 
-  componentWillMount() {
-    conf(['recalbox.biosPath']).then((response) => {
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+  async componentWillMount() {
+    const state = await promisifyData(
+      conf(['recalbox.biosPath']),
+      get('biosList')
+    );
 
-    get('biosList').then((response) => {
-      response.isLoaded = true;
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+    state.isLoaded = true;
+
+    this.setState(state);
   }
 
   close = () => {

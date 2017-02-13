@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import { Panel, Button, Form, FormControl, Col } from 'react-bootstrap';
 import FieldGroup from './utils/FieldGroup';
 import { conf, get } from '../api';
+import { promisifyData } from '../utils';
 
 class Logs extends React.Component {
   static propTypes = {
@@ -19,14 +20,14 @@ class Logs extends React.Component {
     };
   }
 
-  componentWillMount() {
-    conf(['recalbox.logsPaths']).then((response) => {
-      response.isLoaded = true;
+  async componentWillMount() {
+    const state = await promisifyData(
+      conf(['recalbox.logsPaths'])
+    );
 
-      this.setState(response);
-    }).catch((err) => {
-      console.error(err);
-    });
+    state.isLoaded = true;
+
+    this.setState(state);
   }
 
   handleInputChange = (e) => {
@@ -46,6 +47,7 @@ class Logs extends React.Component {
 
     get('readFile', `file=${this.state.log_file}`).then((response) => {
       response.loadingFile = false;
+      response.loadedFile = this.state.log_file;
 
       this.setState(response);
     }).catch((err) => {
@@ -85,7 +87,7 @@ class Logs extends React.Component {
             <Panel header={
               <h3>
                 {t("Fichier en cours de visualisation :")}{' '}
-                <strong>{this.state.log_file}</strong>
+                <strong>{this.state.loadedFile}</strong>
               </h3>
             }>
               <FieldGroup id="read-file" name="readFile"

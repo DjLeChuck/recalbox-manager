@@ -23,7 +23,7 @@ class Screenshots extends React.Component {
     const promises = [];
 
     promises.push(conf(['recalbox.screenshotsPath']));
-    promises.push(get('serverAddress'));
+    promises.push(get('hostname'));
     promises.push(get('screenshotsList'));
 
     Promise.all(promises).then((values) => {
@@ -141,7 +141,7 @@ class Screenshots extends React.Component {
                         <Glyphicon glyph="trash" />
                       </Button><br />
 
-                      <a href={`//${this.state.serverAddress.ip}:${this.state.serverAddress.port}/screenshots/view/${screenshot}`}
+                      <a href={`//${this.state.hostname}/screenshots/view/${screenshot}`}
                         target="_blank" className="btn btn-success btn-sm">
                         <Glyphicon glyph="search" />
                       </a>

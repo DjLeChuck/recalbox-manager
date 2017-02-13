@@ -26,11 +26,8 @@ router.get('/', async (req, res) => {
   let srcpath;
 
   switch (option) {
-    case 'serverAddress':
-      data = {
-        ip: req.ip,
-        port: req.app.get('port'),
-      }
+    case 'hostname':
+      data = req.hostname;
       break;
     case 'directoryListing':
       let directoryPath = path.join(config.get('recalbox.romsPath'), params.subpath || '');

@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
       break;
     case 'takeScreenshot':
       const raspi2png = config.get('recalbox.raspi2png');
-      const screenshotName = `screenshot-${new Date().toISOString()}.png`;
+      const screenshotName = `screenshot-${new Date().toISOString().replace(/[:\.]/g, '-')}.png`;
       const screenPath = `${raspi2png.savePath}/${screenshotName}`;
 
       if ('production' === req.app.get('env')) {

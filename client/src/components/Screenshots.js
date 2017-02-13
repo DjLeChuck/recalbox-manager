@@ -141,12 +141,12 @@ class Screenshots extends React.Component {
                         <Glyphicon glyph="trash" />
                       </Button><br />
 
-                      <a href={`//${this.state.hostname}/screenshots/view/${screenshot}`}
+                      <a href={`//${this.state.hostname}/viewer/screenshots/${screenshot}`}
                         target="_blank" className="btn btn-success btn-sm">
                         <Glyphicon glyph="search" />
                       </a>
                     </div>
-                    <img src={`/screenshots/view/${screenshot}`} alt={screenshot}
+                    <img src={`/viewer/screenshots/${screenshot}`} alt={screenshot}
                       className="img-responsive img-thumbnail" />
                   </div>
                 </Panel>

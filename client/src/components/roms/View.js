@@ -282,8 +282,8 @@ class View extends React.Component {
                       <Row className="text-center">
                         <Col md={7} lg={9}>
                           {rom.image &&
-                            <img src={rom.image} alt={rom.name}
-                              className="rom-image" />
+                            <img src={`/viewer/roms/${rom.image}`} alt={rom.name}
+                              className="img-responsive img-thumbnail" />
                           }
                           {!rom.image &&
                             <Glyphicon glyph="picture"

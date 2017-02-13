@@ -24,7 +24,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // serves screenshots
-app.use('/screenshots/view', express.static(config.get('recalbox.screenshotsPath')));
+app.use('/viewer/screenshots', express.static(config.get('recalbox.screenshotsPath')));
+
+// serves roms (form images)
+app.use('/viewer/roms', express.static(config.get('recalbox.romsPath')));
 
 // locales
 app.use('/locales', express.static('locales'));

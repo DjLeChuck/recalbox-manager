@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import config from 'config';
 import request from 'superagent';
 import fs from 'fs';
+import { execSync } from 'child_process';
+import { uniqueID } from './lib/utils';
 import uploadRouter from './routes/upload';
 import confRouter from './routes/conf';
 import grepRouter from './routes/grep';
@@ -49,8 +51,7 @@ app.use('/save', saveRouter);
 app.use('/upload', uploadRouter);
 
 app.get('/recalbox-support', (req, res) => {
-  const uniqid = new Date().getTime();
-  const archivePath = `${config.get('recalbox.savesPath')}/recalbox-support-${uniqid}.tar.gz`;
+  const archivePath = `${config.get('recalbox.savesPath')}/recalbox-support-${uniqueID()}.tar.gz`;
   const smartFile = config.get('smartFile');
 
   // Création de l'archive

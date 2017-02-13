@@ -4,6 +4,18 @@ import path from 'path';
 import md5File from 'md5-file';
 import xml2js from 'xml2js';
 
+export function uniqueID() {
+  function chr4() {
+    return Math.random().toString(16).slice(-4);
+  }
+
+  return chr4() + chr4() +
+    '-' + chr4() +
+    '-' + chr4() +
+    '-' + chr4() +
+    '-' + chr4() + chr4() + chr4();
+}
+
 // Traitement d'une ligne du fichier readme.txt des BIOS
 const md5Rule = /^[a-f0-9]{32}$/i;
 const biosPath = config.get('recalbox.biosPath');

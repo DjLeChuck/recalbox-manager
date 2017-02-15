@@ -97,7 +97,7 @@ class Layout extends React.Component {
                   <NavItem><Glyphicon glyph="file" /> {t('Logs')}</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/recalbox-conf">
-                  <NavItem><Glyphicon glyph="file" /> {t('recalbox.conf')}</NavItem>
+                  <NavItem><Glyphicon glyph="file" /> recalbox.conf</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/help">
                   <NavItem><Glyphicon glyph="question-sign" /> {t('Dépannage')}</NavItem>
@@ -142,7 +142,7 @@ class Layout extends React.Component {
                   <NavItem><Glyphicon glyph="file" /> {t('Logs')}</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/recalbox-conf">
-                  <NavItem><Glyphicon glyph="file" /> {t('recalbox.conf')}</NavItem>
+                  <NavItem><Glyphicon glyph="file" /> recalbox.conf</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/help">
                   <NavItem><Glyphicon glyph="question-sign" /> {t('Dépannage')}</NavItem>

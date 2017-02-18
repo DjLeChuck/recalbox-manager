@@ -29,6 +29,7 @@ class View extends React.Component {
       isLoaded: false,
       showDeleteModal: false,
       showEditModal: false,
+      displayBackToTop: false,
       romName: '',
       romsList: [],
       directoryListing: [],
@@ -39,6 +40,20 @@ class View extends React.Component {
 
   componentWillMount() {
     this._loadRoms(this.props.params);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = (event) => {
+    const scrollTop = event.srcElement.body.scrollTop;
+
+    this.setState({ displayBackToTop: (scrollTop > 50) });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -310,11 +325,14 @@ class View extends React.Component {
             </Row>
           }
 
-          <OverlayTrigger placement="left" overlay={toTopTooltip}>
-            <Button bsStyle="primary" bsSize="large" className="back-to-top">
-              <Glyphicon glyph="chevron-up" />
-            </Button>
-          </OverlayTrigger>
+          {this.state.displayBackToTop &&
+            <OverlayTrigger placement="left" overlay={toTopTooltip}>
+              <Button bsStyle="primary" bsSize="large" className="back-to-top"
+                onClick={() => window.scrollTo(0, 0) }>
+                <Glyphicon glyph="chevron-up" />
+              </Button>
+            </OverlayTrigger>
+          }
         </Loader>
 
         <Modal show={this.state.showDeleteModal} onHide={this.closeModal}>

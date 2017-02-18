@@ -9,7 +9,7 @@
 .big-glyphicon {font-size:4em;}
 .no-display{display:none;}
 .rom-image {max-width: 230px;}
-.back-to-top { cursor: pointer; position: fixed; bottom: 20px; right: 20px; display:none; }
+.back-to-top { cursor: pointer; position: fixed; bottom: 20px; right: 20px; }
 .sticky-alert { position: fixed; top: 47px; left: 0; right: 0; z-index: 7000; width:290px; }
 .locale-switcher .dropdown-menu { min-width: 0px; }
 .form-horizontal .date-picker-select .form-group { margin-left: 0; margin-right: 0; }

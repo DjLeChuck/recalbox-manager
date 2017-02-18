@@ -68,9 +68,8 @@ router.post('/', async (req, res) => {
       spawn('shutdown', ['-h', 'now']);
       break;
       case 'deleteRom':
-        const romPath = path.resolve(config.get('recalbox.romsPath'), body.system, body.file);
+        deleteRom(body);
 
-        fs.unlinkSync(romPath);
         break;
       case 'editRom':
         let rawGameList = await getSystemGamelist(body.system, true);
@@ -127,5 +126,42 @@ router.post('/', async (req, res) => {
 
   res.json({ success: true, data: data });
 });
+
+async function deleteRom(payload) {
+  // Delete ROM file
+  const romPath = path.resolve(config.get('recalbox.romsPath'), payload.system, payload.file);
+
+  fs.unlinkSync(romPath);
+
+  // Remove ROM data from gamelist.xml
+  let rawGameList = await getSystemGamelist(payload.system, true);
+  const searchedPath = `./${payload.file}`;
+  let gameIndex;
+
+  if (!rawGameList.gameList.game) {
+    return;
+  }
+
+  if (!Array.isArray(rawGameList.gameList.game)) {
+    rawGameList.gameList.game = [rawGameList.gameList.game];
+  }
+
+  gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
+
+  if (-1 === gameIndex) {
+    return;
+  }
+
+  const imagePath = rawGameList.gameList.game[gameIndex].image;
+console.log(path.resolve(config.get('recalbox.romsPath'), payload.system, imagePath));
+  // Remove entry
+  delete rawGameList.gameList.game[gameIndex];
+
+  const builder = new xml2js.Builder();
+  const xml = builder.buildObject(rawGameList);
+
+  fs.writeFileSync(getSystemGamelistPath(payload.system), xml);
+  fs.unlinkSync(path.resolve(config.get('recalbox.romsPath'), payload.system, imagePath));
+}
 
 export default router;

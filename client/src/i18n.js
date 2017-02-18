@@ -22,7 +22,7 @@ i18n
     },
 
     backend: {
-      loadPath: function(lngs, namespaces) {
+      loadPath: function (lngs) {
         return `/locales/${lngs[0]}.json`;
       }
     }

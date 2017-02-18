@@ -8,6 +8,8 @@ import './dependencies/css/theme.css';
 import './index.css';
 
 ReactDOM.render(
-  <I18nextProvider i18n={i18n}><AppRoutes /></I18nextProvider>,
+  <I18nextProvider i18n={i18n}>
+    <AppRoutes />
+  </I18nextProvider>,
   document.getElementById('root')
 );

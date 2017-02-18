@@ -18,6 +18,7 @@
     "client": "babel-node start-client.js",
     "build": "babel src -d dist",
     "serve": "node dist/server.js",
+    "installboth": "npm install && cd client && npm install && cd ..",
     "buildboth": "npm run build && cd client && npm run build && cd .."
   },
   "devDependencies": {

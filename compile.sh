@@ -23,6 +23,9 @@ echo
 echo -e "${YELLOW}Compiling ${BLUE}re${GREEN}ca${RED}lb${PINK}ox${YELLOW} - web manager${NC}"
 echo
 
+echo -e "${BLUE}Installing building dependencies...${NC}"
+npm run -s installboth
+
 echo -e "${BLUE}Building sources ${RED}(be patient!)${BLUE}...${NC}"
 npm run -s buildboth
 
@@ -37,7 +40,7 @@ cp config/production.js release/config
 cp -R dist release
 cp package.json release
 
-echo -e "${BLUE}Installing dependencies...${NC}"
+echo -e "${BLUE}Installing production dependencies...${NC}"
 cd release
 
 npm install --production

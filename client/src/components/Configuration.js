@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form, Well, Alert, Tabs, Tab } from 'react-bootstrap';
-import { get, grep, conf, save } from '../api';
+import { get, grep, conf, translatableConf, save } from '../api';
 import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
@@ -32,10 +32,10 @@ class Configuration extends React.Component {
         'recalbox.configuration.keyboardlayouts',
         'recalbox.configuration.systemlocales',
         'recalbox.configuration.timezones',
-        'recalbox.configuration.updatesTypes',
         'recalbox.configuration.esMenus',
         'recalbox.configuration.emulatorsSpecialkeys',
       ]),
+      translatableConf(['recalbox.configuration.updatesTypes']),
       grep([
         'system.language',
         'system.kblayout',

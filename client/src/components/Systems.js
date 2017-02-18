@@ -3,7 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form, Well } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
-import { grep, conf, save } from '../api';
+import { grep, translatableConf, save } from '../api';
 import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
@@ -33,7 +33,7 @@ class Systems extends React.Component {
 
   async componentWillMount() {
     const state = await promisifyData(
-      conf(['recalbox.systems.ratio', 'recalbox.systems.shaderset']),
+      translatableConf(['recalbox.systems.ratio', 'recalbox.systems.shaderset']),
       grep([
         'global.ratio',
         'global.shaderset',

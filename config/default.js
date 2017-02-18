@@ -39,34 +39,8 @@ module.exports = {
     systemSettingsCommand: 'python /usr/lib/python2.7/site-packages/configgen/settings/recalboxSettings.pyc',
     savesPath: '/recalbox/share/saves',
 
-    // Audio
-    audio: {
-      devices: [
-        {id: '', text: "–"},
-        {id: 'auto', text: "Automatique"},
-        {id: 'hdmi', text: "Prise HDMI"},
-        {id: 'jack', text: "Prise Jack"}
-      ]
-    },
-
-    // Controllers
-    controllers: {
-      ps3drivers: [
-        {id: '', text: "–"},
-        {id: 'official', text: "Officiel"},
-        {id: 'shanwan', text: "Shanwan"},
-        {id: 'bluez', text: "Bluez 5"}
-      ]
-    },
-
     // Configuration
     configuration: {
-      updatesTypes: [
-        {id: '', text: "–"},
-        {id: 'stable', text: "Stable"},
-        {id: 'beta', text: "Bêta"},
-        {id: 'unstable', text: "Instable"},
-      ],
       esMenus: [
         'default',
         'none',
@@ -688,25 +662,6 @@ module.exports = {
         'W-SU',
         'Zulu'
       ]
-    },
-
-    // Systems
-    systems: {
-      ratio: [
-        {id: '', text: "–"},
-        {id: 'auto', text: "Automatique"},
-        {id: '4/3', text: '4/3'},
-        {id: '16/9', text: '16/9'},
-        {id: '16/10', text: '16/10'},
-        {id: 'custom', text: "Personnalisé"}
-      ],
-
-      shaderset: [
-        {id: '', text: "–"},
-        {id: 'none', text: "Aucun"},
-        {id: 'retro', text: "Retro"},
-        {id: 'scanlines', text: "Scanlines"},
-      ],
     }
   }
 };

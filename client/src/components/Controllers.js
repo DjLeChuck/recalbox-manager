@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
-import { grep, conf, save } from '../api';
+import { grep, translatableConf, save } from '../api';
 import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
@@ -28,7 +28,7 @@ class Controllers extends React.Component {
 
   async componentWillMount() {
     const state = await promisifyData(
-      conf(['recalbox.controllers.ps3drivers']),
+      translatableConf(['recalbox.controllers.ps3drivers']),
       grep([
         'controllers.db9.enabled',
         'controllers.db9.args',

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
-import { grep, conf, save } from '../api';
+import { grep, translatableConf, save } from '../api';
 import { diffObjects, cloneObject, promisifyData } from '../utils';
 import SelectGroup from './utils/SelectGroup';
 import SliderGroup from './utils/SliderGroup';
@@ -27,7 +27,7 @@ class Audio extends React.Component {
 
   async componentWillMount() {
     const state = await promisifyData(
-      conf(['recalbox.audio.devices']),
+      translatableConf(['recalbox.audio.devices']),
       grep(['audio.device', 'audio.volume', 'audio.bgmusic'])
     );
 

@@ -12,6 +12,7 @@ import {
 import reactStringReplace from 'react-string-replace';
 import CustomDropzone from '../utils/Dropzone';
 import PostActionButton from '../utils/PostActionButton';
+import ESActions from '../utils/ESActions';
 import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
 import { promisifyData } from '../../utils';
@@ -239,25 +240,33 @@ class View extends React.Component {
             <strong>{this.state.romsList.length}</strong>
           </p>
 
-          <Alert bsStyle="warning">
-            {t("Supprimer ou modifier des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.")}
-          </Alert>
+          <Row>
+            <Col md={6}>
+              <Alert bsStyle="warning">
+                {t("Supprimer ou ajouter des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.")}
+              </Alert>
 
-          <Button bsStyle="primary"
-            onClick={ () => this.setState({ open: !this.state.open })}>
-            {t("Uploader des ROMs")}
-          </Button>
-          <Collapse in={this.state.open}>
-            <div>
-              <Well>
-                <CustomDropzone type="roms" params={this.state.dropzoneParams}
-                  onSuccess={this.onUploadSuccess} />
-            </Well>
-          </div>
-          </Collapse>
+              <Alert bsStyle="danger">
+                {t("Il faut arrêter EmulationStation avant de modifier des ROMs.")}
+              </Alert>
+            </Col>
+            <Col md={6}>
+              <ESActions />
 
-          <br />
-          <br />
+              <Button bsStyle="primary"
+                onClick={ () => this.setState({ open: !this.state.open })}>
+                {t("Uploader des ROMs")}
+              </Button>
+              <Collapse in={this.state.open}>
+                <div>
+                  <Well>
+                    <CustomDropzone type="roms" params={this.state.dropzoneParams}
+                      onSuccess={this.onUploadSuccess} />
+                </Well>
+              </div>
+              </Collapse>
+            </Col>
+          </Row>
 
           {this.state.directoryListing &&
             <Row>

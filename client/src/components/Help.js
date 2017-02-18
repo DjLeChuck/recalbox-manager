@@ -3,6 +3,7 @@ import { translate } from 'react-i18next';
 import { Button, Glyphicon, Panel, Row, Col } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
 import PostActionButton from './utils/PostActionButton';
+import ESActions from './utils/ESActions';
 import { recalboxSupport } from '../api';
 
 class Help extends React.Component {
@@ -78,20 +79,7 @@ class Help extends React.Component {
 
         <Row>
           <Col md={6}>
-            <Panel bsStyle="warning"
-              header={<h3>{t("Redémarrage et arrêt d'EmulationStation")}</h3>}>
-              <PostActionButton bsStyle="warning" action="reboot-es">
-                {t("Redémarer ES")}
-              </PostActionButton>{' '}
-
-              <PostActionButton bsStyle="danger" action="shutdown-es">
-                {t("Arrêter ES")}
-              </PostActionButton>{' '}
-
-              <PostActionButton bsStyle="success" action="start-es">
-                {t("Démarrer ES")}
-              </PostActionButton>
-            </Panel>
+            <ESActions />
           </Col>
           <Col md={6}>
             <Panel bsStyle="danger"

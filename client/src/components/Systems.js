@@ -214,7 +214,7 @@ class Systems extends React.Component {
                   onChange={this.handleSwitchChange}
                   warning={
                     <span>
-                      {t("Le mode Hardcore Hardcore désactive *toutes* les possibilités de sauvegarder dans l'émulateur : vous ne pourrez ni sauvegarder ni recharger votre partie en cours de jeu.")}
+                      {t("Le mode Hardcore désactive *toutes* les possibilités de sauvegarder dans l'émulateur : vous ne pourrez ni sauvegarder ni recharger votre partie en cours de jeu.")}
                       <br />
                       {t("Vous devrez compléter le jeu et obtenir les hauts-faits du premier coup, comme c'était le cas sur la console originale !")}
                     </span>

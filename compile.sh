@@ -32,8 +32,9 @@ npm run -s buildboth
 echo -e "${BLUE}Copying files into release directory...${NC}"
 rm -rf release
 mkdir -p release/config
+mkdir -p release/client
 
-cp -R client/build release
+cp -R client/build release/client
 find . -type f -name '*.map' -exec rm {} + # removing useless "map files"
 cp config/default.js release/config
 cp config/production.js release/config

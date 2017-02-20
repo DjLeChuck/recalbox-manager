@@ -30,7 +30,7 @@ router.post('/bios', (req, res, next) => {
   upload(req, res, function (err) {
     if (err) {
       // An error occurred when uploading
-      return res.status(500).json({ success: false });
+      return next(err);
     }
 
     // Everything went fine
@@ -55,7 +55,7 @@ router.post('/roms', (req, res, next) => {
   upload(req, res, function (err) {
     if (err) {
       // An error occurred when uploading
-      return res.status(500).json({ success: false });
+      return next(err);
     }
 
     // Everything went fine

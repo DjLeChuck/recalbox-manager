@@ -53,7 +53,7 @@ app.use('/save', saveRouter);
 // Prise en charge des différents uploads (BIOS, ROMs)
 app.use('/upload', uploadRouter);
 
-app.get('/recalbox-support', (req, res) => {
+app.get('/recalbox-support', (req, res, next) => {
   const archivePath = `${config.get('recalbox.savesPath')}/recalbox-support-${uniqueID()}.tar.gz`;
   const smartFile = config.get('smartFile');
 
@@ -83,10 +83,10 @@ app.get('/recalbox-support', (req, res) => {
 
           res.json({ url: linkResponse.body.href });
         }).catch((err) => {
-          console.error(err);
+          next(err);
         })
     }).catch((err) => {
-      console.error(err);
+      next(err);
     });
 });
 
@@ -94,6 +94,30 @@ app.get('/recalbox-support', (req, res) => {
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve('client/build/index.html'));
 });
+
+// errors handler
+function logErrors(err, req, res, next) {
+  console.error(err.stack);
+
+  next(err);
+}
+
+function errorsHandler(err, req, res) {
+  let error = {};
+
+  error.message = err.message;
+
+  if ('production' !== app.get('env')) {
+    error.stack = err.stack;
+  }
+
+  error.errors = err.errors || {};
+
+  res.status(500).json(error);
+}
+
+app.use(logErrors);
+app.use(errorsHandler);
 
 // start the server
 app.listen(app.get('port'), (err) => {

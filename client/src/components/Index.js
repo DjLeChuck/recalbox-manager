@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { translate } from 'react-i18next';
 import { Row, Col, Panel } from 'react-bootstrap';
 import { get } from '../api';
-import { promisifyData } from '../utils';
+import { promisifyData, cancelPromises } from '../utils';
 import gamepad from '../dependencies/img/gamepad.png';
 import keyboard from '../dependencies/img/keyboard.png';
 
@@ -23,6 +23,10 @@ class Index extends React.Component {
     );
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   render() {

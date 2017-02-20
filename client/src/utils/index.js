@@ -15,8 +15,43 @@ export function cloneObject(obj) {
   return Object.assign({}, obj);
 }
 
+let currentPromises = [];
+const cancelablePromise = (promise) => {
+  let hasCanceled_ = false;
+
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then(
+      (val) => hasCanceled_ ? reject({ isCanceled: true }) : resolve(val),
+      (error) => hasCanceled_ ? reject({ isCanceled: true }) : reject(error)
+    );
+  });
+
+  return {
+    promise: wrappedPromise,
+    cancel() {
+      hasCanceled_ = true;
+    },
+  };
+};
+
+export function cancelPromises() {
+  for (const promise of currentPromises) {
+    promise.cancel();
+  }
+
+  currentPromises = [];
+}
+
 export function promisifyData(...calls) {
-  const promises = [...calls];
+  const promises = [];
+
+  for (const promise of [...calls]) {
+    currentPromises.push(cancelablePromise(promise));
+  }
+
+  for (const promise of currentPromises) {
+    promises.push(promise.promise);
+  }
 
   return Promise.all(promises).then((values) => {
     let newState = {};

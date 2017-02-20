@@ -3,7 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Panel, Form } from 'react-bootstrap';
 import { grep, translatableConf, save } from '../api';
-import { diffObjects, cloneObject, promisifyData } from '../utils';
+import { diffObjects, cloneObject, promisifyData, cancelPromises } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SwitchGroup from './utils/SwitchGroup';
@@ -44,6 +44,10 @@ class Controllers extends React.Component {
     state.isLoaded = true;
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   handleSwitchChange = (elm, newState) => {

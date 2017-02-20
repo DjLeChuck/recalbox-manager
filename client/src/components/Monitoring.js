@@ -3,7 +3,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Row, Col, ProgressBar, Table } from 'react-bootstrap';
 import { get } from '../api';
-import { promisifyData } from '../utils';
+import { promisifyData, cancelPromises } from '../utils';
 
 class Monitoring extends React.Component {
   static propTypes = {
@@ -27,6 +27,8 @@ class Monitoring extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
+
+    cancelPromises();
   }
 
   humanFileSize(bytes, si = false) {

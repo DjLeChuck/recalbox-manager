@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { Row, Col, Form, Panel, Button, Glyphicon, Modal } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
 import { conf, get, post } from '../api';
-import { promisifyData } from '../utils';
+import { promisifyData, cancelPromises } from '../utils';
 
 class Screenshots extends React.Component {
   static propTypes = {
@@ -31,6 +31,10 @@ class Screenshots extends React.Component {
     state.showModal = false;
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   takeScreenshot = (e) => {

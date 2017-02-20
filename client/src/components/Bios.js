@@ -5,7 +5,7 @@ import { Button, Collapse, Well, Table, Glyphicon, Modal } from 'react-bootstrap
 import reactStringReplace from 'react-string-replace';
 import CustomDropzone from './utils/Dropzone';
 import { conf, get, post } from '../api';
-import { promisifyData } from '../utils';
+import { promisifyData, cancelPromises } from '../utils';
 
 class Bios extends React.Component {
   static propTypes = {
@@ -34,6 +34,10 @@ class Bios extends React.Component {
     state.isLoaded = true;
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   onUploadSuccess = (result) => {

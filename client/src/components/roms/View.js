@@ -15,7 +15,7 @@ import PostActionButton from '../utils/PostActionButton';
 import ESActions from '../utils/ESActions';
 import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
-import { promisifyData } from '../../utils';
+import { promisifyData, cancelPromises } from '../../utils';
 
 class View extends React.Component {
   static propTypes = {
@@ -49,6 +49,8 @@ class View extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+
+    cancelPromises();
   }
 
   handleScroll = (event) => {

@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { Panel, Button, Form, FormControl, Col } from 'react-bootstrap';
 import FieldGroup from './utils/FieldGroup';
 import { conf, get } from '../api';
-import { promisifyData } from '../utils';
+import { promisifyData, cancelPromises } from '../utils';
 
 class Logs extends React.Component {
   static propTypes = {
@@ -28,6 +28,10 @@ class Logs extends React.Component {
     state.isLoaded = true;
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   handleInputChange = (e) => {

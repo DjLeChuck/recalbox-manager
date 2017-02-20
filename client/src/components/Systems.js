@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { Panel, Form, Well } from 'react-bootstrap';
 import reactStringReplace from 'react-string-replace';
 import { grep, translatableConf, save } from '../api';
-import { diffObjects, cloneObject, promisifyData } from '../utils';
+import { diffObjects, cloneObject, promisifyData, cancelPromises } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SwitchGroup from './utils/SwitchGroup';
@@ -52,6 +52,10 @@ class Systems extends React.Component {
     state.isLoaded = true;
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   handleSwitchChange = (elm, newState) => {

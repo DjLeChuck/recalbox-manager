@@ -4,7 +4,7 @@ import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import { Glyphicon, Panel, Row, Col } from 'react-bootstrap';
 import { get } from '../../api';
-import { promisifyData } from '../../utils';
+import { promisifyData, cancelPromises } from '../../utils';
 
 class List extends React.Component {
   static propTypes = {
@@ -29,6 +29,10 @@ class List extends React.Component {
     state.isLoaded = true;
 
     this.setState(state);
+  }
+
+  componentWillUnmount() {
+    cancelPromises();
   }
 
   render() {

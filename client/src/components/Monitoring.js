@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Row, Col, ProgressBar, Table } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
+import ProgressBar from 'react-bootstrap/lib/ProgressBar';
+import Table from 'react-bootstrap/lib/Table';
 import { get } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 

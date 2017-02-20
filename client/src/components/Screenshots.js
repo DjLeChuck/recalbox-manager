@@ -1,7 +1,13 @@
 import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Row, Col, Form, Panel, Button, Glyphicon, Modal } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import Form from 'react-bootstrap/lib/Form';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Modal from 'react-bootstrap/lib/Modal';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import reactStringReplace from 'react-string-replace';
 import { conf, get, post } from '../api';
 import { promisifyData, cancelPromises } from '../utils';

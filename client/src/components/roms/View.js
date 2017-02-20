@@ -4,11 +4,22 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Loader from 'react-loader';
 import Rating from 'react-rating';
 import { translate } from 'react-i18next';
-import {
-  Alert, Button, Collapse, Well, Glyphicon, Panel, Row, Col,
-  OverlayTrigger, Tooltip, Breadcrumb, Modal, Form, FormGroup, FormControl,
-  ControlLabel
-} from 'react-bootstrap';
+import Alert from 'react-bootstrap/lib/Alert';
+import Breadcrumb from 'react-bootstrap/lib/Breadcrumb';
+import Button from 'react-bootstrap/lib/Button';
+import Collapse from 'react-bootstrap/lib/Collapse';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Modal from 'react-bootstrap/lib/Modal';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Well from 'react-bootstrap/lib/Well';
 import reactStringReplace from 'react-string-replace';
 import CustomDropzone from '../utils/Dropzone';
 import PostActionButton from '../utils/PostActionButton';

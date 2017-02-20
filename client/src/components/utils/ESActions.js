@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { translate } from 'react-i18next';
-import { Panel } from 'react-bootstrap';
+import Panel from 'react-bootstrap/lib/Panel';
 import PostActionButton from './PostActionButton';
 
 class ESActions extends React.Component {

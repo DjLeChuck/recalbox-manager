@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
-import { FormGroup, ControlLabel, Col, Alert, Glyphicon } from 'react-bootstrap';
+import Alert from 'react-bootstrap/lib/Alert';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Switch from 'react-bootstrap-switch';
 import { cloneObject } from '../../utils';
 

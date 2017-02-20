@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Button, Glyphicon } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import  { post } from '../../api';
 
 class PostActionButton extends React.Component {

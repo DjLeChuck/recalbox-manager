@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Form, Well, Alert, Tabs, Tab } from 'react-bootstrap';
+import Alert from 'react-bootstrap/lib/Alert';
+import Form from 'react-bootstrap/lib/Form';
+import Panel from 'react-bootstrap/lib/Panel';
+import Tab from 'react-bootstrap/lib/Tab';
+import Tabs from 'react-bootstrap/lib/Tabs';
+import Well from 'react-bootstrap/lib/Well';
 import { get, grep, conf, translatableConf, save } from '../api';
 import { diffObjects, cloneObject, promisifyData, cancelPromises } from '../utils';
 import FieldGroup from './utils/FieldGroup';

@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Glyphicon, Panel, Row, Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import { get } from '../../api';
 import { promisifyData, cancelPromises } from '../../utils';
 

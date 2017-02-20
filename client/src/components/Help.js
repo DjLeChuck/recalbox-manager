@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 import { translate } from 'react-i18next';
-import { Button, Glyphicon, Panel, Row, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import reactStringReplace from 'react-string-replace';
 import PostActionButton from './utils/PostActionButton';
 import ESActions from './utils/ESActions';

@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Button, Collapse, Well, Table, Glyphicon, Modal } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Collapse from 'react-bootstrap/lib/Collapse';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Modal from 'react-bootstrap/lib/Modal';
+import Table from 'react-bootstrap/lib/Table';
+import Well from 'react-bootstrap/lib/Well';
 import reactStringReplace from 'react-string-replace';
 import CustomDropzone from './utils/Dropzone';
 import { conf, get, post } from '../api';

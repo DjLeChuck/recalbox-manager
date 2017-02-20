@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import { Panel, Button, Form, FormControl, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import Panel from 'react-bootstrap/lib/Panel';
 import FieldGroup from './utils/FieldGroup';
 import { conf, get } from '../api';
 import { promisifyData, cancelPromises } from '../utils';

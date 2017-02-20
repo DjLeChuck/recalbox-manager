@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
-import { FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
 import { cloneObject } from '../../utils';
 
 class FieldGroup extends React.Component {

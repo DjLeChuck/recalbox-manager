@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { translate } from 'react-i18next';
-import { Glyphicon, Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 class FormActions extends React.Component {
   static propTypes = {

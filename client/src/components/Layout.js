@@ -1,7 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { translate } from 'react-i18next';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Grid from 'react-bootstrap/lib/Grid';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
+import Nav from 'react-bootstrap/lib/Nav';
+import Navbar from 'react-bootstrap/lib/Navbar';
+import NavDropdown from 'react-bootstrap/lib/NavDropdown';
+import NavItem from 'react-bootstrap/lib/NavItem';
+import Row from 'react-bootstrap/lib/Row';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import flagFr from '../dependencies/img/flag-fr.png';
 import flagEn from '../dependencies/img/flag-en.png';

@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { translate } from 'react-i18next';
-import { Row, Col, Panel } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import Panel from 'react-bootstrap/lib/Panel';
+import Row from 'react-bootstrap/lib/Row';
 import { get } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 import gamepad from '../dependencies/img/gamepad.png';

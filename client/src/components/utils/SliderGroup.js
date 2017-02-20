@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import { FormGroup, ControlLabel, Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/lib/Col';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import { cloneObject } from '../../utils';
 

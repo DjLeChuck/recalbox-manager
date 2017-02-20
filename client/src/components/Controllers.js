@@ -6,7 +6,6 @@ import { grep, translatableConf, save } from '../api';
 import { diffObjects, cloneObject, promisifyData } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
-import SliderGroup from './utils/SliderGroup';
 import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
 
@@ -38,8 +37,6 @@ class Controllers extends React.Component {
         'controllers.gpio.args',
         'controllers.ps3.enabled',
         'controllers.ps3.driver',
-        'controllers.xboxdrv.enabled',
-        'controllers.xboxdrv.nbcontrols',
       ])
     );
 
@@ -57,13 +54,6 @@ class Controllers extends React.Component {
         value: newState ? 1 : 0,
       }
     });
-  }
-
-  handleSliderChange = (e) => {
-    e.target.name = 'controllers.xboxdrv.nbcontrols';
-    e.target.type = 'input';
-
-    this.handleInputChange(e);
   }
 
   handleInputChange = (e) => {
@@ -164,22 +154,6 @@ class Controllers extends React.Component {
                 data={this.state['recalbox.controllers.ps3drivers']}
                 defaultValue={this.state['controllers.ps3.driver']}
                 onChange={this.handleInputChange}
-              />
-            </Panel>
-
-            <Panel header={<h3>{t('Contrôleur XBOX')}</h3>}>
-              <SwitchGroup label={t('Support des contrôleurs XBOX')}
-                id="xboxdrv-enabled" name="controllers.xboxdrv.enabled"
-                value={this.state['controllers.xboxdrv.enabled']}
-                onChange={this.handleSwitchChange}
-              />
-
-              <SliderGroup label={t('Nombre des contrôleurs')}
-                id="xboxdrv-nbcontrols" name="controllers.xboxdrv.nbcontrols"
-                value={this.state['controllers.xboxdrv.nbcontrols']}
-                slideStop={this.handleSliderChange}
-                step={1} max={4} min={0}
-                tooltip="always" tooltip_position="bottom"
               />
             </Panel>
 

@@ -9,6 +9,7 @@ import Table from 'react-bootstrap/lib/Table';
 import Well from 'react-bootstrap/lib/Well';
 import reactStringReplace from 'react-string-replace';
 import CustomDropzone from './utils/Dropzone';
+import StickyAlert from './utils/StickyAlert';
 import { conf, get, post } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 
@@ -27,6 +28,7 @@ class Bios extends React.Component {
       showModal: false,
       biosName: '',
       biosList: [],
+      stickyContent: null,
     };
   }
 
@@ -87,7 +89,9 @@ class Bios extends React.Component {
         biosData,
       });
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
 
     this.close();
@@ -103,6 +107,10 @@ class Bios extends React.Component {
     return (
       <div>
         <div className="page-header"><h1>{t("BIOS")}</h1></div>
+
+        <StickyAlert bsStyle="danger" container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <p>{t("Voici la liste de l'ensemble des BIOS supportés par recalbox.")}</p>
         <p>{t("Les fichiers se trouvent dans le répertoire suivant :")} <code>{this.state['recalbox.biosPath']}</code></p>

@@ -23,6 +23,7 @@ import Well from 'react-bootstrap/lib/Well';
 import reactStringReplace from 'react-string-replace';
 import CustomDropzone from '../utils/Dropzone';
 import PostActionButton from '../utils/PostActionButton';
+import StickyAlert from '../utils/StickyAlert';
 import ESActions from '../utils/ESActions';
 import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
@@ -47,6 +48,7 @@ class View extends React.Component {
       directoryListing: [],
       breadcrumb: [],
       editedGame: { releasedate: {}},
+      stickyContent: null,
     };
   }
 
@@ -141,7 +143,9 @@ class View extends React.Component {
         romsList: list,
       });
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
 
     this.closeModal();
@@ -166,7 +170,9 @@ class View extends React.Component {
     }).then(() => {
       //
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
 
     this.closeModal();
@@ -252,6 +258,10 @@ class View extends React.Component {
             {t("Nombre total de ROMs :")}{' '}
             <strong>{this.state.romsList.length}</strong>
           </p>
+
+          <StickyAlert bsStyle="danger" container={this}>
+            {this.state.stickyContent}
+          </StickyAlert>
 
           <Row>
             <Col md={6}>

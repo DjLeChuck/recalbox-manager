@@ -7,6 +7,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
 import reactStringReplace from 'react-string-replace';
 import PostActionButton from './utils/PostActionButton';
+import StickyAlert from './utils/StickyAlert';
 import ESActions from './utils/ESActions';
 import { recalboxSupport } from '../api';
 
@@ -18,7 +19,9 @@ class Help extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      stickyContent: null,
+    };
   }
 
   componentDidMount() {
@@ -29,9 +32,7 @@ class Help extends React.Component {
     }
   }
 
-  doRecalboxSupport = (e) => {
-    e && e.preventDefault();
-
+  doRecalboxSupport = () => {
     this.setState({ isCallingSupport: true });
 
     recalboxSupport().then((result) => {
@@ -40,9 +41,10 @@ class Help extends React.Component {
         downloadUrl: result.url,
       });
     }).catch((err) => {
-      this.setState({ isCallingSupport: false });
-
-      console.error(err);
+      this.setState({
+        isCallingSupport: false,
+        stickyContent: err.message,
+      });
     });
   }
 
@@ -60,6 +62,10 @@ class Help extends React.Component {
     return (
       <div>
         <div className="page-header"><h1>{t("Dépannage")}</h1></div>
+
+        <StickyAlert bsStyle="danger" container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <p>{t("Pour toute demandes générales, techniques ou besoin d'aide, vous avez plusieurs choix :")}</p>
 

@@ -8,6 +8,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Modal from 'react-bootstrap/lib/Modal';
 import Panel from 'react-bootstrap/lib/Panel';
 import Row from 'react-bootstrap/lib/Row';
+import StickyAlert from './utils/StickyAlert';
 import reactStringReplace from 'react-string-replace';
 import { conf, get, post } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
@@ -23,6 +24,7 @@ class Screenshots extends React.Component {
     this.state = {
       isLoaded: false,
       screenshotsList: [],
+      stickyContent: null,
     };
   }
 
@@ -58,7 +60,9 @@ class Screenshots extends React.Component {
         screenshotsList: screenshots,
       });
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
   }
 
@@ -93,7 +97,9 @@ class Screenshots extends React.Component {
         screenshotsList: screenshots,
       });
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
 
     this.closeModal();
@@ -115,6 +121,10 @@ class Screenshots extends React.Component {
     return (
       <div>
         <div className="page-header"><h1>{t("Gestion des screenshots")}</h1></div>
+
+        <StickyAlert bsStyle="danger" container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <Form onSubmit={this.takeScreenshot}>
           <Panel header={<h3>{t("Effectuer une capture d'écran")}</h3>}>

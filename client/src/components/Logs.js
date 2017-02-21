@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Panel from 'react-bootstrap/lib/Panel';
 import FieldGroup from './utils/FieldGroup';
+import StickyAlert from './utils/StickyAlert';
 import { conf, get } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 
@@ -21,6 +22,7 @@ class Logs extends React.Component {
     this.state = {
       isLoaded: false,
       loadingFile: false,
+      stickyContent: null,
     };
   }
 
@@ -59,7 +61,9 @@ class Logs extends React.Component {
 
       this.setState(response);
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
   }
 
@@ -69,6 +73,10 @@ class Logs extends React.Component {
     return (
       <div>
         <div className="page-header"><h1>{t("Logs")}</h1></div>
+
+        <StickyAlert bsStyle="danger" container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <Loader loaded={this.state.isLoaded}>
           <Panel header={<h3>{t('Fichiers de logs')}</h3>}>

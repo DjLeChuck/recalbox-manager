@@ -7,6 +7,7 @@ import { conf, post, get } from '../api';
 import { diffObjects, cloneObject } from '../utils';
 import FieldGroup from './utils/FieldGroup';
 import FormActions from './utils/FormActions';
+import StickyAlert from './utils/StickyAlert';
 
 class RecalboxConf extends React.Component {
   static propTypes = {
@@ -21,6 +22,7 @@ class RecalboxConf extends React.Component {
     this.state = {
       isLoaded: false,
       isSaving: false,
+      stickyContent: null,
     };
   }
 
@@ -33,10 +35,14 @@ class RecalboxConf extends React.Component {
 
         this.setState(newState);
       }).catch((err) => {
-        console.error(err);
+        this.setState({
+          stickyContent: err.message,
+        });
       });
     }).catch((err) => {
-      console.error(err);
+      this.setState({
+        stickyContent: err.message,
+      });
     });
   }
 
@@ -82,6 +88,10 @@ class RecalboxConf extends React.Component {
     return (
       <div>
         <div className="page-header"><h1>recalbox.conf</h1></div>
+
+        <StickyAlert bsStyle="danger" container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <div className="bs-callout bs-callout-info">
           <p>

@@ -54,40 +54,44 @@ app.use('/save', saveRouter);
 app.use('/upload', uploadRouter);
 
 app.get('/recalbox-support', (req, res, next) => {
-  const archivePath = `${config.get('recalbox.savesPath')}/recalbox-support-${uniqueID()}.tar.gz`;
-  const smartFile = config.get('smartFile');
+  try {
+    const archivePath = `${config.get('recalbox.savesPath')}/recalbox-support-${uniqueID()}.tar.gz`;
+    const smartFile = config.get('smartFile');
 
-  // Création de l'archive
-  execSync(`${config.get('recalbox.supportScript')} ${archivePath}`);
+    // Création de l'archive
+    execSync(`${config.get('recalbox.supportScript')} ${archivePath}`);
 
-  // Upload file
-  request
-    .post(smartFile.url + smartFile.api.upload + smartFile.folderName)
-    .auth(smartFile.keys.public, smartFile.keys.private)
-    .attach('file', archivePath)
-    .then((uploadResponse) => {
-      // Link file
-      const filePath = uploadResponse.body[0].path;
+    // Upload file
+    request
+      .post(smartFile.url + smartFile.api.upload + smartFile.folderName)
+      .auth(smartFile.keys.public, smartFile.keys.private)
+      .attach('file', archivePath)
+      .then((uploadResponse) => {
+        // Link file
+        const filePath = uploadResponse.body[0].path;
 
-      request
-        .post(smartFile.url + smartFile.api.link)
-        .auth(smartFile.keys.public, smartFile.keys.private)
-        .send({
-          path: filePath,
-          read: true,
-          list: true
-        })
-        .then((linkResponse) => {
-          // Remove local file
-          fs.unlinkSync(archivePath);
+        request
+          .post(smartFile.url + smartFile.api.link)
+          .auth(smartFile.keys.public, smartFile.keys.private)
+          .send({
+            path: filePath,
+            read: true,
+            list: true
+          })
+          .then((linkResponse) => {
+            // Remove local file
+            fs.unlinkSync(archivePath);
 
-          res.json({ url: linkResponse.body.href });
-        }).catch((err) => {
-          next(err);
-        })
-    }).catch((err) => {
-      next(err);
-    });
+            res.json({ url: linkResponse.body.href });
+          }).catch((err) => {
+            next(err);
+          })
+      }).catch((err) => {
+        next(err);
+      });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // handles all routes so you do not get a not found error
@@ -102,7 +106,7 @@ function logErrors(err, req, res, next) {
   next(err);
 }
 
-function errorsHandler(err, req, res) {
+function errorsHandler(err, req, res, next) {
   let error = {};
 
   error.message = err.message;

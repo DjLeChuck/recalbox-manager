@@ -21,8 +21,16 @@ class Help extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    window.location.hash = window.decodeURIComponent(window.location.hash);
+
+    if ('#launch-support' === window.location.hash) {
+      this.doRecalboxSupport();
+    }
+  }
+
   doRecalboxSupport = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
 
     this.setState({ isCallingSupport: true });
 
@@ -32,6 +40,8 @@ class Help extends React.Component {
         downloadUrl: result.url,
       });
     }).catch((err) => {
+      this.setState({ isCallingSupport: false });
+
       console.error(err);
     });
   }

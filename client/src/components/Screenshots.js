@@ -25,6 +25,7 @@ class Screenshots extends React.Component {
       isLoaded: false,
       screenshotsList: [],
       stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -95,10 +96,14 @@ class Screenshots extends React.Component {
       this.setState({
         isDeletingScreenshot: false,
         screenshotsList: screenshots,
+        stickyContent: this.props.t('Votre screenshot a bien été supprimé !'),
+        stickyStyle: 'success',
       });
-    }).catch((err) => {
+    }).catch(() => {
       this.setState({
-        stickyContent: err.message,
+        isDeletingScreenshot: false,
+        stickyContent: this.props.t("Il semble que votre screenshot n'ait pas été supprimé."),
+        stickyStyle: 'danger',
       });
     });
 
@@ -122,7 +127,7 @@ class Screenshots extends React.Component {
       <div>
         <div className="page-header"><h1>{t("Gestion des screenshots")}</h1></div>
 
-        <StickyAlert bsStyle="danger" container={this}>
+        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
           {this.state.stickyContent}
         </StickyAlert>
 

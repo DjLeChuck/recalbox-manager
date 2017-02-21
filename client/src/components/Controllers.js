@@ -9,6 +9,7 @@ import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
+import StickyAlert from './utils/StickyAlert';
 
 class Controllers extends React.Component {
   static propTypes = {
@@ -23,6 +24,8 @@ class Controllers extends React.Component {
     this.state = {
       isLoaded: false,
       isSaving: false,
+      stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -81,7 +84,17 @@ class Controllers extends React.Component {
       save(diff).then(() => {
         this.initialValues = cloneObject(this.currentValues);
 
-        this.setState({ isSaving: false });
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('La configuration a bien été sauvegardée.'),
+          stickyStyle: 'success',
+        });
+      }).catch(() => {
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('Une erreur est survenue lors de la sauvegarde de la configuration.'),
+          stickyStyle: 'danger',
+        });
       });
     }
   }
@@ -102,6 +115,10 @@ class Controllers extends React.Component {
         <div className="page-header"><h1>{t('Contrôleurs')}</h1></div>
 
         <p className="important">{t('Cette page permet de gérer les différents contrôleurs supportés par de recalbox.')}</p>
+
+        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <Loader loaded={this.state.isLoaded}>
           <Form horizontal onSubmit={this.onSubmit}>

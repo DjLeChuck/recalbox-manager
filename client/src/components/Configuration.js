@@ -13,6 +13,7 @@ import FieldGroup from './utils/FieldGroup';
 import SelectGroup from './utils/SelectGroup';
 import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
+import StickyAlert from './utils/StickyAlert';
 
 class Configuration extends React.Component {
   static propTypes = {
@@ -27,6 +28,8 @@ class Configuration extends React.Component {
     this.state = {
       isLoaded: false,
       isSaving: false,
+      stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -110,7 +113,17 @@ class Configuration extends React.Component {
       save(diff).then(() => {
         this.initialValues = cloneObject(this.currentValues);
 
-        this.setState({ isSaving: false });
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('La configuration a bien été sauvegardée.'),
+          stickyStyle: 'success',
+        });
+      }).catch(() => {
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('Une erreur est survenue lors de la sauvegarde de la configuration.'),
+          stickyStyle: 'danger',
+        });
       });
     }
   }
@@ -131,6 +144,10 @@ class Configuration extends React.Component {
         <div className="page-header"><h1>{t("Configuration")}</h1></div>
 
         <p className="important">{t("Cette page permet de gérer différentes configurations de recalbox tel que les paramètres Wi-Fi, la timezone, la locale, etc.")}</p>
+
+        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <Loader loaded={this.state.isLoaded}>
           <Form horizontal onSubmit={this.onSubmit}>

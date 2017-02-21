@@ -49,6 +49,7 @@ class View extends React.Component {
       breadcrumb: [],
       editedGame: { releasedate: {}},
       stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -141,10 +142,13 @@ class View extends React.Component {
 
       this.setState({
         romsList: list,
+        stickyContent: this.props.t("Votre ROM a bien été supprimée !"),
+        stickyStyle: 'success',
       });
-    }).catch((err) => {
+    }).catch(() => {
       this.setState({
-        stickyContent: err.message,
+        stickyContent: this.props.t("Il semble que votre ROM n'ait pas été supprimée."),
+        stickyStyle: 'danger',
       });
     });
 
@@ -168,10 +172,14 @@ class View extends React.Component {
       system: this.state.system,
       path: this.state.splat,
     }).then(() => {
-      //
-    }).catch((err) => {
       this.setState({
-        stickyContent: err.message,
+        stickyContent: this.props.t('Les données de votre ROM ont bien été mises à jour !'),
+        stickyStyle: 'success',
+      });
+    }).catch(() => {
+      this.setState({
+        stickyContent: this.props.t("Il semble que les données de votre ROM n'aient pas été mises à jour."),
+        stickyStyle: 'danger',
       });
     });
 
@@ -259,7 +267,7 @@ class View extends React.Component {
             <strong>{this.state.romsList.length}</strong>
           </p>
 
-          <StickyAlert bsStyle="danger" container={this}>
+          <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
             {this.state.stickyContent}
           </StickyAlert>
 

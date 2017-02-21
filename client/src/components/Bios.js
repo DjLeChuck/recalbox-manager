@@ -29,6 +29,7 @@ class Bios extends React.Component {
       biosName: '',
       biosList: [],
       stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -87,10 +88,14 @@ class Bios extends React.Component {
       this.setState({
         isDeleting: false,
         biosData,
+        stickyContent: this.props.t('Votre BIOS a bien été supprimé !'),
+        stickyStyle: 'success',
       });
-    }).catch((err) => {
+    }).catch(() => {
       this.setState({
-        stickyContent: err.message,
+        isDeleting: false,
+        stickyContent: this.props.t("Il semble que votre BIOS n'ait pas été supprimé."),
+        stickyStyle: 'danger',
       });
     });
 
@@ -108,7 +113,7 @@ class Bios extends React.Component {
       <div>
         <div className="page-header"><h1>{t("BIOS")}</h1></div>
 
-        <StickyAlert bsStyle="danger" container={this}>
+        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
           {this.state.stickyContent}
         </StickyAlert>
 

@@ -9,6 +9,7 @@ import SelectGroup from './utils/SelectGroup';
 import SliderGroup from './utils/SliderGroup';
 import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
+import StickyAlert from './utils/StickyAlert';
 
 class Audio extends React.Component {
   static propTypes = {
@@ -23,6 +24,8 @@ class Audio extends React.Component {
     this.state = {
       isLoaded: false,
       isSaving: false,
+      stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -79,7 +82,17 @@ class Audio extends React.Component {
       save(diff).then(() => {
         this.initialValues = cloneObject(this.currentValues);
 
-        this.setState({ isSaving: false });
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('La configuration a bien été sauvegardée.'),
+          stickyStyle: 'success',
+        });
+      }).catch(() => {
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('Une erreur est survenue lors de la sauvegarde de la configuration.'),
+          stickyStyle: 'danger',
+        });
       });
     }
   }
@@ -100,6 +113,10 @@ class Audio extends React.Component {
         <div className="page-header"><h1>{t('Audio')}</h1></div>
 
         <p className="important">{t('Cette page permet de gérer la partie audio de recalbox.')}</p>
+
+        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
+          {this.state.stickyContent}
+        </StickyAlert>
 
         <Loader loaded={this.state.isLoaded}>
           <Form onSubmit={this.onSubmit}>

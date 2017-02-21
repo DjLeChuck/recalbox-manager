@@ -23,6 +23,7 @@ class RecalboxConf extends React.Component {
       isLoaded: false,
       isSaving: false,
       stickyContent: null,
+      stickyStyle: 'danger',
     };
   }
 
@@ -37,11 +38,13 @@ class RecalboxConf extends React.Component {
       }).catch((err) => {
         this.setState({
           stickyContent: err.message,
+          stickyStyle: 'danger',
         });
       });
     }).catch((err) => {
       this.setState({
         stickyContent: err.message,
+        stickyStyle: 'danger',
       });
     });
   }
@@ -69,7 +72,17 @@ class RecalboxConf extends React.Component {
       }).then(() => {
         this.initialValues = cloneObject(this.currentValues);
 
-        this.setState({ isSaving: false });
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t('Le fichier a bien été sauvegardé.'),
+          stickyStyle: 'success',
+        });
+      }).catch(() => {
+        this.setState({
+          isSaving: false,
+          stickyContent: this.props.t("Il semble que votre fichier n'ait pas été sauvegardé."),
+          stickyStyle: 'danger',
+        });
       });
     }
   }
@@ -89,7 +102,7 @@ class RecalboxConf extends React.Component {
       <div>
         <div className="page-header"><h1>recalbox.conf</h1></div>
 
-        <StickyAlert bsStyle="danger" container={this}>
+        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
           {this.state.stickyContent}
         </StickyAlert>
 

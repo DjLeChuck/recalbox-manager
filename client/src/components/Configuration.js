@@ -208,7 +208,7 @@ class Configuration extends React.Component {
                       onChange={this.handleInputChange}
                     />
 
-                    <FieldGroup type="text" label={t("Clé")}
+                    <FieldGroup type="password" label={t("Clé")}
                       id="wifi-key" name="wifi.key"
                       placeholder={t("Clé")}
                       value={this.state['wifi.key']}
@@ -225,7 +225,7 @@ class Configuration extends React.Component {
                       onChange={this.handleInputChange}
                     />
 
-                    <FieldGroup type="text" label={t("Clé")}
+                    <FieldGroup type="password" label={t("Clé")}
                       id="wifi2-key" name="wifi2.key"
                       placeholder={t("Clé")}
                       value={this.state['wifi2.key']}
@@ -242,7 +242,7 @@ class Configuration extends React.Component {
                       onChange={this.handleInputChange}
                     />
 
-                    <FieldGroup type="text" label={t("Clé")}
+                    <FieldGroup type="password" label={t("Clé")}
                       id="wifi3-key" name="wifi3.key"
                       placeholder={t("Clé")}
                       value={this.state['wifi3.key']}

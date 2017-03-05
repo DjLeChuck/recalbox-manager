@@ -225,7 +225,7 @@ class Systems extends React.Component {
                   onChange={this.handleInputChange}
                 />
 
-                <FieldGroup type="text" label={t('Mot de passe')}
+                <FieldGroup type="password" label={t('Mot de passe')}
                   id="retroachievements-password" name="global.retroachievements.password"
                   value={this.state['global.retroachievements.password']}
                   onChange={this.handleInputChange}

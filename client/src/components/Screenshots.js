@@ -33,7 +33,8 @@ class Screenshots extends React.Component {
     const state = await promisifyData(
       conf(['recalbox.screenshotsPath']),
       get('hostname'),
-      get('screenshotsList')
+      get('screenshotsList'),
+      get('canTakeScreenshots')
     );
 
     state.isLoaded = true;
@@ -131,6 +132,7 @@ class Screenshots extends React.Component {
           {this.state.stickyContent}
         </StickyAlert>
 
+      {this.state.canTakeScreenshots &&
         <Form onSubmit={this.takeScreenshot}>
           <Panel header={<h3>{t("Effectuer une capture d'écran")}</h3>}>
             <p>{t("Le bouton ci-dessous vous permet de prendre une capture d'écran de l'affichage actuel de recalbox.")}</p>
@@ -145,6 +147,7 @@ class Screenshots extends React.Component {
             </p>
           </Panel>
         </Form>
+      }
 
         <Loader loaded={this.state.isLoaded}>
           <Row className="is-flex">

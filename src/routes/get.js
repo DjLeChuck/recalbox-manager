@@ -65,6 +65,9 @@ router.get('/', async (req, res, next) => {
           return fs.statSync(path.join(srcpath, file)).isFile() && '.png' === path.extname(file);
         });
         break;
+      case 'canTakeScreenshots':
+        data = 'rpi' === execSync(`cat ${config.get('recalbox.arch')}`).toString().substring(0, 3);
+        break;
       case 'systemFullname':
         const paramSystem = params.system;
         const esSystems = await getEsSystems();

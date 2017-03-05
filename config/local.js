@@ -14,6 +14,7 @@ config.recalbox = {
   biosPath: '/var/www/development/Node.js/recalbox/recalbox/share/bios/',
   biosFilePath: '/var/www/development/Node.js/recalbox/recalbox/share/bios/readme.txt',
   savesPath: '/var/www/development/Node.js/recalbox/recalbox/saves',
+  arch: '/var/www/development/Node.js/recalbox/recalbox/recalbox.arch'
 };
 
 module.exports = config;

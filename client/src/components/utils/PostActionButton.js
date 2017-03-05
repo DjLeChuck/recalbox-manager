@@ -30,7 +30,7 @@ class PostActionButton extends React.Component {
 
     post(action, body).then(() => {
       this.setState({ isWorking: false });
-    }).catch((err) => {
+    }, (err) => {
       console.error(err);
     });
   }

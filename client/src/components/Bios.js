@@ -91,7 +91,7 @@ class Bios extends React.Component {
         stickyContent: this.props.t('Votre BIOS a bien été supprimé !'),
         stickyStyle: 'success',
       });
-    }).catch(() => {
+    }, () => {
       this.setState({
         isDeleting: false,
         stickyContent: this.props.t("Il semble que votre BIOS n'ait pas été supprimé."),

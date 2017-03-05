@@ -61,7 +61,7 @@ export function promisifyData(...calls) {
     }
 
     return newState;
-  }).catch((err) => {
+  }, (err) => {
     console.error(err);
   });
 }

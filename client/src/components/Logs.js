@@ -60,7 +60,7 @@ class Logs extends React.Component {
       response.loadedFile = this.state.log_file;
 
       this.setState(response);
-    }).catch((err) => {
+    }, (err) => {
       this.setState({
         stickyContent: err.message,
       });

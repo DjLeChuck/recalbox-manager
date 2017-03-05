@@ -145,7 +145,7 @@ class View extends React.Component {
         stickyContent: this.props.t("Votre ROM a bien été supprimée !"),
         stickyStyle: 'success',
       });
-    }).catch(() => {
+    }, () => {
       this.setState({
         stickyContent: this.props.t("Il semble que votre ROM n'ait pas été supprimée."),
         stickyStyle: 'danger',
@@ -176,7 +176,7 @@ class View extends React.Component {
         stickyContent: this.props.t('Les données de votre ROM ont bien été mises à jour !'),
         stickyStyle: 'success',
       });
-    }).catch(() => {
+    }, () => {
       this.setState({
         stickyContent: this.props.t("Il semble que les données de votre ROM n'aient pas été mises à jour."),
         stickyStyle: 'danger',

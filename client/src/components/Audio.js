@@ -87,7 +87,7 @@ class Audio extends React.Component {
           stickyContent: this.props.t('La configuration a bien été sauvegardée.'),
           stickyStyle: 'success',
         });
-      }).catch(() => {
+      }, () => {
         this.setState({
           isSaving: false,
           stickyContent: this.props.t('Une erreur est survenue lors de la sauvegarde de la configuration.'),

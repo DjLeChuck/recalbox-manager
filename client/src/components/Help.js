@@ -40,7 +40,7 @@ class Help extends React.Component {
         isCallingSupport: false,
         downloadUrl: result.url,
       });
-    }).catch((err) => {
+    }, (err) => {
       this.setState({
         isCallingSupport: false,
         stickyContent: err.message,

@@ -35,13 +35,13 @@ class RecalboxConf extends React.Component {
         newState.isLoaded = true;
 
         this.setState(newState);
-      }).catch((err) => {
+      }, (err) => {
         this.setState({
           stickyContent: err.message,
           stickyStyle: 'danger',
         });
       });
-    }).catch((err) => {
+    }, (err) => {
       this.setState({
         stickyContent: err.message,
         stickyStyle: 'danger',
@@ -77,7 +77,7 @@ class RecalboxConf extends React.Component {
           stickyContent: this.props.t('Le fichier a bien été sauvegardé.'),
           stickyStyle: 'success',
         });
-      }).catch(() => {
+      }, () => {
         this.setState({
           isSaving: false,
           stickyContent: this.props.t("Il semble que votre fichier n'ait pas été sauvegardé."),

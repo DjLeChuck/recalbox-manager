@@ -60,7 +60,7 @@ class Screenshots extends React.Component {
         isTakingScreenshot: false,
         screenshotsList: screenshots,
       });
-    }).catch((err) => {
+    }, (err) => {
       this.setState({
         stickyContent: err.message,
       });
@@ -99,7 +99,7 @@ class Screenshots extends React.Component {
         stickyContent: this.props.t('Votre screenshot a bien été supprimé !'),
         stickyStyle: 'success',
       });
-    }).catch(() => {
+    }, () => {
       this.setState({
         isDeletingScreenshot: false,
         stickyContent: this.props.t("Il semble que votre screenshot n'ait pas été supprimé."),

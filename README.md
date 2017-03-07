@@ -1,4 +1,7 @@
 # recalbox-manager
+
+[![Build Status](https://travis-ci.org/DjLeChuck/recalbox-manager.svg?branch=master)](https://travis-ci.org/DjLeChuck/recalbox-manager)
+
 A web interface to manage recalbox configuration.
 
 ## Note

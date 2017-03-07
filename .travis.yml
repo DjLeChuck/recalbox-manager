@@ -1,0 +1,9 @@
+language: node_js
+
+node_js:
+    - 'node'
+    - '6'
+    - '5'
+
+# it's not unit/functionnal testing, but just to check if build is ok
+script: ./compile.sh

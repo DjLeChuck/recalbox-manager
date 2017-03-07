@@ -40,7 +40,7 @@ find . -type f -name '*.map' -exec rm {} + # removing useless "map files"
 cp config/default.js release/config
 cp config/production.js release/config
 cp -R dist release
-cp -R locales release/locales
+cp locales/*.json release/locales
 cp package.json release
 
 echo -e "${BLUE}Installing production dependencies...${NC}"

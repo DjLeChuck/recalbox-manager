@@ -33,12 +33,14 @@ echo -e "${BLUE}Copying files into release directory...${NC}"
 rm -rf release
 mkdir -p release/config
 mkdir -p release/client
+mkdir -p release/locales
 
 cp -R client/build release/client
 find . -type f -name '*.map' -exec rm {} + # removing useless "map files"
 cp config/default.js release/config
 cp config/production.js release/config
 cp -R dist release
+cp -R locales release/locales
 cp package.json release
 
 echo -e "${BLUE}Installing production dependencies...${NC}"

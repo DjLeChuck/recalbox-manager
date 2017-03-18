@@ -37,6 +37,12 @@ class Layout extends React.Component {
     const toggle = lng => this.props.i18n.changeLanguage(lng);
     let languages = [];
     const CurrentFlag = languagesFlags[this.props.i18n.language];
+    const versionStyle = {
+      position: 'absolute',
+      display: 'inline-block',
+      bottom: 0,
+      left: 15,
+    };
 
     this.props.i18n.options.whitelist.map((locale) => {
       if ('cimode' === locale) {
@@ -205,6 +211,9 @@ class Layout extends React.Component {
                     <Glyphicon glyph="question-sign" /> {t('Dépannage')}
                   </NavItem>
                 </LinkContainer>
+              </Nav>
+              <Nav style={versionStyle} className="nav-sidebar">
+                <NavItem disabled><em>v1.0.0</em></NavItem>
               </Nav>
             </Col>
             <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">

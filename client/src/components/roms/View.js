@@ -51,6 +51,7 @@ class View extends React.Component {
       editedGame: { releasedate: {}},
       stickyContent: null,
       stickyStyle: 'danger',
+      gamesToDelete: [],
     };
   }
 
@@ -133,34 +134,78 @@ class View extends React.Component {
       romToDelete: target.dataset.name,
       romToDeletePath: target.dataset.path,
       showDeleteModal: true,
+      bulkDelete: false,
+    });
+  }
+
+  askBeforeBulkDelete = () => {
+    this.setState({
+      showDeleteModal: true,
+      bulkDelete: true,
     });
   }
 
   delete = () => {
-    const toDeletePath = this.state.romToDeletePath;
+    const { bulkDelete } = this.state;
 
-    post('deleteRom', {
-      file: toDeletePath,
-      system: this.state.system,
-    }).then(() => {
-      let list = [...this.state.romsList];
-      const deletedIndex = list.findIndex((r) => r.path === toDeletePath);
+    if (bulkDelete) {
+      const { gamesToDelete, romsList } = this.state;
+      let filePaths = [];
 
-      list.splice(deletedIndex, 1);
-
-      this.setState({
-        romsList: list,
-        stickyContent: this.props.t("Votre ROM a bien été supprimée !"),
-        stickyStyle: 'success',
+      gamesToDelete.forEach((index) => {
+        filePaths.push(romsList[index].path);
       });
-    }, () => {
-      this.setState({
-        stickyContent: this.props.t("Il semble que votre ROM n'ait pas été supprimée."),
-        stickyStyle: 'danger',
-      });
-    });
 
-    this.closeModal();
+      post('deleteRom', {
+        files: filePaths,
+        system: this.state.system,
+      }).then(() => {
+        // sort desc
+        gamesToDelete.sort((a, b) => b - a);
+
+        // remove from list
+        gamesToDelete.forEach((index) => romsList.splice(index, 1));
+
+        this.setState({
+          romsList: romsList,
+          stickyContent: this.props.t("Vos ROMs ont bien été supprimées !"),
+          stickyStyle: 'success',
+          gamesToDelete: [],
+        });
+      }, () => {
+        this.setState({
+          stickyContent: this.props.t("Il semble que vos ROM n'aient pas été supprimées."),
+          stickyStyle: 'danger',
+        });
+      });
+
+      this.closeModal();
+    } else {
+      const { toDeletePath } = this.state;
+
+      post('deleteRom', {
+        files: [toDeletePath],
+        system: this.state.system,
+      }).then(() => {
+        let list = [...this.state.romsList];
+        const deletedIndex = list.findIndex((r) => r.path === toDeletePath);
+
+        list.splice(deletedIndex, 1);
+
+        this.setState({
+          romsList: list,
+          stickyContent: this.props.t("Votre ROM a bien été supprimée !"),
+          stickyStyle: 'success',
+        });
+      }, () => {
+        this.setState({
+          stickyContent: this.props.t("Il semble que votre ROM n'ait pas été supprimée."),
+          stickyStyle: 'danger',
+        });
+      });
+
+      this.closeModal();
+    }
   }
 
   showEditModal = (e) => {
@@ -206,6 +251,20 @@ class View extends React.Component {
     });
   }
 
+  selectGame = (e) => {
+    const input = e.currentTarget;
+    const { gamesToDelete } = this.state;
+
+    if (input.checked) {
+      gamesToDelete.push(input.value);
+    } else {
+      const index = gamesToDelete.indexOf(input.value);
+      gamesToDelete.splice(index, 1);
+    }
+
+    this.setState({ gamesToDelete });
+  }
+
   render() {
     const { t } = this.props;
     const toTopTooltip = <Tooltip placement="left" className="in"
@@ -213,9 +272,16 @@ class View extends React.Component {
       {t('Cliquez pour retourner en haut de la page')}
     </Tooltip>;
 
-    const deleteConfirmation = reactStringReplace(t('Voulez-vous vraiment supprimer %s ?'), '%s', (match, i) => (
-      <strong key={i}>{this.state.romToDelete}</strong>
-    ));
+    const showBulkDelete = 0 < this.state.gamesToDelete.length;
+    let deleteConfirmation;
+
+    if (this.state.bulkDelete) {
+      deleteConfirmation = t('Voulez-vous vraiment supprimer toutes ces ROMs ?');
+    } else {
+      deleteConfirmation = reactStringReplace(t('Voulez-vous vraiment supprimer %s ?'), '%s', (match, i) => (
+        <strong key={i}>{this.state.romToDelete}</strong>
+      ));
+    }
 
     // Selects de date de jeu
     let daysList = [];
@@ -300,17 +366,24 @@ class View extends React.Component {
               <Button bsStyle="primary"
                 onClick={ () => this.setState({ open: !this.state.open })}>
                 {t("Uploader des ROMs")}
-              </Button>
+              </Button>{' '}
               <Collapse in={this.state.open}>
                 <div>
                   <Well>
                     <CustomDropzone type="roms"
                       params={this.state.dropzoneParams}
                       onSuccess={this.onUploadSuccess}
+                      dropLabel={t('Déposez ici les ROMs à uploader.')}
                     />
                 </Well>
               </div>
               </Collapse>
+              {showBulkDelete &&
+                <Button bsStyle="danger"
+                  onClick={this.askBeforeBulkDelete}>
+                  {t("Supprimer les ROMs sélectionnées")}
+                </Button>
+              }
             </Col>
           </Row>
 
@@ -341,7 +414,15 @@ class View extends React.Component {
               {this.state.romsList.map((rom, index) => {
                 return (
                   <Col key={index} sm={6} md={3}>
-                    <Panel footer={<strong>{rom.name}</strong>}>
+                    <Panel footer={
+                      <div className="checkbox checkbox-primary">
+                        <input type="checkbox" id={`rom-${index}`}
+                          onChange={this.selectGame} value={index} />
+                        <label htmlFor={`rom-${index}`}>
+                          <strong>{rom.name}</strong>
+                        </label>
+                      </div>
+                    }>
                       <Row className="text-center">
                         <Col md={7} lg={9}>
                           {rom.image &&
@@ -568,7 +649,7 @@ class View extends React.Component {
       get('romsList', `system=${system},subpath=${splat}`),
       get('directoryListing', `subpath=${subpath}`),
       get('systemFullname', `system=${system}`),
-      grep(['system.api.enabled'])
+      // grep(['system.api.enabled'])
     );
 
     state.isLoaded = true;

@@ -134,33 +134,40 @@ router.post('/', async (req, res, next) => {
 
 async function deleteRom(payload) {
   // Delete ROM file
-  const romPath = path.resolve(config.get('recalbox.romsPath'), payload.system, payload.file);
+  for (let i = 0; i <= payload.files.length; i++) {
+    const file = payload.files[i];
+    const romPath = path.resolve(config.get('recalbox.romsPath'), payload.system, file);
 
-  fs.unlinkSync(romPath);
+    fs.unlinkSync(romPath);
+  }
 
   // Remove ROM data from gamelist.xml
   let rawGameList = await getSystemGamelist(payload.system, true);
-  const searchedPath = `./${payload.file}`;
-  let gameIndex;
 
-  if (!rawGameList.gameList.game) {
-    return;
+  for (let i = 0; i <= payload.files.length; i++) {
+    const file = payload.files[i];
+    const searchedPath = `./${file}`;
+    let gameIndex;
+
+    if (!rawGameList.gameList.game) {
+      continue;
+    }
+
+    if (!Array.isArray(rawGameList.gameList.game)) {
+      rawGameList.gameList.game = [rawGameList.gameList.game];
+    }
+
+    gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
+
+    if (-1 === gameIndex) {
+      continue;
+    }
+
+    const imagePath = rawGameList.gameList.game[gameIndex].image;
+
+    // Remove entry
+    delete rawGameList.gameList.game[gameIndex];
   }
-
-  if (!Array.isArray(rawGameList.gameList.game)) {
-    rawGameList.gameList.game = [rawGameList.gameList.game];
-  }
-
-  gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
-
-  if (-1 === gameIndex) {
-    return;
-  }
-
-  const imagePath = rawGameList.gameList.game[gameIndex].image;
-
-  // Remove entry
-  delete rawGameList.gameList.game[gameIndex];
 
   const builder = new xml2js.Builder();
   const xml = builder.buildObject(rawGameList);

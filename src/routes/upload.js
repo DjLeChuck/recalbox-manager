@@ -2,8 +2,10 @@ import express from 'express';
 import config from 'config';
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
+import xml2js from 'xml2js';
 import { execSync } from 'child_process';
-import { handleBiosLine } from '../lib/utils';
+import { handleBiosLine, getSystemGamelist, getSystemGamelistPath } from '../lib/utils';
 
 const router = express.Router();
 
@@ -16,6 +18,9 @@ const storage = multer.diskStorage({
         break;
       case 'roms':
         cb(null, path.resolve(config.get('recalbox.romsPath'), req.body.system, req.body.path));
+        break;
+      case 'romImage':
+        cb(null, path.resolve(config.get('recalbox.romsPath'), req.body.system, 'downloaded_images'));
         break;
     }
   },
@@ -68,6 +73,66 @@ router.post('/roms', (req, res, next) => {
           releasedate: {},
         }
       });
+    }
+
+    res.json({ success: true });
+  });
+});
+
+router.post('/romImage', (req, res, next) => {
+  upload(req, res, async function (err) {
+    if (err) {
+      // An error occurred when uploading
+      return next(err);
+    }
+
+    // Everything went fine
+    if (req.file && req.file.originalname) {
+      const body = req.body;
+
+      let rawGameList = await getSystemGamelist(body.system, true);
+      const searchedPath = `./${body.gamePath}`;
+      let gameData = { path: searchedPath };
+      let gameIndex;
+
+      if (rawGameList.gameList.game) {
+        if (!Array.isArray(rawGameList.gameList.game)) {
+          rawGameList.gameList.game = [rawGameList.gameList.game];
+        }
+
+        gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
+        gameData = -1 !== gameIndex ? rawGameList.gameList.game[gameIndex] : gameData;
+      } else {
+        rawGameList.gameList = { game: [] };
+      }
+
+      // Update game data
+      gameData.image = `./downloaded_images/${req.file.filename}`;
+
+      // Save change
+      if (undefined !== gameIndex) {
+        // Replace existing entry
+        rawGameList.gameList.game[gameIndex] = gameData;
+      } else {
+        // Add new entry
+        rawGameList.gameList.game.push(gameData);
+      }
+
+      const builder = new xml2js.Builder();
+      const xml = builder.buildObject(rawGameList);
+
+      try {
+        fs.writeFileSync(getSystemGamelistPath(body.system), xml);
+
+        return res.json({
+          success: true,
+          image: path.join(body.system, 'downloaded_images', req.file.filename),
+        });
+      } catch (error) {
+        throw new Error(`Unable to update the ROM.`);
+      }
+
+      // return res.json({ success: true });
     }
 
     res.json({ success: true });

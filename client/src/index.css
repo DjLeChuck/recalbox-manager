@@ -19,6 +19,18 @@
 .loader { position: relative; min-height: 200px; }
 .rating.glyphicon-star { color: #f39c12; }
 
+/* ROM image upload */
+.dropzone-image-upload {
+  display: flex; /* contexte sur le parent */
+  flex-direction: column; /* direction d'affichage verticale */
+  justify-content: center; /* alignement vertical */
+}
+
+.dropzone-image-upload .filepicker {
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
 /* Menu collapse */
 @media (max-width: 1340px) {
   .navbar-header {

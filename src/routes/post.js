@@ -68,59 +68,60 @@ router.post('/', async (req, res, next) => {
         // @todo What to do? The manager will become unreachable.
         spawn('shutdown', ['-h', 'now']);
         break;
-        case 'deleteRom':
-          deleteRom(body);
+      case 'deleteRom':
+        deleteRom(body);
 
-          break;
-        case 'editRom':
-          let rawGameList = await getSystemGamelist(body.system, true);
-          const editedRomPath = path.join(body.path || '', body.gameData.path);
-          const searchedPath = `./${editedRomPath}`;
-          let gameData = { path: searchedPath };
-          let gameIndex;
+        break;
+      case 'editRom':
+        let rawGameList = await getSystemGamelist(body.system, true);
+        const editedRomPath = path.join(body.path || '', body.gameData.path);
+        const searchedPath = `./${editedRomPath}`;
+        let gameData = { path: searchedPath };
+        let gameIndex;
 
-          if (rawGameList.gameList.game) {
-            if (!Array.isArray(rawGameList.gameList.game)) {
-              rawGameList.gameList.game = [rawGameList.gameList.game];
-            }
-
-            gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
-            gameData = -1 !== gameIndex ? rawGameList.gameList.game[gameIndex] : gameData;
-          } else {
-            rawGameList.gameList = { game: [] };
+        if (rawGameList.gameList.game) {
+          if (!Array.isArray(rawGameList.gameList.game)) {
+            rawGameList.gameList.game = [rawGameList.gameList.game];
           }
 
-          // Update game data
-          const year = body.gameData.releasedate.year || '0000';
-          const month = body.gameData.releasedate.month || '00';
-          const day = body.gameData.releasedate.day || '00';
+          gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
+          gameData = -1 !== gameIndex ? rawGameList.gameList.game[gameIndex] : gameData;
+        } else {
+          rawGameList.gameList = { game: [] };
+        }
 
-          delete body.gameData.releasedate;
-          delete body.gameData.path;
+        // Update game data
+        const year = body.gameData.releasedate.year || '0000';
+        const month = body.gameData.releasedate.month || '00';
+        const day = body.gameData.releasedate.day || '00';
 
-          Object.assign(gameData, body.gameData);
+        delete body.gameData.releasedate;
+        delete body.gameData.path;
+        delete body.gameData.image;
 
-          gameData.desc = (gameData.desc || '').replace(/(\r\n|\r)/gm,"\n");
-          gameData.releasedate = year + month + day + 'T000000';
+        Object.assign(gameData, body.gameData);
 
-          // Save change
-          if (undefined !== gameIndex) {
-            // Replace existing entry
-            rawGameList.gameList.game[gameIndex] = gameData;
-          } else {
-            // Add new entry
-            rawGameList.gameList.game.push(gameData);
-          }
+        gameData.desc = (gameData.desc || '').replace(/(\r\n|\r)/gm,"\n");
+        gameData.releasedate = year + month + day + 'T000000';
 
-          const builder = new xml2js.Builder();
-          const xml = builder.buildObject(rawGameList);
+        // Save change
+        if (undefined !== gameIndex) {
+          // Replace existing entry
+          rawGameList.gameList.game[gameIndex] = gameData;
+        } else {
+          // Add new entry
+          rawGameList.gameList.game.push(gameData);
+        }
 
-          try {
-            fs.writeFileSync(getSystemGamelistPath(body.system), xml);
-          } catch (error) {
-            throw new Error(`Unable to update the ROM "${body.gameData.name}".`);
-          }
-          break;
+        const builder = new xml2js.Builder();
+        const xml = builder.buildObject(rawGameList);
+
+        try {
+          fs.writeFileSync(getSystemGamelistPath(body.system), xml);
+        } catch (error) {
+          throw new Error(`Unable to update the ROM "${body.gameData.name}".`);
+        }
+        break;
       default:
         throw new Error(`Action "${action}" unknown`);
     }

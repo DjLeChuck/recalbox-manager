@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Collapse from 'react-bootstrap/lib/Collapse';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Clearfix from 'react-bootstrap/lib/Clearfix';
 import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
@@ -85,7 +86,7 @@ class View extends React.Component {
   handleInputChange = (e) => {
     const target = e.target;
     const name = target.name;
-    const editedGame = this.state.editedGame;
+    const { editedGame } = this.state;
 
     if (0 === name.indexOf('releasedate.')) {
       editedGame['releasedate'][name.replace('releasedate.', '')] = target.value;
@@ -109,8 +110,15 @@ class View extends React.Component {
     });
   }
 
+  onImageUploadSuccess = (result) => {
+    const { editedGame } = this.state;
+    editedGame.image = result.image;
+
+    this.setState({ editedGame });
+  }
+
   onRate = (rating) => {
-    const editedGame = this.state.editedGame;
+    const { editedGame } = this.state;
     editedGame.rating = rating;
 
     this.setState({ editedGame });
@@ -159,10 +167,15 @@ class View extends React.Component {
     e.preventDefault();
 
     const target = e.currentTarget;
+    const editedGame = this.state.romsList[target.dataset.index];
+    const { dropzoneParams } = this.state;
+
+    dropzoneParams.gamePath = editedGame.path;
 
     this.setState({
-      editedGame: this.state.romsList[target.dataset.index],
+      editedGame: editedGame,
       showEditModal: true,
+      dropzoneParams
     });
   }
 
@@ -291,8 +304,10 @@ class View extends React.Component {
               <Collapse in={this.state.open}>
                 <div>
                   <Well>
-                    <CustomDropzone type="roms" params={this.state.dropzoneParams}
-                      onSuccess={this.onUploadSuccess} />
+                    <CustomDropzone type="roms"
+                      params={this.state.dropzoneParams}
+                      onSuccess={this.onUploadSuccess}
+                    />
                 </Well>
               </div>
               </Collapse>
@@ -409,93 +424,126 @@ class View extends React.Component {
             </div>
             <div className="modal-body">
               <Form horizontal>
-                <FieldGroup type="text" label={t('Nom')}
-                  id="name" name="name"
-                  labelColMd={3} componentColMd={9}
-                  value={this.state.editedGame.name || ''}
-                  onChange={this.handleInputChange}
-                />
-                <FieldGroup type="text" label={t('Éditeur')}
-                  id="publisher" name="publisher"
-                  labelColMd={3} componentColMd={9}
-                  value={this.state.editedGame.publisher || ''}
-                  onChange={this.handleInputChange}
-                />
+                <Col md={4}>
+                  {this.state.editedGame.image &&
+                    <img src={`/viewer/roms/${this.state.editedGame.image}`}
+                      alt={this.state.editedGame.name}
+                      style={{ marginBottom: 10 }}
+                      className="img-responsive img-thumbnail" />
+                  }
+                  {!this.state.editedGame.image &&
+                    <Glyphicon glyph="picture"
+                      className="big-glyphicon rom-image" />
+                  }
 
-                <FieldGroup type="text" label={t('Développeur')}
-                  id="developer" name="developer"
-                  labelColMd={3} componentColMd={9}
-                  value={this.state.editedGame.developer || ''}
-                  onChange={this.handleInputChange}
-                />
+                  <div className="dropzone-image-upload">
+                    <CustomDropzone type="romImage"
+                      params={this.state.dropzoneParams}
+                      onSuccess={this.onImageUploadSuccess}
+                      dropLabel={t('Nouvelle image')}
+                    />
+                  </div>
+                </Col>
+                <Col md={8}>
+                  <FieldGroup type="text" label={t('Nom')}
+                    id="name" name="name"
+                    labelColMd={3} componentColMd={9}
+                    value={this.state.editedGame.name || ''}
+                    onChange={this.handleInputChange}
+                  />
 
-                <FormGroup>
-                  <Row>
-                    <Col componentClass={ControlLabel} md={3}>
-                      {t('Date de sortie')}
-                    </Col>
+                  <FieldGroup type="text" label={t('Éditeur')}
+                    id="publisher" name="publisher"
+                    labelColMd={3} componentColMd={9}
+                    value={this.state.editedGame.publisher || ''}
+                    onChange={this.handleInputChange}
+                  />
+
+                  <FieldGroup type="text" label={t('Développeur')}
+                    id="developer" name="developer"
+                    labelColMd={3} componentColMd={9}
+                    value={this.state.editedGame.developer || ''}
+                    onChange={this.handleInputChange}
+                  />
+                </Col>
+
+                <Col md={12}>
+                  <FormGroup>
+                    <Row>
+                      <Col componentClass={ControlLabel} md={3}>
+                        {t('Date de sortie')}
+                      </Col>
+                      <Col md={9}>
+                        <Col xs={3}>
+                          <FormControl componentClass="select"
+                            id="releasedate-day" name="releasedate.day"
+                            value={this.state.editedGame.releasedate.day || '00'}
+                            onChange={this.handleInputChange}>
+                            <option value="00">{t('Jour')}</option>
+                            {daysList}
+                          </FormControl>
+                        </Col>
+                        <Col xs={4}>
+                          <FormControl componentClass="select"
+                            id="releasedate-month" name="releasedate.month"
+                            value={this.state.editedGame.releasedate.month || '00'}
+                            onChange={this.handleInputChange}>
+                            <option value="00">{t('Mois')}</option>
+                            {monthsList}
+                          </FormControl>
+                        </Col>
+                        <Col xs={5}>
+                          <FormControl type="number" placeholder={t('Année')}
+                            id="releasedate-year" name="releasedate.year"
+                            value={this.state.editedGame.releasedate.year || '0000'}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                </Col>
+
+                <Col md={6}>
+                  <FieldGroup type="text" label={t('Genre')}
+                    id="genre" name="genre"
+                    labelColMd={3} componentColMd={9}
+                    value={this.state.editedGame.genre || ''}
+                    onChange={this.handleInputChange}
+                  />
+                </Col>
+                <Col md={6}>
+                  <FieldGroup type="text" label={t('Joueurs')}
+                    id="players" name="players"
+                    labelColMd={3} componentColMd={9}
+                    value={this.state.editedGame.players || ''}
+                    onChange={this.handleInputChange}
+                  />
+                </Col>
+
+                <Col md={12}>
+                  <FormGroup controlId="rating">
+                    <Col componentClass={ControlLabel} md={3}>{t('Note')}</Col>
                     <Col md={9}>
-                      <Col xs={3}>
-                        <FormControl componentClass="select"
-                          id="releasedate-day" name="releasedate.day"
-                          value={this.state.editedGame.releasedate.day || '00'}
-                          onChange={this.handleInputChange}>
-                          <option value="00">{t('Jour')}</option>
-                          {daysList}
-                        </FormControl>
-                      </Col>
-                      <Col xs={4}>
-                        <FormControl componentClass="select"
-                          id="releasedate-month" name="releasedate.month"
-                          value={this.state.editedGame.releasedate.month || '00'}
-                          onChange={this.handleInputChange}>
-                          <option value="00">{t('Mois')}</option>
-                          {monthsList}
-                        </FormControl>
-                      </Col>
-                      <Col xs={5}>
-                        <FormControl type="number" placeholder={t('Année')}
-                          id="releasedate-year" name="releasedate.year"
-                          value={this.state.editedGame.releasedate.year || '0000'}
-                          onChange={this.handleInputChange}
-                        />
-                      </Col>
+                      <Rating stop={1} step={.2} fractions={2}
+                        initialRate={parseFloat(this.state.editedGame.rating)}
+                        empty="glyphicon glyphicon-star-empty big-glyphicon rating"
+                        full="glyphicon glyphicon-star big-glyphicon rating"
+                        onClick={this.onRate} />
                     </Col>
-                  </Row>
-                </FormGroup>
+                  </FormGroup>
+                </Col>
 
-                <FieldGroup type="text" label={t('Genre')}
-                  id="genre" name="genre"
-                  labelColMd={3} componentColMd={9}
-                  value={this.state.editedGame.genre || ''}
-                  onChange={this.handleInputChange}
-                />
-
-                <FieldGroup type="text" label={t('Joueurs')}
-                  id="players" name="players"
-                  labelColMd={3} componentColMd={9}
-                  value={this.state.editedGame.players || ''}
-                  onChange={this.handleInputChange}
-                />
-
-                <FormGroup controlId="rating">
-                  <Col componentClass={ControlLabel} md={3}>{t('Note')}</Col>
-                  <Col md={9}>
-                    <Rating stop={1} step={.2} fractions={2}
-                      initialRate={parseFloat(this.state.editedGame.rating)}
-                      empty="glyphicon glyphicon-star-empty big-glyphicon rating"
-                      full="glyphicon glyphicon-star big-glyphicon rating"
-                      onClick={this.onRate} />
-                  </Col>
-                </FormGroup>
-
-                <FieldGroup type="text" label={t('Description')}
-                  id="desc" name="desc"
-                  labelColMd={3} componentColMd={9}
-                  componentClass="textarea" rows={10}
-                  value={this.state.editedGame.desc || ''}
-                  onChange={this.handleInputChange}
-                />
+                <Col md={12}>
+                  <FieldGroup type="text" label={t('Description')}
+                    id="desc" name="desc"
+                    labelColMd={3} componentColMd={9}
+                    componentClass="textarea" rows={10}
+                    value={this.state.editedGame.desc || ''}
+                    onChange={this.handleInputChange}
+                  />
+                </Col>
+                <Clearfix />
               </Form>
             </div>
             <div className="modal-footer">

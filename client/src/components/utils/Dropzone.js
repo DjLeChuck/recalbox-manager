@@ -11,6 +11,7 @@ class DropZone extends React.Component {
     onSuccess: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
     params: PropTypes.object,
+    dropLabel: PropTypes.string,
   }
 
   static defaultProps = {
@@ -33,7 +34,7 @@ class DropZone extends React.Component {
     const params = Object.assign({}, this.props.params);
     params.type = this.props.type;
     this.djsConfig = {
-      dictDefaultMessage: t('Déposer des fichiers ici pour les uploader.'),
+      dictDefaultMessage: this.props.dropLabel || t('Déposer des fichiers ici pour les uploader.'),
       dictResponseError: t("Erreur lors de l'upload."),
       addRemoveLinks: true,
       dictCancelUpload: t("Annuler l'upload"),

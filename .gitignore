@@ -3,3 +3,4 @@ npm-debug.log
 client/build
 dist
 release
+config/local.js

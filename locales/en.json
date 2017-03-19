@@ -206,5 +206,11 @@
     "Une erreur est survenue lors de la sauvegarde de la configuration.": "An error occurred while saving the configuration.",
     "Votre BIOS a bien été supprimé !": "Your BIOS has been deleted!",
     "Il semble que votre BIOS n'ait pas été supprimé.": "It looks like your BIOS couldn't be deleted.",
-    "Il semble que votre fichier n'ait pas été sauvegardé.": "It looks like your file has not been saved."
+    "Il semble que votre fichier n'ait pas été sauvegardé.": "It looks like your file has not been saved.",
+    "Vos ROMs ont bien été supprimées !": "Your ROMs have been deleted!",
+    "Il semble que vos ROM n'aient pas été supprimées.": "It looks like your ROMs couldn't be deleted.",
+    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "Do you really want to remove all these ROMs?",
+    "Déposez ici les ROMs à uploader.": "Drop here the ROMs to upload.",
+    "Supprimer les ROMs sélectionnées": "Delete selected ROMs",
+    "Nouvelle image": "New image"
 }

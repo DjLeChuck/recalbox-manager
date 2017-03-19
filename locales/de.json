@@ -203,8 +203,14 @@
     "Êtes-vous sûr de vouloir annuler cet upload ?": "Bist Du sicher, dass Du den Upload abbrechen willst?",
     "Retirer le fichier": "Datei entfernen",
     "Le mode Hardcore désactive *toutes* les possibilités de sauvegarder dans l'émulateur : vous ne pourrez ni sauvegarder ni recharger votre partie en cours de jeu.": "Der HARDCORE Modus deaktiviert ALLE Speichermöglichkeiten im Emulator! Kein Speichern, oder Laden während des Spielens!",
-    "Une erreur est survenue lors de la sauvegarde de la configuration.": "",
-    "Votre BIOS a bien été supprimé !": "",
-    "Il semble que votre BIOS n'ait pas été supprimé.": "",
-    "Il semble que votre fichier n'ait pas été sauvegardé.": ""
+    "Une erreur est survenue lors de la sauvegarde de la configuration.": "Ein Fehler trat während des Speicherns der Konfiguration auf.",
+    "Votre BIOS a bien été supprimé !": "Das BIOS wurde gelöscht!",
+    "Il semble que votre BIOS n'ait pas été supprimé.": "Das BIOS konnte nicht gelöscht werden.",
+    "Il semble que votre fichier n'ait pas été sauvegardé.": "Die Datei wurde nicht gespeichert.",
+    "Vos ROMs ont bien été supprimées !": "",
+    "Il semble que vos ROM n'aient pas été supprimées.": "",
+    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "",
+    "Déposez ici les ROMs à uploader.": "",
+    "Supprimer les ROMs sélectionnées": "",
+    "Nouvelle image": ""
 }

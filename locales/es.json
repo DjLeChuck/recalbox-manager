@@ -195,7 +195,7 @@
     "ES n'affichera que les jeux listés dans les fichiers gamelist.xml (accélère les temps d'affichage).": "ES sólo mostrará los juegos incluidos en los archivos gamelist.xml.",
     "Page introuvable !": "¡Página no encontrada!",
     "Retour à la page d'accueil": "Volver a la página principal.",
-    "Supprimer ou ajouter des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "",
+    "Supprimer ou ajouter des ROMs nécessite qu'EmulationStation soit redémarré pour prendre en compte les modifications.": "Para mostrar resultados de añadir o eliminar ROMs, EmulationStation debe ser reiniciado.",
     "Il faut arrêter EmulationStation avant de modifier des ROMs.": "Debes detener EmulationStation antes de editar las ROMs.",
     "Activer le mode Hardcore": "Activar el modo HARDCORE.",
     "Vous devrez compléter le jeu et obtenir les hauts-faits du premier coup, comme c'était le cas sur la console originale !": "Tienes que completar el juego y obtener los achievements la primera vez, igual que se hacía en la consola original.",
@@ -203,8 +203,14 @@
     "Êtes-vous sûr de vouloir annuler cet upload ?": "¿Estás seguro de que quieres cancelar la subida?",
     "Retirer le fichier": "Borrar archivo.",
     "Le mode Hardcore désactive *toutes* les possibilités de sauvegarder dans l'émulateur : vous ne pourrez ni sauvegarder ni recharger votre partie en cours de jeu.": "¡El modo Hardcore desactiva todas las posibilidades de guardar la partida en el emulador! No podrás guardar o cargar tu partida mientras juegues.",
-    "Une erreur est survenue lors de la sauvegarde de la configuration.": "",
-    "Votre BIOS a bien été supprimé !": "",
-    "Il semble que votre BIOS n'ait pas été supprimé.": "",
-    "Il semble que votre fichier n'ait pas été sauvegardé.": ""
+    "Une erreur est survenue lors de la sauvegarde de la configuration.": "Ha ocurrido un error mientras se guardaba la configuración.",
+    "Votre BIOS a bien été supprimé !": "¡Se ha borrado la BIOS!",
+    "Il semble que votre BIOS n'ait pas été supprimé.": "Parece que la BIOS no se puede borrar.",
+    "Il semble que votre fichier n'ait pas été sauvegardé.": "Parece que tu archivo no se ha guardado.",
+    "Vos ROMs ont bien été supprimées !": "",
+    "Il semble que vos ROM n'aient pas été supprimées.": "",
+    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "",
+    "Déposez ici les ROMs à uploader.": "",
+    "Supprimer les ROMs sélectionnées": "",
+    "Nouvelle image": ""
 }

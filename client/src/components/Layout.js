@@ -16,6 +16,8 @@ import flagEn from '../dependencies/img/flag-en.png';
 import flagEs from '../dependencies/img/flag-es.png';
 import flagDe from '../dependencies/img/flag-de.png';
 import flagPtBR from '../dependencies/img/flag-pt_BR.png';
+import flagKo from '../dependencies/img/flag-ko.png';
+import flagLv from '../dependencies/img/flag-lv.png';
 
 const languagesFlags = {
   fr: flagFr,
@@ -23,6 +25,8 @@ const languagesFlags = {
   es: flagEs,
   de: flagDe,
   'pt-BR': flagPtBR,
+  ko: flagKo,
+  lv: flagLv,
 };
 
 class Layout extends React.Component {

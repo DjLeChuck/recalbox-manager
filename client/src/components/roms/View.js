@@ -649,7 +649,7 @@ class View extends React.Component {
       get('romsList', `system=${system},subpath=${splat}`),
       get('directoryListing', `subpath=${subpath}`),
       get('systemFullname', `system=${system}`),
-      // grep(['system.api.enabled'])
+      grep(['system.api.enabled'])
     );
 
     state.isLoaded = true;

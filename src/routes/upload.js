@@ -10,19 +10,26 @@ import { handleBiosLine, getSystemGamelist, getSystemGamelistPath } from '../lib
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  // destination: config.get('recalbox.biosPath'),
   destination: (req, file, cb) => {
+    let dir;
+
     switch (req.body.type) {
       case 'bios':
-        cb(null, config.get('recalbox.biosPath'));
+        dir = config.get('recalbox.biosPath');
         break;
       case 'roms':
-        cb(null, path.resolve(config.get('recalbox.romsPath'), req.body.system, req.body.path));
+        dir = path.resolve(config.get('recalbox.romsPath'), req.body.system, req.body.path);
         break;
       case 'romImage':
-        cb(null, path.resolve(config.get('recalbox.romsPath'), req.body.system, 'downloaded_images'));
+        dir = path.resolve(config.get('recalbox.romsPath'), req.body.system, 'downloaded_images');
         break;
     }
+
+    if (fs.existsSync(dir)) {
+      return cb(null, dir);
+    }
+
+    fs.mkdir(dir, err => cb(err, dir));
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);

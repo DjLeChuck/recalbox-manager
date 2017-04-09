@@ -207,10 +207,10 @@
     "Votre BIOS a bien été supprimé !": "Il tuo BIOS è stato cancellato!",
     "Il semble que votre BIOS n'ait pas été supprimé.": "Sembra che il tuo BIOS non possa essere cancellato.",
     "Il semble que votre fichier n'ait pas été sauvegardé.": "Sembra che il tuo file non sia stato salvato.",
-    "Vos ROMs ont bien été supprimées !": "",
-    "Il semble que vos ROM n'aient pas été supprimées.": "",
-    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "",
-    "Déposez ici les ROMs à uploader.": "",
-    "Supprimer les ROMs sélectionnées": "",
-    "Nouvelle image": ""
+    "Vos ROMs ont bien été supprimées !": "Le ROMs sono state cancellate!",
+    "Il semble que vos ROM n'aient pas été supprimées.": "Pare che le ROMs non si possano cancellare.",
+    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "Vuoi veramente rimuovere tutte queste ROMs?",
+    "Déposez ici les ROMs à uploader.": "Trascina qui le ROMs da caricare.",
+    "Supprimer les ROMs sélectionnées": "Cancella le ROMs slezionate",
+    "Nouvelle image": "Nuova immagine"
 }

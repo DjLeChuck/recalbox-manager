@@ -5,5 +5,8 @@ node_js:
     - '6'
     - '5'
 
+before_script:
+ - chmod +x ./compile.sh
+
 # it's not unit/functionnal testing, but just to check if build is ok
 script: ./compile.sh

@@ -70,6 +70,10 @@ class View extends React.Component {
   }
 
   handleScroll = (event) => {
+    if (!event.srcElement) {
+      return;
+    }
+
     const scrollTop = event.srcElement.body.scrollTop;
 
     this.setState({ displayBackToTop: (scrollTop > 50) });
@@ -649,7 +653,7 @@ class View extends React.Component {
       get('romsList', `system=${system},subpath=${splat}`),
       get('directoryListing', `subpath=${subpath}`),
       get('systemFullname', `system=${system}`),
-      // grep(['system.api.enabled'])
+      grep(['system.api.enabled'])
     );
 
     state.isLoaded = true;

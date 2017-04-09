@@ -11,6 +11,7 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Row from 'react-bootstrap/lib/Row';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+import flagAr from '../dependencies/img/flag-ar.png';
 import flagCn from '../dependencies/img/flag-cn.png';
 import flagDe from '../dependencies/img/flag-de.png';
 import flagEn from '../dependencies/img/flag-en.png';
@@ -20,9 +21,15 @@ import flagKo from '../dependencies/img/flag-ko.png';
 import flagLv from '../dependencies/img/flag-lv.png';
 import flagPt from '../dependencies/img/flag-pt.png';
 import flagPtBR from '../dependencies/img/flag-pt_BR.png';
+import flagPl from '../dependencies/img/flag-pl.png';
+import flagRu from '../dependencies/img/flag-ru.png';
 import flagUa from '../dependencies/img/flag-ua.png';
 
 const languages = {
+  ar: {
+    flag: flagAr,
+    name: 'Argentina',
+  },
   cn: {
     flag: flagCn,
     name: '中国语文',
@@ -58,6 +65,14 @@ const languages = {
   'pt-BR': {
     flag: flagPtBR,
     name: 'Português brasileiro',
+  },
+  pl: {
+    flag: flagPl,
+    name: 'Język polski',
+  },
+  ru: {
+    flag: flagRu,
+    name: 'Русский',
   },
   ua: {
     flag: flagUa,

@@ -6,7 +6,10 @@ i18n
   .use(XHR)
   .use(LanguageDetector)
   .init({
-    whitelist: ['cn', 'en', 'de', 'es', 'fr', 'ko', 'lv', 'pt', 'pt-BR', 'ua'],
+    whitelist: [
+      'ar', 'cn', 'en', 'de', 'es', 'fr', 'ko', 'lv', 'pl', 'pt', 'pt-BR',
+      'ru', 'ua',
+    ],
 
     fallbackLng: 'en',
 

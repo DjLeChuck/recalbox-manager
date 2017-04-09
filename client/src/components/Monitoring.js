@@ -66,7 +66,7 @@ class Monitoring extends React.Component {
           {this.state.cpus.map((cpu, index) => {
             return (
               <Col key={index} md={6}>
-                <p>Coeur {index + 1}</p>
+                <p>{t("Cœur")} {index + 1}</p>
 
                 <ProgressBar now={cpu.percent} label={`${cpu.percent}%`} />
               </Col>

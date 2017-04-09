@@ -15,6 +15,7 @@ i18n
 
     nsSeparator: false,
     keySeparator: false,
+    returnEmptyString: false,
 
     // too much verbose!
     // debug: 'production' !== process.env.NODE_ENV,

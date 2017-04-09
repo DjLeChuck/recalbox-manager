@@ -114,7 +114,13 @@ export function getSystemGamelistPath(system) {
 }
 
 export async function getSystemGamelist(system, raw = false) {
-  const json = await xmlToJson(getSystemGamelistPath(system));
+  const gameListPath = getSystemGamelistPath(system);
+
+  if (!fs.existsSync(gameListPath)) {
+    return {};
+  }
+
+  const json = await xmlToJson(gameListPath);
 
   if (raw) {
     return json;

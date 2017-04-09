@@ -5,9 +5,9 @@
     "Officiel": "Offiziell",
     "Shanwan": "Shanwan",
     "Bluez 5": "Bluez 5",
-    "Stable": "Stable",
+    "Stable": "Stabil",
     "Bêta": "Beta",
-    "Instable": "Unstable",
+    "Instable": "Instabil",
     "Personnalisé": "Personalisiert",
     "Aucun": "Kein",
     "Retro": "Retro",
@@ -207,10 +207,10 @@
     "Votre BIOS a bien été supprimé !": "Das BIOS wurde gelöscht!",
     "Il semble que votre BIOS n'ait pas été supprimé.": "Das BIOS konnte nicht gelöscht werden.",
     "Il semble que votre fichier n'ait pas été sauvegardé.": "Die Datei wurde nicht gespeichert.",
-    "Vos ROMs ont bien été supprimées !": "",
-    "Il semble que vos ROM n'aient pas été supprimées.": "",
-    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "",
-    "Déposez ici les ROMs à uploader.": "",
-    "Supprimer les ROMs sélectionnées": "",
-    "Nouvelle image": ""
+    "Vos ROMs ont bien été supprimées !": "Ihre ROMs wurden gelöscht!",
+    "Il semble que vos ROM n'aient pas été supprimées.": "Es sieht so aus, als ob deine ROMs nicht gelöscht werden konnten.",
+    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "Möchtest du wirklich alle ROMs entfernen?",
+    "Déposez ici les ROMs à uploader.": "Ziehe hierher die ROMs zum Hochladen.",
+    "Supprimer les ROMs sélectionnées": "Ausgewählte ROMs löschen",
+    "Nouvelle image": "Neues Bild"
 }

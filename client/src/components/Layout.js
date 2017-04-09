@@ -11,22 +11,58 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Row from 'react-bootstrap/lib/Row';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import flagFr from '../dependencies/img/flag-fr.png';
+import flagCn from '../dependencies/img/flag-cn.png';
+import flagDe from '../dependencies/img/flag-de.png';
 import flagEn from '../dependencies/img/flag-en.png';
 import flagEs from '../dependencies/img/flag-es.png';
-import flagDe from '../dependencies/img/flag-de.png';
-import flagPtBR from '../dependencies/img/flag-pt_BR.png';
+import flagFr from '../dependencies/img/flag-fr.png';
 import flagKo from '../dependencies/img/flag-ko.png';
 import flagLv from '../dependencies/img/flag-lv.png';
+import flagPt from '../dependencies/img/flag-pt.png';
+import flagPtBR from '../dependencies/img/flag-pt_BR.png';
+import flagUa from '../dependencies/img/flag-ua.png';
 
-const languagesFlags = {
-  fr: flagFr,
-  en: flagEn,
-  es: flagEs,
-  de: flagDe,
-  'pt-BR': flagPtBR,
-  ko: flagKo,
-  lv: flagLv,
+const languages = {
+  cn: {
+    flag: flagCn,
+    name: '中国语文',
+  },
+  de: {
+    flag: flagDe,
+    name: 'Deutsch',
+  },
+  en: {
+    flag: flagEn,
+    name: 'English',
+  },
+  es: {
+    flag: flagEs,
+    name: 'Español',
+  },
+  fr: {
+    flag: flagFr,
+    name: 'Français',
+  },
+  ko: {
+    flag: flagKo,
+    name: '한국말',
+  },
+  lv: {
+    flag: flagLv,
+    name: 'Latviešu',
+  },
+  pt: {
+    flag: flagPt,
+    name: 'Português',
+  },
+  'pt-BR': {
+    flag: flagPtBR,
+    name: 'Português brasileiro',
+  },
+  ua: {
+    flag: flagUa,
+    name: 'українська мова',
+  },
 };
 
 class Layout extends React.Component {
@@ -37,10 +73,10 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
-    const toggle = lng => this.props.i18n.changeLanguage(lng);
-    let languages = [];
-    const CurrentFlag = languagesFlags[this.props.i18n.language];
+    const { t, i18n } = this.props;
+    const toggle = lng => i18n.changeLanguage(lng);
+    let menuLanguages = [];
+    const CurrentFlag = languages[i18n.language || 'en'].flag;
     const versionStyle = {
       position: 'absolute',
       display: 'inline-block',
@@ -48,16 +84,17 @@ class Layout extends React.Component {
       left: 15,
     };
 
-    this.props.i18n.options.whitelist.map((locale) => {
+    i18n.options.whitelist.map((locale) => {
       if ('cimode' === locale) {
         return false;
       }
 
-      const FlagImg = languagesFlags[locale];
+      const { flag, name } = languages[locale];
 
-      languages.push(
+      menuLanguages.push(
         <MenuItem key={locale} onClick={() => toggle(locale)}>
-          <img src={FlagImg} alt={locale} />
+          <img src={flag} alt={locale} />{' '}
+          {name}
         </MenuItem>
       );
 
@@ -77,9 +114,9 @@ class Layout extends React.Component {
           <Navbar.Collapse>
             <Nav pullLeft>
               <NavDropdown title={<img src={CurrentFlag}
-                alt={this.props.i18n.language} />} id="language-switcher"
+                alt={i18n.language} />} id="language-switcher"
                 className="pull-left locale-switcher">
-                {languages}
+                {menuLanguages}
               </NavDropdown>
             </Nav>
             <Nav pullRight>

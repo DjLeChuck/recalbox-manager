@@ -207,10 +207,10 @@
     "Votre BIOS a bien été supprimé !": "¡Se ha borrado la BIOS!",
     "Il semble que votre BIOS n'ait pas été supprimé.": "Parece que la BIOS no se puede borrar.",
     "Il semble que votre fichier n'ait pas été sauvegardé.": "Parece que tu archivo no se ha guardado.",
-    "Vos ROMs ont bien été supprimées !": "",
-    "Il semble que vos ROM n'aient pas été supprimées.": "",
-    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "",
-    "Déposez ici les ROMs à uploader.": "",
-    "Supprimer les ROMs sélectionnées": "",
-    "Nouvelle image": ""
+    "Vos ROMs ont bien été supprimées !": "¡Tus ROMs han sido borradas!",
+    "Il semble que vos ROM n'aient pas été supprimées.": "Parece que tus ROMs no pudieron borrarse.",
+    "Voulez-vous vraiment supprimer toutes ces ROMs ?": "¿Realmente quieres borrar todas estas ROMs?",
+    "Déposez ici les ROMs à uploader.": "Suelta las ROMs aquí para subirlas.",
+    "Supprimer les ROMs sélectionnées": "Borrar ROMs seleccionadas.",
+    "Nouvelle image": "Imagen nueva."
 }

@@ -46,7 +46,7 @@ cp package.json release
 echo -e "${BLUE}Installing production dependencies...${NC}"
 cd release
 
-npm install --production
+npm install --production || exit $?
 
 echo
 echo -e "${YELLOW}Compilation done! All you need is inside the release folder!${NC}"

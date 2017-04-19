@@ -24,10 +24,10 @@ echo -e "${YELLOW}Compiling ${BLUE}re${GREEN}ca${RED}lb${PINK}ox${YELLOW} - web 
 echo
 
 echo -e "${BLUE}Installing building dependencies...${NC}"
-npm run -s installboth
+npm run -s installboth  || exit $?
 
 echo -e "${BLUE}Building sources ${RED}(be patient!)${BLUE}...${NC}"
-npm run -s buildboth
+npm run -s buildboth  || exit $?
 
 echo -e "${BLUE}Copying files into release directory...${NC}"
 rm -rf release
@@ -46,7 +46,7 @@ cp package.json release
 echo -e "${BLUE}Installing production dependencies...${NC}"
 cd release
 
-npm install --production
+npm install --production || exit $?
 
 echo
 echo -e "${YELLOW}Compilation done! All you need is inside the release folder!${NC}"

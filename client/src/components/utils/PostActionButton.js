@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import  { post } from '../../api';
 
-class PostActionButton extends React.Component {
+class PostActionButton extends Component {
   static propTypes = {
     bsStyle: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,

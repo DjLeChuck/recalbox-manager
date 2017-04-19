@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import Alert from 'react-bootstrap/lib/Alert';
@@ -15,7 +16,7 @@ import SwitchGroup from './utils/SwitchGroup';
 import FormActions from './utils/FormActions';
 import StickyAlert from './utils/StickyAlert';
 
-class Configuration extends React.Component {
+class Configuration extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
   }

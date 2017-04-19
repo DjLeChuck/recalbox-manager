@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router';
 import logo from '../logo.png';
 
-class NotFound extends React.Component {
+class NotFound extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
   }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/lib/Alert';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
@@ -9,7 +10,7 @@ import { cloneObject } from '../../utils';
 
 import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
 
-class SwitchGroup extends React.Component {
+class SwitchGroup extends Component {
   static propTypes = {
     value: React.PropTypes.oneOfType([
       React.PropTypes.string,

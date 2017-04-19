@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import AutoAffix from 'react-overlays/lib/AutoAffix';
 import Alert from 'react-bootstrap/lib/Alert';
 
-class StickyAlert extends React.Component {
+class StickyAlert extends Component {
   static propTypes = {
     bsStyle: PropTypes.oneOf(['success', 'warning', 'danger']).isRequired,
     container: PropTypes.object.isRequired,

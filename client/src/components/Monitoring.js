@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import Col from 'react-bootstrap/lib/Col';
@@ -8,7 +9,7 @@ import Table from 'react-bootstrap/lib/Table';
 import { get } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 
-class Monitoring extends React.Component {
+class Monitoring extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
   }

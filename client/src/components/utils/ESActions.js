@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Panel from 'react-bootstrap/lib/Panel';
 import PostActionButton from './PostActionButton';
 
-class ESActions extends React.Component {
+class ESActions extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired
   }

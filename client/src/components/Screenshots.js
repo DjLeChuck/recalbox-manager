@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import Button from 'react-bootstrap/lib/Button';
@@ -13,7 +14,7 @@ import reactStringReplace from 'react-string-replace';
 import { conf, get, post } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 
-class Screenshots extends React.Component {
+class Screenshots extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired
   }

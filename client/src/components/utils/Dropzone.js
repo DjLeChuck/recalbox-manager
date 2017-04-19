@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import DropzoneComponent from 'react-dropzone-component';
 
 import 'react-dropzone-component/styles/filepicker.css';
 import 'dropzone/dist/min/dropzone.min.css';
 
-class DropZone extends React.Component {
+class DropZone extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     onSuccess: PropTypes.func.isRequired,

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
@@ -7,7 +8,7 @@ import { cloneObject } from '../../utils';
 
 import '../../dependencies/css/bootstrap-slider.min.css';
 
-class SliderGroup extends React.Component {
+class SliderGroup extends Component {
   static propTypes = {
     value: React.PropTypes.oneOfType([
       React.PropTypes.string,

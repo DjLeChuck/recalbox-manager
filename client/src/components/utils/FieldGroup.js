@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import { cloneObject } from '../../utils';
 
-class FieldGroup extends React.Component {
+class FieldGroup extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.node,

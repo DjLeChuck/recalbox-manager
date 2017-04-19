@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
 import Button from 'react-bootstrap/lib/Button';
@@ -11,7 +12,7 @@ import StickyAlert from './utils/StickyAlert';
 import { conf, get } from '../api';
 import { promisifyData, cancelPromises } from '../utils';
 
-class Logs extends React.Component {
+class Logs extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
   }

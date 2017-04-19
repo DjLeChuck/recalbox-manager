@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { translate } from 'react-i18next';
 import Col from 'react-bootstrap/lib/Col';
@@ -9,7 +10,7 @@ import { promisifyData, cancelPromises } from '../utils';
 import gamepad from '../dependencies/img/gamepad.png';
 import keyboard from '../dependencies/img/keyboard.png';
 
-class Index extends React.Component {
+class Index extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
   }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Button from 'react-bootstrap/lib/Button';
 import Col from 'react-bootstrap/lib/Col';
@@ -11,7 +12,7 @@ import StickyAlert from './utils/StickyAlert';
 import ESActions from './utils/ESActions';
 import { recalboxSupport } from '../api';
 
-class Help extends React.Component {
+class Help extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired
   }

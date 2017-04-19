@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
-class FormActions extends React.Component {
+class FormActions extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,

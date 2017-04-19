@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
@@ -9,7 +10,7 @@ import Row from 'react-bootstrap/lib/Row';
 import { get } from '../../api';
 import { promisifyData, cancelPromises } from '../../utils';
 
-class List extends React.Component {
+class List extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
   }

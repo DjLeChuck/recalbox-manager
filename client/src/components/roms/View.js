@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import Loader from 'react-loader';
@@ -30,7 +31,7 @@ import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
 import { promisifyData, cancelPromises } from '../../utils';
 
-class View extends React.Component {
+class View extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     params: PropTypes.object,

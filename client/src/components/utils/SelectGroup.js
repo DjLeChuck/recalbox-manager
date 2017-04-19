@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
@@ -7,7 +8,7 @@ import { cloneObject } from '../../utils';
 
 import 'react-select2-wrapper/css/select2.css';
 
-class SelectGroup extends React.Component {
+class SelectGroup extends Component {
   static propTypes = {
     preComponent: PropTypes.node,
     id: PropTypes.string.isRequired,

@@ -7,8 +7,8 @@ i18n
   .use(LanguageDetector)
   .init({
     whitelist: [
-      'ar', 'cn', 'en', 'de', 'es', 'fr', 'ko', 'lv', 'pl', 'pt', 'pt-BR',
-      'ru', 'ua',
+      'ar', 'ca', 'cn', 'de', 'en', 'es', 'fr', 'it', 'ko', 'lv', 'pl', 'pt',
+      'pt-BR', 'ru', 'ua', 'zh',
     ],
 
     fallbackLng: 'en',

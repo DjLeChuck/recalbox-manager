@@ -12,73 +12,24 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Row from 'react-bootstrap/lib/Row';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import flagAr from '../dependencies/img/flag-ar.png';
-import flagCn from '../dependencies/img/flag-cn.png';
-import flagDe from '../dependencies/img/flag-de.png';
-import flagEn from '../dependencies/img/flag-en.png';
-import flagEs from '../dependencies/img/flag-es.png';
-import flagFr from '../dependencies/img/flag-fr.png';
-import flagKo from '../dependencies/img/flag-ko.png';
-import flagLv from '../dependencies/img/flag-lv.png';
-import flagPt from '../dependencies/img/flag-pt.png';
-import flagPtBR from '../dependencies/img/flag-pt_BR.png';
-import flagPl from '../dependencies/img/flag-pl.png';
-import flagRu from '../dependencies/img/flag-ru.png';
-import flagUa from '../dependencies/img/flag-ua.png';
 
 const languages = {
-  ar: {
-    flag: flagAr,
-    name: 'Argentina',
-  },
-  cn: {
-    flag: flagCn,
-    name: '中国语文',
-  },
-  de: {
-    flag: flagDe,
-    name: 'Deutsch',
-  },
-  en: {
-    flag: flagEn,
-    name: 'English',
-  },
-  es: {
-    flag: flagEs,
-    name: 'Español',
-  },
-  fr: {
-    flag: flagFr,
-    name: 'Français',
-  },
-  ko: {
-    flag: flagKo,
-    name: '한국말',
-  },
-  lv: {
-    flag: flagLv,
-    name: 'Latviešu',
-  },
-  pt: {
-    flag: flagPt,
-    name: 'Português',
-  },
-  'pt-BR': {
-    flag: flagPtBR,
-    name: 'Português brasileiro',
-  },
-  pl: {
-    flag: flagPl,
-    name: 'Język polski',
-  },
-  ru: {
-    flag: flagRu,
-    name: 'Русский',
-  },
-  ua: {
-    flag: flagUa,
-    name: 'українська мова',
-  },
+  ar: 'Argentina',
+  ca: 'Catalan',
+  cn: '中国语文',
+  de: 'Deutsch',
+  en: 'English',
+  es: 'Español',
+  fr: 'Français',
+  it: 'Italiano',
+  ko: '한국말',
+  lv: 'Latviešu',
+  pl: 'Język polski',
+  pt: 'Português',
+  'pt-BR': 'Português brasileiro',
+  ru: 'Русский',
+  ua: 'українська мова',
+  zh: '中國語文',
 };
 
 class Layout extends React.Component {
@@ -92,7 +43,7 @@ class Layout extends React.Component {
     const { t, i18n } = this.props;
     const toggle = lng => i18n.changeLanguage(lng);
     let menuLanguages = [];
-    const CurrentFlag = languages[i18n.language || 'en'].flag;
+    const CurrentLang = languages[i18n.language || 'en'];
     const versionStyle = {
       position: 'absolute',
       display: 'inline-block',
@@ -105,11 +56,10 @@ class Layout extends React.Component {
         return false;
       }
 
-      const { flag, name } = languages[locale];
+      const name = languages[locale];
 
       menuLanguages.push(
         <MenuItem key={locale} onClick={() => toggle(locale)}>
-          <img src={flag} alt={locale} />{' '}
           {name}
         </MenuItem>
       );
@@ -129,8 +79,7 @@ class Layout extends React.Component {
 
           <Navbar.Collapse>
             <Nav pullLeft>
-              <NavDropdown title={<img src={CurrentFlag}
-                alt={i18n.language} />} id="language-switcher"
+              <NavDropdown title={CurrentLang} id="language-switcher"
                 className="pull-left locale-switcher">
                 {menuLanguages}
               </NavDropdown>

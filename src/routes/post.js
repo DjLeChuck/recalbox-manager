@@ -49,10 +49,13 @@ router.post('/', async (req, res, next) => {
         switch (action) {
           case 'reboot-es':
             esAction = 'restart';
+            break;
           case 'shutdown-es':
             esAction = 'stop';
+            break;
           case 'start-es':
             esAction = 'start';
+            break;
         }
 
         spawn(config.get('recalbox.emulationStationPath'), [esAction], {

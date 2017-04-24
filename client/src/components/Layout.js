@@ -219,7 +219,7 @@ class Layout extends React.Component {
                 </LinkContainer>
               </Nav>
               <Nav style={versionStyle} className="nav-sidebar">
-                <NavItem disabled><em>v2.0.0</em></NavItem>
+                <NavItem disabled><em>v2.0.1</em></NavItem>
               </Nav>
             </Col>
             <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">

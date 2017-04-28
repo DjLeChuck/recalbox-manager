@@ -11,11 +11,15 @@ class PostActionButton extends Component {
     hideContentOnAction: PropTypes.bool.isRequired,
     action: PropTypes.string.isRequired,
     body: PropTypes.object.isRequired,
+    onSuccess: PropTypes.func,
+    onError: PropTypes.func,
   }
 
   static defaultProps = {
     body: {},
     hideContentOnAction: false,
+    onSuccess: () => {},
+    onError: () => {},
   }
 
   constructor(props) {
@@ -26,27 +30,27 @@ class PostActionButton extends Component {
   onClick = () => {
     this.setState({ isWorking: true });
 
-    const action = this.props.action;
-    const body = this.props.body;
+    const { body, action, onSuccess, onError } = this.props;
 
     post(action, body).then(() => {
       this.setState({ isWorking: false });
+      onSuccess();
     }, (err) => {
       console.error(err);
+      onError(err);
     });
   }
 
   render() {
-    const renderChildren =
-      !this.state.isWorking ||
-      (this.state.isWorking && !this.props.hideContentOnAction)
-    ;
+    const { isWorking } = this.state;
+    const { hideContentOnAction, bsStyle, children } = this.props;
+    const renderChildren = !isWorking || (isWorking && !hideContentOnAction);
 
     return (
-      <Button onClick={this.onClick} bsStyle={this.props.bsStyle}>
-      {this.state.isWorking &&
+      <Button onClick={this.onClick} bsStyle={bsStyle}>
+      {isWorking &&
         <Glyphicon glyph="refresh" className="glyphicon-spin" />
-      } {renderChildren && this.props.children}
+      } {renderChildren && children}
       </Button>
     );
   }

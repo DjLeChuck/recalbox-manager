@@ -14,7 +14,7 @@ module.exports = {
 
   recalbox: {
     ip: '127.0.0.1',
-    port: 1337,
+    udpPort: 1337,
     logsPaths: [
       '/var/log/messages',
       '/recalbox/share/system/.emulationstation/es_log.txt',

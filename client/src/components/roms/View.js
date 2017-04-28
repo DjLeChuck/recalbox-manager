@@ -28,7 +28,7 @@ import PostActionButton from '../utils/PostActionButton';
 import StickyAlert from '../utils/StickyAlert';
 import ESActions from '../utils/ESActions';
 import FieldGroup from '../utils/FieldGroup';
-import { get, grep, post } from '../../api';
+import { get, post } from '../../api';
 import { promisifyData, cancelPromises } from '../../utils';
 
 class View extends Component {
@@ -270,6 +270,24 @@ class View extends Component {
     this.setState({ gamesToDelete });
   }
 
+  gameHasLaunch = () => {
+    const { t } = this.props;
+
+    this.setState({
+      stickyContent: t("Votre jeu devrait s'être lancé !"),
+      stickyStyle: 'success',
+    });
+  }
+
+  gameHasntLaunch = () => {
+    const { t } = this.props;
+
+    this.setState({
+      stickyContent: t("Il semble que votre jeu n'ait pas réussi à se lancer."),
+      stickyStyle: 'success',
+    });
+  }
+
   render() {
     const { t } = this.props;
     const toTopTooltip = <Tooltip placement="left" className="in"
@@ -441,13 +459,17 @@ class View extends Component {
                         </Col>
 
                         <Col md={5} lg={3} className="center-block">
-                          {1 === parseInt(this.state['system.api.enabled'], 10) &&
-                            <PostActionButton bsStyle="success" hideContentOnAction
-                              action="launch-rom"
-                              body={{file: rom.path}}>
-                              <Glyphicon glyph="play" />
-                            </PostActionButton>
-                          }
+                          <PostActionButton bsStyle="success"
+                            hideContentOnAction action="launch-rom"
+                            onSuccess={() => this.gameHasLaunch()}
+                            onError={() => this.gameHasntLaunch()}
+                            body={{
+                              system: this.state.system,
+                              file: rom.path,
+                            }}
+                          >
+                            <Glyphicon glyph="play" />
+                          </PostActionButton>
                           <Button bsStyle="danger" data-name={rom.name}
                             data-path={rom.path}
                             onClick={this.askBeforeDelete}>
@@ -653,8 +675,7 @@ class View extends Component {
     const state = await promisifyData(
       get('romsList', `system=${system},subpath=${splat}`),
       get('directoryListing', `subpath=${subpath}`),
-      get('systemFullname', `system=${system}`),
-      grep(['system.api.enabled'])
+      get('systemFullname', `system=${system}`)
     );
 
     state.isLoaded = true;

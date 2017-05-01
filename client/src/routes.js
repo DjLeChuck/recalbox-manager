@@ -8,7 +8,7 @@ import Configuration from './components/Configuration';
 import Controllers from './components/Controllers';
 import Help from './components/Help';
 import Logs from './components/Logs';
-import Monitoring from './components/Monitoring';
+import Monitoring from './components/monitoring/Container';
 import RecalboxConf from './components/RecalboxConf';
 import RomsList from './components/roms/List';
 import RomsView from './components/roms/View';

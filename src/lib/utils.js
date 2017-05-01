@@ -43,7 +43,7 @@ export function handleBiosLine(line) {
 export async function getRoms(system, subpath = '') {
   const srcpath = path.join(config.get('recalbox.romsPath'), system, subpath);
   const esSystems = await getEsSystems();
-  const systemData = esSystems.find((s) => s.name === system);
+  const systemData = esSystems.find(s => s.name === system);
   const romExtensions = systemData ? systemData.extensions : [];
 
   return fs.readdirSync(srcpath).filter((file) => {

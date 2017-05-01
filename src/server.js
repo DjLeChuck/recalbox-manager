@@ -83,12 +83,8 @@ app.get('/recalbox-support', (req, res, next) => {
             fs.unlinkSync(archivePath);
 
             res.json({ url: linkResponse.body.href });
-          }).catch((err) => {
-            next(err);
-          })
-      }).catch((err) => {
-        next(err);
-      });
+          }).catch(err => next(err));
+      }).catch(err => next(err));
   } catch (err) {
     next(err);
   }
@@ -106,7 +102,7 @@ function logErrors(err, req, res, next) {
   next(err);
 }
 
-function errorsHandler(err, req, res, next) {
+function errorsHandler(err, req, res, next) { // eslint-disable-line no-unused-vars
   let error = {};
 
   error.message = err.message;

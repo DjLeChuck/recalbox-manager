@@ -154,13 +154,13 @@ class Bios extends Component {
 
               if (true === item.valid) {
                 validity = <Glyphicon glyph="ok"
-                  className="medium-glyphicon alert alert-success" />
+                  className="medium-glyphicon alert alert-success" />;
               } else if (false === item.valid) {
                 validity = <Glyphicon glyph="remove"
-                  className="medium-glyphicon alert alert-danger" />
+                  className="medium-glyphicon alert alert-danger" />;
               } else {
                 validity = <Glyphicon glyph="minus"
-                  className="medium-glyphicon alert" />
+                  className="medium-glyphicon alert" />;
                 deletion = undefined;
               }
 

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
 import Layout from './components/Layout';
 import Index from './components/Index';
 import Audio from './components/Audio';

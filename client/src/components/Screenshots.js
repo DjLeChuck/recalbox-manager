@@ -91,7 +91,7 @@ class Screenshots extends Component {
       file: toDeleteName,
     }).then(() => {
       let screenshots = [...this.state.screenshotsList];
-      const deletedIndex = screenshots.findIndex((s) => s === toDeleteName);
+      const deletedIndex = screenshots.findIndex(s => s === toDeleteName);
 
       screenshots.splice(deletedIndex, 1);
 

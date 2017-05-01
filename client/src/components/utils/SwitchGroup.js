@@ -12,9 +12,9 @@ import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.cs
 
 class SwitchGroup extends Component {
   static propTypes = {
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]).isRequired,
     id: PropTypes.string.isRequired,
     help: PropTypes.node,

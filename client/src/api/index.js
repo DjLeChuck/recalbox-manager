@@ -20,8 +20,8 @@ i18n.on('languageChanged', () => {
  */
 const getImpl = (object, property) => {
   const elems = Array.isArray(property) ? property : property.split('.'),
-      name = elems[0],
-      value = object[name];
+    name = elems[0],
+    value = object[name];
 
   if (elems.length <= 1) {
     return value;
@@ -40,7 +40,7 @@ function checkStatus(response) {
     return response;
   }
 
-  return response.json().then(err => { throw err; });
+  return response.json().then((err) => { throw err; });
 }
 
 function parseJSON(response) {

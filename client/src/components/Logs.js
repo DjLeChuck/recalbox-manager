@@ -86,7 +86,7 @@ class Logs extends Component {
                 onChange={this.handleInputChange}>
                 <option>–</option>
                 {this.state['recalbox.logsPaths'] && this.state['recalbox.logsPaths'].map((log) => {
-                  return <option key={log} value={log}>{log}</option>
+                  return <option key={log} value={log}>{log}</option>;
                 })}
               </FormControl>
             </Col>

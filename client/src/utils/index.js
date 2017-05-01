@@ -21,8 +21,8 @@ const cancelablePromise = (promise) => {
 
   const wrappedPromise = new Promise((resolve, reject) => {
     promise.then(
-      (val) => hasCanceled_ ? reject({ isCanceled: true }) : resolve(val),
-      (error) => hasCanceled_ ? reject({ isCanceled: true }) : reject(error)
+      val => hasCanceled_ ? reject({ isCanceled: true }) : resolve(val), //eslint-disable-line prefer-promise-reject-errors
+      error => hasCanceled_ ? reject({ isCanceled: true }) : reject(error) //eslint-disable-line prefer-promise-reject-errors
     );
   });
 

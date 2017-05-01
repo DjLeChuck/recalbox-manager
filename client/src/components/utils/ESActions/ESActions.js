@@ -20,7 +20,7 @@ const renderStatusAction = (t, status, onSuccess, onError) => {
       {t("Démarrer ES")}
     </PostActionButton>
   );
-}
+};
 
 const ESActions = ({ t, status, onSuccess, onError }) => (
   <Panel bsStyle="warning"

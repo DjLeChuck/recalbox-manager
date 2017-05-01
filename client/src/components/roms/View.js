@@ -169,7 +169,7 @@ class View extends Component {
         gamesToDelete.sort((a, b) => b - a);
 
         // remove from list
-        gamesToDelete.forEach((index) => romsList.splice(index, 1));
+        gamesToDelete.forEach(index => romsList.splice(index, 1));
 
         this.setState({
           romsList: romsList,
@@ -193,7 +193,7 @@ class View extends Component {
         system: this.state.system,
       }).then(() => {
         let list = [...this.state.romsList];
-        const deletedIndex = list.findIndex((r) => r.path === toDeletePath);
+        const deletedIndex = list.findIndex(r => r.path === toDeletePath);
 
         list.splice(deletedIndex, 1);
 

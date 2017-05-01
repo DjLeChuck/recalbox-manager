@@ -7,7 +7,7 @@ class ESActionsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { ESStatus: 'OK' };
-    this.intervalId;
+    this.intervalId = null;
   }
 
   componentDidMount() {

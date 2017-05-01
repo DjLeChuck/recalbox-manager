@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/lib/Row';
 import reactStringReplace from 'react-string-replace';
 import PostActionButton from './utils/PostActionButton';
 import StickyAlert from './utils/StickyAlert';
-import ESActions from './utils/ESActions';
+import ESActions from './utils/ESActions/Container';
 import { recalboxSupport } from '../api';
 
 class Help extends Component {

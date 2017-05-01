@@ -26,7 +26,7 @@ import reactStringReplace from 'react-string-replace';
 import CustomDropzone from '../utils/Dropzone';
 import PostActionButton from '../utils/PostActionButton';
 import StickyAlert from '../utils/StickyAlert';
-import ESActions from '../utils/ESActions';
+import ESActions from '../utils/ESActions/Container';
 import FieldGroup from '../utils/FieldGroup';
 import { get, grep, post } from '../../api';
 import { promisifyData, cancelPromises } from '../../utils';

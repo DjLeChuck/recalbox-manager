@@ -8,15 +8,25 @@
     "ecmaFeatures": {
       "impliedStrict": true,
       "experimentalObjectRestSpread": true,
-      "jsx": true
+      "jsx": true,
     }
   },
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
   },
   "rules": {
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "semi": ["error", "always"],
+    "no-fallthrough": ["error", { "commentPattern": "cascade" }],
+    "arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }],
+    "prefer-promise-reject-errors": ["error", { "allowEmptyReject": true }],
+    "indent": ["error", 2, {
+      "SwitchCase": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": { "parameters": 2 },
+      "CallExpression": { "arguments": 1 },
+    }],
   }
 }

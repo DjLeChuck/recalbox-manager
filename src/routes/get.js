@@ -150,6 +150,11 @@ router.get('/', async (req, res, next) => {
       case 'cpus':
         data = osutils.listCPUs();
         break;
+      case 'ESStatus':
+        const ESPath = config.get('recalbox.emulationStationPath');
+        const cmd = `${ESPath} status | cut -d ' ' -f 3`;
+        data = 'running' === execSync(cmd).toString() ? 'OK' : 'KO';
+        break;
       default:
         throw new Error(`Option "${option}" unknown`);
     }

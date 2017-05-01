@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Layout from './components/Layout';
-import Index from './components/Index';
+import Home from './components/home/Container';
 import Audio from './components/Audio';
 import Bios from './components/Bios';
 import Configuration from './components/Configuration';
@@ -18,7 +18,7 @@ import NotFound from './components/NotFound';
 
 const routes = (
   <Route path="/" component={Layout}>
-    <IndexRoute component={Index} />
+    <IndexRoute component={Home} />
     <Route path="audio" component={Audio} />
     <Route path="bios" component={Bios} />
     <Route path="configuration" component={Configuration} />

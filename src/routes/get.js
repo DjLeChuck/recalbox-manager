@@ -12,6 +12,8 @@ const osutils = require('../lib/osutils');
 
 const router = express.Router();
 
+/* eslint-disable no-case-declarations */
+
 router.get('/', async (req, res, next) => {
   try {
     const option = req.query.option;
@@ -71,7 +73,7 @@ router.get('/', async (req, res, next) => {
       case 'systemFullname':
         const paramSystem = params.system;
         const esSystems = await getEsSystems();
-        const systemData = esSystems.find((s) => s.name === paramSystem);
+        const systemData = esSystems.find(x => x.name === paramSystem);
         data = systemData ? systemData.fullname : paramSystem;
         break;
       case 'romsList':
@@ -87,7 +89,6 @@ router.get('/', async (req, res, next) => {
 
         roms.forEach((romName) => {
           const filepath = path.join(subpath, romName);
-          let fullname = romName;
           let romData = {
             path: filepath,
             name: romName,
@@ -130,7 +131,7 @@ router.get('/', async (req, res, next) => {
           current_percent: currentPercent,
           max: Math.round(maxTemp, 2),
           color: currentPercent > 70 ? 'orange' : currentPercent < 30 ? 'green' : ''
-        }
+        };
         break;
       case 'ram':
         const total = osutils.totalmem();

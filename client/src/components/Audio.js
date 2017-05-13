@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loader from 'react-loader';
 import { translate } from 'react-i18next';
-import Form from 'react-bootstrap/lib/Form';
-import Panel from 'react-bootstrap/lib/Panel';
 import { grep, translatableConf, save } from '../api';
-import { diffObjects, cloneObject, promisifyData, cancelPromises } from '../utils';
-import SelectGroup from './utils/SelectGroup';
-import SliderGroup from './utils/SliderGroup';
-import SwitchGroup from './utils/SwitchGroup';
-import FormActions from './utils/FormActions';
+import { promisifyData, cancelPromises } from '../utils';
 import StickyAlert from './utils/StickyAlert';
+import AudioForm from './forms/Audio';
 
 class Audio extends Component {
   static propTypes = {
@@ -20,11 +15,9 @@ class Audio extends Component {
   constructor(props) {
     super(props);
 
-    this.initialValues = {};
-    this.currentValues = {};
     this.state = {
-      isLoaded: false,
-      isSaving: false,
+      loaded: false,
+      saving: false,
       stickyContent: null,
       stickyStyle: 'danger',
     };
@@ -36,8 +29,7 @@ class Audio extends Component {
       grep(['audio.device', 'audio.volume', 'audio.bgmusic'])
     );
 
-    this.initialValues = state;
-    state.isLoaded = true;
+    state.loaded = true;
 
     this.setState(state);
   }
@@ -46,112 +38,52 @@ class Audio extends Component {
     cancelPromises();
   }
 
-  handleSwitchChange = (elm, newState) => {
-    this.handleInputChange({
-      target: {
-        name: elm.props.name,
-        type: 'input',
-        value: newState ? 1 : 0,
-      }
-    });
-  }
+  onSubmit = (values) => {
+    const { t } = this.props;
 
-  handleSliderChange = (e) => {
-    e.target.name = 'audio.volume';
-    e.target.type = 'input';
+    this.setState({ saving: true });
 
-    this.handleInputChange(e);
-  }
-
-  handleInputChange = (e) => {
-    const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.currentValues[name] = value;
-    this.setState({ [name]: value });
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-
-    let diff = diffObjects(this.initialValues, this.currentValues);
-
-    if (0 < Object.keys(diff).length) {
-      this.setState({ isSaving: true });
-
-      save(diff).then(() => {
-        this.initialValues = cloneObject(this.currentValues);
-
-        this.setState({
-          isSaving: false,
-          stickyContent: this.props.t('La configuration a bien été sauvegardée.'),
-          stickyStyle: 'success',
-        });
-      }, () => {
-        this.setState({
-          isSaving: false,
-          stickyContent: this.props.t('Une erreur est survenue lors de la sauvegarde de la configuration.'),
-          stickyStyle: 'danger',
-        });
-      });
-    }
-  }
-
-  reset = (e) => {
-    e.preventDefault();
-
-    this.currentValues = cloneObject(this.initialValues);
-
-    this.setState(this.currentValues);
+    save(values).then(() => (
+      this.setState({
+        saving: false,
+        stickyContent: t('La configuration a bien été sauvegardée.'),
+        stickyStyle: 'success',
+      })
+    ), () => (
+      this.setState({
+        saving: false,
+        stickyContent: t('Une erreur est survenue lors de la sauvegarde de la configuration.'),
+        stickyStyle: 'danger',
+      })
+    ));
   }
 
   render() {
     const { t } = this.props;
+    const { stickyStyle, stickyContent, loaded, saving } = this.state;
 
     return (
       <div>
         <div className="page-header"><h1>{t('Audio')}</h1></div>
 
-        <p className="important">{t('Cette page permet de gérer la partie audio de recalbox.')}</p>
+        <p className="important">
+          {t('Cette page permet de gérer la partie audio de recalbox.')}
+        </p>
 
-        <StickyAlert bsStyle={this.state.stickyStyle} container={this}>
-          {this.state.stickyContent}
+        <StickyAlert bsStyle={stickyStyle} container={this}>
+          {stickyContent}
         </StickyAlert>
 
-        <Loader loaded={this.state.isLoaded}>
-          <Form onSubmit={this.onSubmit}>
-            <Panel header={<h3>{t('Musique de fond')}</h3>}>
-              <SwitchGroup
-                id="audio-bgmusic" name="audio.bgmusic"
-                value={this.state['audio.bgmusic']}
-                onChange={this.handleSwitchChange}
-                warning={t('Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.')}
-              />
-            </Panel>
-
-            <Panel header={<h3>{t('Volume du son')}</h3>}>
-              <SliderGroup
-                id="audio-volume" name="audio.volume"
-                value={this.state['audio.volume']}
-                slideStop={this.handleSliderChange}
-                step={1} max={100} min={0}
-                tooltip="always"
-                extraClass="top30"
-              />
-            </Panel>
-
-            <Panel header={<h3>{t('Sortie audio')}</h3>}>
-              <SelectGroup
-                id="ps3-driver" name="audio.device"
-                data={this.state['recalbox.audio.devices']}
-                defaultValue={this.state['audio.device']}
-                onChange={this.handleInputChange}
-              />
-            </Panel>
-
-            <FormActions reset={this.reset} isSaving={this.state.isSaving} />
-          </Form>
+        <Loader loaded={loaded}>
+          <AudioForm t={t} saving={saving}
+            onSubmit={values => this.onSubmit(values)} dataset={{
+              audioDevices: this.state['recalbox.audio.devices'],
+            }} defaultValues={{
+              'audio.bgmusic': this.state['audio.bgmusic'],
+              'audio.volume': this.state['audio.volume'],
+              'audio.device': this.state['audio.device'],
+            }}
+          />
         </Loader>
       </div>
     );

@@ -1700,6 +1700,11 @@
       "from": "react-dropzone-component@>=1.4.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/react-dropzone-component/-/react-dropzone-component-1.4.1.tgz"
     },
+    "react-form": {
+      "version": "1.2.7",
+      "from": "react-form@latest",
+      "resolved": "https://registry.npmjs.org/react-form/-/react-form-1.2.7.tgz"
+    },
     "react-i18next": {
       "version": "2.2.3",
       "from": "react-i18next@>=2.1.0 <3.0.0",

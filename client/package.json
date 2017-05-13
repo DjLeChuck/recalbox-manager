@@ -25,6 +25,7 @@
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.9.2",
     "react-dropzone-component": "^1.4.1",
+    "react-form": "^1.2.7",
     "react-i18next": "^2.1.0",
     "react-loader": "^2.4.0",
     "react-rating": "^0.6.5",

@@ -1,4 +1,5 @@
 import i18n from '../i18n';
+import dotize from 'dotize';
 
 let translatableConfig = require('../translatableConfig')(i18n);
 
@@ -64,7 +65,7 @@ function formatOption(dataset) {
 /**
  * get an option
  */
-export function get(option, params = undefined) {
+export function get(option, params) {
   let url = `/get?option=${option}`;
 
   if (undefined !== params) {
@@ -135,7 +136,7 @@ export function save(values) {
   return fetch('/save', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(values)
+    body: JSON.stringify(dotize.convert(values))
   })
     .then(checkStatus)
     .then(parseJSON);

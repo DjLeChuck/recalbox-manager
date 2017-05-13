@@ -509,6 +509,11 @@
       "from": "domain-browser@>=1.1.0 <1.2.0",
       "resolved": "https://registry.npmjs.org/domain-browser/-/domain-browser-1.1.7.tgz"
     },
+    "dotize": {
+      "version": "0.2.0",
+      "from": "dotize@latest",
+      "resolved": "https://registry.npmjs.org/dotize/-/dotize-0.2.0.tgz"
+    },
     "dropzone": {
       "version": "4.3.0",
       "from": "dropzone@>=4.3.0 <5.0.0",

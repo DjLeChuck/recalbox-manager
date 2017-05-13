@@ -1349,6 +1349,11 @@
       "from": "lodash.restparam@>=3.0.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/lodash.restparam/-/lodash.restparam-3.6.1.tgz"
     },
+    "lodash.set": {
+      "version": "4.3.2",
+      "from": "lodash.set@latest",
+      "resolved": "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz"
+    },
     "lodash.template": {
       "version": "3.6.2",
       "from": "lodash.template@>=3.0.0 <4.0.0",

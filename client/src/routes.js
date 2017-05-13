@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Layout from './components/Layout';
 import Home from './components/home/Container';
-import Audio from './components/Audio';
+import Audio from './components/audio/Container';
 import Bios from './components/Bios';
 import Configuration from './components/Configuration';
 import Controllers from './components/Controllers';

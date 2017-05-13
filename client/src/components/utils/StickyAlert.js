@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/lib/Alert';
 class StickyAlert extends Component {
   static propTypes = {
     bsStyle: PropTypes.oneOf(['success', 'warning', 'danger']).isRequired,
-    container: PropTypes.object.isRequired,
+    container: PropTypes.object,
     children: PropTypes.node,
   }
 

@@ -53,15 +53,16 @@ export function promisifyData(...calls) {
     promises.push(promise.promise);
   }
 
-  return Promise.all(promises).then((values) => {
-    let newState = {};
+  return Promise.all(promises).then(
+    (values) => {
+      let newState = {};
 
-    for (const value of values) {
-      Object.assign(newState, value);
-    }
+      for (const value of values) {
+        Object.assign(newState, value);
+      }
 
-    return newState;
-  }, (err) => {
-    console.error(err);
-  });
+      return newState;
+    },
+    err => console.error(err)
+  );
 }

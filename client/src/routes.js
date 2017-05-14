@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 import Home from './components/home/Container';
 import Audio from './components/audio/Container';
 import Bios from './components/bios/Container';
-import Configuration from './components/Configuration';
+import Configuration from './components/configuration/Container';
 import Controllers from './components/Controllers';
 import Help from './components/Help';
 import Logs from './components/Logs';

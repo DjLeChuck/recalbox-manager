@@ -32,204 +32,139 @@ const languages = {
   zh: '中國語文',
 };
 
-class Layout extends React.Component {
-  static propTypes = {
-    t: PropTypes.func.isRequired,
-    i18n: PropTypes.object.isRequired,
-    children: PropTypes.node.isRequired,
+const renderLocaleEntry = (locale, toggle) => {
+  if ('cimode' === locale) {
+    return null;
   }
 
-  render() {
-    const { t, i18n } = this.props;
-    const toggle = lng => i18n.changeLanguage(lng);
-    let menuLanguages = [];
-    const CurrentLang = languages[i18n.language || 'en'];
-    const versionStyle = {
-      position: 'absolute',
-      display: 'inline-block',
-      bottom: 0,
-      left: 15,
-    };
+  const name = languages[locale];
 
-    i18n.options.whitelist.map((locale) => {
-      if ('cimode' === locale) {
-        return false;
-      }
+  return (
+    <MenuItem key={locale} onClick={() => toggle(locale)}>{name}</MenuItem>
+  );
+};
 
-      const name = languages[locale];
+const renderMenuEntry = (data, index) => (
+  <LinkContainer key={index} to={data.link}>
+    <NavItem>
+      <Glyphicon glyph={data.glyph} /> {data.label}
+    </NavItem>
+  </LinkContainer>
+);
 
-      menuLanguages.push(
-        <MenuItem key={locale} onClick={() => toggle(locale)}>
-          {name}
-        </MenuItem>
-      );
+const Layout = ({ t, i18n, children }) => {
+  const toggle = lng => i18n.changeLanguage(lng);
+  const CurrentLang = languages[i18n.language || 'en'];
+  const firstMenuEntries = [{
+    link: '/monitoring',
+    glyph: 'signal',
+    label: t('Monitoring'),
+  }, {
+    link: '/audio',
+    glyph: 'volume-up',
+    label: t('Audio'),
+  }, {
+    link: '/bios',
+    glyph: 'cd',
+    label: t('BIOS'),
+  }, {
+    link: '/controllers',
+    glyph: 'phone',
+    label: t('Contrôleurs'),
+  }, {
+    link: '/systems',
+    glyph: 'hdd',
+    label: t('Systèmes'),
+  }, {
+    link: '/configuration',
+    glyph: 'cog',
+    label: t('Configuration'),
+  }, {
+    link: '/roms',
+    glyph: 'floppy-disk',
+    label: t('ROMs'),
+  }, {
+    link: '/screenshots',
+    glyph: 'picture',
+    label: t('Screenshots'),
+  }];
+  const secondMenuEntries = [{
+    link: '/log',
+    glyph: 'file',
+    label: t('Logs'),
+  }, {
+    link: '/recalbox-conf',
+    glyph: 'file',
+    label: 'recalbox.conf',
+  }, {
+    link: '/help',
+    glyph: 'question-sign',
+    label: t('Dépannage'),
+  }];
 
-      return true;
-    });
+  return (
+    <div>
+      <Navbar inverse fixedTop fluid>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">{t('Recalbox Manager')}</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
 
-    return (
-      <div>
-        <Navbar inverse fixedTop fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/">{t('Recalbox Manager')}</Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullLeft>
+            <NavDropdown title={CurrentLang} id="language-switcher"
+              className="pull-left locale-switcher">
+              {i18n.options.whitelist.map(x => renderLocaleEntry(x, toggle))}
+            </NavDropdown>
+          </Nav>
+          <Nav pullRight>
+            <IndexLinkContainer to="/">
+              <NavItem>
+                <Glyphicon glyph="home" /> {t('Accueil')}
+              </NavItem>
+            </IndexLinkContainer>
+            {firstMenuEntries.map(renderMenuEntry)}
 
-          <Navbar.Collapse>
-            <Nav pullLeft>
-              <NavDropdown title={CurrentLang} id="language-switcher"
-                className="pull-left locale-switcher">
-                {menuLanguages}
-              </NavDropdown>
-            </Nav>
-            <Nav pullRight>
+            <NavDropdown title={<span><Glyphicon glyph="question-sign" /> {t('Dépannage')} </span>}
+              id="basic-nav-dropdown">
+              {secondMenuEntries.map(renderMenuEntry)}
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+
+      <Grid fluid>
+        <Row>
+          <Col sm={3} md={2} className="sidebar">
+            <Nav className="nav-sidebar">
               <IndexLinkContainer to="/">
                 <NavItem>
                   <Glyphicon glyph="home" /> {t('Accueil')}
                 </NavItem>
               </IndexLinkContainer>
-              <LinkContainer to="/monitoring">
-                <NavItem>
-                  <Glyphicon glyph="signal" /> {t('Monitoring')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/audio">
-                <NavItem>
-                  <Glyphicon glyph="volume-up" /> {t('Audio')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/bios">
-                <NavItem>
-                  <Glyphicon glyph="cd" /> {t('BIOS')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/controllers">
-                <NavItem>
-                  <Glyphicon glyph="phone" /> {t('Contrôleurs')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/systems">
-                <NavItem>
-                  <Glyphicon glyph="hdd" /> {t('Systèmes')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/configuration">
-                <NavItem>
-                  <Glyphicon glyph="cog" /> {t('Configuration')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/roms">
-                <NavItem>
-                  <Glyphicon glyph="floppy-disk" /> {t('ROMs')}
-                </NavItem>
-              </LinkContainer>
-              <LinkContainer to="/screenshots">
-                <NavItem>
-                  <Glyphicon glyph="picture" /> {t('Screenshots')}
-                </NavItem>
-              </LinkContainer>
 
-              <NavDropdown title={<span><Glyphicon glyph="question-sign" /> {t('Dépannage')} </span>}
-                id="basic-nav-dropdown">
-                <LinkContainer to="/logs">
-                  <NavItem>
-                    <Glyphicon glyph="file" /> {t('Logs')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/recalbox-conf">
-                  <NavItem>
-                    <Glyphicon glyph="file" /> recalbox.conf
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/help">
-                  <NavItem>
-                    <Glyphicon glyph="question-sign" /> {t('Dépannage')}
-                  </NavItem>
-                </LinkContainer>
-              </NavDropdown>
+              {firstMenuEntries.map(renderMenuEntry)}
+              {secondMenuEntries.map(renderMenuEntry)}
             </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+            <Nav className="nav-sidebar manager-version">
+              <NavItem disabled><em>v2.0.1</em></NavItem>
+            </Nav>
+          </Col>
+          <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">
+            {children}
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+};
 
-        <Grid fluid>
-          <Row>
-            <Col sm={3} md={2} className="sidebar">
-              <Nav className="nav-sidebar">
-                <IndexLinkContainer to="/">
-                  <NavItem>
-                    <Glyphicon glyph="home" /> {t('Accueil')}
-                  </NavItem>
-                </IndexLinkContainer>
-                <LinkContainer to="/monitoring">
-                  <NavItem>
-                    <Glyphicon glyph="signal" /> {t('Monitoring')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/audio">
-                  <NavItem>
-                    <Glyphicon glyph="volume-up" /> {t('Audio')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/bios">
-                  <NavItem>
-                    <Glyphicon glyph="cd" /> {t('BIOS')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/controllers">
-                  <NavItem>
-                    <Glyphicon glyph="phone" /> {t('Contrôleurs')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/systems">
-                  <NavItem>
-                    <Glyphicon glyph="hdd" /> {t('Systèmes')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/configuration">
-                  <NavItem>
-                    <Glyphicon glyph="cog" /> {t('Configuration')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/roms">
-                  <NavItem>
-                    <Glyphicon glyph="floppy-disk" /> {t('ROMs')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/screenshots">
-                  <NavItem>
-                    <Glyphicon glyph="picture" /> {t('Screenshots')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/logs">
-                  <NavItem>
-                    <Glyphicon glyph="file" /> {t('Logs')}
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/recalbox-conf">
-                  <NavItem>
-                    <Glyphicon glyph="file" /> recalbox.conf
-                  </NavItem>
-                </LinkContainer>
-                <LinkContainer to="/help">
-                  <NavItem>
-                    <Glyphicon glyph="question-sign" /> {t('Dépannage')}
-                  </NavItem>
-                </LinkContainer>
-              </Nav>
-              <Nav style={versionStyle} className="nav-sidebar">
-                <NavItem disabled><em>v2.0.1</em></NavItem>
-              </Nav>
-            </Col>
-            <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">
-              {this.props.children}
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
-}
+Layout.propTypes = {
+  t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
+};
 
 export default translate()(Layout);

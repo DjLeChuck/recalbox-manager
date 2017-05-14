@@ -25,11 +25,10 @@ const AudioForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
     onSubmit={values => onSubmit(values)}
     defaultValues={getDefaultValues(defaultValues)}
   >
-    {({ submitForm, resetForm, getValue }) => (
+    {({ submitForm, resetForm }) => (
       <BootstrapForm onSubmit={submitForm}>
         <Panel header={<h3>{t('Musique de fond')}</h3>}>
           <SwitchInput id="audio-bgmusic" field="audio.bgmusic"
-            getValue={getValue}
             warning={t('Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.')}
           />
         </Panel>
@@ -42,7 +41,8 @@ const AudioForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
 
         <Panel header={<h3>{t('Sortie audio')}</h3>}>
           <SelectInput id="ps3-driver" field="audio.device"
-            data={dataset.audioDevices} />
+            data={dataset.audioDevices}
+          />
         </Panel>
 
         <FormActions resetForm={resetForm} saving={saving} />

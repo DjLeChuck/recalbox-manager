@@ -26,7 +26,8 @@ class StickyAlert extends Component {
     }
 
     return (
-      <AutoAffix viewportOffsetTop={65} container={this.props.container}>
+      <AutoAffix viewportOffsetTop={65} container={this.props.container}
+        affixStyle={{ zIndex: 1 }}>
         <Alert bsStyle={this.props.bsStyle}
           onDismiss={() => this.setState({ show: false })}>
           {this.props.children}

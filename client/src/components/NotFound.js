@@ -1,30 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router';
 import logo from '../logo.png';
 
-class NotFound extends Component {
-  static propTypes = {
-    t: PropTypes.func.isRequired,
-  }
+const NotFound = ({ t }) => (
+  <div className="not-found text-center">
+    <h1>404</h1>
+    <h2>{t('Page introuvable !')}</h2>
 
-  render() {
-    const { t } = this.props;
+    <img src={logo} alt="Recalbox" />
 
-    return (
-      <div className="not-found text-center">
-        <h1>404</h1>
-        <h2>{t('Page introuvable !')}</h2>
+    <p>
+      <Link to="/">{t("Retour à la page d'accueil")}</Link>
+    </p>
+  </div>
+);
 
-        <img src={logo} alt="Recalbox" />
-
-        <p>
-          <Link to="/">{t("Retour à la page d'accueil")}</Link>
-        </p>
-      </div>
-    );
-  }
-}
+NotFound.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 export default translate()(NotFound);

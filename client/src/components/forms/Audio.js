@@ -2,23 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Form } from 'react-form';
-import set from 'lodash.set';
 import BootstrapForm from 'react-bootstrap/lib/Form';
 import Panel from 'react-bootstrap/lib/Panel';
+import { getDefaultValues } from './utils';
 import FormActions from './FormActions';
 import SwitchInput from './inputs/Switch';
 import SliderInput from './inputs/Slider';
 import SelectInput from './inputs/Select';
-
-const getDefaultValues = (values) => {
-  const result = {};
-
-  for (const key of Object.keys(values)) {
-    set(result, key, values[key]);
-  }
-
-  return result;
-};
 
 const AudioForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
   <Form
@@ -40,7 +30,7 @@ const AudioForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
         </Panel>
 
         <Panel header={<h3>{t('Sortie audio')}</h3>}>
-          <SelectInput id="ps3-driver" field="audio.device"
+          <SelectInput id="audio-device" field="audio.device"
             data={dataset.audioDevices}
           />
         </Panel>

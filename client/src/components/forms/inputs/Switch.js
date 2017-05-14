@@ -20,7 +20,6 @@ class SwitchInput extends Component {
     errorBefore: PropTypes.bool.isRequired,
     isForm: PropTypes.bool.isRequired,
     noTouch: PropTypes.bool,
-    getValue: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     label: PropTypes.node,
     help: PropTypes.node,
@@ -36,8 +35,7 @@ class SwitchInput extends Component {
   constructor(props) {
     super(props);
 
-    const { getValue } = this.props;
-    this.state = { value: this.getBooleanValue(getValue(false)) };
+    this.state = { value: false };
   }
 
   getBooleanValue = value => parseInt(value, 10) ? true : false;

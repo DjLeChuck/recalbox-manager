@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import { Form } from 'react-form';
 import set from 'lodash.set';
 import BootstrapForm from 'react-bootstrap/lib/Form';
@@ -27,7 +28,8 @@ const AudioForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
     {({ submitForm, resetForm, getValue }) => (
       <BootstrapForm onSubmit={submitForm}>
         <Panel header={<h3>{t('Musique de fond')}</h3>}>
-          <SwitchInput id="audio-bgmusic" field="audio.bgmusic" getValue={getValue}
+          <SwitchInput id="audio-bgmusic" field="audio.bgmusic"
+            getValue={getValue}
             warning={t('Cette modification nécessite de redémarrer EmulationStation pour être prise en compte.')}
           />
         </Panel>
@@ -39,13 +41,8 @@ const AudioForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
         </Panel>
 
         <Panel header={<h3>{t('Sortie audio')}</h3>}>
-          <SelectInput id="ps3-driver" field="audio.device" data={dataset.audioDevices} />
-          {/* <SelectGroup
-            id="ps3-driver" name="audio.device"
-            data={this.state['recalbox.audio.devices']}
-            defaultValue={this.state['audio.device']}
-            onChange={onInputChange}
-          /> */}
+          <SelectInput id="ps3-driver" field="audio.device"
+            data={dataset.audioDevices} />
         </Panel>
 
         <FormActions resetForm={resetForm} saving={saving} />
@@ -62,4 +59,4 @@ AudioForm.propTypes = {
   dataset: PropTypes.object,
 };
 
-export default AudioForm;
+export default translate()(AudioForm);

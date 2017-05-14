@@ -20,7 +20,7 @@ const Audio = ({ t, loaded, stickyStyle, stickyContent, ...rest }) => (
     </StickyAlert>
 
     <Loader loaded={loaded}>
-      <AudioForm t={t} {...rest} />
+      <AudioForm {...rest} />
     </Loader>
   </div>
 );

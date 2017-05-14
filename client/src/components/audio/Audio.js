@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import Loader from 'react-loader';
 import StickyAlert from '../utils/StickyAlert';
 import AudioForm from '../forms/Audio';
@@ -32,4 +33,4 @@ Audio.propTypes = {
   stickyContent: PropTypes.string,
 };
 
-export default Audio;
+export default translate()(Audio);

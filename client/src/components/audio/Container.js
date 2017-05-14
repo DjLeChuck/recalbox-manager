@@ -57,10 +57,8 @@ class AudioContainer extends Component {
   }
 
   render() {
-    const { t } = this.props;
-
     return (
-      <Audio {...this.state} t={t} onSubmit={this.onSubmit} dataset={{
+      <Audio {...this.state} onSubmit={this.onSubmit} dataset={{
         audioDevices: this.state['recalbox.audio.devices'],
       }} defaultValues={{
         'audio.bgmusic': this.state['audio.bgmusic'],

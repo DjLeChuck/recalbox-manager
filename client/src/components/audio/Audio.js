@@ -28,7 +28,6 @@ const Audio = ({ t, loaded, stickyStyle, stickyContent, ...rest }) => (
 Audio.propTypes = {
   t: PropTypes.func.isRequired,
   loaded: PropTypes.bool.isRequired,
-  saving: PropTypes.bool.isRequired,
   stickyStyle: PropTypes.string,
   stickyContent: PropTypes.string,
 };

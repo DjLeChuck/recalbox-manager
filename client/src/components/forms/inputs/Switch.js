@@ -11,6 +11,10 @@ import Switch from 'react-bootstrap-switch';
 import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css';
 
 class SwitchInput extends Component {
+  static contextTypes = {
+    formAPI: PropTypes.object.isRequired,
+  }
+
   static propTypes = {
     field: PropTypes.oneOfType([
       PropTypes.string,
@@ -32,10 +36,13 @@ class SwitchInput extends Component {
     isForm: true,
   };
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
-    this.state = { value: false };
+    const { formAPI: { getValue }} = this.context;
+    const { field } = this.props;
+
+    this.state = { value: this.getBooleanValue(getValue(field)) };
   }
 
   getBooleanValue = value => parseInt(value, 10) ? true : false;

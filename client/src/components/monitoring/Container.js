@@ -41,8 +41,6 @@ class MonitoringContainer extends Component {
   }
 
   render() {
-    const { state } = this;
-
     return (
       <Monitoring {...this.state} />
     );

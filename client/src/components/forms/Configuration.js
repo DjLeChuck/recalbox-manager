@@ -61,7 +61,8 @@ const ConfigurationForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
                   label={t('SSID')}
                 />
 
-                <SimpleInput id="wifi-key" field="wifi.key" label={t('Clé')} />
+                <SimpleInput type="password" id="wifi-key" field="wifi.key"
+                  label={t('Clé')} />
               </Well>
             </Tab>
             <Tab title={t('Paramétrer le wifi 2')} eventKey={2}>
@@ -70,7 +71,7 @@ const ConfigurationForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
                   label={t('SSID')}
                 />
 
-                <SimpleInput id="wifi2-key" field="wifi2.key"
+                <SimpleInput type="password" id="wifi2-key" field="wifi2.key"
                   label={t('Clé')}
                 />
               </Well>
@@ -81,7 +82,7 @@ const ConfigurationForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
                   label={t('SSID')}
                 />
 
-                <SimpleInput id="wifi3-key" field="wifi3.key"
+                <SimpleInput type="password" id="wifi3-key" field="wifi3.key"
                   label={t('Clé')}
                 />
               </Well>

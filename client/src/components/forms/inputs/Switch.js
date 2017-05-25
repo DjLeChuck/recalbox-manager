@@ -24,7 +24,7 @@ class SwitchInput extends Component {
     errorBefore: PropTypes.bool.isRequired,
     isForm: PropTypes.bool.isRequired,
     noTouch: PropTypes.bool,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     label: PropTypes.node,
     help: PropTypes.node,
     warning: PropTypes.node,

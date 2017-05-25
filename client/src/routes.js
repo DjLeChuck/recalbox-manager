@@ -12,7 +12,7 @@ import Monitoring from './components/monitoring/Container';
 import RecalboxConf from './components/RecalboxConf';
 import RomsList from './components/roms/List';
 import RomsView from './components/roms/View';
-import Screenshots from './components/Screenshots';
+import Screenshots from './components/screenshots/Container';
 import Systems from './components/systems/Container';
 import NotFound from './components/NotFound';
 

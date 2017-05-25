@@ -7,7 +7,7 @@ import Bios from './components/bios/Container';
 import Configuration from './components/configuration/Container';
 import Controllers from './components/controllers/Container';
 import Help from './components/Help';
-import Logs from './components/Logs';
+import Logs from './components/logs/Container';
 import Monitoring from './components/monitoring/Container';
 import RecalboxConf from './components/RecalboxConf';
 import RomsList from './components/roms/List';

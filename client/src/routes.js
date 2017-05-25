@@ -13,7 +13,7 @@ import RecalboxConf from './components/RecalboxConf';
 import RomsList from './components/roms/List';
 import RomsView from './components/roms/View';
 import Screenshots from './components/Screenshots';
-import Systems from './components/Systems';
+import Systems from './components/systems/Container';
 import NotFound from './components/NotFound';
 
 const routes = (

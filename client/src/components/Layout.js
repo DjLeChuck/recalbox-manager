@@ -89,7 +89,7 @@ const Layout = ({ t, i18n, children }) => {
     label: t('Screenshots'),
   }];
   const secondMenuEntries = [{
-    link: '/log',
+    link: '/logs',
     glyph: 'file',
     label: t('Logs'),
   }, {

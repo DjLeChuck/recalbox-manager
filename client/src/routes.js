@@ -9,7 +9,7 @@ import Controllers from './components/controllers/Container';
 import Help from './components/Help';
 import Logs from './components/logs/Container';
 import Monitoring from './components/monitoring/Container';
-import RecalboxConf from './components/RecalboxConf';
+import RecalboxConf from './components/recalboxConf/Container';
 import RomsList from './components/roms/List';
 import RomsView from './components/roms/View';
 import Screenshots from './components/screenshots/Container';

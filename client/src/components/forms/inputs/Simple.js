@@ -6,7 +6,7 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 
-const simpleInput = ({
+const SimpleInput = ({
   field,
   showErrors,
   errorBefore,
@@ -36,7 +36,7 @@ const simpleInput = ({
   </FormInput>
 );
 
-simpleInput.propTypes = {
+SimpleInput.propTypes = {
   field: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -51,10 +51,10 @@ simpleInput.propTypes = {
   componentColMd: PropTypes.number,
 };
 
-simpleInput.defaultProps = {
+SimpleInput.defaultProps = {
   showErrors: true,
   errorBefore: false,
   isForm: true,
 };
 
-export default simpleInput;
+export default SimpleInput;

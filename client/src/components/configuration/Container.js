@@ -61,7 +61,6 @@ class ConfigurationContainer extends Component {
     state['wifi.key'] = '';
     state['wifi2.key'] = '';
     state['wifi3.key'] = '';
-    this.initialValues = state;
     state.loaded = true;
 
     this.setState(state);

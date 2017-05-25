@@ -36,7 +36,6 @@ class ControllerContainer extends Component {
       ])
     );
 
-    this.initialValues = state;
     state.loaded = true;
 
     this.setState(state);

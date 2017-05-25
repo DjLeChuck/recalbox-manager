@@ -91,7 +91,7 @@ class ScreenshotsContainer extends Component {
       screenshotsList.push(data);
 
       this.setState({
-        stickyContent: '',
+        stickyContent: null,
         screenshotsList,
       });
     } else {

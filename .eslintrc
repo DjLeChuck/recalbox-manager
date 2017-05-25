@@ -1,5 +1,6 @@
 {
   "extends": [ "eslint:recommended" ],
+  "plugins": [ "babel" ],
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
@@ -15,11 +16,23 @@
     "es6": true,
   },
   "rules": {
+    "babel/new-cap": 1,
+    "babel/object-curly-spacing": ["error", "always"],
+    "babel/no-invalid-this": 1,
+    "babel/semi": ["error", "always"],
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "semi": ["error", "always"],
     "no-fallthrough": ["error", { "commentPattern": "cascade" }],
     "arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }],
     "prefer-promise-reject-errors": ["error", { "allowEmptyReject": true }],
+    "eqeqeq": ["error", "always"],
+    "max-len": ["error", {
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true,
+    }],
     "indent": ["error", 2, {
       "SwitchCase": 1,
       "MemberExpression": 1,

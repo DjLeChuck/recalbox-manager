@@ -6,7 +6,7 @@ import Audio from './components/audio/Container';
 import Bios from './components/bios/Container';
 import Configuration from './components/configuration/Container';
 import Controllers from './components/controllers/Container';
-import Help from './components/Help';
+import Help from './components/help/Container';
 import Logs from './components/logs/Container';
 import Monitoring from './components/monitoring/Container';
 import RecalboxConf from './components/recalboxConf/Container';

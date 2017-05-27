@@ -1,6 +1,7 @@
 # recalbox-manager
 
 [![Build Status](https://travis-ci.org/DjLeChuck/recalbox-manager.svg?branch=master)](https://travis-ci.org/DjLeChuck/recalbox-manager)
+[![Known Vulnerabilities](https://snyk.io/test/github/djlechuck/recalbox-manager/badge.svg)](https://snyk.io/test/github/djlechuck/recalbox-manager)
 
 A web interface to manage recalbox configuration.
 

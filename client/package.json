@@ -27,7 +27,7 @@
     "react-bootstrap-switch": "^15.5.0-a",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.9.2",
-    "react-dropzone-component": "^1.4.1",
+    "react-dropzone-component": "^2.0.0",
     "react-form": "^1.2.8",
     "react-i18next": "^2.1.0",
     "react-loader": "^2.4.2",

@@ -149,7 +149,7 @@ const Layout = ({ t, i18n, children }) => {
               {secondMenuEntries.map(renderMenuEntry)}
             </Nav>
             <Nav className="nav-sidebar manager-version">
-              <NavItem disabled><em>v2.0.1</em></NavItem>
+              <NavItem disabled><em>v2.0.2</em></NavItem>
             </Nav>
           </Col>
           <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">

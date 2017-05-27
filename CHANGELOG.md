@@ -5,8 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.2]
 ### Changed
 - Only display available actions of ES buttons (restart and start or stop)
+- Huge rewrite of all components to split them into Container & Presentational and simplify forms handling
 
 ## [2.0.1] - 2017-04-23
 ### Added
@@ -32,5 +35,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - First "production ready" release of the manager. Included by default with
 recalbox 4.1.
 
-[Unreleased]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.0...v2.0.1

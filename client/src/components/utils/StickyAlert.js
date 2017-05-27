@@ -17,24 +17,42 @@ class StickyAlert extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { show: true };
+    const { children } = this.props;
+    this.state = {
+      show: true,
+      children,
+    };
   }
 
-  componentWillReceiveProps() {
-    this.setState({ show: true });
+  componentWillReceiveProps(nextProps) {
+    const { children } = nextProps;
+
+    this.setState({
+      show: true,
+      children,
+    });
   }
+
+  dismiss = () => this.setState({
+    open: false,
+    children: null,
+  });
 
   render() {
-    if (!this.state.show || !this.props.children) {
+    const { show, children } = this.state;
+
+    if (!show || !children) {
       return null;
     }
 
+    const { container, bsStyle } = this.props;
+
     return (
-      <AutoAffix viewportOffsetTop={65} container={this.props.container}
+      <AutoAffix viewportOffsetTop={65} container={container}
         affixStyle={{ zIndex: 1 }}>
-        <Alert bsStyle={this.props.bsStyle}
-          onDismiss={() => this.setState({ show: false })}>
-          {this.props.children}
+        <Alert bsStyle={bsStyle}
+          onDismiss={this.dismiss}>
+          {children}
         </Alert>
       </AutoAffix>
     );

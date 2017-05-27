@@ -29,7 +29,7 @@
     "react-dropzone": "^3.9.2",
     "react-dropzone-component": "^2.0.0",
     "react-form": "^1.2.8",
-    "react-i18next": "^2.1.0",
+    "react-i18next": "^4.1.0",
     "react-loader": "^2.4.2",
     "react-rating": "^0.6.5",
     "react-router": "^3.0.2",

@@ -11,7 +11,7 @@ import Logs from './components/logs/Container';
 import Monitoring from './components/monitoring/Container';
 import RecalboxConf from './components/recalboxConf/Container';
 import RomsList from './components/roms/list/Container';
-import RomsView from './components/roms/View';
+import RomsView from './components/roms/view/Container';
 import Screenshots from './components/screenshots/Container';
 import Systems from './components/systems/Container';
 import NotFound from './components/NotFound';

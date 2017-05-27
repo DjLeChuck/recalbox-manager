@@ -35,7 +35,8 @@ app.use('/locales', express.static('locales'));
 // parse application/json
 app.use(bodyParser.json());
 
-// Récupération de divers données (liste de répertoires, contenu de fichier, etc.)
+// Récupération de divers données (liste de répertoires, contenu de
+// fichier, etc.)
 app.use('/get', getRouter);
 
 // Actions divers sur des données (écriture de fichier, suppression, etc.)

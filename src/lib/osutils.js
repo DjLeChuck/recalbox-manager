@@ -122,7 +122,6 @@ exports.getProcesses = function(nProcess, callback){
 
       _str = _str.split(' ');
 
-      // result += _str[10]+" "+_str[9]+" "+_str[2]+" "+_str[3]+"\n";  // process
       result += _str[1]+" "+_str[2]+" "+_str[3]+" "+_str[4].substring((_str[4].length - 25))+"\n";  // process
     });
 
@@ -147,9 +146,9 @@ exports.loadavg = function(_time){
 
   var loads = _os.loadavg();
   var v = 0;
-  if(_time == 1) v = loads[0];
-  if(_time == 5) v = loads[1];
-  if(_time == 15) v = loads[2];
+  if(_time === 1) v = loads[0];
+  if(_time === 5) v = loads[1];
+  if(_time === 15) v = loads[2];
 
   return v;
 };

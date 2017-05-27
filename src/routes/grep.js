@@ -2,7 +2,7 @@ import express from 'express';
 import config from 'config';
 import { execSync } from 'child_process';
 
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line babel/new-cap
 
 router.get('/', (req, res, next) => {
   try {

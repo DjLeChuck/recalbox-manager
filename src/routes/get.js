@@ -10,7 +10,7 @@ import {
 
 const osutils = require('../lib/osutils');
 
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line babel/new-cap
 
 /* eslint-disable no-case-declarations */
 
@@ -36,7 +36,8 @@ router.get('/', async (req, res, next) => {
         const directoryPath = path.join(config.get('recalbox.romsPath'), params.subpath || '');
         const excluded = config.get('recalbox.romsExcludedFolders');
         data = fs.readdirSync(directoryPath).filter((file) => {
-          return -1 === excluded.indexOf(file) && fs.statSync(path.join(directoryPath, file)).isDirectory();
+          return -1 === excluded.indexOf(file) &&
+            fs.statSync(path.join(directoryPath, file)).isDirectory();
         });
 
         // add favorites "virtual" folder
@@ -160,7 +161,7 @@ router.get('/', async (req, res, next) => {
         throw new Error(`Option "${option}" unknown`);
     }
 
-    res.json({ success: true, data: { [option]: data }});
+    res.json({ success: true, data: { [option]: data } });
   } catch (err) {
     next(err);
   }

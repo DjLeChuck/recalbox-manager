@@ -6,7 +6,9 @@ import xml2js from 'xml2js';
 import { execSync, spawn } from 'child_process';
 import { getSystemGamelist, getSystemGamelistPath } from '../lib/utils';
 
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line babel/new-cap
+
+/* eslint-disable no-case-declarations */
 
 router.post('/', async (req, res, next) => {
   try {
@@ -87,8 +89,12 @@ router.post('/', async (req, res, next) => {
             rawGameList.gameList.game = [rawGameList.gameList.game];
           }
 
-          gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
-          gameData = -1 !== gameIndex ? rawGameList.gameList.game[gameIndex] : gameData;
+          gameIndex = rawGameList.gameList.game.findIndex(
+            x => x.path === searchedPath
+          );
+          gameData = -1 !== gameIndex ?
+            rawGameList.gameList.game[gameIndex] :
+            gameData;
         } else {
           rawGameList.gameList = { game: [] };
         }
@@ -163,13 +169,20 @@ async function deleteRom(payload) {
       rawGameList.gameList.game = [rawGameList.gameList.game];
     }
 
-    gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
+    gameIndex = rawGameList.gameList.game.findIndex(
+      x => x.path === searchedPath
+    );
 
     if (-1 === gameIndex) {
       continue;
     }
 
-    const imagePath = rawGameList.gameList.game[gameIndex].image;
+    // remove image
+    fs.unlinkSync(path.resolve(
+      config.get('recalbox.romsPath'),
+      payload.system,
+      rawGameList.gameList.game[gameIndex].image
+    ));
 
     // Remove entry
     delete rawGameList.gameList.game[gameIndex];
@@ -179,7 +192,6 @@ async function deleteRom(payload) {
   const xml = builder.buildObject(rawGameList);
 
   fs.writeFileSync(getSystemGamelistPath(payload.system), xml);
-  fs.unlinkSync(path.resolve(config.get('recalbox.romsPath'), payload.system, imagePath));
 }
 
 export default router;

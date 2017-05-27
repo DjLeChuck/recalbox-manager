@@ -7,7 +7,7 @@ import xml2js from 'xml2js';
 import { execSync } from 'child_process';
 import { handleBiosLine, getSystemGamelist, getSystemGamelistPath } from '../lib/utils';
 
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line babel/new-cap
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -56,7 +56,7 @@ router.post('/bios', (req, res, next) => {
 
           return res.json(lineResult);
         }
-      } catch (e) {}
+      } catch (e) {} // eslint-disable-line no-empty
     }
 
     res.json({ success: true });
@@ -107,8 +107,12 @@ router.post('/romImage', (req, res, next) => {
           rawGameList.gameList.game = [rawGameList.gameList.game];
         }
 
-        gameIndex = rawGameList.gameList.game.findIndex((i) => i.path === searchedPath);
-        gameData = -1 !== gameIndex ? rawGameList.gameList.game[gameIndex] : gameData;
+        gameIndex = rawGameList.gameList.game.findIndex(
+          x => x.path === searchedPath
+        );
+        gameData = -1 !== gameIndex ?
+          rawGameList.gameList.game[gameIndex] :
+          gameData;
       } else {
         rawGameList.gameList = { game: [] };
       }

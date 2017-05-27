@@ -35,7 +35,9 @@ export function handleBiosLine(line) {
   return {
     md5: md5,
     name: name,
-    valid: fs.existsSync(thisBiosPath) ? md5 === md5File.sync(thisBiosPath) : null
+    valid: fs.existsSync(thisBiosPath) ?
+      md5 === md5File.sync(thisBiosPath) :
+      null
   };
 }
 

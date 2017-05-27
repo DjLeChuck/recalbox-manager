@@ -10,6 +10,10 @@ class StickyAlert extends Component {
     children: PropTypes.node,
   };
 
+  static defaultProps = {
+    bsStyle: 'success',
+  };
+
   constructor(props) {
     super(props);
 

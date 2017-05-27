@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [2.0.2]
+## [2.0.2] - 2017-05-27
 ### Changed
 - Only display available actions of ES buttons (restart and start or stop)
 - Huge rewrite of all components to split them into Container & Presentational and simplify forms handling

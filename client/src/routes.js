@@ -10,7 +10,7 @@ import Help from './components/help/Container';
 import Logs from './components/logs/Container';
 import Monitoring from './components/monitoring/Container';
 import RecalboxConf from './components/recalboxConf/Container';
-import RomsList from './components/roms/List';
+import RomsList from './components/roms/list/Container';
 import RomsView from './components/roms/View';
 import Screenshots from './components/screenshots/Container';
 import Systems from './components/systems/Container';

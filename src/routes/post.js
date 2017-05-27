@@ -77,8 +77,8 @@ router.post('/', async (req, res, next) => {
         break;
       case 'editRom':
         let rawGameList = await getSystemGamelist(body.system, true);
-        const editedRomPath = path.join(body.path || '', body.gameData.path);
-        const searchedPath = `./${editedRomPath}`;
+        const basePath = body.gameData.path;
+        const searchedPath = `./${basePath}`;
         let gameData = { path: searchedPath };
         let gameIndex;
 
@@ -121,6 +121,9 @@ router.post('/', async (req, res, next) => {
 
         try {
           fs.writeFileSync(getSystemGamelistPath(body.system), xml);
+
+          gameData.path = basePath;
+          data = gameData;
         } catch (error) {
           throw new Error(`Unable to update the ROM "${body.gameData.name}".`);
         }

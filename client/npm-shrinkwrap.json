@@ -1736,9 +1736,9 @@
       "resolved": "https://registry.npmjs.org/react-prop-types/-/react-prop-types-0.4.0.tgz"
     },
     "react-rating": {
-      "version": "0.6.5",
-      "from": "react-rating@>=0.6.5 <0.7.0",
-      "resolved": "https://registry.npmjs.org/react-rating/-/react-rating-0.6.5.tgz"
+      "version": "0.7.1",
+      "from": "react-rating@0.7.1",
+      "resolved": "https://registry.npmjs.org/react-rating/-/react-rating-0.7.1.tgz"
     },
     "react-router": {
       "version": "3.0.5",

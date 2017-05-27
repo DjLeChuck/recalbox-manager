@@ -28,7 +28,7 @@ const SimpleInput = ({
           </Col>
         }
         <Col md={componentColMd || 6}>
-          <FormControl {...rest} value={getValue()}
+          <FormControl {...rest} value={getValue('')}
             onChange={e => setValue(e.target.value, noTouch)} />
         </Col>
       </FormGroup>

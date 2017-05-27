@@ -10,14 +10,14 @@ class BiosUpload extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     onSuccess: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
     this.state = { open: false };
   }
 
-  onClick = () => this.setState({ open: !this.state.open })
+  onClick = () => this.setState({ open: !this.state.open });
 
   render() {
     const { t, onSuccess } = this.props;

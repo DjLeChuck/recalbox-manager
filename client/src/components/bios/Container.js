@@ -12,7 +12,7 @@ import Bios from './Bios';
 class BiosContainer extends React.Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -54,16 +54,16 @@ class BiosContainer extends React.Component {
 
       this.setState({ biosList: list });
     }
-  }
+  };
 
-  close = () => this.setState({ showModal: false })
+  close = () => this.setState({ showModal: false });
 
   open = biosName => (
     this.setState({
       showModal: true,
       biosName,
     })
-  )
+  );
 
   delete = () => {
     this.setState({ deleting: true });
@@ -93,7 +93,7 @@ class BiosContainer extends React.Component {
     });
 
     this.close();
-  }
+  };
 
   render() {
     const { t } = this.props;

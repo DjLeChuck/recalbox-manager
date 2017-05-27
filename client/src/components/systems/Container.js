@@ -8,7 +8,7 @@ import Systems from './Systems';
 class SystemContainer extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -65,7 +65,7 @@ class SystemContainer extends Component {
         stickyStyle: 'danger',
       })
     ));
-  }
+  };
 
   render() {
     return (

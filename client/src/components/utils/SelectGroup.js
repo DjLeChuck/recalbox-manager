@@ -13,7 +13,7 @@ class SelectGroup extends Component {
     preComponent: PropTypes.node,
     id: PropTypes.string.isRequired,
     label: PropTypes.node,
-  }
+  };
 
   render() {
     let selectProps = cloneObject(this.props);

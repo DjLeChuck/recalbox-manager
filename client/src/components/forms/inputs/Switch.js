@@ -13,7 +13,7 @@ import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.cs
 class SwitchInput extends Component {
   static contextTypes = {
     formAPI: PropTypes.object.isRequired,
-  }
+  };
 
   static propTypes = {
     field: PropTypes.oneOfType([
@@ -39,7 +39,7 @@ class SwitchInput extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const { formAPI: { getValue }} = this.context;
+    const { formAPI: { getValue } } = this.context;
     const { field } = this.props;
 
     this.state = { value: this.getBooleanValue(getValue(field)) };

@@ -38,7 +38,7 @@ class MonitoringContainer extends Component {
     state.loaded = true;
 
     this.setState(state);
-  }
+  };
 
   render() {
     return (

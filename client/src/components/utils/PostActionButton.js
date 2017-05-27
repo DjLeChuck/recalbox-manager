@@ -11,12 +11,12 @@ class PostActionButton extends Component {
     hideContentOnAction: PropTypes.bool.isRequired,
     action: PropTypes.string.isRequired,
     body: PropTypes.object.isRequired,
-  }
+  };
 
   static defaultProps = {
     body: {},
     hideContentOnAction: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -29,12 +29,11 @@ class PostActionButton extends Component {
     const action = this.props.action;
     const body = this.props.body;
 
-    post(action, body).then(() => {
-      this.setState({ isWorking: false });
-    }, (err) => {
-      console.error(err);
-    });
-  }
+    post(action, body).then(
+      () => this.setState({ isWorking: false }),
+      err => console.error(err)
+    );
+  };
 
   render() {
     const renderChildren =

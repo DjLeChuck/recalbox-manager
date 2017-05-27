@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { grep, translatableConf, save } from '../../api';
@@ -8,7 +8,7 @@ import Audio from './Audio';
 class AudioContainer extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -54,7 +54,7 @@ class AudioContainer extends Component {
         stickyStyle: 'danger',
       })
     ));
-  }
+  };
 
   render() {
     return (

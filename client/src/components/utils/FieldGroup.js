@@ -12,7 +12,7 @@ class FieldGroup extends Component {
     label: PropTypes.node,
     labelColMd: PropTypes.number,
     componentColMd: PropTypes.number,
-  }
+  };
 
   render() {
     let controlProps = cloneObject(this.props);

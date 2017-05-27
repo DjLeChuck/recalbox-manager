@@ -8,7 +8,7 @@ class StickyAlert extends Component {
     bsStyle: PropTypes.oneOf(['success', 'warning', 'danger']).isRequired,
     container: PropTypes.object,
     children: PropTypes.node,
-  }
+  };
 
   constructor(props) {
     super(props);

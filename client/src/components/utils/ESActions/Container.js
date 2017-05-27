@@ -21,19 +21,15 @@ class ESActionsContainer extends Component {
     cancelPromises();
   }
 
-  onSuccess = () => {
-    this.fetchESStatus();
-  }
+  onSuccess = () => this.fetchESStatus();
 
-  onError = (err) => {
-    console.error(err);
-  }
+  onError = err => console.error(err);
 
   fetchESStatus = async () => {
     const state = await promisifyData(get('ESStatus'));
 
     this.setState(state);
-  }
+  };
 
   render() {
     const { ESStatus } = this.state;

@@ -16,7 +16,8 @@ i18n.on('languageChanged', () => {
  * @private
  * @method getImpl
  * @param object {object} - Object to get the property for
- * @param property {string | array[string]} - The property name to get (as an array or '.' delimited string)
+ * @param property {string | array[string]} - The property name to get (as an
+ * array or '.' delimited string)
  * @return value {*} - Property value, including undefined if not defined.
  */
 const getImpl = (object, property) => {

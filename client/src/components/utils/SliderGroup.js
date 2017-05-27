@@ -17,11 +17,11 @@ class SliderGroup extends Component {
     id: PropTypes.string.isRequired,
     extraClass: PropTypes.string,
     label: PropTypes.node,
-  }
+  };
 
   static defaultProps = {
     value: 0,
-  }
+  };
 
   render() {
     const sliderValue = parseInt(this.props.value, 10);

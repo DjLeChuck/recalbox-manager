@@ -8,7 +8,7 @@ import Configuration from './Configuration';
 class ConfigurationContainer extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -88,7 +88,7 @@ class ConfigurationContainer extends Component {
         stickyStyle: 'danger',
       })
     ));
-  }
+  };
 
   render() {
     const { directoryListing } = this.state;

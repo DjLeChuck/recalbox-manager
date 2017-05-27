@@ -20,11 +20,11 @@ class SwitchGroup extends Component {
     help: PropTypes.node,
     label: PropTypes.node,
     warning: PropTypes.node,
-  }
+  };
 
   static defaultProps = {
     value: 0,
-  }
+  };
 
   render() {
     const switchValue = 1 === parseInt(this.props.value, 10);

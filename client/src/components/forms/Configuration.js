@@ -100,7 +100,7 @@ const ConfigurationForm = ({ t, saving, onSubmit, defaultValues, dataset }) => (
           />
 
           <SwitchInput id="kodi-xbutton" field="kodi.xbutton"
-             label={<span dangerouslySetInnerHTML={{__html: t('Lancer Kodi via la touche <kbd>X</kbd>')}} />}
+             label={<span dangerouslySetInnerHTML={{ __html: t('Lancer Kodi via la touche <kbd>X</kbd>') }} />}
           />
         </Panel>
 

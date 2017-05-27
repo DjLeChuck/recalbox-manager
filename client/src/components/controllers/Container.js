@@ -8,7 +8,7 @@ import Controllers from './Controllers';
 class ControllerContainer extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -63,7 +63,7 @@ class ControllerContainer extends Component {
         stickyStyle: 'danger',
       })
     ));
-  }
+  };
 
   render() {
     return (

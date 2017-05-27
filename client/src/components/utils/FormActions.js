@@ -9,7 +9,7 @@ class FormActions extends Component {
     t: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     isSaving: PropTypes.bool.isRequired,
-  }
+  };
 
   static defaultProps = {
     isSaving: false,

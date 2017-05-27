@@ -114,11 +114,11 @@ class BiosContainer extends React.Component {
           </Modal.Header>
           <Modal.Body><p>{modalBody}</p></Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Non</Button>
+            <Button onClick={this.close}>{t('Non')}</Button>
             <Button bsStyle="warning" onClick={this.delete}>
               {deleting &&
                 <Glyphicon glyph="refresh" className="glyphicon-spin" />
-              } Oui
+              } {t('Oui')}
             </Button>
           </Modal.Footer>
         </Modal>

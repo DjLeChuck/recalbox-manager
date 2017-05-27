@@ -1751,9 +1751,9 @@
       "resolved": "https://registry.npmjs.org/react-router-bootstrap/-/react-router-bootstrap-0.23.3.tgz"
     },
     "react-select2-wrapper": {
-      "version": "1.0.4-beta4",
-      "from": "react-select2-wrapper@>=1.0.4-beta2 <2.0.0",
-      "resolved": "https://registry.npmjs.org/react-select2-wrapper/-/react-select2-wrapper-1.0.4-beta4.tgz"
+      "version": "1.0.4-beta5",
+      "from": "react-select2-wrapper@1.0.4-beta5",
+      "resolved": "https://registry.npmjs.org/react-select2-wrapper/-/react-select2-wrapper-1.0.4-beta5.tgz"
     },
     "react-string-replace": {
       "version": "0.4.0",

@@ -24,3 +24,6 @@ The API activation step is only needed if you want launch game through the web i
 
 ## Known issues
 * Some changes are not directly applied; The recalbox must be restarted.
+
+## Contributing
+* **Translations** are managed with [POEditor](https://poeditor.com/join/project/taFNFlZ840)

@@ -104,7 +104,7 @@ const Layout = ({ t, i18n, children }) => {
 
   return (
     <div>
-      <Navbar inverse fixedTop fluid>
+      <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">{t('Recalbox Manager')}</Link>

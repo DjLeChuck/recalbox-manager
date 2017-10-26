@@ -157,6 +157,9 @@ router.get('/', async (req, res, next) => {
         const cmd = `${ESPath} status | cut -d ' ' -f 3`;
         data = 'running' === execSync(cmd).toString() ? 'OK' : 'KO';
         break;
+      case 'needAuth':
+        data = true;
+        break;
       default:
         throw new Error(`Option "${option}" unknown`);
     }

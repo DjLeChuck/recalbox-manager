@@ -50,7 +50,7 @@ class StickyAlert extends Component {
     return (
       <AutoAffix viewportOffsetTop={65} container={container}
         affixStyle={{ zIndex: 1 }}>
-        <Alert bsStyle={bsStyle}
+        <Alert bsStyle={bsStyle} style={{ zIndex: 10 }}
           onDismiss={this.dismiss}>
           {children}
         </Alert>

@@ -39,7 +39,7 @@ const SystemsForm = ({ t, saving, onSubmit, defaultValues, dataset }) => {
                     <li><strong>scanlines</strong> {t('active les scanlines sur tous les emulateurs,')}</li>
                     <li>
                       <strong>retro</strong>{' '}
-                      {t('sélectionne le "meilleur" shader pour chaque système, choisi par la communauté.')}
+                      {t('sélectionne le "meilleur" shader pour chaque système, choisi par la communauté.')}{' '}
                       {t("Il vous apportera l'expérience de jeu la plus proche de l'expérience originale,")}</li>
                     <li><strong>none</strong> {t('ne met aucun shaders.')}</li>
                   </ul>

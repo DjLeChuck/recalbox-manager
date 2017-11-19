@@ -104,6 +104,23 @@
       "from": "cookie@0.3.1",
       "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.3.1.tgz"
     },
+    "cookie-session": {
+      "version": "2.0.0-beta.3",
+      "from": "cookie-session@latest",
+      "resolved": "https://registry.npmjs.org/cookie-session/-/cookie-session-2.0.0-beta.3.tgz",
+      "dependencies": {
+        "debug": {
+          "version": "3.1.0",
+          "from": "debug@3.1.0",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz"
+        },
+        "ms": {
+          "version": "2.0.0",
+          "from": "ms@2.0.0",
+          "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
+        }
+      }
+    },
     "cookie-signature": {
       "version": "1.0.6",
       "from": "cookie-signature@1.0.6",
@@ -113,6 +130,18 @@
       "version": "2.1.1",
       "from": "cookiejar@>=2.0.6 <3.0.0",
       "resolved": "https://registry.npmjs.org/cookiejar/-/cookiejar-2.1.1.tgz"
+    },
+    "cookies": {
+      "version": "0.7.1",
+      "from": "cookies@0.7.1",
+      "resolved": "https://registry.npmjs.org/cookies/-/cookies-0.7.1.tgz",
+      "dependencies": {
+        "depd": {
+          "version": "1.1.1",
+          "from": "depd@>=1.1.1 <1.2.0",
+          "resolved": "https://registry.npmjs.org/depd/-/depd-1.1.1.tgz"
+        }
+      }
     },
     "core-js": {
       "version": "2.4.1",
@@ -246,6 +275,11 @@
       "from": "json5@0.4.0",
       "resolved": "https://registry.npmjs.org/json5/-/json5-0.4.0.tgz"
     },
+    "keygrip": {
+      "version": "1.0.2",
+      "from": "keygrip@>=1.0.2 <1.1.0",
+      "resolved": "https://registry.npmjs.org/keygrip/-/keygrip-1.0.2.tgz"
+    },
     "lodash": {
       "version": "4.17.4",
       "from": "lodash@>=4.0.0 <5.0.0",
@@ -321,6 +355,11 @@
       "from": "on-finished@>=2.3.0 <2.4.0",
       "resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.3.0.tgz"
     },
+    "on-headers": {
+      "version": "1.0.1",
+      "from": "on-headers@>=1.0.1 <1.1.0",
+      "resolved": "https://registry.npmjs.org/on-headers/-/on-headers-1.0.1.tgz"
+    },
     "os-homedir": {
       "version": "1.0.2",
       "from": "os-homedir@1.0.2",
@@ -370,6 +409,11 @@
       "version": "0.10.5",
       "from": "regenerator-runtime@>=0.10.0 <0.11.0",
       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz"
+    },
+    "safe-buffer": {
+      "version": "5.1.1",
+      "from": "safe-buffer@>=5.1.1 <5.2.0",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.1.tgz"
     },
     "sax": {
       "version": "1.2.2",

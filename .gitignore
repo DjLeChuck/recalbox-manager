@@ -4,3 +4,4 @@ client/build
 dist
 release
 config/local.js
+credentials.auth

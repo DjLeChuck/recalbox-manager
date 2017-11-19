@@ -4,12 +4,15 @@ import { translate } from 'react-i18next';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
-const ActionsButtons = ({ t, saving }) => (
+const ActionsButtons = ({ t, /*resetForm,*/ saving }) => (
   <p>
-    {/* Bug for the moment */}
-    {/* <Button bsStyle="danger" onClick={resetForm}>
-      {t('Annuler')}
-    </Button>{" "} */}
+    {/* {resetForm &&
+      <span>
+        <Button bsStyle="danger" onClick={resetForm}>
+          {t('Annuler')}
+        </Button>{" "}
+      </span>
+    } */}
     <Button bsStyle="success" type="submit" disabled={saving}>
       {saving &&
         <Glyphicon glyph="refresh" className="glyphicon-spin" />
@@ -20,7 +23,7 @@ const ActionsButtons = ({ t, saving }) => (
 
 ActionsButtons.propTypes = {
   t: PropTypes.func.isRequired,
-  resetForm: PropTypes.func.isRequired,
+  resetForm: PropTypes.func,
   saving: PropTypes.bool.isRequired,
 };
 

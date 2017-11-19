@@ -159,9 +159,7 @@ router.get('/', async (req, res, next) => {
         data = 'running' === execSync(cmd).toString() ? 'OK' : 'KO';
         break;
       case 'needAuth':
-        if (
-          !fs.existsSync(config.get('auth')) || !req.session.isAuthenticated
-        ) {
+        if (!fs.existsSync(config.get('auth'))) {
           data = false;
         } else {
           const credentials = req.session.isAuthenticated;
@@ -176,6 +174,10 @@ router.get('/', async (req, res, next) => {
           data = credentials !== hashedCredentials;
         }
 
+        break;
+      case 'logout':
+        req.session = null;
+        data = true;
         break;
       default:
         throw new Error(`Option "${option}" unknown`);

@@ -29,6 +29,12 @@ const Auth = async (nextState, replace, callback) => {
   callback();
 };
 
+const logOut = async (nextState, replace, callback) => {
+  await get('logout');
+
+  return callback(replace('/login'));
+};
+
 const routes = (
   <Route>
     <Route path="/login" component={AnonymousLayout}>
@@ -52,6 +58,7 @@ const routes = (
       </Route>
       <Route path="screenshots" component={Screenshots} />
       <Route path="systems" component={Systems} />
+      <Route path="logout" onEnter={logOut} />
       <Route path="*" component={NotFound} />
     </Route>
   </Route>

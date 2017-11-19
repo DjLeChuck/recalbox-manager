@@ -101,6 +101,11 @@ const Layout = ({ t, i18n, children }) => {
     glyph: 'question-sign',
     label: t('Dépannage'),
   }];
+  const logOutEntry = renderMenuEntry({
+    link: '/logout',
+    glyph: 'log-out',
+    label: t('Déconnexion'),
+  }, 'logout');
 
   return (
     <div>
@@ -131,6 +136,8 @@ const Layout = ({ t, i18n, children }) => {
               id="basic-nav-dropdown">
               {secondMenuEntries.map(renderMenuEntry)}
             </NavDropdown>
+
+            {logOutEntry}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -149,6 +156,7 @@ const Layout = ({ t, i18n, children }) => {
               {secondMenuEntries.map(renderMenuEntry)}
             </Nav>
             <Nav className="nav-sidebar manager-version">
+              {logOutEntry}
               <NavItem disabled><em>v2.0.2</em></NavItem>
             </Nav>
           </Col>

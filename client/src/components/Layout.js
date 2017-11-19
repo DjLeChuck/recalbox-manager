@@ -170,7 +170,7 @@ const Layout = ({ t, i18n, children }) => {
             <Nav className="nav-sidebar manager-version">
               {securityEntry}
               {logOutEntry}
-              <NavItem disabled><em>v2.0.2</em></NavItem>
+              <NavItem disabled><em>v2.1.0</em></NavItem>
             </Nav>
           </Col>
           <Col sm={9} smOffset={3} md={10} mdOffset={2} className="main">

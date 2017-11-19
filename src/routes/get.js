@@ -179,6 +179,21 @@ router.get('/', async (req, res, next) => {
         req.session = null;
         data = true;
         break;
+      case 'authConfig':
+        if (!fs.existsSync(config.get('auth'))) {
+          data = { needAuth: false };
+        } else {
+          const authCredentials = JSON.parse(
+            fs.readFileSync(config.get('auth')).toString()
+          );
+
+          data = {
+            needAuth: 1,
+            login: authCredentials.login,
+          };
+        }
+
+        break;
       default:
         throw new Error(`Option "${option}" unknown`);
     }

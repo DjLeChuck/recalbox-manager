@@ -106,6 +106,11 @@ const Layout = ({ t, i18n, children }) => {
     glyph: 'log-out',
     label: t('Déconnexion'),
   }, 'logout');
+  const securityEntry = renderMenuEntry({
+    link: '/security',
+    glyph: 'lock',
+    label: t('Sécurité'),
+  }, 'security');
 
   return (
     <div>
@@ -137,6 +142,7 @@ const Layout = ({ t, i18n, children }) => {
               {secondMenuEntries.map(renderMenuEntry)}
             </NavDropdown>
 
+            {securityEntry}
             {logOutEntry}
           </Nav>
         </Navbar.Collapse>
@@ -156,6 +162,7 @@ const Layout = ({ t, i18n, children }) => {
               {secondMenuEntries.map(renderMenuEntry)}
             </Nav>
             <Nav className="nav-sidebar manager-version">
+              {securityEntry}
               {logOutEntry}
               <NavItem disabled><em>v2.0.2</em></NavItem>
             </Nav>

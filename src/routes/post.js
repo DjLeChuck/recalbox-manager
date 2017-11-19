@@ -136,25 +136,44 @@ router.post('/', async (req, res, next) => {
         }
         break;
       case 'login':
-        const { login, password } = body;
-        const authFile = config.get('auth');
-
         try {
+          const authFile = config.get('auth');
           const credentials = JSON.parse(fs.readFileSync(authFile).toString());
 
           if (
-            credentials.login !== login || credentials.password !== password
+            credentials.login !== body.login ||
+            credentials.password !== body.password
           ) {
             throw new Error('Bad credentials.');
           }
 
-          const hashedCredentials = crypto.createHash('sha256')
-            .update(`${credentials.login}\n${credentials.password}`, 'utf8')
-            .digest().toString();
-
-          req.session.isAuthenticated = hashedCredentials;
+          setSessionCredentials(req, credentials);
         } catch (error) {
           throw new Error('Bad credentials.');
+        }
+
+        break;
+      case 'security':
+        const { needAuth, ...securityRest } = body;
+        const authFile = config.get('auth');
+
+        try {
+          if (!needAuth) {
+            if (fs.existsSync(authFile)) {
+              fs.unlinkSync(authFile);
+
+              req.session = null;
+            }
+          } else {
+            const securityCredentials = { ...securityRest };
+            const content = JSON.stringify(securityCredentials);
+
+            fs.writeFileSync(authFile, content);
+
+            setSessionCredentials(req, securityCredentials);
+          }
+        } catch (error) {
+          throw new Error('Error while saving security credentials.');
         }
 
         break;
@@ -167,6 +186,14 @@ router.post('/', async (req, res, next) => {
     next(err);
   }
 });
+
+function setSessionCredentials(req, credentials) {
+  const hashedCredentials = crypto.createHash('sha256')
+    .update(`${credentials.login}\n${credentials.password}`, 'utf8')
+    .digest().toString();
+
+  req.session.isAuthenticated = hashedCredentials;
+}
 
 async function deleteRom(payload) {
   // Delete ROM file

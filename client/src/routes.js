@@ -16,6 +16,7 @@ import RomsList from './components/roms/list/Container';
 import RomsView from './components/roms/view/Container';
 import Screenshots from './components/screenshots/Container';
 import Systems from './components/systems/Container';
+import Security from './components/security/Container';
 import NotFound from './components/NotFound';
 import { get } from './api';
 
@@ -58,6 +59,7 @@ const routes = (
       </Route>
       <Route path="screenshots" component={Screenshots} />
       <Route path="systems" component={Systems} />
+      <Route path="security" component={Security} />
       <Route path="logout" onEnter={logOut} />
       <Route path="*" component={NotFound} />
     </Route>

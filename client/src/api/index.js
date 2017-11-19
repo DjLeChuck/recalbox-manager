@@ -73,7 +73,7 @@ export function get(option, params) {
     url += `&params=${params}`;
   }
 
-  return fetch(url)
+  return fetch(url, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(formatOption);
@@ -84,6 +84,7 @@ export function get(option, params) {
  */
 export function post(action, body = {}) {
   return fetch(`/post?action=${action}`, {
+    credentials: 'include',
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
@@ -96,7 +97,7 @@ export function post(action, body = {}) {
  * grep values from recalbox.conf
  */
 export function grep(keys) {
-  return fetch(`/grep?keys=${keys.join('|')}`)
+  return fetch(`/grep?keys=${keys.join('|')}`, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(formatState);
@@ -106,7 +107,7 @@ export function grep(keys) {
  * get values from config file
  */
 export function conf(keys) {
-  return fetch(`/conf?keys=${keys.join(',')}`)
+  return fetch(`/conf?keys=${keys.join(',')}`, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON);
 }
@@ -135,6 +136,7 @@ export function translatableConf(keys) {
  */
 export function save(values) {
   return fetch('/save', {
+    credentials: 'include',
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(dotize.convert(values))
@@ -144,7 +146,7 @@ export function save(values) {
 }
 
 export function recalboxSupport() {
-  return fetch('/recalbox-support')
+  return fetch('/recalbox-support', { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON);
 }

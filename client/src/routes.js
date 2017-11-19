@@ -20,7 +20,7 @@ import NotFound from './components/NotFound';
 import { get } from './api';
 
 const Auth = async (nextState, replace, callback) => {
-  const needAuth = await get('needAuth');
+  const { needAuth } = await get('needAuth');
 
   if (needAuth) {
     return callback(replace('/login'));

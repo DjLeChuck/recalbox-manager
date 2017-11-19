@@ -3,6 +3,7 @@ import config from 'config';
 import fs from 'fs';
 import path from 'path';
 import xml2js from 'xml2js';
+import crypto from 'crypto';
 import { execSync, spawn } from 'child_process';
 import { getSystemGamelist, getSystemGamelistPath } from '../lib/utils';
 
@@ -134,8 +135,31 @@ router.post('/', async (req, res, next) => {
           throw new Error(`Unable to update the ROM "${body.gameData.name}".`);
         }
         break;
+      case 'login':
+        const { login, password } = body;
+        const authFile = config.get('auth');
+
+        try {
+          const credentials = JSON.parse(fs.readFileSync(authFile).toString());
+
+          if (
+            credentials.login !== login || credentials.password !== password
+          ) {
+            throw new Error('Bad credentials.');
+          }
+
+          const hashedCredentials = crypto.createHash('sha256')
+            .update(`${credentials.login}\n${credentials.password}`, 'utf8')
+            .digest().toString();
+
+          req.session.isAuthenticated = hashedCredentials;
+        } catch (error) {
+          throw new Error('Bad credentials.');
+        }
+
+        break;
       default:
-        throw new Error(`Action "${action}" unknown`);
+        throw new Error(`Action "${action}" unknown.`);
     }
 
     res.json({ success: true, data: data });

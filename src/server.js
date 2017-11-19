@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import cookieSession from 'cookie-session';
 import config from 'config';
 import request from 'superagent';
 import fs from 'fs';
@@ -17,6 +18,14 @@ import postRouter from './routes/post';
 const app = express();
 
 app.set('port', (process.env.PORT || 3001));
+
+app.use(cookieSession({
+  name: 'recalbox-session',
+  secret: 't|-|eC4keIsA|_i3',
+  httpOnly: false,
+  secure: false,
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 // express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {

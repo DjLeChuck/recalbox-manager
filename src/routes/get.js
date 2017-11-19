@@ -2,6 +2,7 @@ import express from 'express';
 import config from 'config';
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { execSync } from 'child_process';
 import {
   handleBiosLine, getEsSystems, getRoms, getSystemGamelist,
@@ -158,7 +159,23 @@ router.get('/', async (req, res, next) => {
         data = 'running' === execSync(cmd).toString() ? 'OK' : 'KO';
         break;
       case 'needAuth':
-        data = true;
+        if (
+          !fs.existsSync(config.get('auth')) || !req.session.isAuthenticated
+        ) {
+          data = false;
+        } else {
+          const credentials = req.session.isAuthenticated;
+          const authCredentials = JSON.parse(
+            fs.readFileSync(config.get('auth')).toString()
+          );
+          const hashedCredentials = crypto.createHash('sha256').update(
+            `${authCredentials.login}\n${authCredentials.password}`,
+            'utf8'
+          ).digest().toString();
+
+          data = credentials !== hashedCredentials;
+        }
+
         break;
       default:
         throw new Error(`Option "${option}" unknown`);

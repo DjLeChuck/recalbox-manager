@@ -1,4 +1,6 @@
 module.exports = {
+  auth: `${__dirname}/../credentials.auth`,
+
   smartFile: {
     url: 'https://app.smartfile.com/api/2',
     folderName: '/recalbox-support',

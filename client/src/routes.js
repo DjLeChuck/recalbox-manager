@@ -20,7 +20,7 @@ import Security from './components/security/Container';
 import NotFound from './components/NotFound';
 import { get } from './api';
 
-const Auth = async (nextState, replace, callback) => {
+const auth = async (replace, callback) => {
   const { needAuth } = await get('needAuth');
 
   if (needAuth) {
@@ -41,7 +41,13 @@ const routes = (
     <Route path="/login" component={AnonymousLayout}>
       <IndexRoute component={Login} />
     </Route>
-    <Route component={Layout} path="/" onEnter={Auth}>
+    <Route
+      component={Layout} path="/"
+      onEnter={(nextState, replace, callback) => auth(replace, callback)}
+      onChange={
+       (prevState, nextState, replace, callback) => auth(replace, callback)
+      }
+    >
       <IndexRoute component={Home} />
       <Route path="audio" component={Audio} />
       <Route path="bios" component={Bios} />

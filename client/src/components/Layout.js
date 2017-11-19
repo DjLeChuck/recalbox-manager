@@ -12,6 +12,7 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Row from 'react-bootstrap/lib/Row';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+import { readCookie } from '../utils';
 
 const languages = {
   ar: 'Argentina',
@@ -101,11 +102,16 @@ const Layout = ({ t, i18n, children }) => {
     glyph: 'question-sign',
     label: t('Dépannage'),
   }];
-  const logOutEntry = renderMenuEntry({
-    link: '/logout',
-    glyph: 'log-out',
-    label: t('Déconnexion'),
-  }, 'logout');
+  let logOutEntry = '';
+
+  if (readCookie('recalbox-session')) {
+    logOutEntry = renderMenuEntry({
+      link: '/logout',
+      glyph: 'log-out',
+      label: t('Déconnexion'),
+    }, 'logout');
+  }
+
   const securityEntry = renderMenuEntry({
     link: '/security',
     glyph: 'lock',

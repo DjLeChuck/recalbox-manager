@@ -66,3 +66,21 @@ export function promisifyData(...calls) {
     err => console.error(err)
   );
 }
+
+let cookies;
+
+export function readCookie(name) {
+  if (cookies) {
+    return cookies[name];
+  }
+
+  const c = document.cookie.split('; ');
+  cookies = {};
+
+  for (let i = c.length-1; i >= 0; i--) {
+    const C = c[i].split('=');
+    cookies[C[0]] = C[1];
+  }
+
+  return cookies[name];
+}

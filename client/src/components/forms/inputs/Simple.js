@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormInput } from 'react-form';
+import Alert from 'react-bootstrap/lib/Alert';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 const SimpleInput = ({
   field,
@@ -14,6 +16,7 @@ const SimpleInput = ({
   noTouch,
   id,
   label,
+  warning,
   labelColMd,
   componentColMd,
   ...rest
@@ -21,17 +24,27 @@ const SimpleInput = ({
   <FormInput field={field} showErrors={showErrors} errorBefore={errorBefore}
     isForm={isForm}>
     {({ getValue, setValue }) => (
-      <FormGroup controlId={id}>
-        {label &&
-          <Col componentClass={ControlLabel} md={labelColMd || 4}>
-            {label}
-          </Col>
+      <div>
+        {warning &&
+          <Alert bsStyle="warning">
+            <Glyphicon glyph="alert" />{' '}
+            {warning}
+          </Alert>
         }
-        <Col md={componentColMd || 6}>
-          <FormControl {...rest} value={getValue('')}
-            onChange={e => setValue(e.target.value, noTouch)} />
-        </Col>
-      </FormGroup>
+        <FormGroup controlId={id}>
+          {label &&
+            <Col componentClass={ControlLabel} md={labelColMd || 4}>
+              {label}
+            </Col>
+          }
+          <Col md={componentColMd || 6}>
+            <FormControl
+              {...rest} value={getValue('')}
+              onChange={e => setValue(e.target.value, noTouch)}
+            />
+          </Col>
+        </FormGroup>
+      </div>
     )}
   </FormInput>
 );
@@ -47,6 +60,7 @@ SimpleInput.propTypes = {
   noTouch: PropTypes.bool,
   id: PropTypes.string.isRequired,
   label: PropTypes.node,
+  warning: PropTypes.node,
   labelColMd: PropTypes.number,
   componentColMd: PropTypes.number,
 };

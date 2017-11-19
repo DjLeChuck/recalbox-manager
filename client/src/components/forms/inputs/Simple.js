@@ -23,29 +23,35 @@ const SimpleInput = ({
 }) => (
   <FormInput field={field} showErrors={showErrors} errorBefore={errorBefore}
     isForm={isForm}>
-    {({ getValue, setValue }) => (
-      <div>
-        {warning &&
-          <Alert bsStyle="warning">
-            <Glyphicon glyph="alert" />{' '}
-            {warning}
-          </Alert>
-        }
-        <FormGroup controlId={id}>
-          {label &&
-            <Col componentClass={ControlLabel} md={labelColMd || 4}>
-              {label}
-            </Col>
+    {({ getValue, setValue, getTouched, getError }) => {
+      const showAnyErrors = showErrors &&
+                            (isForm ? getTouched() === true : true);
+      const hasError = showAnyErrors && getTouched() && getError();
+
+      return (
+        <div>
+          {warning &&
+            <Alert bsStyle="warning">
+              <Glyphicon glyph="alert" />{' '}
+              {warning}
+            </Alert>
           }
-          <Col md={componentColMd || 6}>
-            <FormControl
-              {...rest} value={getValue('')}
-              onChange={e => setValue(e.target.value, noTouch)}
-            />
-          </Col>
-        </FormGroup>
-      </div>
-    )}
+          <FormGroup controlId={id} validationState={hasError ? 'error' : null}>
+            {label &&
+              <Col componentClass={ControlLabel} md={labelColMd || 4}>
+                {label}
+              </Col>
+            }
+            <Col md={componentColMd || 6}>
+              <FormControl
+                {...rest} value={getValue('')}
+                onChange={e => setValue(e.target.value, noTouch)}
+              />
+            </Col>
+          </FormGroup>
+        </div>
+      );
+    }}
   </FormInput>
 );
 

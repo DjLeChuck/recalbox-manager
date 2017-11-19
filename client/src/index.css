@@ -19,6 +19,7 @@
 .loader { position: relative; min-height: 200px; }
 .rating.glyphicon-star { color: #f39c12; }
 .manager-version { position: absolute; display: inline-block; bottom: 0; left: 15px; }
+.FormError { color: #a94442; }
 
 /* ROM image upload */
 .dropzone-image-upload {

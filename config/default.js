@@ -53,25 +53,25 @@ module.exports = {
         'none'
       ],
       keyboardlayouts: [
-        {id: '', text: "–"},
-        {id: 'us', text: 'American'},
-        {id: 'de', text: 'Deutsch'},
-        {id: 'en', text: 'English'},
-        {id: 'fr', text: 'Français'},
-        {id: 'es', text: 'Spanish'}
+        { id: '', text: "–" },
+        { id: 'us', text: 'American' },
+        { id: 'de', text: 'Deutsch' },
+        { id: 'en', text: 'English' },
+        { id: 'fr', text: 'Français' },
+        { id: 'es', text: 'Spanish' }
       ],
       systemlocales: [
-        {id: '', text: "–"},
-        {id: 'de_DE', text: 'Deutschland'},
-        {id: 'es_ES', text: 'España (es_ES)'},
-        {id: 'eu_ES', text: 'España (eu_ES)'},
-        {id: 'fr_FR', text: 'Français'},
-        {id: 'it_IT', text: 'Italia'},
-        {id: 'pt_BR', text: 'Português do Brasil'},
-        {id: 'tr_TR', text: 'Türkiye'},
-        {id: 'en_GB', text: 'United Kingdom'},
-        {id: 'en_US', text: 'USA'},
-        {id: 'zh_CN', text: '中华人民共和国'}
+        { id: '', text: "–" },
+        { id: 'de_DE', text: 'Deutschland' },
+        { id: 'es_ES', text: 'España (es_ES)' },
+        { id: 'eu_ES', text: 'España (eu_ES)' },
+        { id: 'fr_FR', text: 'Français' },
+        { id: 'it_IT', text: 'Italia' },
+        { id: 'pt_BR', text: 'Português do Brasil' },
+        { id: 'tr_TR', text: 'Türkiye' },
+        { id: 'en_GB', text: 'United Kingdom' },
+        { id: 'en_US', text: 'USA' },
+        { id: 'zh_CN', text: '中华人民共和国' }
       ],
       timezones: [
         'Africa/Abidjan',

@@ -14,7 +14,7 @@ const renderStatusAction = (t, status, onSuccess, onError) => {
     );
   //}
 };
-const renderStatusAction = (t, status, onSuccess, onError) => {
+const renderStatusAction2 = (t, status, onSuccess, onError) => {
   return (
     <PostActionButton bsStyle="success" action="start-es"
       onSuccess={onSuccess} onError={onError}>

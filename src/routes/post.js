@@ -76,10 +76,14 @@ router.post('/', async (req, res, next) => {
         break;
       case 'screen-on':
         // @todo Wait for reboot. The manager will be unreachable for a while.
-        spawn('vcgencmd display_power 1');
+        spawn('vcgencmd',['display_power 1']);
+        break;
+
       case 'screen-off':
         // @todo Wait for reboot. The manager will be unreachable for a while.
-        spawn('vcgencmd display_power 0');
+        spawn('vcgencmd',['display_power 0']);
+        break;
+
       case 'deleteRom':
         deleteRom(body);
 

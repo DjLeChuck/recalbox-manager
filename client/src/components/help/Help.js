@@ -78,6 +78,18 @@ const Help = ({
           </PostActionButton>
         </Panel>
       </Col>
+      <Col md={6}>
+        <Panel
+          header={<h3>{t("Activer / désactiver l'écran")}</h3>}>
+          <PostActionButton bsStyle="success" action="screen-on">
+            {t('Allumer l\'écran')}
+          </PostActionButton>
+
+          <PostActionButton bsStyle="warning" action="screen-off">
+            {t('Eteindre l\'écran')}
+          </PostActionButton>{' '}
+        </Panel>
+      </Col>
     </Row>
   </div>
 );

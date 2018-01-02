@@ -1,6 +1,6 @@
 {
-  "extends": [ "eslint:recommended", "plugin:react/recommended" ],
-  "plugins": [ "babel", "react" ],
+  "extends": [ "eslint:recommended", "plugin:react/recommended", "plugin:flowtype/recommended" ],
+  "plugins": [ "babel", "react", "flowtype" ],
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
@@ -15,6 +15,11 @@
     "browser": true,
     "node": true,
     "es6": true,
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
   },
   "rules": {
     "babel/new-cap": 1,

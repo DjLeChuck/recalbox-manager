@@ -36,7 +36,7 @@ module.exports = {
     romsExcludedFolders: ['downloaded_images'],
     screenshotsPath: '/recalbox/share/screenshots',
     biosPath: '/recalbox/share/bios/',
-    biosFilePath: '/recalbox/share/bios/readme.txt',
+    biosFilePath: '/recalbox/share_init/bios/readme.txt',
     esSystemsCfgPath: '/recalbox/share_init/system/.emulationstation/es_systems.cfg',
     systemSettingsCommand: 'python /usr/lib/python2.7/site-packages/configgen/settings/recalboxSettings.pyc',
     savesPath: '/recalbox/share/saves',

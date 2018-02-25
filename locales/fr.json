@@ -212,5 +212,19 @@
     "Voulez-vous vraiment supprimer toutes ces ROMs ?": "Voulez-vous vraiment supprimer toutes ces ROMs ?",
     "Déposez ici les ROMs à uploader.": "Déposez ici les ROMs à uploader.",
     "Supprimer les ROMs sélectionnées": "Supprimer les ROMs sélectionnées",
-    "Nouvelle image": "Nouvelle image"
+    "Nouvelle image": "Nouvelle image",
+    "Cœur": "Cœur",
+    "Identifiants de connexion": "Identifiants de connexion",
+    "Identifiant": "Identifiant",
+    "Se connecter": "Se connecter",
+    "L'identifiant est obligatoire.": "L'identifiant est obligatoire.",
+    "Authentification requise": "Authentification requise",
+    "Le mot de passe n'est pas visible pour des raisons de sécurité.": "Le mot de passe n'est pas visible pour des raisons de sécurité.",
+    "Utiliser le touchpad virtuel": "Utiliser le touchpad virtuel",
+    "Déconnexion": "Déconnexion",
+    "Sécurité": "Sécurité",
+    "Identifiants incorrects.": "Identifiants incorrects.",
+    "Connexion": "Connexion",
+    "Cette page permet de sécuriser l'accès à Recalbox Manager grâce à un identifiant et un mot de passe.": "Cette page permet de sécuriser l'accès à Recalbox Manager grâce à un identifiant et un mot de passe.",
+    "Le mot de passe est obligatoire.": "Le mot de passe est obligatoire."
 }

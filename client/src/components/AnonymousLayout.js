@@ -9,25 +9,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Row from 'react-bootstrap/lib/Row';
-
-const languages = {
-  ar: 'Argentina',
-  ca: 'Catalan',
-  cn: '中国语文',
-  de: 'Deutsch',
-  en: 'English',
-  es: 'Español',
-  fr: 'Français',
-  it: 'Italiano',
-  ko: '한국말',
-  lv: 'Latviešu',
-  pl: 'Język polski',
-  pt: 'Português',
-  'pt-BR': 'Português brasileiro',
-  ru: 'Русский',
-  ua: 'українська мова',
-  zh: '中國語文',
-};
+import languages from '../utils';
 
 const renderLocaleEntry = (locale, toggle) => {
   if ('cimode' === locale) {

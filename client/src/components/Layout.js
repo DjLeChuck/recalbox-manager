@@ -12,26 +12,7 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Row from 'react-bootstrap/lib/Row';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import { readCookie } from '../utils';
-
-const languages = {
-  ar: 'Argentina',
-  ca: 'Catalan',
-  cn: '中国语文',
-  de: 'Deutsch',
-  en: 'English',
-  es: 'Español',
-  fr: 'Français',
-  it: 'Italiano',
-  ko: '한국말',
-  lv: 'Latviešu',
-  pl: 'Język polski',
-  pt: 'Português',
-  'pt-BR': 'Português brasileiro',
-  ru: 'Русский',
-  ua: 'українська мова',
-  zh: '中國語文',
-};
+import { readCookie, languages } from '../utils';
 
 const renderLocaleEntry = (locale, toggle) => {
   if ('cimode' === locale) {

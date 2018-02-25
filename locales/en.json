@@ -212,5 +212,19 @@
     "Voulez-vous vraiment supprimer toutes ces ROMs ?": "Do you really want to remove all these ROMs?",
     "Déposez ici les ROMs à uploader.": "Drop here the ROMs to upload.",
     "Supprimer les ROMs sélectionnées": "Delete selected ROMs",
-    "Nouvelle image": "New image"
+    "Nouvelle image": "New image",
+    "Cœur": "Core",
+    "Identifiants de connexion": "",
+    "Identifiant": "",
+    "Se connecter": "",
+    "L'identifiant est obligatoire.": "",
+    "Authentification requise": "",
+    "Le mot de passe n'est pas visible pour des raisons de sécurité.": "",
+    "Utiliser le touchpad virtuel": "",
+    "Déconnexion": "",
+    "Sécurité": "",
+    "Identifiants incorrects.": "",
+    "Connexion": "",
+    "Cette page permet de sécuriser l'accès à Recalbox Manager grâce à un identifiant et un mot de passe.": "",
+    "Le mot de passe est obligatoire.": ""
 }

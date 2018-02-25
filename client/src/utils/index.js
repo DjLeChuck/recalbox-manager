@@ -1,3 +1,24 @@
+export const languages = {
+  ar: 'Argentina',
+  ca: 'Catalan',
+  cn: '中国语文',
+  de: 'Deutsch',
+  en: 'English',
+  es: 'Español',
+  fr: 'Français',
+  hu: 'Hungarian',
+  it: 'Italiano',
+  ko: '한국말',
+  lv: 'Latviešu',
+  pl: 'Język polski',
+  pt: 'Português',
+  'pt-BR': 'Português brasileiro',
+  ru: 'Русский',
+  tr: 'Turkish',
+  ua: 'українська мова',
+  zh: '中國語文',
+};
+
 export function diffObjects(prev, cur) {
   let newValues = Object.assign({}, prev, cur);
   let diff = {};

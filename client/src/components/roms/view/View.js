@@ -32,7 +32,6 @@ const RomsView = ({
   directoryListing,
   subpath,
   displayBackToTop,
-  apiEnabled,
   system,
   splat,
   onUploadSuccess,
@@ -44,6 +43,8 @@ const RomsView = ({
   onBulkDeleteError,
   onImageUpload,
   onBulkDeleteClick,
+  onGameHasLaunch,
+  onGameHasntLaunch,
   bulkList,
 }) => {
   let stickyContainer;
@@ -165,12 +166,17 @@ const RomsView = ({
                     </Col>
 
                     <Col md={5} lg={3} className="center-block">
-                      {apiEnabled &&
-                        <PostActionButton bsStyle="success" hideContentOnAction
-                          action="launch-rom" body={{ file: path }}>
-                          <Glyphicon glyph="play" />
-                        </PostActionButton>
-                      }
+                      <PostActionButton bsStyle="success"
+                        hideContentOnAction action="launch-rom"
+                        onSuccess={onGameHasLaunch}
+                        onError={onGameHasntLaunch}
+                        body={{
+                          system: system,
+                          file: path,
+                        }}
+                      >
+                        <Glyphicon glyph="play" />
+                      </PostActionButton>
                       <RomsDelete rom={rom} system={system}
                         onSuccess={onDeleteSuccess} onError={onDeleteError} />
                       <RomsEdit rom={rom} system={system}
@@ -218,7 +224,6 @@ RomsView.propTypes = {
   directoryListing: PropTypes.array.isRequired,
   subpath: PropTypes.string,
   displayBackToTop: PropTypes.bool.isRequired,
-  apiEnabled: PropTypes.bool.isRequired,
   system: PropTypes.string,
   splat: PropTypes.string,
   onUploadSuccess: PropTypes.func,
@@ -230,11 +235,9 @@ RomsView.propTypes = {
   onBulkDeleteError: PropTypes.func,
   onImageUpload: PropTypes.func,
   onBulkDeleteClick: PropTypes.func,
+  onGameHasLaunch: PropTypes.func,
+  onGameHasntLaunch: PropTypes.func,
   bulkList: PropTypes.array,
-};
-
-RomsView.defaultProps = {
-  apiEnabled: false,
 };
 
 export default translate()(RomsView);

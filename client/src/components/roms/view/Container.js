@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { get, grep } from '../../../api';
+import { get } from '../../../api';
 import { promisifyData, cancelPromises } from '../../../utils';
 import RomsView from './View';
 
@@ -167,6 +167,24 @@ class RomsViewContainer extends Component {
     });
   };
 
+  gameHasLaunch = () => {
+    const { t } = this.props;
+
+    this.setState({
+      stickyContent: t("Votre jeu devrait s'être lancé !"),
+      stickyStyle: 'success',
+    });
+  };
+
+  gameHasntLaunch = () => {
+    const { t } = this.props;
+
+    this.setState({
+      stickyContent: t("Il semble que votre jeu n'ait pas réussi à se lancer."),
+      stickyStyle: 'success',
+    });
+  };
+
   async loadRoms(params) {
     const { t } = this.props;
     const { system, splat } = params;
@@ -174,8 +192,7 @@ class RomsViewContainer extends Component {
     const state = await promisifyData(
       get('romsList', `system=${system},subpath=${splat || ''}`),
       get('directoryListing', `subpath=${subpath}`),
-      get('systemFullname', `system=${system}`),
-      grep(['system.api.enabled'])
+      get('systemFullname', `system=${system}`)
     );
 
     state.loaded = true;
@@ -210,7 +227,8 @@ class RomsViewContainer extends Component {
         onBulkDeleteClick={this.onBulkDeleteClick}
         onBulkDeleteSuccess={this.onBulkDeleteSuccess}
         onBulkDeleteError={this.onBulkDeleteError}
-        apiEnabled={!!parseInt(this.state['system.api.enabled'], 10)}
+        onGameHasLaunch={this.onGameHasLaunch}
+        onGameHasntLaunch={this.onGameHasntLaunch}
       />
     );
   }

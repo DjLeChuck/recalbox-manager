@@ -177,6 +177,23 @@ router.post('/', async (req, res, next) => {
         }
 
         break;
+      case 'launch-rom':
+        const { system, file } = body;
+        const host = config.get('recalbox.ip');
+        const port = config.get('recalbox.udpPort');
+        const dgram = require('dgram');
+        const message = new Buffer(`START|${system}|${file}|`);
+        const client = dgram.createSocket('udp4');
+
+        client.send(message, 0, message.length, port, host, (err) => {
+          if (err) {
+            throw err;
+          }
+
+          client.close();
+        });
+
+        break;
       default:
         throw new Error(`Action "${action}" unknown.`);
     }

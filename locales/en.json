@@ -212,5 +212,8 @@
     "Voulez-vous vraiment supprimer toutes ces ROMs ?": "Do you really want to remove all these ROMs?",
     "Déposez ici les ROMs à uploader.": "Drop here the ROMs to upload.",
     "Supprimer les ROMs sélectionnées": "Delete selected ROMs",
-    "Nouvelle image": "New image"
+    "Nouvelle image": "New image",
+    "Activer / désactiver l'écran": "Turn screen on/off",
+    "Allumer l'écran": "Turn screen on",
+    "Eteindre l'écran": "Turn screen off"
 }

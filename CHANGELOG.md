@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Launch ROM without the API
+- Add Hungarian and Turkish translations
+- Add link to virtual touchpad
+
+### Changed
+- Update existing translations
+
+### Fixed
+- Can't stop EmulationStation from manager (#56)
+- Fix link to virtual keyboard
 
 ## [2.1.0] - 2017-11-19
 ### Added

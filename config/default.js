@@ -20,8 +20,6 @@ module.exports = {
     logsPaths: [
       '/var/log/messages',
       '/recalbox/share/system/.emulationstation/es_log.txt',
-      '/recalbox/share/system/logs/es_launch_stderr.log',
-      '/recalbox/share/system/logs/es_launch_stdout.log',
       '/recalbox/share/system/logs/recalbox.log',
     ],
     confPath: '/recalbox/share/system/recalbox.conf',

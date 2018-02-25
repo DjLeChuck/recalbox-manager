@@ -156,7 +156,7 @@ router.get('/', async (req, res, next) => {
       case 'ESStatus':
         const ESPath = config.get('recalbox.emulationStationPath');
         const cmd = `${ESPath} status | cut -d ' ' -f 3`;
-        data = 'running' === execSync(cmd).toString() ? 'OK' : 'KO';
+        data = 'running' === execSync(cmd).toString().trim() ? 'OK' : 'KO';
         break;
       case 'needAuth':
         if (!fs.existsSync(config.get('auth'))) {

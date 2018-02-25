@@ -16,7 +16,7 @@ const SecurityForm = ({ t, saving, onSubmit, defaultValues }) => (
     validate={({ needAuth, login, password }) => {
       return {
         login: needAuth && !login ? t("L'identifiant est obligatoire.") : undefined,
-        password: needAuth && !password ? t("Le mot de pase est obligatoire.") : undefined,
+        password: needAuth && !password ? t("Le mot de passe est obligatoire.") : undefined,
       };
     }}
   >

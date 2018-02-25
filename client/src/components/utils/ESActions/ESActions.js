@@ -5,21 +5,20 @@ import Panel from 'react-bootstrap/lib/Panel';
 import PostActionButton from '../PostActionButton';
 
 const renderStatusAction = (t, status, onSuccess, onError) => {
-  if ('OK' === status) {
+//  if ('OK' === status) {
     return (
       <PostActionButton bsStyle="danger" action="shutdown-es"
         onSuccess={onSuccess} onError={onError}>
         {t("Arrêter ES")}
       </PostActionButton>
     );
-  }
-
-  return (
-    <PostActionButton bsStyle="success" action="start-es"
-      onSuccess={onSuccess} onError={onError}>
-      {t("Démarrer ES")}
-    </PostActionButton>
-  );
+//  }
+//  return (
+//    <PostActionButton bsStyle="success" action="start-es"
+//      onSuccess={onSuccess} onError={onError}>
+//      {t("Démarrer ES")}
+//    </PostActionButton>
+//  );
 };
 
 const ESActions = ({ t, status, onSuccess, onError }) => (

@@ -9,7 +9,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Row from 'react-bootstrap/lib/Row';
-import languages from '../utils';
+import { languages } from '../utils';
 
 const renderLocaleEntry = (locale, toggle) => {
   if ('cimode' === locale) {

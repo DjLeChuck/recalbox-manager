@@ -21,6 +21,10 @@
 .manager-version { position: absolute; display: inline-block; bottom: 0; left: 15px; }
 .FormError { color: #a94442; }
 
+.top-menu > .link-container > a > .link-label,
+.top-menu > .link-container > a > span > .link-label { display: none; }
+.top-menu .link-container:hover .link-label { display: inline-block; }
+
 /* ROM image upload */
 .dropzone-image-upload {
   display: flex; /* contexte sur le parent */
@@ -34,7 +38,7 @@
 }
 
 /* Menu collapse */
-@media (max-width: 1340px) {
+@media (max-width: 1040px) {
   .navbar-header {
     float: none;
   }

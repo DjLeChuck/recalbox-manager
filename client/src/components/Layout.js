@@ -28,8 +28,9 @@ const renderLocaleEntry = (locale, toggle) => {
 
 const renderMenuEntry = (data, index) => (
   <LinkContainer key={index} to={data.link}>
-    <NavItem>
-      <Glyphicon glyph={data.glyph} /> {data.label}
+    <NavItem className="link-container">
+      <Glyphicon glyph={data.glyph} />{' '}
+      <span className="link-label">{data.label}</span>
     </NavItem>
   </LinkContainer>
 );
@@ -89,15 +90,20 @@ const Layout = ({ t, i18n, children }) => {
     logOutEntry = renderMenuEntry({
       link: '/logout',
       glyph: 'log-out',
-      label: t('Déconnexion'),
+      label: t('Déconnexion')
     }, 'logout');
   }
 
   const securityEntry = renderMenuEntry({
     link: '/security',
     glyph: 'lock',
-    label: t('Sécurité'),
+    label: t('Sécurité')
   }, 'security');
+
+  const topDropdownTitle = <span>
+    <Glyphicon glyph="question-sign" />{' '}
+    <span className="link-label">{t('Dépannage')}</span>
+  </span>;
 
   return (
     <div>
@@ -116,15 +122,16 @@ const Layout = ({ t, i18n, children }) => {
               {i18n.options.whitelist.map(x => renderLocaleEntry(x, toggle))}
             </NavDropdown>
           </Nav>
-          <Nav pullRight>
+          <Nav pullRight className="top-menu">
             <IndexLinkContainer to="/">
-              <NavItem>
-                <Glyphicon glyph="home" /> {t('Accueil')}
+              <NavItem className="link-container">
+                <Glyphicon glyph="home" />{' '}
+                <span className="link-label">{t('Accueil')}</span>
               </NavItem>
             </IndexLinkContainer>
             {firstMenuEntries.map(renderMenuEntry)}
 
-            <NavDropdown title={<span><Glyphicon glyph="question-sign" /> {t('Dépannage')} </span>}
+            <NavDropdown className="link-container" title={topDropdownTitle}
               id="basic-nav-dropdown">
               {secondMenuEntries.map(renderMenuEntry)}
             </NavDropdown>

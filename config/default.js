@@ -1,5 +1,8 @@
 module.exports = {
-  auth: `${__dirname}/../credentials.auth`,
+  auth: {
+    path: `/recalbox/share/system/.config/manager-web/`,
+    file: 'credentials.auth'
+  },
 
   smartFile: {
     url: 'https://app.smartfile.com/api/2',
@@ -26,6 +29,7 @@ module.exports = {
     supportScript: '/recalbox/scripts/recalbox-support.sh',
     emulationStationPath: '/etc/init.d/S31emulationstation',
     configScript: '/recalbox/scripts/recalbox-config.sh',
+    encodeScript: '/recalbox/scripts/recalbox-encode.sh',
     raspi2png: {
       command: 'raspi2png -p',
       savePath: '/recalbox/share/screenshots'

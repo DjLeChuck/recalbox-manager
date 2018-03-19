@@ -137,12 +137,15 @@ router.post('/', async (req, res, next) => {
         break;
       case 'login':
         try {
-          const authFile = config.get('auth');
+          const authConfig = config.get('auth');
+          const authFile = `${authConfig.path}${authConfig.file}`;
           const credentials = JSON.parse(fs.readFileSync(authFile).toString());
+          const decodeScript = config.get('recalbox.encodeScript');
+          const decodedPassword = execSync(`${decodeScript} decode ${credentials.password}`).toString().trim();
 
           if (
             credentials.login !== body.login ||
-            credentials.password !== body.password
+            decodedPassword !== body.password
           ) {
             throw new Error('Bad credentials.');
           }
@@ -155,7 +158,8 @@ router.post('/', async (req, res, next) => {
         break;
       case 'security':
         const { needAuth, ...securityRest } = body;
-        const authFile = config.get('auth');
+        const authConfig = config.get('auth');
+        const authFile = `${authConfig.path}${authConfig.file}`;
 
         try {
           if (!needAuth) {
@@ -166,13 +170,22 @@ router.post('/', async (req, res, next) => {
             }
           } else {
             const securityCredentials = { ...securityRest };
+            const encodeScript = config.get('recalbox.encodeScript');
+
+            securityCredentials.password = execSync(`${encodeScript} encode ${securityCredentials.password}`).toString().trim();
+
             const content = JSON.stringify(securityCredentials);
+
+            if (!fs.existsSync(authConfig.path)){
+              fs.mkdirSync(authConfig.path);
+            }
 
             fs.writeFileSync(authFile, content);
 
             setSessionCredentials(req, securityCredentials);
           }
         } catch (error) {
+          console.error(error);
           throw new Error('Error while saving security credentials.');
         }
 

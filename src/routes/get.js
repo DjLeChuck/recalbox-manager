@@ -159,12 +159,15 @@ router.get('/', async (req, res, next) => {
         data = 'running' === execSync(cmd).toString().trim() ? 'OK' : 'KO';
         break;
       case 'needAuth':
-        if (!fs.existsSync(config.get('auth'))) {
+        const authConfigCheck = config.get('auth');
+        const authConfigCheckFile = `${authConfigCheck.path}${authConfigCheck.file}`;
+
+        if (!fs.existsSync(authConfigCheckFile)) {
           data = false;
         } else {
           const credentials = req.session.isAuthenticated;
           const authCredentials = JSON.parse(
-            fs.readFileSync(config.get('auth')).toString()
+            fs.readFileSync(authConfigCheckFile).toString()
           );
           const hashedCredentials = crypto.createHash('sha256').update(
             `${authCredentials.login}\n${authCredentials.password}`,
@@ -180,11 +183,14 @@ router.get('/', async (req, res, next) => {
         data = true;
         break;
       case 'authConfig':
-        if (!fs.existsSync(config.get('auth'))) {
+        const authConfig = config.get('auth');
+        const authFile = `${authConfig.path}${authConfig.file}`;
+
+        if (!fs.existsSync(authFile)) {
           data = { needAuth: false };
         } else {
           const authCredentials = JSON.parse(
-            fs.readFileSync(config.get('auth')).toString()
+            fs.readFileSync(authFile).toString()
           );
 
           data = {

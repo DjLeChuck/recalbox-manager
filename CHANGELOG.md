@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.2.1] - 2018-03-19
+### Fixed
+- Menu are badly rendered on some screen
+
 ## [2.2.0] - 2018-03-19
 ### Added
 - Launch ROM without the API
@@ -60,7 +64,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - First "production ready" release of the manager. Included by default with
 recalbox 4.1.
 
-[Unreleased]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.2.1...HEAD
+[2.2.1]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.1...v2.0.2

@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.2.0] - 2018-03-19
 ### Added
 - Launch ROM without the API
 - Add Hungarian and Turkish translations
@@ -12,10 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Update existing translations
+- Display top-menu icon text on hover
 
 ### Fixed
 - Can't stop EmulationStation from manager (#56)
 - Fix link to virtual keyboard
+- The login page display a whitescreen
+- Can't activate the securised access
 
 ## [2.1.0] - 2017-11-19
 ### Added
@@ -55,7 +60,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - First "production ready" release of the manager. Included by default with
 recalbox 4.1.
 
-[Unreleased]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/DjLeChuck/recalbox-manager/compare/v2.0.0...v2.0.1

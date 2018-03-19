@@ -28,9 +28,8 @@ const renderLocaleEntry = (locale, toggle) => {
 
 const renderMenuEntry = (data, index) => (
   <LinkContainer key={index} to={data.link}>
-    <NavItem className="link-container">
-      <Glyphicon glyph={data.glyph} />{' '}
-      <span className="link-label">{data.label}</span>
+    <NavItem>
+      <Glyphicon glyph={data.glyph} /> {data.label}
     </NavItem>
   </LinkContainer>
 );
@@ -101,8 +100,11 @@ const Layout = ({ t, i18n, children }) => {
   }, 'security');
 
   const topDropdownTitle = <span>
-    <Glyphicon glyph="question-sign" />{' '}
-    <span className="link-label">{t('Dépannage')}</span>
+    <Glyphicon glyph="question-sign" /> {t('Dépannage')}
+  </span>;
+
+  const localeDropdownTitle = <span>
+    <Glyphicon glyph="font" /> {CurrentLang}
   </span>;
 
   return (
@@ -117,22 +119,20 @@ const Layout = ({ t, i18n, children }) => {
 
         <Navbar.Collapse>
           <Nav pullLeft>
-            <NavDropdown title={CurrentLang} id="language-switcher"
+            <NavDropdown title={localeDropdownTitle} id="language-switcher"
               className="pull-left locale-switcher">
               {i18n.options.whitelist.map(x => renderLocaleEntry(x, toggle))}
             </NavDropdown>
           </Nav>
           <Nav pullRight className="top-menu">
             <IndexLinkContainer to="/">
-              <NavItem className="link-container">
-                <Glyphicon glyph="home" />{' '}
-                <span className="link-label">{t('Accueil')}</span>
+              <NavItem>
+                <Glyphicon glyph="home" /> {t('Accueil')}
               </NavItem>
             </IndexLinkContainer>
             {firstMenuEntries.map(renderMenuEntry)}
 
-            <NavDropdown className="link-container" title={topDropdownTitle}
-              id="basic-nav-dropdown">
+            <NavDropdown title={topDropdownTitle} id="basic-nav-dropdown">
               {secondMenuEntries.map(renderMenuEntry)}
             </NavDropdown>
 
@@ -146,6 +146,11 @@ const Layout = ({ t, i18n, children }) => {
         <Row>
           <Col sm={3} md={2} className="sidebar">
             <Nav className="nav-sidebar">
+              <NavDropdown title={localeDropdownTitle} id="language-switcher"
+                className="locale-switcher">
+                {i18n.options.whitelist.map(x => renderLocaleEntry(x, toggle))}
+              </NavDropdown>
+
               <IndexLinkContainer to="/">
                 <NavItem>
                   <Glyphicon glyph="home" /> {t('Accueil')}

@@ -21,10 +21,6 @@
 .manager-version { position: absolute; display: inline-block; bottom: 0; left: 15px; }
 .FormError { color: #a94442; }
 
-.top-menu > .link-container > a > .link-label,
-.top-menu > .link-container > a > span > .link-label { display: none; }
-.top-menu .link-container:hover .link-label { display: inline-block; }
-
 /* ROM image upload */
 .dropzone-image-upload {
   display: flex; /* contexte sur le parent */
@@ -38,45 +34,43 @@
 }
 
 /* Menu collapse */
-@media (max-width: 1040px) {
-  .navbar-header {
-    float: none;
-  }
-  .navbar-left,.navbar-right {
-    float: none !important;
-  }
-  .navbar-toggle {
-    display: block;
-  }
-  .navbar-collapse {
-    border-top: 1px solid transparent;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  }
-  .navbar-fixed-top {
-    top: 0;
-    border-width: 0 0 1px;
-  }
-  .navbar-collapse.collapse {
-    display: none!important;
-  }
-  .navbar-nav {
-    float: none!important;
-    margin-top: 7.5px;
-  }
-  .navbar-nav>li {
-    float: none;
-  }
-  .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .collapse.in{
-    display:block !important;
-  }
-  .navbar-collapse.in {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-  }
+.navbar-header {
+  float: none;
+}
+.navbar-left,.navbar-right {
+  float: none !important;
+}
+.navbar-toggle {
+  display: block;
+}
+.navbar-collapse {
+  border-top: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.navbar-fixed-top {
+  top: 0;
+  border-width: 0 0 1px;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+  margin-top: 7.5px;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-nav>li>a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.collapse.in{
+  display:block !important;
+}
+.navbar-collapse.in {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
 /* Row same height */

@@ -23,7 +23,7 @@ router.post('/', (req, res, next) => {
     }
 
     for (const key in values) {
-      execSync(`${config.get('recalbox.systemSettingsCommand')} -command save -key ${key} -value ${values[key]}`);
+      execSync(`${config.get('recalbox.systemSettingsCommand')} -command save -key ${key} -value '${values[key]}'`);
     }
 
     if (undefined !== values['audio.volume'] && 'production' === req.app.get('env')) {

@@ -107,6 +107,9 @@ router.get('/', async (req, res, next) => {
                 if ('releasedate' === field) {
                   value = parseGameReleaseDate(value);
                 } else if ('image' === field) {
+                  if (Array.isArray(value)) {
+                    value = value[0];
+                  }
                   value = path.join('/', system, value);
                 }
 

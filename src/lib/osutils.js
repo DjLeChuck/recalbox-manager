@@ -1,4 +1,5 @@
 var _os = require('os');
+var _sleep = require('sleep');
 
 exports.platform = function(){
   return process.platform;
@@ -182,7 +183,7 @@ exports.cpuUsage = function(callback){
 exports.listCPUs = function () {
   var list = getCPUsList();
 
-  wait(300);
+  _sleep.msleep(300); // wait 300ms
 
   var stats = getCPUsList();
 
@@ -199,14 +200,6 @@ exports.listCPUs = function () {
   return list;
 };
 
-function wait(ms) {
-  var start = new Date().getTime();
-  var end = start;
-
-  while(end < start + ms) {
-    end = new Date().getTime();
-  }
-}
 
 function getCPUsList() {
   var cpus = _os.cpus();

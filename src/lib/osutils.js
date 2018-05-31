@@ -18,10 +18,28 @@ exports.processUptime = function(){
   return process.uptime();
 };
 
-// Memory
-exports.freemem = function(){
-  return _os.freemem() / ( 1024 * 1024 );
+// Memory: read directly into /proc/meminfo because _os.freemem() do not count cached as available
+exports.freemem = function() {
+    var fs          = require( 'fs' );
+    var array       = fs.readFileSync( '/proc/meminfo' ).toString().split( "\n" );
+    var free_memory = 0;
+    for ( var idx in array ) {
+        var line = array[ idx ];
+        var elts = line.split( /\s+/ ); // looks like key   value  KB <= some value are without KB but we do not look at them
+        var key  = elts[ 0 ];
+        // Total memory of the system (physical): MemTotal
+        // Free memory =
+        //  * MemFree:
+        //  * Buffers: (into files)
+        //  * Cached: (file flushed but before the disks)
+        //  * SReclaimable: (kernel slabs that can be release)
+        if ( key === 'MemFree:' || key === 'Buffers:' || key === 'Cached:' || key === 'SReclaimable:' ) {
+            free_memory += parseInt( elts[ 1 ] );  // Note: values are in KB
+        }
+    }
+    return free_memory / 1024;  // into MB, to match totalmem
 };
+
 
 exports.totalmem = function(){
   return _os.totalmem() / ( 1024 * 1024 );

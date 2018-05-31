@@ -127,7 +127,7 @@ router.get('/', async (req, res, next) => {
         data = await getEsSystems();
         break;
       case 'temperature':
-        const currentTemp = execSync('cat /sys/class/thermal/thermal_zone0/temp').toString() / 1000;
+        const currentTemp = execSync('cat /sys/class/thermal/thermal_zone0/temp 2> /dev/null || echo 0').toString() / 1000;
         const maxTemp = 100;
         const currentPercent = Math.floor(currentTemp * 100 / maxTemp);
 

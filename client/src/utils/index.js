@@ -5,6 +5,7 @@ export const languages = {
   de: 'Deutsch',
   en: 'English',
   es: 'Español',
+  eu: 'Euskara',
   fr: 'Français',
   hu: 'Hungarian',
   it: 'Italiano',

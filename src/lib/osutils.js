@@ -1,5 +1,4 @@
 var _os = require('os');
-var _sleep = require('sleep');
 
 exports.platform = function(){
   return process.platform;
@@ -180,11 +179,19 @@ exports.cpuUsage = function(callback){
   getCPUUsage(callback, false);
 };
 
+var prev_cpu = null;
 exports.listCPUs = function () {
-  var list = getCPUsList();
-
-  _sleep.msleep(300); // wait 300ms
-
+  var list = prev_cpu;
+  // On the first turn, we fake the result
+  if(list === null){
+      list = getCPUsList();
+      for (var i=0; i< list.length; i++){
+             list[i].percent = 0;
+      }
+      prev_cpu = list;
+      return list;
+  }
+  // real results are after 1s of display
   var stats = getCPUsList();
 
   for (var i = 0; i < stats.length; i++) {

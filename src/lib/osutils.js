@@ -179,11 +179,19 @@ exports.cpuUsage = function(callback){
   getCPUUsage(callback, false);
 };
 
+var prev_cpu = null;
 exports.listCPUs = function () {
-  var list = getCPUsList();
-
-  wait(300);
-
+  var list = prev_cpu;
+  // On the first turn, we fake the result
+  if(list === null){
+      list = getCPUsList();
+      for (var i=0; i< list.length; i++){
+             list[i].percent = 0;
+      }
+      prev_cpu = list;
+      return list;
+  }
+  // real results are after 1s of display
   var stats = getCPUsList();
 
   for (var i = 0; i < stats.length; i++) {
@@ -199,14 +207,6 @@ exports.listCPUs = function () {
   return list;
 };
 
-function wait(ms) {
-  var start = new Date().getTime();
-  var end = start;
-
-  while(end < start + ms) {
-    end = new Date().getTime();
-  }
-}
 
 function getCPUsList() {
   var cpus = _os.cpus();

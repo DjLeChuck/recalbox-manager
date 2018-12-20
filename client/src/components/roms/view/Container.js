@@ -65,7 +65,7 @@ class RomsViewContainer extends Component {
     romsList.sort((a, b) => a.name < b.name);
 
     this.setState({
-      stickyContent: t('Votre ROM a bien été supprimée !'),
+      stickyContent: t('Votre ROM a bien été envoyé !'),
       stickyStyle: 'success',
       romsList,
     });
